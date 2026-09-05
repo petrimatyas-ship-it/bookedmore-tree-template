@@ -1,0 +1,556 @@
+import { business } from "@/lib/business";
+import { Reveal } from "@/components/Reveal";
+import {
+  IconCircleCheckFilled,
+  IconCheck,
+  IconPhoneCall,
+  IconClipboardCheck,
+  IconCalendarCheck,
+  IconSparkles,
+  IconArrowRight,
+  IconStarFilled,
+  IconMapPin,
+  IconUsers,
+  IconShieldCheck,
+  IconHome
+} from "@tabler/icons-react";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { QuoteForm } from "@/components/QuoteForm";
+import { defaultLinks, type SiteConfig, type SiteLinks } from "@/lib/site-config";
+import { demoCopy } from "@/lib/demo-copy";
+
+type SectionProps = { config?: SiteConfig; links?: SiteLinks };
+
+export function TreeCareServices({ config = business, links = defaultLinks }: SectionProps) {
+  return (
+    <section id="services" className="scroll-mt-20 bg-[#f7f6f1] px-8 pb-10 pt-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+      <div className="mx-auto max-w-6xl lg:flex lg:items-end lg:justify-between lg:gap-12">
+        <div className="max-w-2xl">
+          <Pill>Our Services</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            Tree work without the runaround.
+          </h2>
+        </div>
+        <div className="mt-5 max-w-xl lg:mt-0">
+          <p className="text-base leading-8 text-forest-900/70 sm:text-lg">
+            From quick pruning to full removals, our crew handles the work carefully and cleans up before we leave.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
+              <span
+                key={chip}
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-white px-3.5 py-1.5 text-sm font-semibold text-forest-900"
+              >
+                <IconCircleCheckFilled size={16} className="text-forest-600" aria-hidden="true" />
+                {chip}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Reveal className="mx-auto mt-8 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {config.serviceCards.map((service) => (
+          <article
+            key={service.title}
+            className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)]"
+          >
+            <div className="relative h-48 overflow-hidden bg-forest-900/10">
+              <div
+                className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${service.image}), url(${config.heroImage})` }}
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/30 to-transparent" />
+              <h3 className="absolute bottom-4 left-5 right-5 text-lg font-bold leading-tight text-white [text-shadow:0_1px_8px_rgba(18,49,25,0.6)]">
+                {service.title}
+              </h3>
+              <span className="absolute right-4 top-4 rounded-full bg-forest-600 px-3.5 py-1.5 text-sm font-bold text-white shadow-md shadow-forest-900/25">
+                {service.price}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <p className="text-sm leading-7 text-forest-900/70">{service.description}</p>
+              <div className="mt-5 grid gap-2">
+                {service.included.map((item) => (
+                  <span key={item} className="flex items-start gap-2.5 text-sm leading-6 text-forest-900/72">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
+                      <IconCheck size={13} stroke={3} aria-hidden="true" />
+                    </span>
+                    <span>{item}</span>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto flex items-center justify-between border-t border-forest-900/8 pt-5">
+                <a
+                  href={links.services}
+                  className="mt-1 text-sm font-bold text-forest-700 transition group-hover:text-forest-900"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    Learn more
+                    <IconArrowRight
+                      size={15}
+                      stroke={2.5}
+                      className="transition group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </a>
+                <a
+                  href={links.quote}
+                  className="mt-1 rounded-full bg-ember-500/10 px-3.5 py-1.5 text-sm font-bold text-ember-600 transition hover:bg-ember-500 hover:text-white"
+                >
+                  Get a quote
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </Reveal>
+    </section>
+  );
+}
+
+/** Fact strip icons, in the order the facts are written. */
+const FACT_ICONS = [IconUsers, IconShieldCheck, IconHome, IconStarFilled];
+
+const defaultFactStrip = ["Experienced Crew", "Fully Insured", "Locally Owned"];
+
+export function AboutUs({ config = business }: SectionProps) {
+  const factStrip =
+    config.aboutFactStrip ??
+    (config.reviewSummary ? [...defaultFactStrip, `${config.reviewSummary.count} reviews`] : defaultFactStrip);
+
+  const paragraphs = config.aboutParagraphs;
+
+  return (
+    <section id="about" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <Pill>About Us</Pill>
+        <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          {config.aboutTitle ?? "A trusted local crew for safer, cleaner properties."}
+        </h2>
+      </div>
+      <div className="mx-auto mt-8 grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10">
+        <div>
+          <div
+            className="h-[320px] rounded-[18px] bg-cover bg-center shadow-soft sm:h-[380px]"
+            style={{ backgroundImage: `url(${config.aboutImage})` }}
+            aria-label={`${config.companyName} crew`}
+          />
+          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2.5 text-sm font-semibold text-forest-900">
+            {factStrip.map((fact, i) => {
+              const FactIcon = FACT_ICONS[i % FACT_ICONS.length];
+              return (
+                <span key={fact} className="inline-flex items-center gap-1.5">
+                  <FactIcon size={16} stroke={2} className="text-ember-600" aria-hidden="true" />
+                  {fact}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+        <div>
+          <div className="space-y-4 text-base leading-8 text-forest-900/72 sm:text-lg">
+            {paragraphs ? (
+              paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+            ) : (
+              <>
+                <p>
+                  At <span className="font-semibold text-forest-900">{config.companyName}</span>, we believe tree work
+                  should not mean unanswered calls, surprise costs, or a mess left behind.
+                </p>
+                <p>
+                  Our experienced crew provides safe, reliable tree care across {config.city} and surrounding
+                  communities. From routine trimming to complex removals, we treat every property with care and leave
+                  your yard clean when the job is done.
+                </p>
+              </>
+            )}
+          </div>
+          <div className="mt-7 flex flex-wrap gap-3">
+            {config.aboutTrustPoints.map((point) => (
+              <span
+                key={point}
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-600/25 bg-forest-50 px-4 py-2 text-sm font-semibold text-forest-900"
+              >
+                <IconCircleCheckFilled size={15} className="text-forest-600" aria-hidden="true" />
+                {point}
+              </span>
+            ))}
+          </div>
+          {config.phone && (
+            <a
+              href={`tel:${config.phone}`}
+              className="call-ring mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
+            >
+              <IconPhoneCall size={19} stroke={2} aria-hidden="true" />
+              Call {config.phone}
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** One icon per process step, in order: call → estimate → schedule → cleanup. */
+const STEP_ICONS = [IconPhoneCall, IconClipboardCheck, IconCalendarCheck, IconSparkles];
+
+export function HowItWorks({ config = business }: SectionProps) {
+  const steps = config.process ?? [];
+  if (steps.length === 0) return null;
+
+  return (
+    <section id="process" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-2xl">
+          <Pill>How It Works</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            From first call to clean yard.
+          </h2>
+          <p className="mt-4 text-base leading-8 text-forest-900/70 sm:text-lg">
+            A simple, no-pressure process so you know what is happening before any work starts.
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((step, index) => (
+          <article
+            key={step.title}
+            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25"
+          >
+            <div className="absolute right-5 top-5 text-5xl font-bold leading-none text-forest-900/[0.06]">
+              0{index + 1}
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest-900 text-white">
+                {(() => {
+                  const StepIcon = STEP_ICONS[index % STEP_ICONS.length];
+                  return <StepIcon size={21} stroke={1.9} aria-hidden="true" />;
+                })()}
+              </span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forest-50 text-xs font-bold text-forest-700">
+                {index + 1}
+              </span>
+            </div>
+            <h3 className="mt-6 text-lg font-bold leading-snug text-forest-900">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-forest-900/68">{step.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function ReviewsMap({ config = business }: SectionProps) {
+  // A demo has no state code until enrichment supplies one.
+  const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
+  const reviews = config.reviews ?? [];
+  const summary = config.reviewSummary;
+  const hasReviews = reviews.length > 0;
+
+  return (
+    <section id="reviews" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+        <div>
+          <Pill>Reviews</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            {hasReviews ? "Homeowners notice the cleanup." : demoCopy.reviews.emptyTitle}
+          </h2>
+          <p className="mt-4 max-w-xl text-base leading-8 text-forest-900/70 sm:text-lg">
+            {hasReviews
+              ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
+              : demoCopy.reviews.emptyBody}
+          </p>
+
+          {summary && (
+            <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-[#f7f6f1] p-5">
+              <div className="text-3xl font-bold text-forest-900">{summary.rating}</div>
+              <div>
+                <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <IconStarFilled key={i} size={14} />
+                  ))}
+                </div>
+                <div className="mt-1 text-sm font-semibold text-forest-900/70">
+                  {summary.count} verified {summary.source}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {hasReviews ? (
+            <div className="mt-5 grid gap-4">
+              {reviews.slice(0, 3).map((review) => (
+                <article
+                  key={review.name}
+                  className="rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+                >
+                  <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
+                    {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
+                      <IconStarFilled key={i} size={13} />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
+                  <p className="mt-4 text-sm font-bold text-forest-900">{review.name}</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-7 rounded-[18px] border border-dashed border-forest-900/20 bg-[#f7f6f1] p-6">
+              <div className="text-sm font-bold tracking-[0.18em] text-forest-900/20" aria-hidden="true">
+                ★★★★★
+              </div>
+              <div className="mt-4 grid gap-2.5" aria-hidden="true">
+                <span className="block h-3 w-4/5 rounded-full bg-forest-900/8" />
+                <span className="block h-3 w-full rounded-full bg-forest-900/8" />
+                <span className="block h-3 w-2/3 rounded-full bg-forest-900/8" />
+              </div>
+            </div>
+          )}
+        </div>
+        <div
+          id="areas"
+          className="scroll-mt-20 overflow-hidden rounded-[22px] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
+        >
+          <div className="relative h-[240px] w-full">
+            <iframe
+              title={`Map of ${place} service area`}
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(place)}&z=11&output=embed`}
+              className="absolute inset-0 h-full w-full grayscale-[15%]"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="p-6">
+            <Pill>Service Area</Pill>
+            <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
+              Serving {config.city} and nearby neighborhoods.
+            </h3>
+            <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
+              Here&apos;s where our crews work most often. Outside these areas? Call and we&apos;ll confirm availability.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {config.serviceAreas.slice(0, 6).map((area) => (
+                <div
+                  key={area}
+                  className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/95 px-4 py-3 text-sm font-semibold text-forest-900 shadow-sm"
+                >
+                  <IconMapPin size={15} stroke={2} className="shrink-0 text-ember-600" aria-hidden="true" />
+                  {area}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-[18px] bg-white/95 p-5 text-forest-900 shadow-sm">
+              <div className="text-sm font-bold">Need help outside this area?</div>
+              <p className="mt-2 text-sm leading-7 text-forest-900/68">
+                {config.phone
+                  ? "Call and we will confirm availability before scheduling an estimate."
+                  : "Send a request and we will confirm availability before scheduling an estimate."}
+              </p>
+              {config.phone && (
+                <a
+                  href={`tel:${config.phone}`}
+                  className="call-ring mt-4 inline-flex h-12 items-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
+                >
+                  <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
+                  Call {config.phone}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Sections the one-page demo adds on top of the home page             */
+/* ------------------------------------------------------------------ */
+
+export function TrustBadges({ config = business }: SectionProps) {
+  const badges = config.trustBadges ?? [];
+  if (badges.length === 0) return null;
+
+  return (
+    <section className="border-b border-forest-900/8 bg-[#f7f6f1] px-8 py-6 sm:px-10 lg:px-16">
+      <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {badges.map((badge) => (
+          <div
+            key={badge.label}
+            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-white px-4 py-3.5 text-sm font-bold text-forest-900 shadow-sm"
+          >
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-50">
+              <BadgeIcon name={badge.icon} />
+            </span>
+            <span>{badge.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function RecentProjects({ config = business }: SectionProps) {
+  const projects = config.projects ?? [];
+  if (projects.length === 0) return null;
+
+  return (
+    <section id="projects" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-2xl">
+          <Pill>{demoCopy.projects.eyebrow}</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            {demoCopy.projects.heading}
+          </h2>
+          <p className="mt-4 text-base leading-8 text-forest-900/70 sm:text-lg">{demoCopy.projects.sub}</p>
+        </div>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {projects.slice(0, 4).map((project, index) => (
+            <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
+              <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-base font-bold text-forest-900">{project.title}</h3>
+                  {project.location && (
+                    <span className="shrink-0 rounded-full bg-forest-50 px-3 py-1 text-xs font-bold text-forest-700">
+                      {project.location}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-4">
+                  <BeforeAfterSlider
+                    beforeImage={project.beforeImage}
+                    afterImage={project.afterImage}
+                    alt={project.title}
+                  />
+                  <p className="mt-2 text-center text-xs font-semibold text-forest-900/50">Drag the handle to compare</p>
+                </div>
+                <div className="mt-3 grid flex-1 gap-3 sm:grid-cols-2">
+                  <div className="rounded-[14px] bg-[#f3f1eb] p-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-900/60">Before</p>
+                    <p className="mt-2 text-sm leading-6 text-forest-900/72">{project.before}</p>
+                  </div>
+                  <div className="rounded-[14px] bg-forest-50 p-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-700">After</p>
+                    <p className="mt-2 text-sm leading-6 text-forest-900/72">{project.after}</p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FaqSection({ config = business }: SectionProps) {
+  const faqs = config.faqs ?? [];
+  if (faqs.length === 0) return null;
+
+  return (
+    <section id="faq" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-2xl">
+          <Pill>{demoCopy.faq.eyebrow}</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            {demoCopy.faq.heading}
+          </h2>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {faqs.map((faq) => (
+            <article key={faq.question} className="rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
+              <h3 className="text-base font-bold leading-snug text-forest-900">{faq.question}</h3>
+              <p className="mt-3 text-sm leading-7 text-forest-900/70">{faq.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
+  return (
+    <section id="quote" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <Pill>{demoCopy.quote.eyebrow}</Pill>
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            {demoCopy.quote.heading}
+          </h2>
+          <p className="mt-5 max-w-md text-base leading-8 text-forest-900/70 sm:text-lg">{demoCopy.quote.sub}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {config.aboutTrustPoints.map((point) => (
+              <span
+                key={point}
+                className="rounded-full border border-forest-900/12 bg-white px-4 py-2 text-sm font-semibold text-forest-900"
+              >
+                {point}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-[22px] border border-forest-900/10 bg-white p-6 shadow-soft sm:p-9">
+          <QuoteForm config={config} slug={slug} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Footer({ config = business }: SectionProps) {
+  return (
+    <footer className="bg-forest-900 px-5 py-12 text-white lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className="text-lg font-extrabold">{config.companyName}</div>
+          <div className="mt-2 text-sm text-white/62">{config.tagline}</div>
+        </div>
+        <div className="text-sm font-bold text-white/78">
+          {[config.phone, config.email].filter(Boolean).join(" | ")}
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-forest-900">
+      <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
+      {children}
+    </span>
+  );
+}
+
+const badgePaths: Record<string, string> = {
+  shield: "M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z",
+  license: "M4 4h16v16H4V4Zm3 4h10M7 12h10M7 16h6",
+  home: "M3 11 12 3l9 8v10H3V11Z",
+  bolt: "M13 2 4 14h6l-1 8 9-12h-6l1-8Z",
+  clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 7v5l3 2",
+  leaf: "M4 20c0-8 6-14 16-15 0 10-6 15-13 15H4Zm2 0c3-4 6-6 10-8",
+  truck: "M3 7h11v10H3V7Zm11 3h4l3 3v4h-7v-7Z",
+  check: "m4 12 5 5L20 6"
+};
+
+function BadgeIcon({ name }: { name: string }) {
+  const path = badgePaths[name] ?? badgePaths.check;
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5 shrink-0 text-forest-700"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={path} />
+    </svg>
+  );
+}

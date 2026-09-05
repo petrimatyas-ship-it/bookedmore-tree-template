@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f6f1;
+  --foreground: #172116;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --color-forest-50: #eef7ef;
+  --color-forest-500: #357a3a;
+  --color-forest-600: #28622d;
+  --color-forest-700: #214f27;
+  --color-forest-900: #123119;
+
+  --color-ember-400: #f59f38;
+  --color-ember-500: #ef7d1a;
+  --color-ember-600: #d8610b;
+
+  --shadow-soft: 0 18px 50px rgba(18, 49, 25, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: #f59f38;
+  color: #172116;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Call buttons: a green glow that brightens and softens, plus a ring that breathes. */
+@keyframes phone-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(53, 122, 58, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px 2px rgba(53, 122, 58, 0.55);
+  }
+}
+.phone-pulse {
+  animation: phone-pulse 2.6s ease-in-out infinite;
+}
+.phone-pulse:hover {
+  animation-play-state: paused;
+}
+
+@keyframes call-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6), 0 0 0 0 rgba(53, 122, 58, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 0 22px 4px rgba(53, 122, 58, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(53, 122, 58, 0);
+  }
+}
+.call-ring {
+  animation: call-ring 2.4s ease-out infinite;
+}
+.call-ring:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-pulse,
+  .call-ring {
+    animation: none;
+  }
+}
