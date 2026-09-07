@@ -25,47 +25,62 @@ export function Header({
   return (
     <header className="sticky top-0 z-50 border-b border-forest-900/10 bg-white text-forest-900 shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
+        {/*
+          `min-w-0` and no `min-w-fit`: with the latter, a long name like
+          "Dallas Tree Trimming and Removal Service" sets the link's minimum
+          width to its full one-line length, shoving the nav and the CTA off
+          the right edge and giving the whole page a horizontal scrollbar.
+          Allowed to shrink, the name wraps instead.
+        */}
         <Link
           href={links.home}
-          className="flex min-w-0 items-center gap-2 sm:gap-3 lg:min-w-fit"
+          className="flex min-w-0 shrink items-center gap-2 sm:gap-3"
           aria-label={`${config.companyName} home`}
           onClick={() => setMenuOpen(false)}
         >
-          <span
-            className={`relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-forest-900/10 sm:h-12 sm:w-12 ${
-              config.logoImage ? "bg-white" : "bg-forest-900"
-            }`}
-          >
-            {config.logoImage ? (
-              /*
-                object-contain, not cover: a pulled logo is often a wide
-                wordmark, and cover crops "Texas Tree Surgeons" to "eSurge".
-              */
+          {/*
+            A pulled logo gets no frame. Boxing someone's logo in a bordered
+            white circle makes it read as a sticker pasted onto the page;
+            standing free at a decent size it reads as their brand. The
+            circle stays for the initials mark, which needs the shape.
+            object-contain because wordmarks are wide and cover would crop
+            "Texas Tree Surgeons" down to "eSurge".
+          */}
+          {config.logoImage ? (
+            <span className="relative h-10 w-10 shrink-0 sm:h-14 sm:w-14">
               <Image
                 src={config.logoImage}
                 alt={`${config.companyName} logo`}
                 fill
-                sizes="48px"
-                className="object-contain p-0.5"
+                sizes="56px"
+                className="object-contain"
                 priority
               />
-            ) : (
+            </span>
+          ) : (
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-900 shadow-sm sm:h-12 sm:w-12">
               <span className="text-sm font-bold text-white sm:text-base" aria-hidden="true">
                 {initials(config.companyName)}
               </span>
-            )}
-          </span>
+            </span>
+          )}
           {/*
             Wraps to a second line rather than truncating. A cut-off business
             name ("Ridgeline Tree &...") is the worst thing to show someone on
-            their own site, and long names are common in this trade.
+            their own site, and long names are common in this trade — the
+            capped width is what forces the wrap, and a genuinely long name
+            also steps down a size so two lines still fit the bar.
           */}
-          <span className="line-clamp-2 text-base font-bold leading-tight tracking-tight sm:text-lg lg:text-xl">
+          <span
+            className={`line-clamp-2 max-w-[11rem] font-bold leading-tight tracking-tight sm:max-w-[15rem] lg:max-w-[17rem] ${
+              config.companyName.length > 26 ? "text-sm sm:text-base lg:text-lg" : "text-base sm:text-lg lg:text-xl"
+            }`}
+          >
             {config.companyName}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 text-base font-semibold text-black lg:flex">
+        <nav className="hidden shrink-0 items-center gap-5 text-base font-semibold text-black lg:flex xl:gap-7">
           {links.nav.map((item) => {
             const current = isCurrent(item.href);
             return (

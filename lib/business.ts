@@ -24,9 +24,9 @@ export const business = {
     "Free Estimates"
   ],
   story: [
-    "Oakline started in 2009 with one truck, one chipper, and a simple frustration: too many homeowners told us the last tree company never called back, showed up late, or left the yard buried in brush.",
-    "Seventeen years later we run three full crews across Houston, but the standard hasn't moved: answer the phone, quote honestly, do careful work, and leave the property cleaner than we found it.",
-    "Most of our work still comes from referrals and repeat customers. We like it that way."
+    "Since 2009 we have built Oakline around one promise: every homeowner gets the same careful, certified work, whether it is a single limb over the driveway or a ninety-foot oak leaning toward the house. Seventeen years and three full crews later, that promise is exactly where we started.",
+    "Excellence here is specific, not a slogan. An ISA Certified Arborist reviews the plan before a saw starts. The crew that quotes your job is the crew that arrives to do it, uniformed and fully insured. We rig patiently around roofs, fences, and power lines, and we work clean the whole way through.",
+    "And we look after people, not just trees. We answer the phone, quote honestly, explain what we are doing and why, and leave your property in better shape than we found it. That care is why most of our work still comes from referrals and repeat customers, and why we would not run it any other way."
   ],
   credentials: [
     { title: "ISA Certified Arborist on staff", text: "Pruning and removal decisions reviewed by a certified arborist, not guesswork." },

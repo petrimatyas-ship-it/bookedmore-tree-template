@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHead, CtaBand } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { loadDemo } from "@/lib/demo-loader";
+import { DemoLock } from "@/components/DemoLock";
+import { wantThisHref } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -27,7 +29,12 @@ export default async function DemoServicesPage({ params }: Params) {
   const hasEmergency = config.serviceCards.some((s) => /emergency/i.test(s.title));
 
   return (
-    <>
+    <DemoLock
+      page="services"
+      companyName={config.companyName}
+      href={wantThisHref(demo.slug, demo.leadId)}
+      homeHref={links.home}
+    >
       <PageHead
         eyebrow="Services"
         title="Tree work handled start to finish."
@@ -145,6 +152,6 @@ export default async function DemoServicesPage({ params }: Params) {
       )}
 
       <CtaBand config={config} links={links} />
-    </>
+    </DemoLock>
   );
 }

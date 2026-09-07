@@ -83,6 +83,61 @@ export function isExpired(demo: DemoRecord) {
   return new Date(demo.expiresAt).getTime() < Date.now();
 }
 
+/* ------------------------------------------------------------------ */
+/* Engagement                                                            */
+/* ------------------------------------------------------------------ */
+
+export type EngagementEvent = { event: string; page: string; value?: number; at: string };
+
+/** Plenty to judge interest; short enough that a bored tab cannot bloat it. */
+const MAX_EVENTS = 200;
+
+/**
+ * Appends one thing the owner did with their draft.
+ *
+ * Kept under its own key rather than on the demo record: this is written far
+ * more often than the demo is, and a lost or clashing write must never risk
+ * the record the page renders from.
+ */
+export async function recordEngagement(slug: string, event: EngagementEvent): Promise<void> {
+  const key = `engagement:${slug}`;
+  try {
+    if (usingKv) {
+      await kv(["RPUSH", key, JSON.stringify(event)]);
+      await kv(["LTRIM", key, -MAX_EVENTS, -1]);
+      // Outlives the demo by a fortnight: still useful for following up
+      // after the draft itself has come down.
+      await kv(["EXPIRE", key, 60 * 60 * 24 * 45]);
+      return;
+    }
+    await fs.mkdir(FILE_DIR, { recursive: true });
+    const file = path.join(FILE_DIR, `engagement-${slug}.json`);
+    let events: EngagementEvent[] = [];
+    try {
+      events = JSON.parse(await fs.readFile(file, "utf8")) as EngagementEvent[];
+    } catch {
+      events = [];
+    }
+    events.push(event);
+    await fs.writeFile(file, JSON.stringify(events.slice(-MAX_EVENTS)), "utf8");
+  } catch (err) {
+    console.error("[db] Could not record engagement", slug, err);
+  }
+}
+
+export async function getEngagement(slug: string): Promise<EngagementEvent[]> {
+  if (!SLUG_RE.test(slug)) return [];
+  try {
+    if (usingKv) {
+      const raw = (await kv(["LRANGE", `engagement:${slug}`, 0, -1])) as string[] | null;
+      return (raw ?? []).map((r) => JSON.parse(r) as EngagementEvent);
+    }
+    return JSON.parse(await fs.readFile(path.join(FILE_DIR, `engagement-${slug}.json`), "utf8")) as EngagementEvent[];
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Write side. The marketing site owns generation, so the only caller here is
  * the dev seed route that renders a hand-written record.

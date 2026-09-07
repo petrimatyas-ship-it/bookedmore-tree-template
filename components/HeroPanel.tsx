@@ -8,7 +8,15 @@ import type { SiteConfig } from "@/lib/site-config";
 
 type Tab = "chat" | "form";
 
-export function HeroPanel({ config = business, slug }: { config?: SiteConfig; slug?: string }) {
+export function HeroPanel({
+  config = business,
+  slug,
+  lockHref = ""
+}: {
+  config?: SiteConfig;
+  slug?: string;
+  lockHref?: string;
+}) {
   const [tab, setTab] = useState<Tab>("chat");
 
   return (
@@ -24,7 +32,7 @@ export function HeroPanel({ config = business, slug }: { config?: SiteConfig; sl
 
       {tab === "chat" ? (
         <div className="min-h-0 flex-1">
-          <ChatWidget frameless config={config} slug={slug} />
+          <ChatWidget frameless config={config} slug={slug} lockHref={lockHref} />
         </div>
       ) : (
         <div className="min-h-0 flex-1 overflow-y-auto p-5">

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHead, CtaBand } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { loadDemo } from "@/lib/demo-loader";
+import { DemoLock } from "@/components/DemoLock";
+import { wantThisHref } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -28,7 +30,12 @@ export default async function DemoServiceAreasPage({ params }: Params) {
   const areas = config.serviceAreas;
 
   return (
-    <>
+    <DemoLock
+      page="service-areas"
+      companyName={config.companyName}
+      href={wantThisHref(demo.slug, demo.leadId)}
+      homeHref={links.home}
+    >
       <PageHead
         eyebrow="Service Areas"
         title={`Tree service across ${config.city}.`}
@@ -140,6 +147,6 @@ export default async function DemoServiceAreasPage({ params }: Params) {
       </section>
 
       <CtaBand config={config} links={links} />
-    </>
+    </DemoLock>
   );
 }

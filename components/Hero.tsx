@@ -8,11 +8,14 @@ const defaultTrustItems = ["Fully Insured", "Free Estimates", "Cleanup Included"
 export function Hero({
   config = business,
   links = defaultLinks,
-  slug
+  slug,
+  lockHref = ""
 }: {
   config?: SiteConfig;
   links?: SiteLinks;
   slug?: string;
+  /** Passed down to the assistant, for the pitch it makes once it stops answering. */
+  lockHref?: string;
 }) {
   const trustItems = config.heroTrustItems ?? defaultTrustItems;
   const headline = config.heroHeadline ?? `${config.city} tree care without the mess or runaround.`;
@@ -75,7 +78,7 @@ export function Hero({
         </div>
 
         <div className="h-[440px] w-full max-w-sm justify-self-center lg:h-[480px] lg:justify-self-end">
-          <HeroPanel config={config} slug={slug} />
+          <HeroPanel config={config} slug={slug} lockHref={lockHref} />
         </div>
       </div>
     </section>

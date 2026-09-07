@@ -13,6 +13,8 @@ import {
 import { PageHead, CtaBand } from "@/components/PageShell";
 import { PriceCalculator } from "@/components/PriceCalculator";
 import { loadDemo } from "@/lib/demo-loader";
+import { DemoLock } from "@/components/DemoLock";
+import { wantThisHref } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -62,7 +64,12 @@ export default async function DemoPricingPage({ params }: Params) {
   const pricingFaqs = config.pricingFaqs ?? [];
 
   return (
-    <>
+    <DemoLock
+      page="pricing"
+      companyName={config.companyName}
+      href={wantThisHref(demo.slug, demo.leadId)}
+      homeHref={links.home}
+    >
       <PageHead
         eyebrow="Pricing"
         title="What tree work actually costs."
@@ -234,6 +241,6 @@ export default async function DemoPricingPage({ params }: Params) {
       </section>
 
       <CtaBand config={config} links={links} />
-    </>
+    </DemoLock>
   );
 }

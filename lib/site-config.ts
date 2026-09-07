@@ -37,9 +37,14 @@ export type Review = {
   name: string;
   area?: string;
   service?: string;
+  /** Google's relative wording on a pulled review, e.g. "4 months ago". */
   date?: string;
   text: string;
   rating: number;
+  /** Reviewer's Google profile picture. Only ever set on a real pulled review. */
+  avatar?: string;
+  /** Photos the customer attached to the review. */
+  photos?: readonly string[];
 };
 
 export type ReviewSummary = { rating: string; count: string; source: string };
@@ -62,6 +67,12 @@ export type SiteConfig = {
   logoText: string;
   /** Optional: demos have no logo, the header falls back to initials. */
   logoImage?: string;
+  /**
+   * True only on a generated demo. Shared sections use it to show the notes
+   * addressed to the business owner, which must never appear on the showcase
+   * site or on a real customer-facing build.
+   */
+  isDemo?: boolean;
   heroImage: string;
   aboutImage: string;
 
@@ -74,6 +85,8 @@ export type SiteConfig = {
 
   /* About */
   aboutTitle?: string;
+  /** The line under the About page title. Upgraded when real claims are found. */
+  aboutSubline?: string;
   aboutParagraphs?: readonly string[];
   aboutTrustPoints: readonly string[];
   aboutFactStrip?: readonly string[];
@@ -87,6 +100,20 @@ export type SiteConfig = {
   reviews?: readonly Review[];
   /** Null when we have no verified rating to show. */
   reviewSummary?: ReviewSummary | null;
+  /**
+   * Their Google listing. Present only when reviews were really pulled, so
+   * it doubles as the signal that the reviews section may show Google's
+   * branding and link out for verification.
+   */
+  reviewsUrl?: string;
+  listingUrl?: string;
+  /**
+   * Real photos of their work. Deliberately shown without captions: we do
+   * not know what is in them, and a wrong caption is worse than none.
+   */
+  gallery?: readonly string[];
+  /** How many of their photos we actually found, for "N more on the real site". */
+  galleryTotal?: number;
   process?: readonly ProcessStep[];
   serviceAreas: readonly string[];
   responseNote?: string;
@@ -133,12 +160,19 @@ export type SiteLinks = {
   quote: string;
   services: string;
   nav: readonly { label: string; href: string }[];
+  /**
+   * Root of the per-area landing pages (/tree-service/<slug>) the footer
+   * links its service areas to. Absent on a demo: those pages exist only on
+   * the showcase site, and a demo must never send a prospect there.
+   */
+  areaBase?: string;
 };
 
 export const defaultLinks: SiteLinks = {
   home: "/",
   quote: "/quote",
   services: "/services",
+  areaBase: "/tree-service",
   nav: [
     { label: "Services", href: "/services" },
     { label: "Pricing", href: "/pricing" },

@@ -10,8 +10,8 @@ export default function AboutPage() {
   return (
     <PageShell
       eyebrow="About Us"
-      title={`One truck in ${business.founded}. Three crews today. Same standard.`}
-      description="Most tree companies lose customers between the phone call and the cleanup. We built Oakline around fixing exactly that."
+      title={`The crew ${business.city} homeowners call back.`}
+      description={`Certified arborists, patient work around your home, and a property left cleaner than we found it. The same standard on every job since ${business.founded}.`}
     >
       {/* Story + photo */}
       <section className="px-5 py-16 lg:px-8">
@@ -33,7 +33,7 @@ export default function AboutPage() {
           </div>
           <div>
             <h2 className="text-2xl font-bold leading-tight text-forest-900 sm:text-3xl">
-              Tree work is dangerous. Hiring us shouldn&apos;t be.
+              We treat your property like we live there.
             </h2>
             <div className="mt-5 space-y-5 text-base leading-8 text-forest-900/72">
               {business.story.map((paragraph) => (

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PageHead, CtaBand } from "@/components/PageShell";
 import { loadDemo } from "@/lib/demo-loader";
+import { DemoLock } from "@/components/DemoLock";
+import { wantThisHref } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -28,15 +30,19 @@ export default async function DemoAboutPage({ params }: Params) {
   const process = config.process ?? [];
 
   return (
-    <>
+    <DemoLock
+      page="about"
+      companyName={config.companyName}
+      href={wantThisHref(demo.slug, demo.leadId)}
+      homeHref={links.home}
+    >
       <PageHead
         eyebrow="About Us"
-        title={
-          config.founded
-            ? `One truck in ${config.founded}. A full crew today.`
-            : `A local crew serving ${config.city}.`
+        title={config.aboutTitle ?? `The crew ${config.city} homeowners call back.`}
+        description={
+          config.aboutSubline ??
+          "Patient work around your home, an honest quote up front, and a property left cleaner than we found it. The same standard on every job."
         }
-        description={`Most tree companies lose customers between the phone call and the cleanup. ${config.companyName} is built around fixing exactly that.`}
       />
 
       <section className="px-5 py-16 lg:px-8">
@@ -63,7 +69,7 @@ export default async function DemoAboutPage({ params }: Params) {
           </div>
           <div>
             <h2 className="text-2xl font-bold leading-tight text-forest-900 sm:text-3xl">
-              Tree work is dangerous. Hiring us shouldn&apos;t be.
+              We treat your property like we live there.
             </h2>
             <div className="mt-5 space-y-5 text-base leading-8 text-forest-900/72">
               {story.map((paragraph) => (
@@ -136,6 +142,6 @@ export default async function DemoAboutPage({ params }: Params) {
       )}
 
       <CtaBand config={config} links={links} />
-    </>
+    </DemoLock>
   );
 }

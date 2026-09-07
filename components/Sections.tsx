@@ -1,5 +1,8 @@
+import Image from "next/image";
 import { business } from "@/lib/business";
 import { Reveal } from "@/components/Reveal";
+import { GoogleG, GoogleRatingSummary, GoogleReviewCard, GoogleStars } from "@/components/GoogleReview";
+import { OwnerNote } from "@/components/OwnerNote";
 import {
   IconCircleCheckFilled,
   IconCheck,
@@ -12,11 +15,13 @@ import {
   IconMapPin,
   IconUsers,
   IconShieldCheck,
-  IconHome
+  IconHome,
+  IconMail
 } from "@tabler/icons-react";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { QuoteForm } from "@/components/QuoteForm";
-import { defaultLinks, type SiteConfig, type SiteLinks } from "@/lib/site-config";
+import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
+import { findArea, slugify } from "@/lib/areas";
 import { demoCopy } from "@/lib/demo-copy";
 
 type SectionProps = { config?: SiteConfig; links?: SiteLinks };
@@ -48,11 +53,19 @@ export function TreeCareServices({ config = business, links = defaultLinks }: Se
           </div>
         </div>
       </div>
-      <Reveal className="mx-auto mt-8 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {/*
+        Wrapped flex rather than a grid, so a partial last row centres itself.
+        The form allows one to five services, and four cards in a three-column
+        grid left the fourth stranded in the left column with two empty cells
+        beside it — a hole big enough that the section below looked detached.
+        The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
+        1.25rem), so a full row is pixel-identical to what it replaces.
+      */}
+      <Reveal className="mx-auto mt-8 flex max-w-6xl flex-wrap justify-center gap-5">
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-48 overflow-hidden bg-forest-900/10">
               <div
@@ -248,6 +261,9 @@ export function ReviewsMap({ config = business }: SectionProps) {
   const reviews = config.reviews ?? [];
   const summary = config.reviewSummary;
   const hasReviews = reviews.length > 0;
+  // Only reviews actually pulled from a listing carry a link back to it, so
+  // this is the one safe signal that Google's branding may be shown.
+  const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
     <section id="reviews" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
@@ -255,7 +271,7 @@ export function ReviewsMap({ config = business }: SectionProps) {
         <div>
           <Pill>Reviews</Pill>
           <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
-            {hasReviews ? "Homeowners notice the cleanup." : demoCopy.reviews.emptyTitle}
+            {hasReviews ? "Homeowners notice the care." : demoCopy.reviews.emptyTitle}
           </h2>
           <p className="mt-4 max-w-xl text-base leading-8 text-forest-900/70 sm:text-lg">
             {hasReviews
@@ -263,38 +279,57 @@ export function ReviewsMap({ config = business }: SectionProps) {
               : demoCopy.reviews.emptyBody}
           </p>
 
-          {summary && (
-            <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-[#f7f6f1] p-5">
-              <div className="text-3xl font-bold text-forest-900">{summary.rating}</div>
-              <div>
-                <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <IconStarFilled key={i} size={14} />
-                  ))}
-                </div>
-                <div className="mt-1 text-sm font-semibold text-forest-900/70">
-                  {summary.count} verified {summary.source}
+          {summary &&
+            (fromGoogle ? (
+              <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7" />
+            ) : (
+              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-[#f7f6f1] p-5">
+                <div className="text-3xl font-bold text-forest-900">{summary.rating}</div>
+                <div>
+                  <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <IconStarFilled key={i} size={14} />
+                    ))}
+                  </div>
+                  <div className="mt-1 text-sm font-semibold text-forest-900/70">
+                    {summary.count} verified {summary.source}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            ))}
 
           {hasReviews ? (
             <div className="mt-5 grid gap-4">
-              {reviews.slice(0, 3).map((review) => (
-                <article
-                  key={review.name}
-                  className="rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+              {reviews.slice(0, 3).map((review, index) =>
+                fromGoogle ? (
+                  <GoogleReviewCard key={`${review.name}-${index}`} review={review} />
+                ) : (
+                  <article
+                    key={`${review.name}-${index}`}
+                    className="rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+                  >
+                    <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
+                      {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
+                        <IconStarFilled key={i} size={13} />
+                      ))}
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
+                    <p className="mt-4 text-sm font-bold text-forest-900">{review.name}</p>
+                  </article>
+                )
+              )}
+              {fromGoogle && config.reviewsUrl && (
+                <a
+                  href={config.reviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a73e8] transition hover:underline"
                 >
-                  <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
-                    {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
-                      <IconStarFilled key={i} size={13} />
-                    ))}
-                  </div>
-                  <p className="mt-3 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
-                  <p className="mt-4 text-sm font-bold text-forest-900">{review.name}</p>
-                </article>
-              ))}
+                  Read all {config.reviewSummary?.count ?? ""} reviews on Google
+                  <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
           ) : (
             <div className="mt-7 rounded-[18px] border border-dashed border-forest-900/20 bg-[#f7f6f1] p-6">
@@ -501,20 +536,198 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
   );
 }
 
-export function Footer({ config = business }: SectionProps) {
+/**
+ * The footer every page ends on.
+ *
+ * Rendered from the config like everything else here, so the same markup
+ * serves the showcase site and a generated demo. Every block is guarded: a
+ * demo that knows only a name, a city and a phone number still renders a
+ * footer with no holes in it, and nothing is invented to fill a column.
+ */
+export function Footer({ config = business, links = defaultLinks }: SectionProps) {
+  const services = (config.services?.length ? config.services : config.serviceCards).slice(0, 6);
+  const areas = config.serviceAreas.slice(0, 12);
+  const locality = [config.city, config.stateAbbr].filter(Boolean).join(", ");
+  const rating = Number(config.reviewSummary?.rating);
+
   return (
-    <footer className="bg-forest-900 px-5 py-12 text-white lg:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <div className="text-lg font-extrabold">{config.companyName}</div>
-          <div className="mt-2 text-sm text-white/62">{config.tagline}</div>
+    <footer className="bg-forest-900 text-white">
+      <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-12">
+          {/* Who they are */}
+          <div>
+            <a href={links.home} className="flex items-center gap-3" aria-label={`${config.companyName} home`}>
+              {/*
+                Same logo-or-initials fallback as the header, but the mark sits
+                on a white tile here. Logos in this trade are overwhelmingly
+                opaque white-background files (Oakline's own is RGB with no
+                alpha), and dropped straight onto the dark band they read as a
+                stray white rectangle. A padded tile makes the white deliberate
+                and works for transparent marks too.
+              */}
+              {config.logoImage ? (
+                <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white p-1.5">
+                  <span className="relative block h-full w-full">
+                    <Image src={config.logoImage} alt="" fill sizes="48px" className="object-contain" />
+                  </span>
+                </span>
+              ) : (
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/12">
+                  <span className="text-sm font-bold" aria-hidden="true">
+                    {initials(config.companyName)}
+                  </span>
+                </span>
+              )}
+              <span className="text-lg font-extrabold leading-tight">{config.companyName}</span>
+            </a>
+
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/62">{config.tagline}</p>
+
+            {/* Only ever a verified summary; there is no placeholder rating. */}
+            {config.reviewSummary && (
+              <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                <GoogleG size={16} />
+                <span className="text-sm font-bold">{config.reviewSummary.rating}</span>
+                <GoogleStars rating={Number.isFinite(rating) ? rating : 5} size={14} />
+                <span className="text-sm text-white/60">{config.reviewSummary.count} reviews</span>
+              </div>
+            )}
+
+            {config.trustBadges && config.trustBadges.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {config.trustBadges.map((badge) => (
+                  <span
+                    key={badge.label}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white/85"
+                  >
+                    <IconCheck size={13} stroke={3} className="text-ember-400" aria-hidden="true" />
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Services */}
+          {services.length > 0 && (
+            <div>
+              <FooterHeading>Services</FooterHeading>
+              <ul className="mt-5 space-y-3">
+                {services.map((service) => (
+                  <li key={service.title}>
+                    <a href={links.services} className="text-sm text-white/70 transition hover:text-white">
+                      {service.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* The same nav as the header, so the foot of the page is a way back up. */}
+          <div>
+            <FooterHeading>Company</FooterHeading>
+            <ul className="mt-5 space-y-3">
+              {links.nav.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="text-sm text-white/70 transition hover:text-white">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Get in touch */}
+          <div>
+            <FooterHeading>Get in touch</FooterHeading>
+            <ul className="mt-5 space-y-4">
+              {config.phone && (
+                <li>
+                  <a
+                    href={`tel:${config.phone}`}
+                    className="flex items-center gap-2.5 text-base font-bold transition hover:text-ember-400"
+                  >
+                    <IconPhoneCall size={17} stroke={2.2} className="shrink-0 text-ember-400" aria-hidden="true" />
+                    {config.phone}
+                  </a>
+                </li>
+              )}
+              {config.email && (
+                <li>
+                  <a
+                    href={`mailto:${config.email}`}
+                    className="flex items-start gap-2.5 text-sm text-white/70 transition hover:text-white"
+                  >
+                    <IconMail size={17} stroke={2} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
+                    <span className="break-all">{config.email}</span>
+                  </a>
+                </li>
+              )}
+              {locality && (
+                <li className="flex items-start gap-2.5 text-sm text-white/70">
+                  <IconMapPin size={17} stroke={2} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
+                  <span>{locality}</span>
+                </li>
+              )}
+            </ul>
+
+            {config.responseNote && <p className="mt-5 text-sm leading-7 text-white/55">{config.responseNote}</p>}
+
+            <a
+              href={links.quote}
+              className="mt-6 inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-sm font-bold text-white shadow-lg shadow-ember-600/20 transition hover:bg-ember-600"
+            >
+              Get a Free Estimate
+            </a>
+          </div>
         </div>
-        <div className="text-sm font-bold text-white/78">
-          {[config.phone, config.email].filter(Boolean).join(" | ")}
+
+        {/*
+          Areas link to their landing pages on the showcase site only. A demo
+          gets no `areaBase`, so its areas render as plain text rather than
+          walking a prospect into the showcase site's own pages.
+        */}
+        {areas.length > 0 && (
+          <div className="mt-12 border-t border-white/10 pt-8">
+            <FooterHeading>Areas we serve</FooterHeading>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {areas.map((area) => {
+                const slug = slugify(area);
+                const href = links.areaBase && findArea(slug) ? `${links.areaBase}/${slug}` : null;
+                return href ? (
+                  <a
+                    key={area}
+                    href={href}
+                    className="rounded-full bg-white/8 px-3.5 py-1.5 text-sm text-white/70 transition hover:bg-white/16 hover:text-white"
+                  >
+                    {area}
+                  </a>
+                ) : (
+                  <span key={area} className="rounded-full bg-white/8 px-3.5 py-1.5 text-sm text-white/70">
+                    {area}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+          <p>
+            &copy; {new Date().getFullYear()} {config.companyName}. All rights reserved.
+          </p>
+          {locality && <p>Serving {locality} and the surrounding area.</p>}
         </div>
       </div>
     </footer>
   );
+}
+
+function FooterHeading({ children }: { children: React.ReactNode }) {
+  return <h2 className="text-xs font-extrabold uppercase tracking-[0.18em] text-ember-400">{children}</h2>;
 }
 
 function Pill({ children }: { children: React.ReactNode }) {

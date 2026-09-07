@@ -51,6 +51,90 @@ export const demoCopy = {
     heading: (city: string) => `Serving ${city} and the surrounding area.`
   },
 
+  /**
+   * Notes from us to the business owner, laid over their own site.
+   *
+   * Safe to show inline because a demo is only ever seen by one person: the
+   * owner it was built for. Private link, noindex, gone in 30 days. Without
+   * these they see a nice page; with them they see the machine working.
+   */
+  notes: {
+    reviews:
+      "These are your real Google reviews. They load themselves and stay current, so your newest one is always on the page.",
+    gallery: "Your own photos, pulled from your listing. The real site uses all of them, not five.",
+    assistant:
+      "This answers your customers at 9pm while you are on a job, and takes the details of the ones ready to book."
+  },
+
+  /**
+   * The gate on the pages beyond the home page.
+   *
+   * The home page stays wide open on purpose. Everything that makes this
+   * work is the moment an owner sees their own rating, their own reviews and
+   * their own name and thinks "that is actually mine" — blurring that would
+   * hide the proof in order to make the pitch. So the proof is free and the
+   * depth is what costs: they get the full hit, then hit a wall made of more
+   * of the same thing they just saw was real.
+   */
+  locked: {
+    eyebrow: "Part of your full site",
+    title: (page: string) => `Your ${page} page is built and waiting.`,
+    body: (company: string) =>
+      `${company} gets seven pages, not one. This is one of them, written around your services and the areas you work in. Go live and the whole site opens up.`,
+    cta: "Unlock my full site",
+    secondary: "Back to my home page",
+    /** Names used in the title, keyed by the demo route segment. */
+    pageNames: {
+      services: "services",
+      pricing: "pricing",
+      reviews: "reviews",
+      "service-areas": "service areas",
+      about: "about"
+    } as Record<string, string>
+  },
+
+  /** The blurred tile at the end of the gallery. */
+  galleryLock: (more: number) =>
+    more > 0
+      ? `${more} more of your photos on the real site`
+      : "More of your photos on the real site",
+
+  /**
+   * The assistant stops after a few replies on a demo. It is the most
+   * impressive thing on the page, so it is also the best place to show what
+   * having it properly actually means.
+   */
+  assistantLock: {
+    title: "That is your assistant working.",
+    body: "On your real site it never stops — every question answered, every night, and the details of anyone ready to book sent straight to your phone.",
+    cta: "Get it running on my site"
+  },
+
+  /**
+   * The last thing on every demo page.
+   *
+   * Whoever has scrolled this far is the warmest they will ever be, and the
+   * page used to hand them a footer written for homeowners. This is the only
+   * part of a demo addressed to the owner rather than to their customers.
+   */
+  close: {
+    eyebrow: "Your draft",
+    title: "You just scrolled your own website.",
+    realTitle: "Already real",
+    draftTitle: "Still a draft",
+    draft: [
+      "The words were written for you, not by you",
+      "The crew photos are stand-ins until we have yours",
+      "The prices are typical ranges, not your numbers"
+    ],
+    priceLead: "Everything above, built properly and looked after every month, from",
+    price: "$149/mo",
+    cta: "Make this my site",
+    reassure: "Live in 7 days. Cancel any time. Nothing is charged until it is live.",
+    expiry: (days: number) =>
+      days <= 1 ? "This draft comes down tomorrow." : `This draft comes down in ${days} days.`
+  },
+
   expired: {
     title: "This demo has expired",
     body: "Draft sites are kept for 30 days. Yours has been taken down, but we still have your details and can put a fresh one up in about a minute.",
@@ -65,14 +149,18 @@ export const demoCopy = {
 } as const;
 
 /**
- * Where the banner and the expiry pages send people: the pricing table, with
- * the lead attached so that picking a plan there carries straight into /start
- * and never asks for details this visitor has already given.
+ * Where every "I want this" on a demo goes.
+ *
+ * It used to land on the generic pricing table, which threw away everything
+ * we know: they had just scrolled their own website and arrived somewhere
+ * that had never heard of them. /start already takes the lead and the demo
+ * slug and prefills from them, so the thread now holds from the draft all
+ * the way to the card.
  */
 export function wantThisHref(slug: string, leadId?: string) {
-  const params = new URLSearchParams({ slug });
+  const params = new URLSearchParams({ demo: slug });
   if (leadId) params.set("lead", leadId);
-  return `${marketingUrl}/pricing?${params.toString()}`;
+  return `${marketingUrl}/start?${params.toString()}`;
 }
 
 export const demoHref = `${marketingUrl}/demo`;

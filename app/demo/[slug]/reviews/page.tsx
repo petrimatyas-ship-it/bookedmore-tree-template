@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { PageHead, CtaBand } from "@/components/PageShell";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { GoogleRatingSummary, GoogleReviewCard } from "@/components/GoogleReview";
 import { loadDemo } from "@/lib/demo-loader";
+import { DemoLock } from "@/components/DemoLock";
+import { wantThisHref } from "@/lib/demo-copy";
 import { demoCopy } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
@@ -35,9 +38,24 @@ export default async function DemoReviewsPage({ params }: Params) {
   const links = demoLinks(demo.slug);
   const reviews = config.reviews ?? [];
   const projects = config.projects ?? [];
+  const fromGoogle = Boolean(config.reviewsUrl);
+
+  // With real reviews the breakdown is counted from them rather than made up.
+  // It is only the recent page Google returned, so the heading says so.
+  const breakdown = fromGoogle
+    ? [5, 4, 3, 2, 1].map((stars) => ({
+        stars,
+        pct: Math.round((reviews.filter((r) => Math.round(r.rating) === stars).length / reviews.length) * 100)
+      }))
+    : distribution;
 
   return (
-    <>
+    <DemoLock
+      page="reviews"
+      companyName={config.companyName}
+      href={wantThisHref(demo.slug, demo.leadId)}
+      homeHref={links.home}
+    >
       <PageHead
         eyebrow="Reviews"
         title="What homeowners say after the crew leaves."
@@ -49,15 +67,23 @@ export default async function DemoReviewsPage({ params }: Params) {
           {config.reviewSummary ? (
             <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="flex flex-col justify-center rounded-[22px] border border-forest-900/10 bg-white p-8 shadow-soft">
-                <div className="flex items-center gap-5">
-                  <div className="text-6xl font-extrabold text-forest-900">{config.reviewSummary.rating}</div>
-                  <div>
-                    <div className="text-lg font-bold tracking-[0.1em] text-ember-500">★★★★★</div>
-                    <div className="mt-1 text-sm font-semibold text-forest-900/70">
-                      {config.reviewSummary.count} verified {config.reviewSummary.source}
+                {fromGoogle ? (
+                  <GoogleRatingSummary
+                    summary={config.reviewSummary}
+                    reviewsUrl={config.reviewsUrl}
+                    className="border-0 p-0 shadow-none"
+                  />
+                ) : (
+                  <div className="flex items-center gap-5">
+                    <div className="text-6xl font-extrabold text-forest-900">{config.reviewSummary.rating}</div>
+                    <div>
+                      <div className="text-lg font-bold tracking-[0.1em] text-ember-500">★★★★★</div>
+                      <div className="mt-1 text-sm font-semibold text-forest-900/70">
+                        {config.reviewSummary.count} verified {config.reviewSummary.source}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
                 <a
                   href={links.quote}
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-sm font-bold text-white shadow-xl shadow-ember-600/20 transition hover:bg-ember-600"
@@ -66,13 +92,18 @@ export default async function DemoReviewsPage({ params }: Params) {
                 </a>
               </div>
               <div className="rounded-[22px] border border-forest-900/10 bg-white p-8 shadow-soft">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-900/60">Rating breakdown</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-900/60">
+                  {fromGoogle ? `From the ${reviews.length} most recent` : "Rating breakdown"}
+                </p>
                 <div className="mt-4 grid gap-3">
-                  {distribution.map((row) => (
+                  {breakdown.map((row) => (
                     <div key={row.stars} className="flex items-center gap-3">
                       <span className="w-10 shrink-0 text-sm font-bold text-forest-900">{row.stars}★</span>
                       <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#f3f1eb]">
-                        <div className="h-full rounded-full bg-ember-500" style={{ width: `${row.pct}%` }} />
+                        <div
+                          className={`h-full rounded-full ${fromGoogle ? "bg-[#FBBC04]" : "bg-ember-500"}`}
+                          style={{ width: `${row.pct}%` }}
+                        />
                       </div>
                       <span className="w-10 shrink-0 text-right text-sm font-semibold text-forest-900/60">
                         {row.pct}%
@@ -95,25 +126,29 @@ export default async function DemoReviewsPage({ params }: Params) {
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {reviews.map((review, index) => (
                 <Reveal key={`${review.name}-${index}`} delay={(index % 3) * 80} className="h-full">
-                  <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="text-sm font-bold tracking-[0.18em] text-ember-500">
-                        {"★".repeat(review.rating)}
+                  {fromGoogle ? (
+                    <GoogleReviewCard review={review} />
+                  ) : (
+                    <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="text-sm font-bold tracking-[0.18em] text-ember-500">
+                          {"★".repeat(review.rating)}
+                        </div>
+                        {review.date && (
+                          <span className="text-xs font-semibold text-forest-900/50">{review.date}</span>
+                        )}
                       </div>
-                      {review.date && (
-                        <span className="text-xs font-semibold text-forest-900/50">{review.date}</span>
-                      )}
-                    </div>
-                    <p className="mt-4 flex-1 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
-                    <div className="mt-5 border-t border-forest-900/8 pt-4">
-                      <p className="text-sm font-bold text-forest-900">{review.name}</p>
-                      {(review.service || review.area) && (
-                        <p className="mt-1 text-xs font-semibold text-forest-900/55">
-                          {[review.service, review.area].filter(Boolean).join(" · ")}
-                        </p>
-                      )}
-                    </div>
-                  </article>
+                      <p className="mt-4 flex-1 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
+                      <div className="mt-5 border-t border-forest-900/8 pt-4">
+                        <p className="text-sm font-bold text-forest-900">{review.name}</p>
+                        {(review.service || review.area) && (
+                          <p className="mt-1 text-xs font-semibold text-forest-900/55">
+                            {[review.service, review.area].filter(Boolean).join(" · ")}
+                          </p>
+                        )}
+                      </div>
+                    </article>
+                  )}
                 </Reveal>
               ))}
             </div>
@@ -164,6 +199,6 @@ export default async function DemoReviewsPage({ params }: Params) {
       </section>
 
       <CtaBand config={config} links={links} />
-    </>
+    </DemoLock>
   );
 }

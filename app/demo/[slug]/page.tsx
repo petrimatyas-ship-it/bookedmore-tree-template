@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
 import { AboutUs, HowItWorks, ReviewsMap, TreeCareServices } from "@/components/Sections";
+import { WorkGallery } from "@/components/WorkGallery";
 import { loadDemo } from "@/lib/demo-loader";
-import { demoCopy } from "@/lib/demo-copy";
+import { demoCopy, wantThisHref } from "@/lib/demo-copy";
 import { demoLinks } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -31,8 +32,9 @@ export default async function DemoHome({ params }: Params) {
 
   return (
     <>
-      <Hero config={config} links={links} slug={demo.slug} />
+      <Hero config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       <TreeCareServices config={config} links={links} />
+      <WorkGallery config={config} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       <AboutUs config={config} />
       <HowItWorks config={config} />
       <ReviewsMap config={config} />

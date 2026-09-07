@@ -4,6 +4,8 @@ import { Footer } from "@/components/Sections";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { DemoBanner } from "@/components/DemoBanner";
 import { DemoMessage } from "@/components/DemoMessage";
+import { OwnerClose } from "@/components/OwnerClose";
+import { DemoTracker } from "@/components/DemoTracker";
 import { loadDemo } from "@/lib/demo-loader";
 import { isExpired } from "@/lib/db";
 import { demoCopy, wantThisHref } from "@/lib/demo-copy";
@@ -44,10 +46,21 @@ export default async function DemoLayout({
         and made every anchor land behind them. The "I want this" CTA also
         sits in the band at the foot of every page, so nothing is lost.
       */}
+      <DemoTracker slug={demo.slug} />
       <DemoBanner href={wantThisHref(demo.slug, demo.leadId)} />
       <Header config={config} links={links} />
       {children}
-      <Footer config={config} />
+      {/*
+        Above this line the page is a website for their customers. Below it
+        is the only block addressed to the owner, placed last because whoever
+        has scrolled the whole thing is the warmest they will ever be.
+      */}
+      <OwnerClose
+        config={config}
+        href={wantThisHref(demo.slug, demo.leadId)}
+        expiresAt={demo.expiresAt}
+      />
+      <Footer config={config} links={links} />
       <MobileCtaBar config={config} links={links} />
     </main>
   );

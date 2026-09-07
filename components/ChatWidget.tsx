@@ -3,23 +3,35 @@
 import { useEffect, useRef, useState } from "react";
 import { business } from "@/lib/business";
 import type { SiteConfig } from "@/lib/site-config";
+import { demoCopy } from "@/lib/demo-copy";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+
+/** Replies a demo assistant gives before it makes the pitch instead. */
+const DEMO_REPLY_LIMIT = 3;
 
 export function ChatWidget({
   frameless = false,
   config = business,
-  slug
+  slug,
+  lockHref = ""
 }: {
   frameless?: boolean;
   config?: SiteConfig;
   slug?: string;
+  /** Where the assistant's own pitch sends them, once it stops answering. */
+  lockHref?: string;
 }) {
   const greeting = `Hi! I'm the ${config.companyName} assistant. Tell me what's going on with your tree and I'll help you get an estimate.`;
   const [messages, setMessages] = useState<ChatMessage[]>([{ role: "assistant", content: greeting }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
+
+  // Only on a demo, and only once it has actually shown what it can do: the
+  // greeting does not count, so they always get real answers first.
+  const replies = messages.filter((m) => m.role === "assistant").length - 1;
+  const spent = Boolean(config.isDemo && lockHref) && replies >= DEMO_REPLY_LIMIT;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,24 +122,44 @@ export function ChatWidget({
         )}
       </div>
 
-      <form onSubmit={sendMessage} className="flex items-center gap-2 border-t border-forest-900/8 bg-white p-3">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="h-11 flex-1 rounded-full border border-forest-900/15 bg-[#f7f6f1] px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
-          disabled={loading}
-        />
-        <button
-          type="submit"
-          disabled={loading || !input.trim()}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500 text-white transition hover:bg-ember-600 disabled:cursor-not-allowed disabled:opacity-50"
-          aria-label="Send message"
-        >
-          →
-        </button>
-      </form>
+      {/*
+        On a demo the assistant answers a few times and then stops. It is the
+        most impressive thing on the page, which makes it the best place to
+        show what having it properly is worth — and an owner who has just
+        watched it answer as their own business is the easiest sell there is.
+      */}
+      {spent ? (
+        <div className="border-t border-forest-900/8 bg-forest-50 p-4">
+          <p className="text-sm font-bold text-forest-900">{demoCopy.assistantLock.title}</p>
+          <p className="mt-1.5 text-xs leading-5 text-forest-900/70">{demoCopy.assistantLock.body}</p>
+          <a
+            href={lockHref}
+            data-demo-cta="assistant-lock"
+            className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-xl bg-ember-500 px-4 text-sm font-bold text-white transition hover:bg-ember-600"
+          >
+            {demoCopy.assistantLock.cta}
+          </a>
+        </div>
+      ) : (
+        <form onSubmit={sendMessage} className="flex items-center gap-2 border-t border-forest-900/8 bg-white p-3">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type a message..."
+            className="h-11 flex-1 rounded-full border border-forest-900/15 bg-[#f7f6f1] px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
+            disabled={loading}
+          />
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500 text-white transition hover:bg-ember-600 disabled:cursor-not-allowed disabled:opacity-50"
+            aria-label="Send message"
+          >
+            →
+          </button>
+        </form>
+      )}
     </div>
   );
 }
