@@ -45,3 +45,6 @@ next-env.d.ts
 
 # local npm cache (see .npmrc)
 /.npm-cache
+
+.vercel
+.env*
