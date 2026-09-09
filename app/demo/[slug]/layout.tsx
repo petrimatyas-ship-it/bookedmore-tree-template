@@ -48,7 +48,7 @@ export default async function DemoLayout({
       */}
       <DemoTracker slug={demo.slug} />
       <DemoBanner href={wantThisHref(demo.slug, demo.leadId)} />
-      <Header config={config} links={links} />
+      <Header config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       {children}
       {/*
         Above this line the page is a website for their customers. Below it
