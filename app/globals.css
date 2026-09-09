@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f2f6f1;
   --foreground: #172116;
 }
 
@@ -21,9 +21,9 @@
   --color-ember-600: #d8610b;
 
   /* Surface and text tokens. Named for their role so the sections read the same on any palette. */
-  --color-night: #ffffff;   /* page background */
+  --color-night: #f2f6f1;   /* page background: one soft green tint everywhere */
   --color-night-2: #ffffff; /* cards */
-  --color-tint: #f4f7f3;    /* section band behind white cards */
+  --color-tint: #f2f6f1;    /* same as the page: sections never band */
   --color-night-3: #eef3ea; /* tinted bands */
   --color-cream: #123119;   /* text */
   --color-lime: #2f7a34;    /* green accent */
