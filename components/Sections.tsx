@@ -20,13 +20,18 @@ import {
 } from "@tabler/icons-react";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { QuoteForm } from "@/components/QuoteForm";
+import { HeroPanel } from "@/components/HeroPanel";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
 import { findArea, slugify } from "@/lib/areas";
 import { demoCopy } from "@/lib/demo-copy";
 
 type SectionProps = { config?: SiteConfig; links?: SiteLinks };
 
-export function TreeCareServices({ config = business, links = defaultLinks }: SectionProps) {
+export function TreeCareServices({
+  config = business,
+  links = defaultLinks,
+  compact = false
+}: SectionProps & { compact?: boolean }) {
   return (
     <section id="services" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl lg:flex lg:items-end lg:justify-between lg:gap-12">
@@ -81,9 +86,9 @@ export function TreeCareServices({ config = business, links = defaultLinks }: Se
                 {service.price}
               </span>
             </div>
-            <div className="flex flex-1 flex-col p-6">
+            <div className={`flex flex-1 flex-col ${compact ? "p-5" : "p-6"}`}>
               <p className="text-sm leading-7 text-forest-900/70">{service.description}</p>
-              <div className="mt-5 grid gap-2">
+              <div className={`mt-5 grid gap-2 ${compact ? "hidden" : ""}`}>
                 {service.included.map((item) => (
                   <span key={item} className="flex items-start gap-2.5 text-sm leading-6 text-forest-900/72">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
@@ -93,7 +98,7 @@ export function TreeCareServices({ config = business, links = defaultLinks }: Se
                   </span>
                 ))}
               </div>
-              <div className="mt-auto flex items-center justify-between border-t border-forest-900/8 pt-5">
+              <div className={`mt-auto flex items-center justify-between border-t border-forest-900/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
                 <a
                   href={links.services}
                   className="mt-1 text-sm font-bold text-forest-700 transition group-hover:text-forest-900"
@@ -123,83 +128,88 @@ export function TreeCareServices({ config = business, links = defaultLinks }: Se
   );
 }
 
-/** Fact strip icons, in the order the facts are written. */
-const FACT_ICONS = [IconUsers, IconShieldCheck, IconHome, IconStarFilled];
+const defaultWhyPoints = [
+  { title: "Straight quotes, no surprises", text: "You get a clear price before any work starts, and that is the price you pay." },
+  { title: "A crew that treats it like their own yard", text: "Careful around roofs, fences and power lines. Nothing rushed, nothing dropped where it should not be." },
+  { title: "Cleaned up before we leave", text: "Branches chipped, logs hauled, lawn raked. You should not be able to tell we were there, except the tree is gone." }
+];
 
-const defaultFactStrip = ["Experienced Crew", "Fully Insured", "Locally Owned"];
+/** The trust bar right under the hero: four things every good tree company should be able to say. */
+const defaultTrustBar = [
+  { label: "Licensed & insured", icon: "shield" },
+  { label: "Free estimates", icon: "license" },
+  { label: "Cleanup included", icon: "leaf" },
+  { label: "Same-week scheduling", icon: "clock" }
+];
+
+export function TrustBar({ config = business }: SectionProps) {
+  const items = (config.trustBadges?.length ? config.trustBadges : defaultTrustBar).slice(0, 4);
+  return (
+    <section className="bg-white px-4 py-4 sm:px-10 lg:px-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+        {items.map((item) => (
+          <div
+            key={item.label}
+            className="flex items-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-[#f7f6f1] px-3.5 py-3 text-[13.5px] font-bold leading-tight text-forest-900 sm:text-sm"
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-50">
+              <BadgeIcon name={item.icon} />
+            </span>
+            {item.label}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export function AboutUs({ config = business }: SectionProps) {
-  const factStrip =
-    config.aboutFactStrip ??
-    (config.reviewSummary ? [...defaultFactStrip, `${config.reviewSummary.count} reviews`] : defaultFactStrip);
-
-  const paragraphs = config.aboutParagraphs;
+  const summary = config.reviewSummary;
+  const years = config.founded ? Math.max(1, new Date().getFullYear() - Number(config.founded)) : null;
+  const stats: { value: string; label: string }[] = [
+    ...(summary ? [{ value: `${summary.rating}★`, label: `${summary.count} ${summary.source}` }] : []),
+    ...(years ? [{ value: `${years}+`, label: "Years in business" }] : []),
+    { value: "Free", label: "Written estimates" },
+    { value: "100%", label: "Cleanup on every job" }
+  ].slice(0, 4);
 
   return (
     <section id="about" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
-      <div className="mx-auto max-w-6xl">
-        <Pill>About Us</Pill>
-        <h2 className="mt-5 max-w-2xl text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
-          {config.aboutTitle ?? "A trusted local crew for safer, cleaner properties."}
-        </h2>
-      </div>
-      <div className="mx-auto mt-8 grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-10">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
         <div>
-          <div
-            className="h-[320px] rounded-[18px] bg-cover bg-center shadow-soft sm:h-[380px]"
-            style={{ backgroundImage: `url(${config.aboutImage})` }}
-            aria-label={`${config.companyName} crew`}
-          />
-          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2.5 text-sm font-semibold text-forest-900">
-            {factStrip.map((fact, i) => {
-              const FactIcon = FACT_ICONS[i % FACT_ICONS.length];
-              return (
-                <span key={fact} className="inline-flex items-center gap-1.5">
-                  <FactIcon size={16} stroke={2} className="text-ember-600" aria-hidden="true" />
-                  {fact}
+          <Pill>Why Us</Pill>
+          <h2 className="mt-5 max-w-xl text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            Why {config.city} homeowners call {config.companyName}.
+          </h2>
+          <div className="mt-6 grid gap-4">
+            {defaultWhyPoints.map((point) => (
+              <div key={point.title} className="flex gap-3.5">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
+                  <IconCheck size={16} stroke={3} aria-hidden="true" />
                 </span>
-              );
-            })}
+                <div>
+                  <h3 className="text-base font-bold leading-snug text-forest-900">{point.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-forest-900/70">{point.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div>
-          <div className="space-y-4 text-base leading-6 text-forest-900/72 sm:text-lg sm:leading-8">
-            {paragraphs ? (
-              paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-            ) : (
-              <>
-                <p>
-                  At <span className="font-semibold text-forest-900">{config.companyName}</span>, we believe tree work
-                  should not mean unanswered calls, surprise costs, or a mess left behind.
-                </p>
-                <p>
-                  Our experienced crew provides safe, reliable tree care across {config.city} and surrounding
-                  communities. From routine trimming to complex removals, we treat every property with care and leave
-                  your yard clean when the job is done.
-                </p>
-              </>
-            )}
-          </div>
-          <div className="mt-7 flex flex-wrap gap-3">
-            {config.aboutTrustPoints.map((point) => (
-              <span
-                key={point}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-600/25 bg-forest-50 px-3 py-1 text-[13px] font-semibold text-forest-900"
-              >
-                <IconCircleCheckFilled size={15} className="text-forest-600" aria-hidden="true" />
-                {point}
-              </span>
+          <div
+            className="h-[260px] rounded-[18px] bg-cover bg-center shadow-soft sm:h-[380px]"
+            style={{ backgroundImage: `url(${config.aboutImage})` }}
+            role="img"
+            aria-label={`${config.companyName} crew at work`}
+          />
+          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-[14px] border border-forest-900/10 bg-white px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
+                <div className="text-xl font-extrabold leading-none text-forest-900 sm:text-2xl">{stat.value}</div>
+                <div className="mt-1.5 text-[12px] font-semibold leading-tight text-forest-900/60">{stat.label}</div>
+              </div>
             ))}
           </div>
-          {config.phone && (
-            <a
-              href={`tel:${config.phone}`}
-              className="call-ring mt-6 hidden h-12 sm:inline-flex items-center justify-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
-            >
-              <IconPhoneCall size={19} stroke={2} aria-hidden="true" />
-              Call {config.phone}
-            </a>
-          )}
         </div>
       </div>
     </section>
@@ -255,9 +265,7 @@ export function HowItWorks({ config = business }: SectionProps) {
   );
 }
 
-export function ReviewsMap({ config = business }: SectionProps) {
-  // A demo has no state code until enrichment supplies one.
-  const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
+export function Reviews({ config = business }: SectionProps) {
   const reviews = config.reviews ?? [];
   const summary = config.reviewSummary;
   const hasReviews = reviews.length > 0;
@@ -266,8 +274,8 @@ export function ReviewsMap({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+    <section id="reviews" className="scroll-mt-20 bg-white px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
         <div>
           <Pill>Reviews</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
@@ -299,7 +307,7 @@ export function ReviewsMap({ config = business }: SectionProps) {
             ))}
 
           {hasReviews ? (
-            <div className="mt-5 grid gap-4">
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
               {reviews.slice(0, 3).map((review, index) =>
                 fromGoogle ? (
                   <GoogleReviewCard key={`${review.name}-${index}`} review={review} />
@@ -344,11 +352,21 @@ export function ReviewsMap({ config = business }: SectionProps) {
             </div>
           )}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function ServiceAreaMap({ config = business }: SectionProps) {
+  const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
+  return (
+    <section className="bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
         <div
           id="areas"
-          className="scroll-mt-20 overflow-hidden rounded-[22px] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
+          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
         >
-          <div className="relative h-[240px] w-full">
+          <div className="relative h-[240px] w-full lg:h-full lg:min-h-[420px]">
             <iframe
               title={`Map of ${place} service area`}
               src={`https://maps.google.com/maps?q=${encodeURIComponent(place)}&z=11&output=embed`}
@@ -398,6 +416,16 @@ export function ReviewsMap({ config = business }: SectionProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Kept for pages that still render reviews and the map side by side. */
+export function ReviewsMap({ config = business }: SectionProps) {
+  return (
+    <>
+      <Reviews config={config} />
+      <ServiceAreaMap config={config} />
+    </>
   );
 }
 
@@ -501,6 +529,40 @@ export function FaqSection({ config = business }: SectionProps) {
               <p className="mt-3 text-sm leading-7 text-forest-900/70">{faq.answer}</p>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** The closing band: green, one promise, and the chat/quote panel that used to sit in the hero. */
+export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProps & { slug?: string; lockHref?: string }) {
+  return (
+    <section id="quote" className="scroll-mt-20 bg-forest-900 px-4 py-10 text-white sm:px-10 sm:py-14 lg:px-16">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
+            <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
+            Free estimate
+          </span>
+          <h2 className="mt-5 text-[26px] font-bold leading-tight sm:text-4xl lg:text-[42px]">
+            Tell us about the tree. We&apos;ll tell you the price.
+          </h2>
+          <p className="mt-4 max-w-md text-base leading-6 text-white/75 sm:text-lg sm:leading-8">
+            Ask a question or send a few details. A real person from {config.companyName} replies the same day.
+          </p>
+          {config.phone && (
+            <a
+              href={`tel:${config.phone}`}
+              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-white px-6 text-base font-bold text-forest-900 shadow-lg transition hover:bg-forest-50 sm:inline-flex"
+            >
+              <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
+              Call {config.phone}
+            </a>
+          )}
+        </div>
+        <div className="h-[420px] lg:h-[480px]">
+          <HeroPanel config={config} slug={slug} lockHref={lockHref} />
         </div>
       </div>
     </section>

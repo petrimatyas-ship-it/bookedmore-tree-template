@@ -1,6 +1,5 @@
 import { IconCircleCheckFilled, IconPhoneCall } from "@tabler/icons-react";
 import { business } from "@/lib/business";
-import { HeroPanel } from "@/components/HeroPanel";
 import { defaultLinks, type SiteConfig, type SiteLinks } from "@/lib/site-config";
 
 const defaultTrustItems = ["Fully Insured", "Free Estimates", "Cleanup Included"];
@@ -18,7 +17,7 @@ export function Hero({
   lockHref?: string;
 }) {
   const trustItems = config.heroTrustItems ?? defaultTrustItems;
-  const headline = config.heroHeadline ?? `${config.city} tree care without the mess or runaround.`;
+  const headline = config.heroHeadline ?? `${config.city} tree removal and trimming, done right and cleaned up.`;
   const subline =
     config.heroSubline ??
     "Removal, pruning, trimming, and stump grinding handled by a local crew that cleans up when the work is done.";
@@ -26,7 +25,6 @@ export function Hero({
   const badgeText = config.heroBadgeText ?? (summary ? `${summary.rating}/5 from ${summary.count} ${summary.source}` : null);
 
   return (
-    <>
     <section className="relative overflow-hidden bg-forest-900 text-white">
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -35,8 +33,8 @@ export function Hero({
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,49,25,0.7)_0%,rgba(18,49,25,0.6)_60%,rgba(18,49,25,0.8)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-10 lg:px-20 lg:py-16">
-        <div className="max-w-xl [text-shadow:0_2px_18px_rgba(18,49,25,0.5)]">
+      <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-12 sm:py-16 lg:px-20 lg:py-24">
+        <div className="max-w-2xl [text-shadow:0_2px_18px_rgba(18,49,25,0.5)]">
           {badgeText && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/24 bg-white/18 px-3.5 py-2 text-[13px] font-semibold text-white shadow-lg shadow-forest-900/16 backdrop-blur-md">
               <span className="text-ember-400" aria-hidden="true">*</span>
@@ -44,7 +42,7 @@ export function Hero({
             </div>
           )}
 
-          <h1 className="max-w-xl text-[28px] font-extrabold leading-[1.16] tracking-normal sm:text-4xl lg:text-[42px]">
+          <h1 className="max-w-2xl text-[28px] font-extrabold leading-[1.16] tracking-normal sm:text-4xl lg:text-[48px]">
             {headline}
           </h1>
 
@@ -78,19 +76,7 @@ export function Hero({
           </div>
         </div>
 
-        <div className="hidden h-[440px] w-full max-w-sm justify-self-center sm:block lg:h-[480px] lg:justify-self-end">
-          <HeroPanel config={config} slug={slug} lockHref={lockHref} />
-        </div>
       </div>
     </section>
-
-    {/* On phones the panel sits under the hero instead of inside it, so the
-        hero stays one screen and the chat gets the full width. */}
-    <div className="bg-[#f7f6f1] px-4 pt-4 sm:hidden">
-      <div className="h-[400px]">
-        <HeroPanel config={config} slug={slug} lockHref={lockHref} />
-      </div>
-    </div>
-    </>
   );
 }

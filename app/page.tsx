@@ -1,6 +1,16 @@
-import { AboutUs, Footer, HowItWorks, ReviewsMap, TreeCareServices } from "@/components/Sections";
+import {
+  AboutUs,
+  FaqSection,
+  Footer,
+  QuoteCta,
+  Reviews,
+  ServiceAreaMap,
+  TreeCareServices,
+  TrustBar
+} from "@/components/Sections";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { WorkGallery } from "@/components/WorkGallery";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 
@@ -10,10 +20,14 @@ export default function Home() {
       <LocalBusinessSchema />
       <Header />
       <Hero />
-      <TreeCareServices />
+      <TrustBar />
+      <TreeCareServices compact />
       <AboutUs />
-      <HowItWorks />
-      <ReviewsMap />
+      <WorkGallery />
+      <Reviews />
+      <ServiceAreaMap />
+      <FaqSection />
+      <QuoteCta />
       <Footer />
       <MobileCtaBar />
     </main>

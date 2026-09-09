@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
-import { AboutUs, HowItWorks, ReviewsMap, TreeCareServices } from "@/components/Sections";
+import {
+  AboutUs,
+  FaqSection,
+  QuoteCta,
+  Reviews,
+  ServiceAreaMap,
+  TreeCareServices,
+  TrustBar
+} from "@/components/Sections";
 import { WorkGallery } from "@/components/WorkGallery";
 import { loadDemo } from "@/lib/demo-loader";
 import { demoCopy, wantThisHref } from "@/lib/demo-copy";
@@ -20,7 +28,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-/** The showcase home page, section for section, rendered from the demo config. */
+/**
+ * The demo home page. Our layout and copy throughout; the only things pulled
+ * from the business are its photos, its Google reviews and the map.
+ */
 export default async function DemoHome({ params }: Params) {
   const { slug } = await params;
   const demo = await loadDemo(slug);
@@ -29,15 +40,19 @@ export default async function DemoHome({ params }: Params) {
 
   const { config } = demo;
   const links = demoLinks(demo.slug);
+  const lockHref = wantThisHref(demo.slug, demo.leadId);
 
   return (
     <>
-      <Hero config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
-      <TreeCareServices config={config} links={links} />
-      <WorkGallery config={config} lockHref={wantThisHref(demo.slug, demo.leadId)} />
+      <Hero config={config} links={links} />
+      <TrustBar config={config} />
+      <TreeCareServices config={config} links={links} compact />
       <AboutUs config={config} />
-      <HowItWorks config={config} />
-      <ReviewsMap config={config} />
+      <WorkGallery config={config} lockHref={lockHref} />
+      <Reviews config={config} />
+      <ServiceAreaMap config={config} />
+      <FaqSection config={config} />
+      <QuoteCta config={config} slug={demo.slug} lockHref={lockHref} />
     </>
   );
 }
