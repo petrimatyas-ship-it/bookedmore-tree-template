@@ -6,6 +6,8 @@ import { OwnerNote } from "@/components/OwnerNote";
 import {
   IconAlertTriangle,
   IconChevronDown,
+  IconClock,
+  IconStar,
   IconCircleCheckFilled,
   IconCheck,
   IconPhoneCall,
@@ -37,18 +39,18 @@ export function TreeCareServices({
 }: SectionProps & { compact?: boolean }) {
   return (
     <section id="services" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
-      <div className="mx-auto max-w-6xl lg:flex lg:items-end lg:justify-between lg:gap-12">
-        <div className="max-w-2xl">
+      <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-2xl">
           <Pill>Our Services</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
-            Tree work without the runaround.
+          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+            Tree services for {config.city} homes and properties.
           </h2>
         </div>
-        <div className="mt-5 max-w-xl lg:mt-0">
+        <div className="mx-auto mt-4 max-w-xl">
           <p className="text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
-            From quick pruning to full removals, our crew handles the work carefully and cleans up before we leave.
+            From routine trimming to emergency storm work, handled with the right equipment and the right crew.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
@@ -137,28 +139,24 @@ const defaultWhyPoints = [
   { title: "Cleaned up before we leave", text: "Branches chipped, logs hauled, lawn raked. You should not be able to tell we were there, except the tree is gone." }
 ];
 
-/** The trust bar right under the hero: four things every good tree company should be able to say. */
-const defaultTrustBar = [
-  { label: "Licensed & insured", icon: "shield" },
-  { label: "Free estimates", icon: "license" },
-  { label: "Cleanup included", icon: "leaf" },
-  { label: "Same-week scheduling", icon: "clock" }
-];
-
+/** Four proof points right under the hero: plain rows with a green icon tile, no cards. */
 export function TrustBar({ config = business }: SectionProps) {
-  const items = (config.trustBadges?.length ? config.trustBadges : defaultTrustBar).slice(0, 4);
+  const count = config.reviewSummary?.count;
+  const items = [
+    { icon: IconShieldCheck, label: "Licensed & insured" },
+    { icon: IconClock, label: "24/7 emergency service" },
+    count ? { icon: IconStar, label: `${count} Google reviews` } : { icon: IconStar, label: "Free estimates" },
+    { icon: IconMapPin, label: `Local ${config.city} crew` }
+  ];
   return (
-    <section className="bg-night px-4 py-6 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
-        {items.map((item) => (
-          <div
-            key={item.label}
-            className="flex items-center gap-3 rounded-[14px] border border-forest-900/10 bg-night-2 px-3.5 py-3.5 text-[14px] font-semibold leading-tight text-cream sm:text-[15px]"
-          >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-lime/12">
-              <BadgeIcon name={item.icon} />
+    <section className="bg-night px-4 py-7 sm:px-10 lg:px-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-5 lg:grid-cols-4">
+        {items.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-3">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-forest-50 text-forest-600">
+              <Icon size={24} stroke={1.9} aria-hidden="true" />
             </span>
-            {item.label}
+            <span className="text-[15px] font-semibold leading-snug text-forest-900">{label}</span>
           </div>
         ))}
       </div>
