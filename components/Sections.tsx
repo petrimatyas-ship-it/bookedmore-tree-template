@@ -277,7 +277,7 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-night-2 px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div>
           <Pill>Reviews</Pill>
@@ -555,7 +555,7 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night-2 px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
+    <section className="bg-night px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
       <div className="mx-auto max-w-3xl text-center">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -586,7 +586,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** A short band between sections: one question, call or request. */
 export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night-3 px-4 py-12 text-center sm:px-10 sm:py-16 lg:px-16">
+    <section className="bg-night px-4 py-12 text-center sm:px-10 sm:py-16 lg:px-16">
       <div className="mx-auto max-w-2xl">
         <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
@@ -617,7 +617,7 @@ export function CtaBand({ config = business, links = defaultLinks }: SectionProp
 /** The closing band: green, one promise, and the chat/quote panel that used to sit in the hero. */
 export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProps & { slug?: string; lockHref?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-forest-900 px-4 py-10 text-white sm:px-10 sm:py-14 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-14 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-forest-900/8 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
@@ -627,7 +627,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
           <h2 className="mt-5 text-[26px] font-bold leading-tight sm:text-4xl lg:text-[42px]">
             Tell us about the tree. We&apos;ll tell you the price.
           </h2>
-          <p className="mt-4 max-w-md text-base leading-6 text-white/75 sm:text-lg sm:leading-8">
+          <p className="mt-4 max-w-md text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
             Ask a question or send a few details. A real person from {config.companyName} replies the same day.
           </p>
           {config.phone && (
@@ -644,7 +644,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
           <HeroPanel config={config} slug={slug} lockHref={lockHref} />
         </div>
         <div className="grid grid-cols-2 gap-2.5 sm:hidden">
-          <OpenPanelButton tab="chat" className="border-2 border-white/25 text-white">
+          <OpenPanelButton tab="chat" className="border-2 border-forest-900/20 text-forest-900">
             💬 Ask a question
           </OpenPanelButton>
           <OpenPanelButton tab="form" className="bg-ember-500 text-white">

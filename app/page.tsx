@@ -7,8 +7,7 @@ import {
   QuoteCta,
   Reviews,
   ServiceAreaMap,
-  TreeCareServices,
-  TrustBar
+  TreeCareServices
 } from "@/components/Sections";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -22,7 +21,6 @@ export default function Home() {
       <LocalBusinessSchema />
       <Header />
       <Hero />
-      <TrustBar />
       <TreeCareServices compact />
       <WarningSigns />
       <AboutUs />

@@ -8,8 +8,7 @@ import {
   QuoteCta,
   Reviews,
   ServiceAreaMap,
-  TreeCareServices,
-  TrustBar
+  TreeCareServices
 } from "@/components/Sections";
 import { WorkGallery } from "@/components/WorkGallery";
 import { loadDemo } from "@/lib/demo-loader";
@@ -47,7 +46,6 @@ export default async function DemoHome({ params }: Params) {
   return (
     <>
       <Hero config={config} links={links} />
-      <TrustBar config={config} />
       <TreeCareServices config={config} links={links} compact />
       <WarningSigns config={config} links={links} />
       <AboutUs config={config} />
