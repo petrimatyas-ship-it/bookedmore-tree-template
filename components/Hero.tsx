@@ -33,7 +33,7 @@ export function Hero({
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,49,25,0.45)_0%,rgba(18,49,25,0.5)_60%,rgba(18,49,25,0.7)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-12 sm:py-20 lg:px-20 lg:py-28">
+      <div className="relative mx-auto max-w-7xl flex min-h-[78vh] flex-col justify-center px-4 pb-16 pt-12 sm:min-h-0 sm:px-12 sm:py-20 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
           {badgeText && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-forest-900/70 px-3.5 py-2 text-[13px] font-semibold text-white">

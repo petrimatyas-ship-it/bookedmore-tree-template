@@ -38,7 +38,7 @@ export function TreeCareServices({
   compact = false
 }: SectionProps & { compact?: boolean }) {
   return (
-    <section id="services" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+    <section id="services" className="scroll-mt-20 bg-tint px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl text-center">
         <div className="mx-auto max-w-2xl">
           <Pill>Our Services</Pill>
@@ -176,13 +176,15 @@ export function AboutUs({ config = business }: SectionProps) {
 
   return (
     <section id="about" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+      <div className="mx-auto mb-8 max-w-2xl text-center">
+        <Pill>Why Us</Pill>
+        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+          Why {config.city} homeowners call {config.companyName}.
+        </h2>
+      </div>
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
         <div>
-          <Pill>Why Us</Pill>
-          <h2 className="mt-5 max-w-xl text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
-            Why {config.city} homeowners call {config.companyName}.
-          </h2>
-          <div className="mt-6 grid gap-4">
+          <div className="grid gap-4">
             {defaultWhyPoints.map((point) => (
               <div key={point.title} className="flex gap-3.5">
                 <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
@@ -225,7 +227,7 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-tint px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
@@ -275,7 +277,7 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-tint px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div>
           <Pill>Reviews</Pill>
@@ -515,7 +517,7 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-night px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
+    <section id="faq" className="scroll-mt-20 bg-tint px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>

@@ -55,7 +55,7 @@ export function Header({
     href.startsWith("/") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-forest-900/10 bg-white text-forest-900 shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-forest-900 text-white shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like
@@ -79,7 +79,7 @@ export function Header({
             "Texas Tree Surgeons" down to "eSurge".
           */}
           {config.logoImage ? (
-            <span className="relative h-9 w-9 shrink-0 sm:h-14 sm:w-14">
+            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-white p-1 sm:h-14 sm:w-14 sm:p-1.5">
               <Image
                 src={config.logoImage}
                 alt={`${config.companyName} logo`}
@@ -90,8 +90,8 @@ export function Header({
               />
             </span>
           ) : (
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-900 shadow-sm sm:h-12 sm:w-12">
-              <span className="text-sm font-bold text-white sm:text-base" aria-hidden="true">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm sm:h-12 sm:w-12">
+              <span className="text-sm font-bold text-forest-900 sm:text-base" aria-hidden="true">
                 {initials(config.companyName)}
               </span>
             </span>
@@ -154,17 +154,17 @@ export function Header({
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-forest-900/18 text-forest-900 transition hover:border-forest-600/55 hover:bg-forest-50 sm:h-11 sm:w-11 lg:hidden"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-white/25 text-white transition hover:border-white/50 hover:bg-white/10 sm:h-11 sm:w-11 lg:hidden"
           >
             <span className="relative block h-4 w-5" aria-hidden="true">
               <span
-                className={`absolute left-0 top-0 h-0.5 w-5 bg-forest-900 transition duration-200 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
+                className={`absolute left-0 top-0 h-0.5 w-5 bg-white transition duration-200 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
               />
               <span
-                className={`absolute left-0 top-[7px] h-0.5 w-5 bg-forest-900 transition duration-200 ${menuOpen ? "opacity-0" : "opacity-100"}`}
+                className={`absolute left-0 top-[7px] h-0.5 w-5 bg-white transition duration-200 ${menuOpen ? "opacity-0" : "opacity-100"}`}
               />
               <span
-                className={`absolute left-0 top-[14px] h-0.5 w-5 bg-forest-900 transition duration-200 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
+                className={`absolute left-0 top-[14px] h-0.5 w-5 bg-white transition duration-200 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
               />
             </span>
           </button>
@@ -173,7 +173,7 @@ export function Header({
 
       <nav
         id="mobile-nav"
-        className={`overflow-hidden border-t border-forest-900/10 bg-white transition-[max-height] duration-300 ease-in-out lg:hidden ${
+        className={`overflow-hidden border-t border-white/10 bg-forest-900 transition-[max-height] duration-300 ease-in-out lg:hidden ${
           menuOpen ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >
@@ -186,8 +186,8 @@ export function Header({
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
                 aria-current={current ? "page" : undefined}
-                className={`rounded-xl px-3.5 py-3 text-base font-semibold text-forest-900 transition ${
-                  current ? "bg-black/[0.06] font-bold" : "hover:bg-black/[0.04]"
+                className={`rounded-xl px-3.5 py-3 text-base font-semibold text-white transition ${
+                  current ? "bg-white/10 font-bold" : "hover:bg-white/[0.06]"
                 }`}
               >
                 {item.label}
@@ -197,7 +197,7 @@ export function Header({
           <button
             type="button"
             onClick={() => openPanel("chat")}
-            className="rounded-xl px-3.5 py-3 text-left text-base font-semibold text-forest-900 transition hover:bg-black/[0.04]"
+            className="rounded-xl px-3.5 py-3 text-left text-base font-semibold text-white transition hover:bg-white/[0.06]"
           >
             💬 Ask a question
           </button>
@@ -212,7 +212,7 @@ export function Header({
             <a
               href={`tel:${config.phone}`}
               onClick={() => setMenuOpen(false)}
-              className="mt-1 rounded-xl border-2 border-forest-900/18 px-3.5 py-3 text-center text-base font-semibold text-forest-900 transition hover:bg-forest-50"
+              className="mt-1 rounded-xl border-2 border-white/25 px-3.5 py-3 text-center text-base font-semibold text-white transition hover:bg-white/10"
             >
               Call {config.phone}
             </a>

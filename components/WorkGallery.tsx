@@ -42,17 +42,16 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
   return (
     <section id="work" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div className="max-w-2xl">
-            <span className="inline-flex rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
-              Our Work
-            </span>
-            <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
-              Real jobs, real yards.
-            </h2>
-          </div>
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
+            <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
+            Our Work
+          </span>
+          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+            Real jobs, real yards.
+          </h2>
           {config.listingUrl && (
-            <p className="flex items-center gap-2 text-sm text-cream/55">
+            <p className="mt-3 flex items-center justify-center gap-2 text-sm text-cream/55">
               <GoogleG size={15} />
               Photos from our Google listing
             </p>
