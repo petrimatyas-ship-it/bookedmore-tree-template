@@ -102,7 +102,7 @@ export function GoogleReviewCard({
   const photos = review.photos ?? [];
   return (
     <article
-      className={`flex h-full flex-col rounded-[10px] border border-forest-900/10 bg-white p-5 shadow-soft ${className}`}
+      className={`flex h-full flex-col rounded-[10px] border border-forest-900/20 bg-white p-5 shadow-soft ${className}`}
     >
       <div className="flex items-center gap-3">
         <Avatar name={review.name} src={review.avatar} />
@@ -152,7 +152,7 @@ export function GoogleRatingSummary({
 }) {
   const numeric = Number(summary.rating);
   return (
-    <div className={`rounded-[10px] border border-forest-900/10 bg-white p-5 ${className}`}>
+    <div className={`rounded-[10px] border border-forest-900/20 bg-white p-5 ${className}`}>
       <div className="flex items-center gap-4">
         <div className="text-4xl font-bold leading-none text-forest-900">{summary.rating}</div>
         <div className="min-w-0">
