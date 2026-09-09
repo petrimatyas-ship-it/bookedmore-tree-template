@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import "./globals.css";
 import { business } from "@/lib/business";
-
-const outfit = Outfit({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-outfit", display: "swap" });
 
 export const metadata: Metadata = {
   title: `${business.companyName} | Tree Service in ${business.city}, ${business.stateAbbr}`,
@@ -29,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
