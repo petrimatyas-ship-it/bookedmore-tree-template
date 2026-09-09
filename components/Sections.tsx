@@ -38,7 +38,7 @@ export function TreeCareServices({
   compact = false
 }: SectionProps & { compact?: boolean }) {
   return (
-    <section id="services" className="scroll-mt-20 bg-tint px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+    <section id="services" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl text-center">
         <div className="mx-auto max-w-2xl">
           <Pill>Our Services</Pill>
@@ -75,7 +75,7 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -149,14 +149,20 @@ export function TrustBar({ config = business }: SectionProps) {
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
   return (
-    <section className="bg-night px-4 py-5 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-5 lg:grid-cols-4">
+    <section className="bg-night px-3 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-forest-50 text-forest-600">
-              <Icon size={24} stroke={1.9} aria-hidden="true" />
+          <div
+            key={label}
+            className="flex items-center gap-3 overflow-hidden rounded-[10px] border border-forest-900/10 bg-night-2 py-3.5 pr-3 shadow-[0_6px_18px_rgba(18,49,25,0.05)]"
+          >
+            {/* A green rule down the left edge gives each row a spine, so four
+                identical tiles do not read as a plain list. */}
+            <span className="h-11 w-[3px] shrink-0 rounded-r bg-lime" aria-hidden="true" />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-600">
+              <Icon size={21} stroke={1.9} aria-hidden="true" />
             </span>
-            <span className="text-[15px] font-semibold leading-snug text-forest-900">{label}</span>
+            <span className="text-[14px] font-bold leading-snug text-forest-900">{label}</span>
           </div>
         ))}
       </div>
@@ -175,7 +181,7 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto mb-8 max-w-2xl text-center">
         <Pill>Why Us</Pill>
         <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -200,14 +206,14 @@ export function AboutUs({ config = business }: SectionProps) {
         </div>
         <div>
           <div
-            className="h-[260px] rounded-[18px] bg-cover bg-center shadow-soft sm:h-[380px]"
+            className="h-[260px] rounded-[12px] bg-cover bg-center shadow-soft sm:h-[380px]"
             style={{ backgroundImage: `url(${config.aboutImage})` }}
             role="img"
             aria-label={`${config.companyName} crew at work`}
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[14px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
+              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -227,7 +233,7 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-tint px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
@@ -243,7 +249,7 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
+            className="group relative overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
             <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
               0{index + 1}
@@ -277,14 +283,14 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-tint px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div>
+        <div className="text-center">
           <Pill>Reviews</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {hasReviews ? `What ${config.city} homeowners say.` : demoCopy.reviews.emptyTitle}
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
             {hasReviews
               ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
               : demoCopy.reviews.emptyBody}
@@ -292,9 +298,9 @@ export function Reviews({ config = business }: SectionProps) {
 
           {summary &&
             (fromGoogle ? (
-              <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7" />
+              <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7 text-left" />
             ) : (
-              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-night p-5">
+              <div className="mt-7 flex items-center gap-4 rounded-[12px] border border-forest-900/10 bg-night p-5">
                 <div className="text-3xl font-bold text-cream">{summary.rating}</div>
                 <div>
                   <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
@@ -317,7 +323,7 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[18px] border border-forest-900/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+                    className="rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
@@ -343,7 +349,7 @@ export function Reviews({ config = business }: SectionProps) {
               {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
           ) : (
-            <div className="mt-7 rounded-[18px] border border-dashed border-forest-900/20 bg-night p-6">
+            <div className="mt-7 rounded-[12px] border border-dashed border-forest-900/20 bg-night p-6">
               <div className="text-sm font-bold tracking-[0.18em] text-cream/20" aria-hidden="true">
                 ★★★★★
               </div>
@@ -363,11 +369,11 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section className="bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
-          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
+          className="scroll-mt-20 overflow-hidden rounded-[10px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
         >
           <div className="relative h-[240px] w-full lg:h-full lg:min-h-[420px]">
             <iframe
@@ -398,7 +404,7 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-[18px] bg-white/95 p-5 text-forest-900 shadow-sm">
+            <div className="mt-6 rounded-[12px] bg-white/95 p-5 text-forest-900 shadow-sm">
               <div className="text-sm font-bold">Need help outside this area?</div>
               <p className="mt-2 text-sm leading-7 text-cream/65">
                 {config.phone
@@ -441,12 +447,12 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/8 bg-night px-4 py-5 sm:px-10 lg:px-16">
+    <section className="border-b border-forest-900/8 bg-night px-3 py-4 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
-            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
+            className="flex items-center justify-center gap-2.5 rounded-[10px] border border-forest-900/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
           >
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900/5">
               <BadgeIcon name={badge.icon} />
@@ -464,7 +470,7 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="projects" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
@@ -476,7 +482,7 @@ export function RecentProjects({ config = business }: SectionProps) {
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-night-2 p-6 shadow-soft">
+              <article className="flex h-full flex-col rounded-[12px] border border-forest-900/10 bg-night-2 p-6 shadow-soft">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
@@ -494,11 +500,11 @@ export function RecentProjects({ config = business }: SectionProps) {
                   <p className="mt-2 text-center text-xs font-semibold text-cream/45">Drag the handle to compare</p>
                 </div>
                 <div className="mt-3 grid flex-1 gap-3 sm:grid-cols-2">
-                  <div className="rounded-[14px] bg-night-3 p-4">
+                  <div className="rounded-[10px] bg-night-3 p-4">
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-cream/55">Before</p>
                     <p className="mt-2 text-sm leading-6 text-cream/65">{project.before}</p>
                   </div>
-                  <div className="rounded-[14px] bg-forest-900/5 p-4">
+                  <div className="rounded-[10px] bg-forest-900/5 p-4">
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime">After</p>
                     <p className="mt-2 text-sm leading-6 text-cream/65">{project.after}</p>
                   </div>
@@ -517,7 +523,7 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-tint px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
+    <section id="faq" className="scroll-mt-20 bg-tint px-3 py-4 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
@@ -530,7 +536,7 @@ export function FaqSection({ config = business }: SectionProps) {
             <details
               key={faq.question}
               open={i === 0}
-              className="group rounded-[16px] border border-forest-900/10 bg-night-2 px-5 transition open:border-lime/30"
+              className="group rounded-[12px] border border-forest-900/10 bg-night-2 px-5 transition open:border-lime/30"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold leading-snug text-cream">
                 {faq.question}
@@ -555,7 +561,7 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
+    <section className="bg-night px-3 py-4 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl text-center">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -566,7 +572,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         <div className="mt-8 grid gap-3 text-left">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[14px] border border-forest-900/10 bg-night px-4 py-4">
+            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-forest-900/10 bg-night px-4 py-4">
               <IconAlertTriangle size={22} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
               <p className="text-[15px] leading-6 text-cream">{sign}</p>
             </div>
@@ -586,7 +592,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** A short band between sections: one question, call or request. */
 export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-4 py-8 text-center sm:px-10 sm:py-12 lg:px-16">
+    <section className="bg-night px-3 py-6 text-center sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-2xl">
         <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
@@ -658,7 +664,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>
@@ -677,7 +683,7 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
             ))}
           </div>
         </div>
-        <div className="rounded-[22px] border border-forest-900/10 bg-night-2 p-6 shadow-soft sm:p-9">
+        <div className="rounded-[10px] border border-forest-900/10 bg-night-2 p-6 shadow-soft sm:p-9">
           <QuoteForm config={config} slug={slug} />
         </div>
       </div>
