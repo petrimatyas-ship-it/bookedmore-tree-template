@@ -34,7 +34,7 @@ export const demoCopy = {
       "Live in 7 days, or your first month is free",
       "Your own domain, your logo, your photos",
       "The assistant on this page answers around the clock",
-      "$149 a month, no setup fee, cancel any time"
+      "From $149 a month, no setup fee, cancel any time"
     ],
     cta: "I want this site"
   },
@@ -176,16 +176,16 @@ export const demoCopy = {
 /**
  * Where every "I want this" on a demo goes.
  *
- * It used to land on the generic pricing table, which threw away everything
- * we know: they had just scrolled their own website and arrived somewhere
- * that had never heard of them. /start already takes the lead and the demo
- * slug and prefills from them, so the thread now holds from the draft all
+ * /signup, with the demo slug and lead id attached. It used to jump straight
+ * to /start, which quietly picked the cheapest plan for them; the owner never
+ * saw there was a choice. /signup shows both plans, and its buttons carry
+ * the same ids on to /start, so the thread still holds from the draft all
  * the way to the card.
  */
 export function wantThisHref(slug: string, leadId?: string) {
   const params = new URLSearchParams({ demo: slug });
   if (leadId) params.set("lead", leadId);
-  return `${marketingUrl}/start?${params.toString()}`;
+  return `${marketingUrl}/signup?${params.toString()}`;
 }
 
 export const demoHref = `${marketingUrl}/demo`;
