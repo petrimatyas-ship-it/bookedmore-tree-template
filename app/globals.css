@@ -103,9 +103,30 @@ textarea {
   animation-play-state: paused;
 }
 
+/* Same idea in orange for the estimate button, offset so the two do not throb in step. */
+@keyframes estimate-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55), 0 0 0 0 rgba(239, 125, 26, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 0 24px 5px rgba(239, 125, 26, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(239, 125, 26, 0);
+  }
+}
+.estimate-glow {
+  animation: estimate-glow 2.4s ease-out infinite;
+  animation-delay: 1.2s;
+}
+.estimate-glow:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .phone-pulse,
-  .call-ring {
+  .call-ring,
+  .estimate-glow {
     animation: none;
   }
 }

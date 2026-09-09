@@ -33,7 +33,7 @@ export function Hero({
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,49,25,0.7)_0%,rgba(18,49,25,0.6)_60%,rgba(18,49,25,0.8)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
 
-      <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-4 py-10 sm:px-12 sm:py-16 lg:min-h-0 lg:px-20 lg:py-24">
+      <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-12 sm:py-16 lg:px-20 lg:py-24">
         <div className="mx-auto max-w-2xl text-center [text-shadow:0_2px_18px_rgba(18,49,25,0.5)] lg:mx-0 lg:text-left">
           {badgeText && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/24 bg-white/18 px-3.5 py-2 text-[13px] font-semibold text-white shadow-lg shadow-forest-900/16 backdrop-blur-md">
@@ -60,17 +60,17 @@ export function Hero({
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
             <a
               href={links.quote}
-              className="inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"
+              className="estimate-glow inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"
             >
               Get My Free Estimate →
             </a>
             {config.phone && (
               <a
                 href={`tel:${config.phone}`}
-                className="call-ring hidden h-12 items-center justify-center gap-2 rounded-2xl bg-forest-700 sm:inline-flex px-5 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
+                className="call-ring inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-forest-700 px-5 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
               >
                 <IconPhoneCall size={18} stroke={2.2} aria-hidden="true" />
-                {config.phone}
+                Call {config.phone}
               </a>
             )}
           </div>
