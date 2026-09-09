@@ -47,7 +47,7 @@ export function DemoLock({
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f6f1]" />
 
       <div className="absolute inset-0 flex items-start justify-center px-5 pt-16 sm:pt-24">
-        <div className="w-full max-w-lg rounded-[22px] border border-forest-900/10 bg-white/95 p-7 text-center shadow-[0_24px_60px_rgba(18,49,25,0.18)] backdrop-blur-sm sm:p-9">
+        <div className="w-full max-w-lg rounded-[10px] border border-forest-900/10 bg-white/95 p-7 text-center shadow-[0_24px_60px_rgba(18,49,25,0.18)] backdrop-blur-sm sm:p-9">
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-forest-50 text-forest-700">
             <IconLock size={22} stroke={2} aria-hidden="true" />
           </span>

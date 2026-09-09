@@ -75,7 +75,7 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(216,97,11,0.28)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -206,7 +206,7 @@ export function AboutUs({ config = business }: SectionProps) {
         </div>
         <div>
           <div
-            className="h-[260px] rounded-[12px] bg-cover bg-center shadow-soft sm:h-[380px]"
+            className="h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px]"
             style={{ backgroundImage: `url(${config.aboutImage})` }}
             role="img"
             aria-label={`${config.companyName} crew at work`}
@@ -249,7 +249,7 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[12px] border border-forest-900/20 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
+            className="group relative overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
             <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
               0{index + 1}
@@ -300,7 +300,7 @@ export function Reviews({ config = business }: SectionProps) {
             (fromGoogle ? (
               <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7 text-left" />
             ) : (
-              <div className="mt-7 flex items-center gap-4 rounded-[12px] border border-forest-900/20 bg-night p-5">
+              <div className="mt-7 flex items-center gap-4 rounded-[10px] border border-forest-900/20 bg-night p-5">
                 <div className="text-3xl font-bold text-cream">{summary.rating}</div>
                 <div>
                   <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
@@ -323,7 +323,7 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[12px] border border-forest-900/20 bg-night-2 p-5 shadow-soft"
+                    className="rounded-[10px] border border-forest-900/20 bg-night-2 p-5 shadow-soft"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
@@ -349,7 +349,7 @@ export function Reviews({ config = business }: SectionProps) {
               {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
           ) : (
-            <div className="mt-7 rounded-[12px] border border-dashed border-forest-900/20 bg-night p-6">
+            <div className="mt-7 rounded-[10px] border border-dashed border-forest-900/20 bg-night p-6">
               <div className="text-sm font-bold tracking-[0.18em] text-cream/20" aria-hidden="true">
                 ★★★★★
               </div>
@@ -404,7 +404,7 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-[12px] bg-white/95 p-5 text-forest-900 shadow-sm">
+            <div className="mt-6 rounded-[10px] bg-white/95 p-5 text-forest-900 shadow-sm">
               <div className="text-sm font-bold">Need help outside this area?</div>
               <p className="mt-2 text-sm leading-7 text-cream/65">
                 {config.phone
@@ -482,7 +482,7 @@ export function RecentProjects({ config = business }: SectionProps) {
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-[12px] border border-forest-900/20 bg-night-2 p-6 shadow-soft">
+              <article className="flex h-full flex-col rounded-[10px] border border-forest-900/20 bg-night-2 p-6 shadow-soft">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
@@ -536,7 +536,7 @@ export function FaqSection({ config = business }: SectionProps) {
             <details
               key={faq.question}
               open={i === 0}
-              className="group rounded-[12px] border border-forest-900/20 bg-night-2 px-5 transition open:border-lime/30"
+              className="group rounded-[10px] border border-forest-900/20 bg-night-2 px-5 transition open:border-lime/30"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold leading-snug text-cream">
                 {faq.question}
