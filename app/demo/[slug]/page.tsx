@@ -5,6 +5,7 @@ import {
   CtaBand,
   WarningSigns,
   FaqSection,
+  HowItWorks,
   QuoteCta,
   Reviews,
   ServiceAreaMap,
@@ -49,6 +50,7 @@ export default async function DemoHome({ params }: Params) {
       <Hero config={config} links={links} />
       <TrustBar config={config} />
       <TreeCareServices config={config} links={links} compact />
+      <HowItWorks config={config} />
       <WarningSigns config={config} links={links} />
       <AboutUs config={config} />
       <CtaBand config={config} links={links} />
