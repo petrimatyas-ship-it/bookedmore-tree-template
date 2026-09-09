@@ -24,7 +24,7 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-50 border-b border-forest-900/10 bg-white text-forest-900 shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like
           "Dallas Tree Trimming and Removal Service" sets the link's minimum
@@ -47,7 +47,7 @@ export function Header({
             "Texas Tree Surgeons" down to "eSurge".
           */}
           {config.logoImage ? (
-            <span className="relative h-10 w-10 shrink-0 sm:h-14 sm:w-14">
+            <span className="relative h-9 w-9 shrink-0 sm:h-14 sm:w-14">
               <Image
                 src={config.logoImage}
                 alt={`${config.companyName} logo`}
@@ -72,8 +72,8 @@ export function Header({
             also steps down a size so two lines still fit the bar.
           */}
           <span
-            className={`line-clamp-2 max-w-[11rem] font-bold leading-tight tracking-tight sm:max-w-[15rem] lg:max-w-[17rem] ${
-              config.companyName.length > 26 ? "text-sm sm:text-base lg:text-lg" : "text-base sm:text-lg lg:text-xl"
+            className={`truncate font-bold leading-tight tracking-tight sm:line-clamp-2 sm:whitespace-normal sm:max-w-[15rem] lg:max-w-[17rem] ${
+              config.companyName.length > 26 ? "text-[15px] sm:text-base lg:text-lg" : "text-base sm:text-lg lg:text-xl"
             }`}
           >
             {config.companyName}
@@ -100,7 +100,7 @@ export function Header({
           })}
         </nav>
 
-        <div className="flex min-w-fit shrink-0 items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
@@ -112,7 +112,7 @@ export function Header({
           )}
           <Link
             href={links.quote}
-            className="inline-flex h-10 items-center justify-center rounded-2xl bg-[#ff7a00] px-3.5 text-xs font-bold text-white shadow-lg shadow-[#ff7a00]/25 transition hover:bg-[#e86d00] sm:h-11 sm:px-6 sm:text-sm"
+            className="hidden h-10 items-center justify-center rounded-2xl bg-ember-500 px-3.5 text-xs font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600 sm:inline-flex sm:h-11 sm:px-6 sm:text-sm"
           >
             Free Estimate
           </Link>

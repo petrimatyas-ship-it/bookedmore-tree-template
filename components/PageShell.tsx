@@ -46,11 +46,11 @@ export function PageHead({
   description: string;
 }) {
   return (
-    <section className="bg-forest-900 px-5 py-14 text-white sm:py-16 lg:px-8">
+    <section className="bg-forest-900 px-4 py-10 text-white sm:px-5 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-ember-400">{eyebrow}</p>
-        <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl">{title}</h1>
-        <p className="mt-5 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">{description}</p>
+        <h1 className="mt-4 max-w-3xl text-[30px] font-extrabold leading-tight sm:text-5xl">{title}</h1>
+        <p className="mt-4 max-w-2xl text-base leading-6 text-white/80 sm:text-lg sm:leading-8">{description}</p>
       </div>
     </section>
   );
@@ -64,7 +64,7 @@ export function CtaBand({
   links?: SiteLinks;
 }) {
   return (
-    <section className="px-5 py-16 lg:px-8">
+    <section className="px-4 py-10 sm:px-5 sm:py-16 lg:px-8">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 rounded-[22px] bg-forest-900 p-8 text-white shadow-soft sm:p-10 lg:flex-row lg:items-center">
         <div>
           <h2 className="text-2xl font-bold leading-tight sm:text-3xl">Ready for a free estimate?</h2>
