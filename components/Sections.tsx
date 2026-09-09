@@ -75,7 +75,7 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[22px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -198,7 +198,7 @@ export function AboutUs({ config = business }: SectionProps) {
         </div>
         <div>
           <div
-            className="h-[260px] rounded-[24px] bg-cover bg-center shadow-soft sm:h-[380px]"
+            className="h-[260px] rounded-[18px] bg-cover bg-center shadow-soft sm:h-[380px]"
             style={{ backgroundImage: `url(${config.aboutImage})` }}
             role="img"
             aria-label={`${config.companyName} crew at work`}
@@ -227,13 +227,13 @@ export function HowItWorks({ config = business }: SectionProps) {
   return (
     <section id="process" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl">
           <Pill>How It Works</Pill>
-          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             From first call to clean yard.
           </h2>
           <p className="mt-4 text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
-            No pressure and no surprises. You know what happens before any work starts.
+            A simple, no-pressure process so you know what is happening before any work starts.
           </p>
         </div>
       </div>
@@ -241,19 +241,24 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="relative rounded-[22px] border border-forest-900/10 bg-night-2 p-5 shadow-soft sm:p-6"
+            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-forest-50 text-forest-700">
+            <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
+              0{index + 1}
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest-900 text-white">
                 {(() => {
                   const StepIcon = STEP_ICONS[index % STEP_ICONS.length];
-                  return <StepIcon size={22} stroke={1.9} aria-hidden="true" />;
+                  return <StepIcon size={21} stroke={1.9} aria-hidden="true" />;
                 })()}
               </span>
-              <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-forest-900/50">Step {index + 1}</span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forest-900/5 text-xs font-bold text-lime">
+                {index + 1}
+              </span>
             </div>
-            <h3 className="mt-4 text-[18px] font-bold leading-snug text-cream">{step.title}</h3>
-            <p className="mt-2 text-[14.5px] leading-6 text-cream/65">{step.text}</p>
+            <h3 className="mt-6 text-lg font-bold leading-snug text-cream">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-cream/65">{step.text}</p>
           </article>
         ))}
       </div>
@@ -637,7 +642,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
           <HeroPanel config={config} slug={slug} lockHref={lockHref} />
         </div>
         <div className="grid grid-cols-2 gap-2.5 sm:hidden">
-          <OpenPanelButton tab="chat" className="border-2 border-white/30 text-white">
+          <OpenPanelButton tab="chat" className="border-2 border-forest-900/20 text-forest-900">
             💬 Ask a question
           </OpenPanelButton>
           <OpenPanelButton tab="form" className="bg-ember-500 text-white">
