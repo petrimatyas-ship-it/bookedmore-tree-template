@@ -40,10 +40,10 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
   const moreCount = Math.max(0, (config.galleryTotal ?? photos.length) - shown.length);
 
   return (
-    <section id="work" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="work" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
+          <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
             <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
             Our Work
           </span>
