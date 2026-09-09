@@ -3,7 +3,6 @@ import {
   CtaBand,
   WarningSigns,
   FaqSection,
-  HowItWorks,
   Footer,
   QuoteCta,
   Reviews,
@@ -25,7 +24,6 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <TreeCareServices compact />
-      <HowItWorks />
       <WarningSigns />
       <AboutUs />
       <CtaBand />
