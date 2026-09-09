@@ -52,7 +52,7 @@ export function TreeCareServices({
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
               >
                 <IconCircleCheckFilled size={16} className="text-lime" aria-hidden="true" />
                 {chip}
@@ -73,15 +73,15 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-white/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(0,0,0,0.4)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
-            <div className="relative h-52 overflow-hidden bg-white/10 sm:h-56">
+            <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
                 className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
                 style={{ backgroundImage: `url(${service.image}), url(${config.heroImage})` }}
                 aria-hidden="true"
               />
-              <span className="absolute right-4 top-4 rounded-full bg-lime px-3.5 py-1.5 text-sm font-bold text-night shadow-md">
+              <span className="absolute right-4 top-4 rounded-full bg-lime px-3.5 py-1.5 text-sm font-bold text-white shadow-md">
                 {service.price}
               </span>
             </div>
@@ -94,14 +94,14 @@ export function TreeCareServices({
               <div className={`mt-5 grid gap-2 ${compact ? "hidden" : ""}`}>
                 {service.included.map((item) => (
                   <span key={item} className="flex items-start gap-2.5 text-sm leading-6 text-cream/65">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/6 text-lime">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-900/5 text-lime">
                       <IconCheck size={13} stroke={3} aria-hidden="true" />
                     </span>
                     <span>{item}</span>
                   </span>
                 ))}
               </div>
-              <div className={`mt-auto flex items-center justify-between border-t border-white/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
+              <div className={`mt-auto flex items-center justify-between border-t border-forest-900/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
                 <a
                   href={links.services}
                   className="mt-1 text-sm font-bold text-lime transition group-hover:text-cream"
@@ -153,7 +153,7 @@ export function TrustBar({ config = business }: SectionProps) {
         {items.map((item) => (
           <div
             key={item.label}
-            className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-night-2 px-3.5 py-3.5 text-[14px] font-semibold leading-tight text-cream sm:text-[15px]"
+            className="flex items-center gap-3 rounded-[14px] border border-forest-900/10 bg-night-2 px-3.5 py-3.5 text-[14px] font-semibold leading-tight text-cream sm:text-[15px]"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-lime/12">
               <BadgeIcon name={item.icon} />
@@ -207,7 +207,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[14px] border border-white/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
+              <div key={stat.label} className="rounded-[14px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -243,7 +243,7 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[18px] border border-white/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
+            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
             <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
               0{index + 1}
@@ -255,7 +255,7 @@ export function HowItWorks({ config = business }: SectionProps) {
                   return <StepIcon size={21} stroke={1.9} aria-hidden="true" />;
                 })()}
               </span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/6 text-xs font-bold text-lime">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forest-900/5 text-xs font-bold text-lime">
                 {index + 1}
               </span>
             </div>
@@ -294,7 +294,7 @@ export function Reviews({ config = business }: SectionProps) {
             (fromGoogle ? (
               <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7" />
             ) : (
-              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-white/10 bg-night p-5">
+              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-night p-5">
                 <div className="text-3xl font-bold text-cream">{summary.rating}</div>
                 <div>
                   <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
@@ -317,7 +317,7 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[18px] border border-white/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+                    className="rounded-[18px] border border-forest-900/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
@@ -343,14 +343,14 @@ export function Reviews({ config = business }: SectionProps) {
               {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
           ) : (
-            <div className="mt-7 rounded-[18px] border border-dashed border-white/15 bg-night p-6">
+            <div className="mt-7 rounded-[18px] border border-dashed border-forest-900/20 bg-night p-6">
               <div className="text-sm font-bold tracking-[0.18em] text-cream/20" aria-hidden="true">
                 ★★★★★
               </div>
               <div className="mt-4 grid gap-2.5" aria-hidden="true">
-                <span className="block h-3 w-4/5 rounded-full bg-white/10" />
-                <span className="block h-3 w-full rounded-full bg-white/10" />
-                <span className="block h-3 w-2/3 rounded-full bg-white/10" />
+                <span className="block h-3 w-4/5 rounded-full bg-forest-900/8" />
+                <span className="block h-3 w-full rounded-full bg-forest-900/8" />
+                <span className="block h-3 w-2/3 rounded-full bg-forest-900/8" />
               </div>
             </div>
           )}
@@ -367,7 +367,7 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
-          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-white/10 bg-forest-900 text-white shadow-soft"
+          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
         >
           <div className="relative h-[240px] w-full lg:h-full lg:min-h-[420px]">
             <iframe
@@ -391,14 +391,14 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
               {config.serviceAreas.slice(0, 6).map((area) => (
                 <div
                   key={area}
-                  className="flex items-center gap-1.5 rounded-full border border-white/12 bg-night-3 px-4 py-3 text-sm font-semibold text-cream shadow-sm"
+                  className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/95 px-4 py-3 text-sm font-semibold text-forest-900 shadow-sm"
                 >
                   <IconMapPin size={15} stroke={2} className="shrink-0 text-ember-600" aria-hidden="true" />
                   {area}
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-[18px] bg-night-3 p-5 text-cream shadow-sm">
+            <div className="mt-6 rounded-[18px] bg-white/95 p-5 text-forest-900 shadow-sm">
               <div className="text-sm font-bold">Need help outside this area?</div>
               <p className="mt-2 text-sm leading-7 text-cream/65">
                 {config.phone
@@ -441,14 +441,14 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-white/8 bg-night px-4 py-5 sm:px-10 lg:px-16">
+    <section className="border-b border-forest-900/8 bg-night px-4 py-5 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
-            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-white/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
+            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/6">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900/5">
               <BadgeIcon name={badge.icon} />
             </span>
             <span>{badge.label}</span>
@@ -476,11 +476,11 @@ export function RecentProjects({ config = business }: SectionProps) {
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-[18px] border border-white/10 bg-night-2 p-6 shadow-soft">
+              <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-night-2 p-6 shadow-soft">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
-                    <span className="shrink-0 rounded-full bg-white/6 px-3 py-1 text-xs font-bold text-lime">
+                    <span className="shrink-0 rounded-full bg-forest-900/5 px-3 py-1 text-xs font-bold text-lime">
                       {project.location}
                     </span>
                   )}
@@ -498,7 +498,7 @@ export function RecentProjects({ config = business }: SectionProps) {
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-cream/55">Before</p>
                     <p className="mt-2 text-sm leading-6 text-cream/65">{project.before}</p>
                   </div>
-                  <div className="rounded-[14px] bg-white/6 p-4">
+                  <div className="rounded-[14px] bg-forest-900/5 p-4">
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime">After</p>
                     <p className="mt-2 text-sm leading-6 text-cream/65">{project.after}</p>
                   </div>
@@ -530,7 +530,7 @@ export function FaqSection({ config = business }: SectionProps) {
             <details
               key={faq.question}
               open={i === 0}
-              className="group rounded-[16px] border border-white/10 bg-night-2 px-5 transition open:border-lime/30"
+              className="group rounded-[16px] border border-forest-900/10 bg-night-2 px-5 transition open:border-lime/30"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold leading-snug text-cream">
                 {faq.question}
@@ -566,7 +566,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         <div className="mt-8 grid gap-3 text-left">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[14px] border border-white/10 bg-night px-4 py-4">
+            <div key={sign} className="flex items-start gap-3.5 rounded-[14px] border border-forest-900/10 bg-night px-4 py-4">
               <IconAlertTriangle size={22} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
               <p className="text-[15px] leading-6 text-cream">{sign}</p>
             </div>
@@ -596,7 +596,7 @@ export function CtaBand({ config = business, links = defaultLinks }: SectionProp
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="call-ring inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-lime px-6 text-base font-bold text-night transition hover:bg-lime-600"
+              className="call-ring inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-lime px-6 text-base font-bold text-white transition hover:bg-lime-600"
             >
               <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
               Call {config.phone}
@@ -620,7 +620,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
     <section id="quote" className="scroll-mt-20 bg-forest-900 px-4 py-10 text-white sm:px-10 sm:py-14 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
+          <span className="inline-flex items-center gap-2 rounded-full bg-forest-900/8 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
             <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
             Free estimate
           </span>
@@ -633,7 +633,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-night-2 px-6 text-base font-bold text-cream shadow-lg transition hover:bg-white/6 sm:inline-flex"
+              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-night-2 px-6 text-base font-bold text-cream shadow-lg transition hover:bg-forest-900/5 sm:inline-flex"
             >
               <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
               Call {config.phone}
@@ -670,14 +670,14 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="rounded-full border border-white/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
+                className="rounded-full border border-forest-900/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
               >
                 {point}
               </span>
             ))}
           </div>
         </div>
-        <div className="rounded-[22px] border border-white/10 bg-night-2 p-6 shadow-soft sm:p-9">
+        <div className="rounded-[22px] border border-forest-900/10 bg-night-2 p-6 shadow-soft sm:p-9">
           <QuoteForm config={config} slug={slug} />
         </div>
       </div>
@@ -747,7 +747,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
                 {config.trustBadges.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white/85"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-forest-900/8 px-3 py-1.5 text-xs font-bold text-white/85"
                   >
                     <IconCheck size={13} stroke={3} className="text-ember-400" aria-hidden="true" />
                     {badge.label}
@@ -838,7 +838,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
           walking a prospect into the showcase site's own pages.
         */}
         {areas.length > 0 && (
-          <div className="mt-12 border-t border-white/10 pt-8">
+          <div className="mt-12 border-t border-forest-900/10 pt-8">
             <FooterHeading>Areas we serve</FooterHeading>
             <div className="mt-4 flex flex-wrap gap-2">
               {areas.map((area) => {
@@ -863,7 +863,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
         )}
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-forest-900/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm sm:px-5 text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
             &copy; {new Date().getFullYear()} {config.companyName}. All rights reserved.
@@ -881,7 +881,8 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="eyebrow-mono inline-flex items-center gap-2 rounded-md border border-lime/30 bg-lime/10 px-3 py-1.5 font-semibold text-lime">
+    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
+      <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
       {children}
     </span>
   );

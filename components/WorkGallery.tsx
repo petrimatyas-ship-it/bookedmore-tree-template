@@ -44,7 +44,7 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <span className="inline-flex eyebrow-mono rounded-md border border-lime/30 bg-lime/10 px-3 py-1.5 font-semibold text-lime">
+            <span className="inline-flex rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
               Our Work
             </span>
             <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -103,7 +103,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
     <a
       href={href}
       data-demo-cta="gallery-lock"
-      className="group relative block overflow-hidden rounded-[18px] bg-white/5"
+      className="group relative block overflow-hidden rounded-[18px] bg-forest-900/5"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -114,7 +114,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
         referrerPolicy="no-referrer"
         className="h-full w-full scale-105 object-cover blur-[6px]"
       />
-      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/55 px-3 text-center">
+      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-forest-900/55 px-3 text-center">
         <IconLock size={20} stroke={2} className="text-white/90" aria-hidden="true" />
         <span className="text-[13px] font-bold leading-5 text-white">{demoCopy.galleryLock(more)}</span>
       </span>
@@ -144,7 +144,7 @@ function Tile({
     />
   );
 
-  const shell = `group relative block overflow-hidden rounded-[18px] bg-white/5 ${className}`;
+  const shell = `group relative block overflow-hidden rounded-[18px] bg-forest-900/5 ${className}`;
 
   if (!href) return <figure className={shell}>{image}</figure>;
 

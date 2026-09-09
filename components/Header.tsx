@@ -56,14 +56,6 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-50 border-b border-forest-900/10 bg-white text-forest-900 shadow-sm">
-      {config.phone && (
-        <a
-          href={`tel:${config.phone}`}
-          className="eyebrow-mono block bg-lime-600 py-2 text-center font-semibold text-white"
-        >
-          Call us for a free estimate today
-        </a>
-      )}
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like
