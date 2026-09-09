@@ -213,7 +213,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-900/20 bg-night-2 px-5 py-3 text-center shadow-soft">
+              <div key={stat.label} className="rounded-[10px] border border-forest-600/25 bg-forest-50 px-5 py-3 text-center shadow-soft">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -572,7 +572,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         <div className="mt-8 grid gap-3 text-left">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-forest-900/20 bg-night px-4 py-4">
+            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4">
               <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500" aria-hidden="true" />
               <p className="text-[15px] leading-6 text-cream">{sign}</p>
             </div>
