@@ -33,8 +33,8 @@ export function Hero({
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,49,25,0.7)_0%,rgba(18,49,25,0.6)_60%,rgba(18,49,25,0.8)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-12 sm:py-16 lg:px-20 lg:py-24">
-        <div className="max-w-2xl [text-shadow:0_2px_18px_rgba(18,49,25,0.5)]">
+      <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-4 py-10 sm:px-12 sm:py-16 lg:min-h-0 lg:px-20 lg:py-24">
+        <div className="mx-auto max-w-2xl text-center [text-shadow:0_2px_18px_rgba(18,49,25,0.5)] lg:mx-0 lg:text-left">
           {badgeText && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/24 bg-white/18 px-3.5 py-2 text-[13px] font-semibold text-white shadow-lg shadow-forest-900/16 backdrop-blur-md">
               <span className="text-ember-400" aria-hidden="true">*</span>
@@ -42,13 +42,13 @@ export function Hero({
             </div>
           )}
 
-          <h1 className="max-w-2xl text-[28px] font-extrabold leading-[1.16] tracking-normal sm:text-4xl lg:text-[48px]">
+          <h1 className="mx-auto max-w-2xl text-[28px] font-extrabold leading-[1.16] tracking-normal sm:text-4xl lg:text-[48px]">
             {headline}
           </h1>
 
-          <p className="mt-3 max-w-lg text-base font-medium leading-6 text-white/88 sm:text-lg">{subline}</p>
+          <p className="mx-auto mt-3 max-w-lg text-base font-medium leading-6 lg:mx-0 text-white/88 sm:text-lg">{subline}</p>
 
-          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-white/90">
+          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-white/90 lg:justify-start">
             {trustItems.map((item) => (
               <span key={item} className="inline-flex items-center gap-1.5">
                 <IconCircleCheckFilled size={16} className="text-ember-400" aria-hidden="true" />
@@ -57,7 +57,7 @@ export function Hero({
             ))}
           </div>
 
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
             <a
               href={links.quote}
               className="inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"

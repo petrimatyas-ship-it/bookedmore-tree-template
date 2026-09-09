@@ -8,16 +8,20 @@ import type { SiteConfig } from "@/lib/site-config";
 
 type Tab = "chat" | "form";
 
+export type PanelTab = Tab;
+
 export function HeroPanel({
   config = business,
   slug,
-  lockHref = ""
+  lockHref = "",
+  initialTab = "chat"
 }: {
   config?: SiteConfig;
   slug?: string;
   lockHref?: string;
+  initialTab?: Tab;
 }) {
-  const [tab, setTab] = useState<Tab>("chat");
+  const [tab, setTab] = useState<Tab>(initialTab);
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_24px_60px_rgba(18,49,25,0.28)]">

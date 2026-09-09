@@ -21,6 +21,7 @@ import {
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { QuoteForm } from "@/components/QuoteForm";
 import { HeroPanel } from "@/components/HeroPanel";
+import { OpenPanelButton } from "@/components/OpenPanelButton";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
 import { findArea, slugify } from "@/lib/areas";
 import { demoCopy } from "@/lib/demo-copy";
@@ -561,8 +562,16 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
             </a>
           )}
         </div>
-        <div className="h-[420px] lg:h-[480px]">
+        <div className="hidden h-[420px] sm:block lg:h-[480px]">
           <HeroPanel config={config} slug={slug} lockHref={lockHref} />
+        </div>
+        <div className="grid grid-cols-2 gap-2.5 sm:hidden">
+          <OpenPanelButton tab="chat" className="border-2 border-white/25 text-white">
+            💬 Ask a question
+          </OpenPanelButton>
+          <OpenPanelButton tab="form" className="bg-ember-500 text-white">
+            📋 Free quote
+          </OpenPanelButton>
         </div>
       </div>
     </section>

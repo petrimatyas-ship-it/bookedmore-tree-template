@@ -1,22 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconPhoneCall } from "@tabler/icons-react";
+import { IconPhoneCall, IconX } from "@tabler/icons-react";
+import { HeroPanel, type PanelTab } from "@/components/HeroPanel";
 import { business } from "@/lib/business";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
 
+/** Fired by anything on the page that wants the chat/quote sheet open on phone. */
+export const OPEN_PANEL_EVENT = "mbn:open-panel";
+
 export function Header({
   config = business,
-  links = defaultLinks
+  links = defaultLinks,
+  slug,
+  lockHref = ""
 }: {
   config?: SiteConfig;
   links?: SiteLinks;
+  slug?: string;
+  lockHref?: string;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [panel, setPanel] = useState<PanelTab | null>(null);
   const pathname = usePathname();
+
+  /* The chat and quote form live in a sheet on phone, opened from the menu
+     or from a button lower on the page. */
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      setPanel(((e as CustomEvent).detail as PanelTab) || "chat");
+      setMenuOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPanel(null);
+    };
+    window.addEventListener(OPEN_PANEL_EVENT, onOpen);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener(OPEN_PANEL_EVENT, onOpen);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
+  const openPanel = (tab: PanelTab) => {
+    setPanel(tab);
+    setMenuOpen(false);
+  };
 
   /* Hash links belong to the one-page demo, where nothing is "the current page". */
   const isCurrent = (href: string) =>
@@ -162,17 +194,52 @@ export function Header({
               </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={() => openPanel("chat")}
+            className="rounded-xl px-3.5 py-3 text-left text-base font-semibold text-forest-900 transition hover:bg-black/[0.04]"
+          >
+            💬 Ask a question
+          </button>
+          <button
+            type="button"
+            onClick={() => openPanel("form")}
+            className="rounded-xl bg-ember-500 px-3.5 py-3 text-center text-base font-bold text-white transition hover:bg-ember-600"
+          >
+            📋 Get a free quote
+          </button>
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-xl border-2 border-forest-900/18 px-3.5 py-3 text-center text-base font-semibold text-forest-900 transition hover:bg-forest-50"
+              className="mt-1 rounded-xl border-2 border-forest-900/18 px-3.5 py-3 text-center text-base font-semibold text-forest-900 transition hover:bg-forest-50"
             >
               Call {config.phone}
             </a>
           )}
         </div>
       </nav>
+
+      {/* Phone sheet: the chat/quote panel, full screen below the bar. */}
+      {panel && (
+        <div className="fixed inset-x-0 bottom-0 top-0 z-[60] flex flex-col bg-forest-900/60 backdrop-blur-sm lg:hidden">
+          <div className="flex h-14 shrink-0 items-center justify-end px-3">
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setPanel(null)}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-forest-900 shadow"
+            >
+              <IconX size={20} stroke={2.4} />
+            </button>
+          </div>
+          <div className="flex min-h-0 flex-1 flex-col px-3 pb-3">
+            <div className="min-h-0 flex-1">
+              <HeroPanel key={panel} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
