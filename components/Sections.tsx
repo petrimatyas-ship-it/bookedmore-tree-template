@@ -170,6 +170,48 @@ export function TrustBar({ config = business }: SectionProps) {
   );
 }
 
+/**
+ * The pitch, placed right after their own services.
+ *
+ * Only ever on a demo: on the showcase site it would be a company selling to
+ * itself. The argument leans on what the page itself proves rather than on
+ * adjectives, since the owner has just scrolled past their own offer laid
+ * out properly.
+ */
+export function AfterServicesPitch({ config = business, lockHref = "" }: SectionProps & { lockHref?: string }) {
+  if (!config.isDemo) return null;
+  const c = demoCopy.afterServices;
+
+  return (
+    <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-16">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-[10px] border border-ember-500/30 bg-forest-900 p-6 text-white shadow-soft sm:p-9">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
+          {c.eyebrow}
+        </span>
+        <h2 className="mt-5 text-[24px] font-bold leading-tight sm:text-[32px]">{c.title}</h2>
+        <p className="mt-4 text-[15px] leading-7 text-white/75 sm:text-[16.5px]">{c.body}</p>
+        <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
+          {c.points.map((point) => (
+            <div key={point} className="flex items-start gap-2.5 text-[14.5px] leading-6 text-white">
+              <IconCircleCheckFilled size={18} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
+              {point}
+            </div>
+          ))}
+        </div>
+        {lockHref && (
+          <a
+            href={lockHref}
+            className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-[10px] bg-ember-500 px-7 text-base font-bold text-white transition hover:bg-ember-600 sm:w-auto"
+          >
+            {c.cta}
+          </a>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export function AboutUs({ config = business }: SectionProps) {
   const summary = config.reviewSummary;
   const years = config.founded ? Math.max(1, new Date().getFullYear() - Number(config.founded)) : null;
