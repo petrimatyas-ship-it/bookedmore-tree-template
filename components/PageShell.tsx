@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Sections";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { business } from "@/lib/business";
 import { defaultLinks, type SiteConfig, type SiteLinks } from "@/lib/site-config";
@@ -30,7 +29,6 @@ export function PageShell({
       {children}
       <CtaBand />
       <Footer />
-      <MobileCtaBar />
     </main>
   );
 }

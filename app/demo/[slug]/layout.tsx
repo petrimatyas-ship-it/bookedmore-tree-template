@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Sections";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { DemoBanner } from "@/components/DemoBanner";
 import { DemoMessage } from "@/components/DemoMessage";
 import { OwnerClose } from "@/components/OwnerClose";
@@ -61,7 +60,6 @@ export default async function DemoLayout({
         expiresAt={demo.expiresAt}
       />
       <Footer config={config} links={links} />
-      <MobileCtaBar config={config} links={links} />
     </main>
   );
 }

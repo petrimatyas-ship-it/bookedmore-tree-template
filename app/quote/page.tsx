@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Sections";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { QuoteForm } from "@/components/QuoteForm";
 import { business } from "@/lib/business";
@@ -43,7 +42,6 @@ export default function QuotePage() {
         </div>
       </section>
       <Footer />
-      <MobileCtaBar />
     </main>
   );
 }

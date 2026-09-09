@@ -149,7 +149,7 @@ export function TrustBar({ config = business }: SectionProps) {
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
   return (
-    <section className="bg-night px-4 py-7 sm:px-10 lg:px-16">
+    <section className="bg-night px-4 py-5 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-5 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
           <div key={label} className="flex items-center gap-3">
@@ -175,7 +175,7 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
         <div>
           <Pill>Why Us</Pill>
@@ -225,7 +225,7 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
@@ -275,7 +275,7 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div>
           <Pill>Reviews</Pill>
@@ -361,7 +361,7 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section className="bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
@@ -462,7 +462,7 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="projects" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
@@ -515,7 +515,7 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-night px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
+    <section id="faq" className="scroll-mt-20 bg-night px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
@@ -553,7 +553,7 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
+    <section className="bg-night px-4 py-5 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl text-center">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -584,7 +584,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** A short band between sections: one question, call or request. */
 export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-4 py-12 text-center sm:px-10 sm:py-16 lg:px-16">
+    <section className="bg-night px-4 py-8 text-center sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-2xl">
         <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
@@ -656,7 +656,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>

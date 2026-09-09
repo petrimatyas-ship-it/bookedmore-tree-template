@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Sections";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Reveal } from "@/components/Reveal";
@@ -146,7 +145,6 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
       </section>
 
       <Footer />
-      <MobileCtaBar />
     </main>
   );
 }

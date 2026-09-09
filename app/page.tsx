@@ -13,7 +13,6 @@ import {
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { WorkGallery } from "@/components/WorkGallery";
-import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 
 export default function Home() {
@@ -33,7 +32,6 @@ export default function Home() {
       <FaqSection />
       <QuoteCta />
       <Footer />
-      <MobileCtaBar />
     </main>
   );
 }
