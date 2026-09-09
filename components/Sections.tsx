@@ -28,23 +28,23 @@ type SectionProps = { config?: SiteConfig; links?: SiteLinks };
 
 export function TreeCareServices({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section id="services" className="scroll-mt-20 bg-[#f7f6f1] px-8 pb-10 pt-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+    <section id="services" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl lg:flex lg:items-end lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
           <Pill>Our Services</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             Tree work without the runaround.
           </h2>
         </div>
         <div className="mt-5 max-w-xl lg:mt-0">
-          <p className="text-base leading-8 text-forest-900/70 sm:text-lg">
+          <p className="text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
             From quick pruning to full removals, our crew handles the work carefully and cleans up before we leave.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-white px-3.5 py-1.5 text-sm font-semibold text-forest-900"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-white px-3 py-1 text-[13px] font-semibold text-forest-900"
               >
                 <IconCircleCheckFilled size={16} className="text-forest-600" aria-hidden="true" />
                 {chip}
@@ -136,10 +136,10 @@ export function AboutUs({ config = business }: SectionProps) {
   const paragraphs = config.aboutParagraphs;
 
   return (
-    <section id="about" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <Pill>About Us</Pill>
-        <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+        <h2 className="mt-5 max-w-2xl text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
           {config.aboutTitle ?? "A trusted local crew for safer, cleaner properties."}
         </h2>
       </div>
@@ -163,7 +163,7 @@ export function AboutUs({ config = business }: SectionProps) {
           </div>
         </div>
         <div>
-          <div className="space-y-4 text-base leading-8 text-forest-900/72 sm:text-lg">
+          <div className="space-y-4 text-base leading-6 text-forest-900/72 sm:text-lg sm:leading-8">
             {paragraphs ? (
               paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
             ) : (
@@ -184,7 +184,7 @@ export function AboutUs({ config = business }: SectionProps) {
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-600/25 bg-forest-50 px-4 py-2 text-sm font-semibold text-forest-900"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-600/25 bg-forest-50 px-3 py-1 text-[13px] font-semibold text-forest-900"
               >
                 <IconCircleCheckFilled size={15} className="text-forest-600" aria-hidden="true" />
                 {point}
@@ -194,7 +194,7 @@ export function AboutUs({ config = business }: SectionProps) {
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="call-ring mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
+              className="call-ring mt-6 hidden h-12 sm:inline-flex items-center justify-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
             >
               <IconPhoneCall size={19} stroke={2} aria-hidden="true" />
               Call {config.phone}
@@ -214,14 +214,14 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             From first call to clean yard.
           </h2>
-          <p className="mt-4 text-base leading-8 text-forest-900/70 sm:text-lg">
+          <p className="mt-4 text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
             A simple, no-pressure process so you know what is happening before any work starts.
           </p>
         </div>
@@ -230,9 +230,9 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25"
+            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-forest-600/25"
           >
-            <div className="absolute right-5 top-5 text-5xl font-bold leading-none text-forest-900/[0.06]">
+            <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-forest-900/[0.06]">
               0{index + 1}
             </div>
             <div className="flex items-center gap-2.5">
@@ -266,14 +266,14 @@ export function ReviewsMap({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
         <div>
           <Pill>Reviews</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             {hasReviews ? "Homeowners notice the care." : demoCopy.reviews.emptyTitle}
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-8 text-forest-900/70 sm:text-lg">
+          <p className="mt-4 max-w-xl text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
             {hasReviews
               ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
               : demoCopy.reviews.emptyBody}
@@ -360,13 +360,13 @@ export function ReviewsMap({ config = business }: SectionProps) {
           </div>
           <div className="p-6">
             <Pill>Service Area</Pill>
-            <h3 className="mt-5 text-3xl font-bold leading-tight text-white">
+            <h3 className="mt-5 text-[26px] font-bold leading-tight text-white sm:text-3xl">
               Serving {config.city} and nearby neighborhoods.
             </h3>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
               Here&apos;s where our crews work most often. Outside these areas? Call and we&apos;ll confirm availability.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 flex flex-wrap gap-2 sm:grid sm:grid-cols-2 sm:gap-3">
               {config.serviceAreas.slice(0, 6).map((area) => (
                 <div
                   key={area}
@@ -387,7 +387,7 @@ export function ReviewsMap({ config = business }: SectionProps) {
               {config.phone && (
                 <a
                   href={`tel:${config.phone}`}
-                  className="call-ring mt-4 inline-flex h-12 items-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
+                  className="call-ring mt-4 hidden h-12 sm:inline-flex items-center gap-2 rounded-2xl bg-forest-700 px-6 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900"
                 >
                   <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
                   Call {config.phone}
@@ -410,7 +410,7 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/8 bg-[#f7f6f1] px-8 py-6 sm:px-10 lg:px-16">
+    <section className="border-b border-forest-900/8 bg-[#f7f6f1] px-4 py-5 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
@@ -433,14 +433,14 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="projects" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             {demoCopy.projects.heading}
           </h2>
-          <p className="mt-4 text-base leading-8 text-forest-900/70 sm:text-lg">{demoCopy.projects.sub}</p>
+          <p className="mt-4 text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">{demoCopy.projects.sub}</p>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
@@ -486,11 +486,11 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="faq" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             {demoCopy.faq.heading}
           </h2>
         </div>
@@ -509,19 +509,19 @@ export function FaqSection({ config = business }: SectionProps) {
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
             {demoCopy.quote.heading}
           </h2>
-          <p className="mt-5 max-w-md text-base leading-8 text-forest-900/70 sm:text-lg">{demoCopy.quote.sub}</p>
+          <p className="mt-5 max-w-md text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">{demoCopy.quote.sub}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="rounded-full border border-forest-900/12 bg-white px-4 py-2 text-sm font-semibold text-forest-900"
+                className="rounded-full border border-forest-900/12 bg-white px-3 py-1 text-[13px] font-semibold text-forest-900"
               >
                 {point}
               </span>
@@ -552,7 +552,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
 
   return (
     <footer className="bg-forest-900 text-white">
-      <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-14 lg:px-8 lg:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-12">
           {/* Who they are */}
           <div>
@@ -715,7 +715,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm sm:px-5 text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
             &copy; {new Date().getFullYear()} {config.companyName}. All rights reserved.
           </p>
@@ -732,7 +732,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-forest-900">
+    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
       <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
       {children}
     </span>
