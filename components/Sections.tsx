@@ -213,7 +213,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-600/25 bg-forest-50 px-5 py-3 text-center shadow-soft">
+              <div key={stat.label} className="rounded-[10px] border border-forest-600/35 bg-forest-500/15 px-5 py-3 text-center shadow-soft">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -625,21 +625,18 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
   return (
     <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-14 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-forest-900/8 px-5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
-            Free estimate
-          </span>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight sm:text-4xl lg:text-[42px]">
+        <div className="text-center lg:text-left">
+          <Pill>Free estimate</Pill>
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             Tell us about the tree. We&apos;ll tell you the price.
           </h2>
-          <p className="mt-4 max-w-md text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-4 max-w-md text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8 lg:mx-0">
             Ask a question or send a few details. A real person from {config.companyName} replies the same day.
           </p>
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-night-2 px-6 text-base font-bold text-cream shadow-lg transition hover:bg-forest-900/5 sm:inline-flex"
+              className="mt-6 hidden h-12 items-center gap-2 rounded-[10px] bg-forest-700 px-6 text-base font-bold text-white shadow-soft transition hover:bg-forest-900 sm:inline-flex"
             >
               <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
               Call {config.phone}
