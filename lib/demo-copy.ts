@@ -14,6 +14,31 @@ export const demoCopy = {
     dismiss: "Hide this banner"
   },
 
+  /** The note that follows the owner down the page. Short: it sits over their site. */
+  stickyNote: {
+    label: "This is a draft of your site",
+    cta: "I want this site",
+    dismiss: "Hide"
+  },
+
+  /**
+   * Placed straight after their services, the point at which the owner has
+   * just read their own offer written back to them properly. The argument is
+   * the gap between the work and how it looks online, not a list of features.
+   */
+  afterServices: {
+    eyebrow: "About this page",
+    title: "Everything above was built from what is already public about you.",
+    body: "Your Google listing, your reviews, your photos. Nobody sent us a brief and nobody filled in a form. If a stranger can put this together in a few minutes, the version that runs every day and answers at 9pm is not the hard part either.",
+    points: [
+      "Live in 7 days, or your first month is free",
+      "Your own domain, your logo, your photos",
+      "The assistant on this page answers around the clock",
+      "$149 a month, no setup fee, cancel any time"
+    ],
+    cta: "I want this site"
+  },
+
   /** Hero subline angle, chosen by the record's `framing` field. */
   hero: {
     has_site: (city: string) =>

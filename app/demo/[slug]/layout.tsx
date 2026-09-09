@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { StickyDemoNote } from "@/components/StickyDemoNote";
 import { Footer } from "@/components/Sections";
 import { DemoBanner } from "@/components/DemoBanner";
 import { DemoMessage } from "@/components/DemoMessage";
@@ -47,6 +48,7 @@ export default async function DemoLayout({
       */}
       <DemoTracker slug={demo.slug} />
       <DemoBanner href={wantThisHref(demo.slug, demo.leadId)} />
+      <StickyDemoNote href={wantThisHref(demo.slug, demo.leadId)} />
       <Header config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       {children}
       {/*
