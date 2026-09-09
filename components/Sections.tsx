@@ -4,7 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { GoogleG, GoogleRatingSummary, GoogleReviewCard, GoogleStars } from "@/components/GoogleReview";
 import { OwnerNote } from "@/components/OwnerNote";
 import {
-  IconAlertTriangle,
+  IconAlertTriangleFilled,
   IconChevronDown,
   IconClock,
   IconStar,
@@ -54,7 +54,7 @@ export function TreeCareServices({
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/20 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
               >
                 <IconCircleCheckFilled size={16} className="text-lime" aria-hidden="true" />
                 {chip}
@@ -75,7 +75,7 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.22)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(216,97,11,0.28)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -103,7 +103,7 @@ export function TreeCareServices({
                   </span>
                 ))}
               </div>
-              <div className={`mt-auto flex items-center justify-between border-t border-forest-900/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
+              <div className={`mt-auto flex items-center justify-between border-t border-forest-900/15 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
                 <a
                   href={links.services}
                   className="mt-1 text-sm font-bold text-lime transition group-hover:text-cream"
@@ -154,13 +154,13 @@ export function TrustBar({ config = business }: SectionProps) {
         {items.map(({ icon: Icon, label }) => (
           <div
             key={label}
-            className="flex items-center gap-3 overflow-hidden rounded-[10px] border border-forest-900/10 bg-night-2 py-3.5 pr-3 shadow-soft"
+            className="flex items-center gap-3 overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 py-3.5 pr-3 shadow-soft"
           >
             {/* A green rule down the left edge gives each row a spine, so four
                 identical tiles do not read as a plain list. */}
-            <span className="h-11 w-[3px] shrink-0 rounded-r bg-lime" aria-hidden="true" />
+            <span className="h-full w-[5px] shrink-0 self-stretch bg-lime" aria-hidden="true" />
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-600">
-              <Icon size={21} stroke={1.9} aria-hidden="true" />
+              <Icon size={22} stroke={2.4} aria-hidden="true" />
             </span>
             <span className="text-[14px] font-bold leading-snug text-forest-900">{label}</span>
           </div>
@@ -213,7 +213,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-5 py-3 text-center shadow-soft">
+              <div key={stat.label} className="rounded-[10px] border border-forest-900/20 bg-night-2 px-5 py-3 text-center shadow-soft">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -249,7 +249,7 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
+            className="group relative overflow-hidden rounded-[12px] border border-forest-900/20 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
             <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
               0{index + 1}
@@ -300,7 +300,7 @@ export function Reviews({ config = business }: SectionProps) {
             (fromGoogle ? (
               <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7 text-left" />
             ) : (
-              <div className="mt-7 flex items-center gap-4 rounded-[12px] border border-forest-900/10 bg-night p-5">
+              <div className="mt-7 flex items-center gap-4 rounded-[12px] border border-forest-900/20 bg-night p-5">
                 <div className="text-3xl font-bold text-cream">{summary.rating}</div>
                 <div>
                   <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
@@ -323,7 +323,7 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-soft"
+                    className="rounded-[12px] border border-forest-900/20 bg-night-2 p-5 shadow-soft"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
@@ -373,7 +373,7 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
-          className="scroll-mt-20 overflow-hidden rounded-[10px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
+          className="scroll-mt-20 overflow-hidden rounded-[10px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/20 bg-forest-900 text-white shadow-soft"
         >
           <div className="relative h-[240px] w-full lg:h-full lg:min-h-[420px]">
             <iframe
@@ -447,12 +447,12 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/8 bg-night px-5 py-4 sm:px-10 lg:px-16">
+    <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
-            className="flex items-center justify-center gap-2.5 rounded-[10px] border border-forest-900/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
+            className="flex items-center justify-center gap-2.5 rounded-[10px] border border-forest-900/20 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
           >
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900/5">
               <BadgeIcon name={badge.icon} />
@@ -482,7 +482,7 @@ export function RecentProjects({ config = business }: SectionProps) {
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-[12px] border border-forest-900/10 bg-night-2 p-6 shadow-soft">
+              <article className="flex h-full flex-col rounded-[12px] border border-forest-900/20 bg-night-2 p-6 shadow-soft">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
@@ -536,7 +536,7 @@ export function FaqSection({ config = business }: SectionProps) {
             <details
               key={faq.question}
               open={i === 0}
-              className="group rounded-[12px] border border-forest-900/10 bg-night-2 px-5 transition open:border-lime/30"
+              className="group rounded-[12px] border border-forest-900/20 bg-night-2 px-5 transition open:border-lime/30"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold leading-snug text-cream">
                 {faq.question}
@@ -572,8 +572,8 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         <div className="mt-8 grid gap-3 text-left">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-forest-900/10 bg-night px-4 py-4">
-              <IconAlertTriangle size={22} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
+            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-forest-900/20 bg-night px-4 py-4">
+              <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500" aria-hidden="true" />
               <p className="text-[15px] leading-6 text-cream">{sign}</p>
             </div>
           ))}
@@ -610,7 +610,7 @@ export function CtaBand({ config = business, links = defaultLinks }: SectionProp
           )}
           <a
             href={links.quote}
-            className="inline-flex h-12 items-center justify-center rounded-2xl border-2 border-lime px-6 text-base font-bold text-lime transition hover:bg-lime/10"
+            className="inline-flex h-12 items-center justify-center rounded-2xl border-2 border-ember-500 px-6 text-base font-bold text-ember-600 transition hover:bg-ember-500 hover:text-white"
           >
             Request Free Estimate
           </a>
@@ -676,14 +676,14 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="rounded-full border border-forest-900/10 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
+                className="rounded-full border border-forest-900/20 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
               >
                 {point}
               </span>
             ))}
           </div>
         </div>
-        <div className="rounded-[10px] border border-forest-900/10 bg-night-2 p-6 shadow-soft sm:p-9">
+        <div className="rounded-[10px] border border-forest-900/20 bg-night-2 p-6 shadow-soft sm:p-9">
           <QuoteForm config={config} slug={slug} />
         </div>
       </div>
@@ -844,7 +844,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
           walking a prospect into the showcase site's own pages.
         */}
         {areas.length > 0 && (
-          <div className="mt-12 border-t border-forest-900/10 pt-8">
+          <div className="mt-12 border-t border-forest-900/20 pt-8">
             <FooterHeading>Areas we serve</FooterHeading>
             <div className="mt-4 flex flex-wrap gap-2">
               {areas.map((area) => {
@@ -869,7 +869,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
         )}
       </div>
 
-      <div className="border-t border-forest-900/10">
+      <div className="border-t border-forest-900/20">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm sm:px-5 text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>
             &copy; {new Date().getFullYear()} {config.companyName}. All rights reserved.
@@ -913,7 +913,7 @@ function BadgeIcon({ name }: { name: string }) {
       className="h-5 w-5 shrink-0 text-lime"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.9"
+      strokeWidth="2.4"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
