@@ -42,7 +42,7 @@ export function BeforeAfterSlider({
       onPointerMove={(e) => {
         if (e.buttons > 0) updateFromClientX(e.clientX);
       }}
-      className="relative h-52 w-full cursor-ew-resize touch-none select-none overflow-hidden rounded-[14px] bg-forest-900/10 outline-none focus-visible:ring-2 focus-visible:ring-forest-600/50"
+      className="relative h-52 w-full cursor-ew-resize touch-none select-none overflow-hidden rounded-[10px] bg-forest-900/10 outline-none focus-visible:ring-2 focus-visible:ring-forest-600/50"
     >
       {/* Before (base layer) */}
       <div

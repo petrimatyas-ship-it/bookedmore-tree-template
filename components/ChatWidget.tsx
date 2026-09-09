@@ -81,7 +81,7 @@ export function ChatWidget({
       className={
         frameless
           ? "flex h-full w-full flex-col overflow-hidden bg-white"
-          : "flex h-full w-full flex-col overflow-hidden rounded-[20px] border border-forest-900/10 bg-white shadow-[0_24px_60px_rgba(18,49,25,0.28)]"
+          : "flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/10 bg-white shadow-[0_24px_60px_rgba(18,49,25,0.28)]"
       }
     >
       <div className="flex items-center gap-3 border-b border-forest-900/8 bg-forest-900 px-5 py-4">

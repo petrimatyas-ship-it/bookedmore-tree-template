@@ -51,7 +51,7 @@ export function OwnerClose({
         <h2 className="mt-6 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl lg:text-[42px]">{c.title}</h2>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[18px] border border-white/12 bg-white/[0.06] p-6 sm:p-7">
+          <div className="rounded-[10px] border border-white/12 bg-white/[0.06] p-6 sm:p-7">
             <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/70">
               <IconCheck size={16} stroke={2.5} className="text-ember-400" aria-hidden="true" />
               {c.realTitle}
@@ -66,7 +66,7 @@ export function OwnerClose({
             </ul>
           </div>
 
-          <div className="rounded-[18px] border border-white/12 bg-white/[0.03] p-6 sm:p-7">
+          <div className="rounded-[10px] border border-white/12 bg-white/[0.03] p-6 sm:p-7">
             <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/70">
               <IconPencil size={16} stroke={2.2} className="text-white/50" aria-hidden="true" />
               {c.draftTitle}

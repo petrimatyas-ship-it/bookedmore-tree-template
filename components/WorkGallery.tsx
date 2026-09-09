@@ -102,7 +102,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
     <a
       href={href}
       data-demo-cta="gallery-lock"
-      className="group relative block overflow-hidden rounded-[12px] bg-forest-900/5"
+      className="group relative block overflow-hidden rounded-[10px] bg-forest-900/5"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -143,7 +143,7 @@ function Tile({
     />
   );
 
-  const shell = `group relative block overflow-hidden rounded-[12px] bg-forest-900/5 ${className}`;
+  const shell = `group relative block overflow-hidden rounded-[10px] bg-forest-900/5 ${className}`;
 
   if (!href) return <figure className={shell}>{image}</figure>;
 

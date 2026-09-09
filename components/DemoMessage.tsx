@@ -4,7 +4,7 @@ import { demoHref } from "@/lib/demo-copy";
 export function DemoMessage({ title, body, cta }: { title: string; body: string; cta: string }) {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#f7f6f1] px-6 py-20">
-      <div className="w-full max-w-lg rounded-[22px] border border-forest-900/10 bg-white p-8 text-center shadow-soft sm:p-12">
+      <div className="w-full max-w-lg rounded-[10px] border border-forest-900/10 bg-white p-8 text-center shadow-soft sm:p-12">
         <span className="text-4xl" aria-hidden="true">
           🌳
         </span>

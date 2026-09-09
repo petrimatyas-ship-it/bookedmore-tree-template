@@ -73,7 +73,7 @@ export function PriceCalculator() {
   const showToggles = service === "removal" || service === "trimming";
 
   return (
-    <div className="overflow-hidden rounded-[22px] border border-forest-900/10 bg-white shadow-soft">
+    <div className="overflow-hidden rounded-[10px] border border-forest-900/10 bg-white shadow-soft">
       <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
         <div className="p-7 sm:p-9">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-ember-600">Ballpark calculator</p>

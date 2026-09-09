@@ -49,7 +49,7 @@ export function QuoteForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-[18px] border border-forest-600/25 bg-forest-50 p-8 text-center">
+      <div className="rounded-[10px] border border-forest-600/25 bg-forest-50 p-8 text-center">
         <p className="text-lg font-bold text-forest-900">Request received.</p>
         <p className="mt-2 text-forest-900/72">
           {config.phone ? (

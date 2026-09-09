@@ -60,7 +60,7 @@ export function Hero({
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
             <a
               href={links.quote}
-              className="estimate-glow inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"
+              className="inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"
             >
               Get My Free Estimate →
             </a>
