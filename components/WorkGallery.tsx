@@ -40,7 +40,7 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
   const moreCount = Math.max(0, (config.galleryTotal ?? photos.length) - shown.length);
 
   return (
-    <section id="work" className="scroll-mt-20 bg-night px-4 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="work" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
