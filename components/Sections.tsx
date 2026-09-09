@@ -75,7 +75,7 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[12px] border border-forest-900/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.22)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -154,7 +154,7 @@ export function TrustBar({ config = business }: SectionProps) {
         {items.map(({ icon: Icon, label }) => (
           <div
             key={label}
-            className="flex items-center gap-3 overflow-hidden rounded-[10px] border border-forest-900/10 bg-night-2 py-3.5 pr-3 shadow-[0_6px_18px_rgba(18,49,25,0.05)]"
+            className="flex items-center gap-3 overflow-hidden rounded-[10px] border border-forest-900/10 bg-night-2 py-3.5 pr-3 shadow-soft"
           >
             {/* A green rule down the left edge gives each row a spine, so four
                 identical tiles do not read as a plain list. */}
@@ -213,7 +213,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
+              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-soft">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -323,7 +323,7 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+                    className="rounded-[12px] border border-forest-900/10 bg-night-2 p-5 shadow-soft"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (

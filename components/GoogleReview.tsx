@@ -102,7 +102,7 @@ export function GoogleReviewCard({
   const photos = review.photos ?? [];
   return (
     <article
-      className={`flex h-full flex-col rounded-[10px] border border-forest-900/10 bg-white p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)] ${className}`}
+      className={`flex h-full flex-col rounded-[10px] border border-forest-900/10 bg-white p-5 shadow-soft ${className}`}
     >
       <div className="flex items-center gap-3">
         <Avatar name={review.name} src={review.avatar} />
