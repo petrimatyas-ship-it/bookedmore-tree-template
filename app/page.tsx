@@ -1,5 +1,7 @@
 import {
   AboutUs,
+  CtaBand,
+  WarningSigns,
   FaqSection,
   Footer,
   QuoteCta,
@@ -22,7 +24,9 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <TreeCareServices compact />
+      <WarningSigns />
       <AboutUs />
+      <CtaBand />
       <WorkGallery />
       <Reviews />
       <ServiceAreaMap />

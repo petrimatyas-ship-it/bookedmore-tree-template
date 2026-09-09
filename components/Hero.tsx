@@ -31,18 +31,21 @@ export function Hero({
         style={{ backgroundImage: `url(${config.heroImage})` }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,49,25,0.7)_0%,rgba(18,49,25,0.6)_60%,rgba(18,49,25,0.8)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,26,18,0.55)_0%,rgba(15,26,18,0.6)_55%,rgba(15,26,18,0.95)_100%)] lg:bg-[linear-gradient(90deg,rgba(18,49,25,0.72)_0%,rgba(18,49,25,0.55)_38%,rgba(18,49,25,0.3)_66%,rgba(18,49,25,0.18)_100%)]" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-12 sm:py-16 lg:px-20 lg:py-24">
         <div className="mx-auto max-w-2xl text-center [text-shadow:0_2px_18px_rgba(18,49,25,0.5)] lg:mx-0 lg:text-left">
+          <div className="eyebrow-mono mb-4 inline-flex items-center gap-2 rounded-md border border-lime/40 bg-night/60 px-3 py-1.5 font-semibold text-lime backdrop-blur-md">
+            {[config.city, config.stateAbbr].filter(Boolean).join(", ")}{" \u2022 "}Licensed &amp; insured
+          </div>
           {badgeText && (
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/24 bg-white/18 px-3.5 py-2 text-[13px] font-semibold text-white shadow-lg shadow-forest-900/16 backdrop-blur-md">
-              <span className="text-ember-400" aria-hidden="true">*</span>
+            <div className="mb-4 flex items-center justify-center gap-2 text-[14px] font-semibold text-white/90 lg:justify-start">
+              <span className="text-ember-400" aria-hidden="true">★</span>
               <span>{badgeText}</span>
             </div>
           )}
 
-          <h1 className="mx-auto max-w-2xl text-[28px] font-extrabold leading-[1.16] tracking-normal sm:text-4xl lg:text-[48px]">
+          <h1 className="mx-auto max-w-2xl text-[34px] font-bold leading-[1.1] sm:text-5xl lg:text-[56px]">
             {headline}
           </h1>
 

@@ -40,19 +40,19 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
   const moreCount = Math.max(0, (config.galleryTotal ?? photos.length) - shown.length);
 
   return (
-    <section id="work" className="scroll-mt-20 bg-[#f7f6f1] px-8 py-10 sm:px-10 sm:py-12 lg:px-16">
+    <section id="work" className="scroll-mt-20 bg-night px-4 py-10 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <span className="inline-flex rounded-full bg-forest-50 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-forest-900">
+            <span className="inline-flex eyebrow-mono rounded-md border border-lime/30 bg-lime/10 px-3 py-1.5 font-semibold text-lime">
               Our Work
             </span>
-            <h2 className="mt-5 text-3xl font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+            <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
               Real jobs, real yards.
             </h2>
           </div>
           {config.listingUrl && (
-            <p className="flex items-center gap-2 text-sm text-forest-900/60">
+            <p className="flex items-center gap-2 text-sm text-cream/55">
               <GoogleG size={15} />
               Photos from our Google listing
             </p>
@@ -103,7 +103,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
     <a
       href={href}
       data-demo-cta="gallery-lock"
-      className="group relative block overflow-hidden rounded-[18px] bg-forest-900/5"
+      className="group relative block overflow-hidden rounded-[18px] bg-white/5"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -114,7 +114,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
         referrerPolicy="no-referrer"
         className="h-full w-full scale-105 object-cover blur-[6px]"
       />
-      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-forest-900/55 px-3 text-center">
+      <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/55 px-3 text-center">
         <IconLock size={20} stroke={2} className="text-white/90" aria-hidden="true" />
         <span className="text-[13px] font-bold leading-5 text-white">{demoCopy.galleryLock(more)}</span>
       </span>
@@ -144,7 +144,7 @@ function Tile({
     />
   );
 
-  const shell = `group relative block overflow-hidden rounded-[18px] bg-forest-900/5 ${className}`;
+  const shell = `group relative block overflow-hidden rounded-[18px] bg-white/5 ${className}`;
 
   if (!href) return <figure className={shell}>{image}</figure>;
 
@@ -158,7 +158,7 @@ function Tile({
     >
       {image}
       <span className="pointer-events-none absolute inset-0 bg-forest-900/0 transition duration-300 group-hover:bg-forest-900/20" />
-      <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-forest-900 opacity-0 shadow-md transition duration-300 group-hover:opacity-100">
+      <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-cream opacity-0 shadow-md transition duration-300 group-hover:opacity-100">
         <GoogleG size={15} />
       </span>
     </a>

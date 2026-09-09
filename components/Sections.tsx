@@ -4,6 +4,8 @@ import { Reveal } from "@/components/Reveal";
 import { GoogleG, GoogleRatingSummary, GoogleReviewCard, GoogleStars } from "@/components/GoogleReview";
 import { OwnerNote } from "@/components/OwnerNote";
 import {
+  IconAlertTriangle,
+  IconChevronDown,
   IconCircleCheckFilled,
   IconCheck,
   IconPhoneCall,
@@ -34,25 +36,25 @@ export function TreeCareServices({
   compact = false
 }: SectionProps & { compact?: boolean }) {
   return (
-    <section id="services" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+    <section id="services" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl lg:flex lg:items-end lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
           <Pill>Our Services</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             Tree work without the runaround.
           </h2>
         </div>
         <div className="mt-5 max-w-xl lg:mt-0">
-          <p className="text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
+          <p className="text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
             From quick pruning to full removals, our crew handles the work carefully and cleans up before we leave.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-white px-3 py-1 text-[13px] font-semibold text-forest-900"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
               >
-                <IconCircleCheckFilled size={16} className="text-forest-600" aria-hidden="true" />
+                <IconCircleCheckFilled size={16} className="text-lime" aria-hidden="true" />
                 {chip}
               </span>
             ))}
@@ -71,38 +73,38 @@ export function TreeCareServices({
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-600/25 hover:shadow-[0_24px_60px_rgba(18,49,25,0.16)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className="group flex w-full flex-col overflow-hidden rounded-[18px] border border-white/10 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_24px_60px_rgba(0,0,0,0.4)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
           >
-            <div className="relative h-48 overflow-hidden bg-forest-900/10">
+            <div className="relative h-52 overflow-hidden bg-white/10 sm:h-56">
               <div
                 className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
                 style={{ backgroundImage: `url(${service.image}), url(${config.heroImage})` }}
                 aria-hidden="true"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/30 to-transparent" />
-              <h3 className="absolute bottom-4 left-5 right-5 text-lg font-bold leading-tight text-white [text-shadow:0_1px_8px_rgba(18,49,25,0.6)]">
-                {service.title}
-              </h3>
-              <span className="absolute right-4 top-4 rounded-full bg-forest-600 px-3.5 py-1.5 text-sm font-bold text-white shadow-md shadow-forest-900/25">
+              <span className="absolute right-4 top-4 rounded-full bg-lime px-3.5 py-1.5 text-sm font-bold text-night shadow-md">
                 {service.price}
               </span>
             </div>
             <div className={`flex flex-1 flex-col ${compact ? "p-5" : "p-6"}`}>
-              <p className="text-sm leading-7 text-forest-900/70">{service.description}</p>
+              <h3 className="flex items-center gap-2.5 text-[21px] font-bold leading-tight text-cream">
+                <IconCircleCheckFilled size={20} className="shrink-0 text-lime" aria-hidden="true" />
+                {service.title}
+              </h3>
+              <p className="mt-2.5 text-[15px] leading-7 text-cream/65">{service.description}</p>
               <div className={`mt-5 grid gap-2 ${compact ? "hidden" : ""}`}>
                 {service.included.map((item) => (
-                  <span key={item} className="flex items-start gap-2.5 text-sm leading-6 text-forest-900/72">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-50 text-forest-700">
+                  <span key={item} className="flex items-start gap-2.5 text-sm leading-6 text-cream/65">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/6 text-lime">
                       <IconCheck size={13} stroke={3} aria-hidden="true" />
                     </span>
                     <span>{item}</span>
                   </span>
                 ))}
               </div>
-              <div className={`mt-auto flex items-center justify-between border-t border-forest-900/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
+              <div className={`mt-auto flex items-center justify-between border-t border-white/8 ${compact ? "mt-4 pt-4" : "pt-5"}`}>
                 <a
                   href={links.services}
-                  className="mt-1 text-sm font-bold text-forest-700 transition group-hover:text-forest-900"
+                  className="mt-1 text-sm font-bold text-lime transition group-hover:text-cream"
                 >
                   <span className="inline-flex items-center gap-1">
                     Learn more
@@ -146,14 +148,14 @@ const defaultTrustBar = [
 export function TrustBar({ config = business }: SectionProps) {
   const items = (config.trustBadges?.length ? config.trustBadges : defaultTrustBar).slice(0, 4);
   return (
-    <section className="bg-white px-4 py-4 sm:px-10 lg:px-16">
+    <section className="bg-night px-4 py-6 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map((item) => (
           <div
             key={item.label}
-            className="flex items-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-[#f7f6f1] px-3.5 py-3 text-[13.5px] font-bold leading-tight text-forest-900 sm:text-sm"
+            className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-night-2 px-3.5 py-3.5 text-[14px] font-semibold leading-tight text-cream sm:text-[15px]"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-50">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-lime/12">
               <BadgeIcon name={item.icon} />
             </span>
             {item.label}
@@ -175,11 +177,11 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
         <div>
           <Pill>Why Us</Pill>
-          <h2 className="mt-5 max-w-xl text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 max-w-xl text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             Why {config.city} homeowners call {config.companyName}.
           </h2>
           <div className="mt-6 grid gap-4">
@@ -189,8 +191,8 @@ export function AboutUs({ config = business }: SectionProps) {
                   <IconCheck size={16} stroke={3} aria-hidden="true" />
                 </span>
                 <div>
-                  <h3 className="text-base font-bold leading-snug text-forest-900">{point.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-forest-900/70">{point.text}</p>
+                  <h3 className="text-base font-bold leading-snug text-cream">{point.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-cream/65">{point.text}</p>
                 </div>
               </div>
             ))}
@@ -205,9 +207,9 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[14px] border border-forest-900/10 bg-white px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
-                <div className="text-xl font-extrabold leading-none text-forest-900 sm:text-2xl">{stat.value}</div>
-                <div className="mt-1.5 text-[12px] font-semibold leading-tight text-forest-900/60">{stat.label}</div>
+              <div key={stat.label} className="rounded-[14px] border border-white/10 bg-night-2 px-3 py-3 text-center shadow-[0_10px_30px_rgba(18,49,25,0.06)]">
+                <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
+                <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -225,14 +227,14 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             From first call to clean yard.
           </h2>
-          <p className="mt-4 text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
+          <p className="mt-4 text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
             A simple, no-pressure process so you know what is happening before any work starts.
           </p>
         </div>
@@ -241,9 +243,9 @@ export function HowItWorks({ config = business }: SectionProps) {
         {steps.map((step, index) => (
           <article
             key={step.title}
-            className="group relative overflow-hidden rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-forest-600/25"
+            className="group relative overflow-hidden rounded-[18px] border border-white/10 bg-night-2 p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:p-6 hover:border-lime/40"
           >
-            <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-forest-900/[0.06]">
+            <div className="absolute right-5 top-5 text-4xl font-bold leading-none text-cream/[0.06]">
               0{index + 1}
             </div>
             <div className="flex items-center gap-2.5">
@@ -253,12 +255,12 @@ export function HowItWorks({ config = business }: SectionProps) {
                   return <StepIcon size={21} stroke={1.9} aria-hidden="true" />;
                 })()}
               </span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forest-50 text-xs font-bold text-forest-700">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/6 text-xs font-bold text-lime">
                 {index + 1}
               </span>
             </div>
-            <h3 className="mt-6 text-lg font-bold leading-snug text-forest-900">{step.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-forest-900/68">{step.text}</p>
+            <h3 className="mt-6 text-lg font-bold leading-snug text-cream">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-cream/65">{step.text}</p>
           </article>
         ))}
       </div>
@@ -275,14 +277,14 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-white px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-night-2 px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div>
           <Pill>Reviews</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
-            {hasReviews ? "Homeowners notice the care." : demoCopy.reviews.emptyTitle}
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+            {hasReviews ? `What ${config.city} homeowners say.` : demoCopy.reviews.emptyTitle}
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">
+          <p className="mt-4 max-w-xl text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
             {hasReviews
               ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
               : demoCopy.reviews.emptyBody}
@@ -292,15 +294,15 @@ export function Reviews({ config = business }: SectionProps) {
             (fromGoogle ? (
               <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7" />
             ) : (
-              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-forest-900/10 bg-[#f7f6f1] p-5">
-                <div className="text-3xl font-bold text-forest-900">{summary.rating}</div>
+              <div className="mt-7 flex items-center gap-4 rounded-[18px] border border-white/10 bg-night p-5">
+                <div className="text-3xl font-bold text-cream">{summary.rating}</div>
                 <div>
                   <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                     {Array.from({ length: 5 }, (_, i) => (
                       <IconStarFilled key={i} size={14} />
                     ))}
                   </div>
-                  <div className="mt-1 text-sm font-semibold text-forest-900/70">
+                  <div className="mt-1 text-sm font-semibold text-cream/65">
                     {summary.count} verified {summary.source}
                   </div>
                 </div>
@@ -315,15 +317,15 @@ export function Reviews({ config = business }: SectionProps) {
                 ) : (
                   <article
                     key={`${review.name}-${index}`}
-                    className="rounded-[18px] border border-forest-900/10 bg-white p-5 shadow-[0_10px_30px_rgba(18,49,25,0.07)]"
+                    className="rounded-[18px] border border-white/10 bg-night-2 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
                   >
                     <div className="flex gap-0.5 text-ember-500" aria-hidden="true">
                       {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }, (_, i) => (
                         <IconStarFilled key={i} size={13} />
                       ))}
                     </div>
-                    <p className="mt-3 text-sm leading-7 text-forest-900/72">&quot;{review.text}&quot;</p>
-                    <p className="mt-4 text-sm font-bold text-forest-900">{review.name}</p>
+                    <p className="mt-3 text-sm leading-7 text-cream/65">&quot;{review.text}&quot;</p>
+                    <p className="mt-4 text-sm font-bold text-cream">{review.name}</p>
                   </article>
                 )
               )}
@@ -341,14 +343,14 @@ export function Reviews({ config = business }: SectionProps) {
               {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
           ) : (
-            <div className="mt-7 rounded-[18px] border border-dashed border-forest-900/20 bg-[#f7f6f1] p-6">
-              <div className="text-sm font-bold tracking-[0.18em] text-forest-900/20" aria-hidden="true">
+            <div className="mt-7 rounded-[18px] border border-dashed border-white/15 bg-night p-6">
+              <div className="text-sm font-bold tracking-[0.18em] text-cream/20" aria-hidden="true">
                 ★★★★★
               </div>
               <div className="mt-4 grid gap-2.5" aria-hidden="true">
-                <span className="block h-3 w-4/5 rounded-full bg-forest-900/8" />
-                <span className="block h-3 w-full rounded-full bg-forest-900/8" />
-                <span className="block h-3 w-2/3 rounded-full bg-forest-900/8" />
+                <span className="block h-3 w-4/5 rounded-full bg-white/10" />
+                <span className="block h-3 w-full rounded-full bg-white/10" />
+                <span className="block h-3 w-2/3 rounded-full bg-white/10" />
               </div>
             </div>
           )}
@@ -361,11 +363,11 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section className="bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
-          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/10 bg-forest-900 text-white shadow-soft"
+          className="scroll-mt-20 overflow-hidden rounded-[22px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-white/10 bg-forest-900 text-white shadow-soft"
         >
           <div className="relative h-[240px] w-full lg:h-full lg:min-h-[420px]">
             <iframe
@@ -389,16 +391,16 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
               {config.serviceAreas.slice(0, 6).map((area) => (
                 <div
                   key={area}
-                  className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/95 px-4 py-3 text-sm font-semibold text-forest-900 shadow-sm"
+                  className="flex items-center gap-1.5 rounded-full border border-white/12 bg-night-3 px-4 py-3 text-sm font-semibold text-cream shadow-sm"
                 >
                   <IconMapPin size={15} stroke={2} className="shrink-0 text-ember-600" aria-hidden="true" />
                   {area}
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-[18px] bg-white/95 p-5 text-forest-900 shadow-sm">
+            <div className="mt-6 rounded-[18px] bg-night-3 p-5 text-cream shadow-sm">
               <div className="text-sm font-bold">Need help outside this area?</div>
-              <p className="mt-2 text-sm leading-7 text-forest-900/68">
+              <p className="mt-2 text-sm leading-7 text-cream/65">
                 {config.phone
                   ? "Call and we will confirm availability before scheduling an estimate."
                   : "Send a request and we will confirm availability before scheduling an estimate."}
@@ -439,14 +441,14 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/8 bg-[#f7f6f1] px-4 py-5 sm:px-10 lg:px-16">
+    <section className="border-b border-white/8 bg-night px-4 py-5 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
-            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-forest-900/10 bg-white px-4 py-3.5 text-sm font-bold text-forest-900 shadow-sm"
+            className="flex items-center justify-center gap-2.5 rounded-[14px] border border-white/10 bg-night-2 px-4 py-3.5 text-sm font-bold text-cream shadow-sm"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-50">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/6">
               <BadgeIcon name={badge.icon} />
             </span>
             <span>{badge.label}</span>
@@ -462,23 +464,23 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="projects" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {demoCopy.projects.heading}
           </h2>
-          <p className="mt-4 text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">{demoCopy.projects.sub}</p>
+          <p className="mt-4 text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">{demoCopy.projects.sub}</p>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
+              <article className="flex h-full flex-col rounded-[18px] border border-white/10 bg-night-2 p-6 shadow-soft">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="text-base font-bold text-forest-900">{project.title}</h3>
+                  <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
-                    <span className="shrink-0 rounded-full bg-forest-50 px-3 py-1 text-xs font-bold text-forest-700">
+                    <span className="shrink-0 rounded-full bg-white/6 px-3 py-1 text-xs font-bold text-lime">
                       {project.location}
                     </span>
                   )}
@@ -489,16 +491,16 @@ export function RecentProjects({ config = business }: SectionProps) {
                     afterImage={project.afterImage}
                     alt={project.title}
                   />
-                  <p className="mt-2 text-center text-xs font-semibold text-forest-900/50">Drag the handle to compare</p>
+                  <p className="mt-2 text-center text-xs font-semibold text-cream/45">Drag the handle to compare</p>
                 </div>
                 <div className="mt-3 grid flex-1 gap-3 sm:grid-cols-2">
-                  <div className="rounded-[14px] bg-[#f3f1eb] p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-900/60">Before</p>
-                    <p className="mt-2 text-sm leading-6 text-forest-900/72">{project.before}</p>
+                  <div className="rounded-[14px] bg-night-3 p-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-cream/55">Before</p>
+                    <p className="mt-2 text-sm leading-6 text-cream/65">{project.before}</p>
                   </div>
-                  <div className="rounded-[14px] bg-forest-50 p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-700">After</p>
-                    <p className="mt-2 text-sm leading-6 text-forest-900/72">{project.after}</p>
+                  <div className="rounded-[14px] bg-white/6 p-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime">After</p>
+                    <p className="mt-2 text-sm leading-6 text-cream/65">{project.after}</p>
                   </div>
                 </div>
               </article>
@@ -515,21 +517,97 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
-      <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
+    <section id="faq" className="scroll-mt-20 bg-night px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
+      <div className="mx-auto max-w-3xl">
+        <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {demoCopy.faq.heading}
           </h2>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {faqs.map((faq) => (
-            <article key={faq.question} className="rounded-[18px] border border-forest-900/10 bg-white p-6 shadow-soft">
-              <h3 className="text-base font-bold leading-snug text-forest-900">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-7 text-forest-900/70">{faq.answer}</p>
-            </article>
+        <div className="mt-8 grid gap-3">
+          {faqs.map((faq, i) => (
+            <details
+              key={faq.question}
+              open={i === 0}
+              className="group rounded-[16px] border border-white/10 bg-night-2 px-5 transition open:border-lime/30"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold leading-snug text-cream">
+                {faq.question}
+                <IconChevronDown size={20} className="chev shrink-0 text-lime transition-transform" aria-hidden="true" />
+              </summary>
+              <p className="pb-5 text-[15px] leading-7 text-cream/65">{faq.answer}</p>
+            </details>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Four reasons to pick up the phone. Ours, not theirs: every business gets the same list. */
+const defaultSigns = [
+  "Branches touching the roof, gutters or power lines",
+  "A tree leaning more than it used to, or lifting the ground at its base",
+  "Dead limbs, bare patches or fungus on the trunk",
+  "A stump in the way of mowing, parking or a new fence"
+];
+
+export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
+  return (
+    <section className="bg-night-2 px-4 py-10 sm:px-10 sm:py-14 lg:px-16">
+      <div className="mx-auto max-w-3xl text-center">
+        <Pill>Not sure yet?</Pill>
+        <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+          Signs it&apos;s time to call about a tree.
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-cream/65 sm:text-lg">
+          Any one of these is worth a free look. Catching it early is cheaper than the storm that finds it first.
+        </p>
+        <div className="mt-8 grid gap-3 text-left">
+          {defaultSigns.map((sign) => (
+            <div key={sign} className="flex items-start gap-3.5 rounded-[14px] border border-white/10 bg-night px-4 py-4">
+              <IconAlertTriangle size={22} className="mt-0.5 shrink-0 text-ember-400" aria-hidden="true" />
+              <p className="text-[15px] leading-6 text-cream">{sign}</p>
+            </div>
+          ))}
+        </div>
+        <a
+          href={links.quote}
+          className="mt-7 inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-7 text-base font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600"
+        >
+          Get My Free Estimate →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/** A short band between sections: one question, call or request. */
+export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
+  return (
+    <section className="bg-night-3 px-4 py-12 text-center sm:px-10 sm:py-16 lg:px-16">
+      <div className="mx-auto max-w-2xl">
+        <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
+        <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
+          One call gets it on the schedule. Emergencies get a same-day answer.
+        </p>
+        <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3">
+          {config.phone && (
+            <a
+              href={`tel:${config.phone}`}
+              className="call-ring inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-lime px-6 text-base font-bold text-night transition hover:bg-lime-600"
+            >
+              <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
+              Call {config.phone}
+            </a>
+          )}
+          <a
+            href={links.quote}
+            className="inline-flex h-12 items-center justify-center rounded-2xl border-2 border-lime px-6 text-base font-bold text-lime transition hover:bg-lime/10"
+          >
+            Request Free Estimate
+          </a>
         </div>
       </div>
     </section>
@@ -555,7 +633,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-white px-6 text-base font-bold text-forest-900 shadow-lg transition hover:bg-forest-50 sm:inline-flex"
+              className="mt-6 hidden h-12 items-center gap-2 rounded-2xl bg-night-2 px-6 text-base font-bold text-cream shadow-lg transition hover:bg-white/6 sm:inline-flex"
             >
               <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
               Call {config.phone}
@@ -580,26 +658,26 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-[#f7f6f1] px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-4 py-8 sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>
-          <h2 className="mt-5 text-[26px] font-bold leading-tight text-forest-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {demoCopy.quote.heading}
           </h2>
-          <p className="mt-5 max-w-md text-base leading-6 text-forest-900/70 sm:text-lg sm:leading-8">{demoCopy.quote.sub}</p>
+          <p className="mt-5 max-w-md text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">{demoCopy.quote.sub}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="rounded-full border border-forest-900/12 bg-white px-3 py-1 text-[13px] font-semibold text-forest-900"
+                className="rounded-full border border-white/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
               >
                 {point}
               </span>
             ))}
           </div>
         </div>
-        <div className="rounded-[22px] border border-forest-900/10 bg-white p-6 shadow-soft sm:p-9">
+        <div className="rounded-[22px] border border-white/10 bg-night-2 p-6 shadow-soft sm:p-9">
           <QuoteForm config={config} slug={slug} />
         </div>
       </div>
@@ -637,7 +715,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
                 and works for transparent marks too.
               */}
               {config.logoImage ? (
-                <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white p-1.5">
+                <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-night-2 p-1.5">
                   <span className="relative block h-full w-full">
                     <Image src={config.logoImage} alt="" fill sizes="48px" className="object-contain" />
                   </span>
@@ -803,8 +881,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
-      <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
+    <span className="eyebrow-mono inline-flex items-center gap-2 rounded-md border border-lime/30 bg-lime/10 px-3 py-1.5 font-semibold text-lime">
       {children}
     </span>
   );
@@ -826,7 +903,7 @@ function BadgeIcon({ name }: { name: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0 text-forest-700"
+      className="h-5 w-5 shrink-0 text-lime"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.9"
