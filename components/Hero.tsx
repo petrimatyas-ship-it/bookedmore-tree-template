@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { IconCircleCheckFilled, IconPhoneCall } from "@tabler/icons-react";
 import { business } from "@/lib/business";
 import { defaultLinks, type SiteConfig, type SiteLinks } from "@/lib/site-config";
@@ -36,22 +35,6 @@ export function Hero({
 
       <div className="relative mx-auto max-w-7xl flex min-h-[92vh] flex-col justify-center px-5 pb-20 pt-16 sm:min-h-0 sm:px-12 sm:py-20 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
-          {/* Their real logo, drawn over the photo. The generated image is
-              asked for with no lettering in it precisely so this can be the
-              actual mark rather than a model's guess at one. */}
-          {config.logoImage && (
-            <span className="mx-auto mb-5 flex h-16 w-16 items-center justify-center overflow-hidden rounded-[12px] bg-white p-2 shadow-soft sm:h-20 sm:w-20 lg:mx-0">
-              <Image
-                src={config.logoImage}
-                alt={`${config.companyName} logo`}
-                width={80}
-                height={80}
-                className="h-full w-full object-contain"
-                priority
-              />
-            </span>
-          )}
-
           {badgeText && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-forest-900/70 px-3.5 py-2 text-[13px] font-semibold text-white">
               <span className="text-ember-400" aria-hidden="true">★</span>
