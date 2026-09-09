@@ -38,7 +38,7 @@ export function TreeCareServices({
   compact = false
 }: SectionProps & { compact?: boolean }) {
   return (
-    <section id="services" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
+    <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
       <div className="mx-auto max-w-6xl text-center">
         <div className="mx-auto max-w-2xl">
           <Pill>Our Services</Pill>
@@ -54,7 +54,7 @@ export function TreeCareServices({
             {["Free estimates", "Cleanup included", "Local crew"].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest-900/10 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
               >
                 <IconCircleCheckFilled size={16} className="text-lime" aria-hidden="true" />
                 {chip}
@@ -149,7 +149,7 @@ export function TrustBar({ config = business }: SectionProps) {
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
   return (
-    <section className="bg-night px-3 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-16">
+    <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-16">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
           <div
@@ -181,7 +181,7 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto mb-8 max-w-2xl text-center">
         <Pill>Why Us</Pill>
         <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -213,7 +213,7 @@ export function AboutUs({ config = business }: SectionProps) {
           />
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-3 py-3 text-center shadow-soft">
+              <div key={stat.label} className="rounded-[10px] border border-forest-900/10 bg-night-2 px-5 py-3 text-center shadow-soft">
                 <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
                 <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
               </div>
@@ -233,7 +233,7 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="process" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
@@ -283,7 +283,7 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-tint px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <Pill>Reviews</Pill>
@@ -369,7 +369,7 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section className="bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div
           id="areas"
@@ -447,7 +447,7 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/8 bg-night px-3 py-4 sm:px-10 lg:px-16">
+    <section className="border-b border-forest-900/8 bg-night px-5 py-4 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
@@ -470,7 +470,7 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="projects" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
@@ -486,7 +486,7 @@ export function RecentProjects({ config = business }: SectionProps) {
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-base font-bold text-cream">{project.title}</h3>
                   {project.location && (
-                    <span className="shrink-0 rounded-full bg-forest-900/5 px-3 py-1 text-xs font-bold text-lime">
+                    <span className="shrink-0 rounded-full bg-forest-900/5 px-5 py-1 text-xs font-bold text-lime">
                       {project.location}
                     </span>
                   )}
@@ -523,7 +523,7 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-tint px-3 py-4 sm:px-10 sm:py-11 lg:px-16">
+    <section id="faq" className="scroll-mt-20 bg-tint px-5 py-4 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
@@ -561,7 +561,7 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-3 py-4 sm:px-10 sm:py-11 lg:px-16">
+    <section className="bg-night px-5 py-4 sm:px-10 sm:py-11 lg:px-16">
       <div className="mx-auto max-w-3xl text-center">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -592,7 +592,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** A short band between sections: one question, call or request. */
 export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-3 py-6 text-center sm:px-10 sm:py-12 lg:px-16">
+    <section className="bg-night px-5 py-6 text-center sm:px-10 sm:py-12 lg:px-16">
       <div className="mx-auto max-w-2xl">
         <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
@@ -626,7 +626,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
     <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-14 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-forest-900/8 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
+          <span className="inline-flex items-center gap-2 rounded-full bg-forest-900/8 px-5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
             <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
             Free estimate
           </span>
@@ -664,7 +664,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>
@@ -676,7 +676,7 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}
-                className="rounded-full border border-forest-900/10 bg-night-2 px-3 py-1 text-[13px] font-semibold text-cream"
+                className="rounded-full border border-forest-900/10 bg-night-2 px-5 py-1 text-[13px] font-semibold text-cream"
               >
                 {point}
               </span>
@@ -753,7 +753,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
                 {config.trustBadges.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-forest-900/8 px-3 py-1.5 text-xs font-bold text-white/85"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-forest-900/8 px-5 py-1.5 text-xs font-bold text-white/85"
                   >
                     <IconCheck size={13} stroke={3} className="text-ember-400" aria-hidden="true" />
                     {badge.label}
@@ -887,7 +887,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
+    <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
       <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
       {children}
     </span>
