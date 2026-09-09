@@ -24,7 +24,7 @@ export function HeroPanel({
   const [tab, setTab] = useState<Tab>(initialTab);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_24px_60px_rgba(18,49,25,0.28)]">
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_24px_60px_rgba(18,49,25,0.28)]">
       <div className="grid grid-cols-2 gap-1 bg-[#f3f1eb] p-1.5">
         <TabButton active={tab === "chat"} onClick={() => setTab("chat")}>
           💬 Ask a question
@@ -64,7 +64,7 @@ function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-[14px] px-4 py-2.5 text-sm font-bold transition ${
+      className={`rounded-[10px] px-4 py-2.5 text-sm font-bold transition ${
         active ? "bg-forest-900 text-white shadow-sm" : "text-forest-900/65 hover:bg-white hover:text-forest-900"
       }`}
     >

@@ -40,7 +40,7 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
   const moreCount = Math.max(0, (config.galleryTotal ?? photos.length) - shown.length);
 
   return (
-    <section id="work" className="scroll-mt-20 bg-night px-4 py-6 sm:px-10 sm:py-10 lg:px-16">
+    <section id="work" className="scroll-mt-20 bg-night px-3 py-5 sm:px-10 sm:py-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-900">
@@ -102,7 +102,7 @@ function LockedTile({ photo, more, href }: { photo: string; more: number; href: 
     <a
       href={href}
       data-demo-cta="gallery-lock"
-      className="group relative block overflow-hidden rounded-[18px] bg-forest-900/5"
+      className="group relative block overflow-hidden rounded-[12px] bg-forest-900/5"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -143,7 +143,7 @@ function Tile({
     />
   );
 
-  const shell = `group relative block overflow-hidden rounded-[18px] bg-forest-900/5 ${className}`;
+  const shell = `group relative block overflow-hidden rounded-[12px] bg-forest-900/5 ${className}`;
 
   if (!href) return <figure className={shell}>{image}</figure>;
 
