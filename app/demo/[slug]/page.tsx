@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
 import {
   AboutUs,
+  CtaBand,
+  WarningSigns,
   FaqSection,
   QuoteCta,
   Reviews,
@@ -47,7 +49,9 @@ export default async function DemoHome({ params }: Params) {
       <Hero config={config} links={links} />
       <TrustBar config={config} />
       <TreeCareServices config={config} links={links} compact />
+      <WarningSigns config={config} links={links} />
       <AboutUs config={config} />
+      <CtaBand config={config} links={links} />
       <WorkGallery config={config} lockHref={lockHref} />
       <Reviews config={config} />
       <ServiceAreaMap config={config} />
