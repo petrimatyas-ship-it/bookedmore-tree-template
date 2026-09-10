@@ -81,7 +81,7 @@ export function DemoTopBar({ href }: { href: string }) {
           <a
             href={marketingUrl}
             aria-label={t.backLabel}
-            className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-full border border-white/25 px-3.5 text-[13px] font-semibold text-white/85 transition hover:border-white/50 hover:text-white sm:text-sm"
+            className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-full bg-mbn-blue px-3.5 text-[13px] font-semibold text-white transition hover:bg-mbn-blue-600 sm:text-sm"
           >
             <IconExternalLink size={15} stroke={2.2} />
             {t.back}

@@ -20,6 +20,11 @@
   --color-ember-500: #ef7d1a;
   --color-ember-600: #d8610b;
 
+  /* MoreBookedNow's own blue, for the one button that leads back to us.
+     Ours, not the tree company's, so it reads as a different destination. */
+  --color-mbn-blue: #2f6fb5;
+  --color-mbn-blue-600: #275e9a;
+
   /* Surface and text tokens. Named for their role so the sections read the same on any palette. */
   --color-night: #f2f6f1;   /* page background: one soft green tint everywhere */
   --color-night-2: #ffffff; /* cards */
