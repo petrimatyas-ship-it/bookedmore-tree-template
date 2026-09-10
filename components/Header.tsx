@@ -55,7 +55,7 @@ export function Header({
     href.startsWith("/") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-forest-900 text-white shadow-sm">
+    <header className="sticky top-[var(--demo-bar-h,0px)] z-50 border-b border-white/10 bg-forest-900 text-white shadow-sm transition-[top] duration-200 ease-out">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like

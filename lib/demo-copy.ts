@@ -8,17 +8,15 @@ export const marketingUrl = (
 ).replace(/\/$/, "");
 
 export const demoCopy = {
-  banner: {
-    text: "This is a quick draft of your site. Your real site gets your photos, reviews and full pages.",
-    cta: "I want this",
-    dismiss: "Hide this banner"
-  },
-
-  /** The note that follows the owner down the page. Short: it sits over their site. */
-  stickyNote: {
+  /**
+   * The bar over their draft. Two things only, because it is over their site:
+   * the way to say yes, and the way back to ours.
+   */
+  topBar: {
     label: "This is a draft of your site",
     cta: "I want this site",
-    dismiss: "Hide"
+    back: "morebookednow.com",
+    backLabel: "Back to morebookednow.com"
   },
 
   /**
