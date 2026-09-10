@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
-import { StickyDemoNote } from "@/components/StickyDemoNote";
 import { Footer } from "@/components/Sections";
-import { DemoBanner } from "@/components/DemoBanner";
+import { DemoTopBar } from "@/components/DemoTopBar";
 import { DemoMessage } from "@/components/DemoMessage";
 import { OwnerClose } from "@/components/OwnerClose";
 import { DemoTracker } from "@/components/DemoTracker";
@@ -41,14 +40,15 @@ export default async function DemoLayout({
   return (
     <main className="min-h-screen bg-[#f7f6f1]">
       {/*
-        The banner scrolls away rather than sticking. It and the header were
-        both `sticky top-0`, which stacked 198px of bars over a 600px viewport
-        and made every anchor land behind them. The "I want this" CTA also
-        sits in the band at the foot of every page, so nothing is lost.
+        One bar, not three. A banner that scrolled away and a note parked over
+        the page were both asking for the same attention; this hides as they
+        read down and comes back the moment they scroll up. The header sits
+        under it via --demo-bar-h, so nothing stacks and no anchor lands
+        behind a bar. The "I want this" CTA is still in the band at the foot
+        of every page too.
       */}
       <DemoTracker slug={demo.slug} />
-      <DemoBanner href={wantThisHref(demo.slug, demo.leadId)} />
-      <StickyDemoNote href={wantThisHref(demo.slug, demo.leadId)} />
+      <DemoTopBar href={wantThisHref(demo.slug, demo.leadId)} />
       <Header config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       {children}
       {/*
