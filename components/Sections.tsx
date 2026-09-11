@@ -76,11 +76,11 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1320px] lg:gap-12" : "max-w-6xl lg:max-w-[1320px]"}`}>
+      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1320px] lg:gap-6" : "max-w-6xl lg:max-w-[1320px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-3rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
+            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-[0_14px_36px_rgba(18,49,25,0.16),0_3px_10px_rgba(18,49,25,0.10)] transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_22px_52px_rgba(18,49,25,0.24)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-1.5rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
           >
             <div className={`relative h-52 overflow-hidden bg-forest-900/8 sm:h-56 ${wide ? "lg:h-[340px]" : "lg:h-64"}`}>
               <div
@@ -228,7 +228,7 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 pt-4 sm:px-10 sm:py-10 sm:pt-6 lg:px-10 lg:pt-6">
       {/* One line on a laptop, sized against the window so a long company
           name shrinks the line rather than breaking it in two. */}
       <div className="mx-auto mb-8 max-w-2xl text-center lg:max-w-none">
@@ -346,7 +346,7 @@ export function Reviews({ config = business }: SectionProps) {
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {hasReviews ? `What ${config.city} homeowners say.` : demoCopy.reviews.emptyTitle}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-6 text-cream/65 sm:text-base sm:leading-7">
             {hasReviews
               ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
               : demoCopy.reviews.emptyBody}
@@ -372,6 +372,7 @@ export function Reviews({ config = business }: SectionProps) {
             ))}
 
           {hasReviews ? (
+            <>
             <div className="mt-5 grid gap-4 md:grid-cols-3">
               {reviews.slice(0, 3).map((review, index) =>
                 fromGoogle ? (
@@ -391,19 +392,28 @@ export function Reviews({ config = business }: SectionProps) {
                   </article>
                 )
               )}
-              {fromGoogle && config.reviewsUrl && (
-                <a
-                  href={config.reviewsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a73e8] transition hover:underline"
-                >
-                  Read all {config.reviewSummary?.count ?? ""} reviews on Google
-                  <span aria-hidden="true">↗</span>
-                </a>
-              )}
-              {config.isDemo && fromGoogle && <OwnerNote className="mt-1">{demoCopy.notes.reviews}</OwnerNote>}
             </div>
+            {/*
+              Both of these used to sit inside the grid above, so each was laid
+              out as a fourth and fifth review card: the link took one column
+              and the owner's note the next, stranded mid-row. They belong
+              under the reviews, not among them.
+            */}
+            {fromGoogle && config.reviewsUrl && (
+              <a
+                href={config.reviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a73e8] transition hover:underline"
+              >
+                Read all {config.reviewSummary?.count ?? ""} reviews on Google
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {config.isDemo && fromGoogle && (
+              <OwnerNote className="mx-auto mt-4 max-w-2xl text-left">{demoCopy.notes.reviews}</OwnerNote>
+            )}
+            </>
           ) : (
             <div className="mt-7 rounded-[10px] border border-dashed border-forest-900/20 bg-night p-6">
               <div className="text-sm font-bold tracking-[0.18em] text-cream/20" aria-hidden="true">
@@ -617,7 +627,7 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-5 py-4 sm:px-10 sm:py-9 lg:py-11 lg:px-10">
+    <section className="bg-night px-5 py-4 pb-5 sm:px-10 sm:py-9 sm:pb-6 lg:px-10 lg:py-11 lg:pb-7">
       {/*
         Wider on a laptop than the 3xl the heading wants. Four short warnings
         in one 768px column left a third of the screen empty either side and
