@@ -242,11 +242,24 @@ export function AboutUs({ config = business }: SectionProps) {
       <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-14">
         {/* Laptop puts the photo first; the phone keeps the order it had,
             with the three promises above it. */}
-        <div
-          className="order-2 h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px] lg:order-none lg:aspect-video lg:h-auto lg:self-start"
-          style={{ backgroundImage: `url(${config.aboutImage})` }}
-          role="img"
-          aria-label={`${config.companyName} crew at work`}
+        {/*
+          A real img on a laptop, at whatever shape the picture actually is.
+          This was a background div in a box of our choosing, so the picture
+          was always cropped to fit: first to 664x440, which sliced the sides
+          and took half of whoever stood near one, then to 16:9, which sliced
+          the top and bottom instead and cut them off at the waist. Nothing
+          checks the shape of the generated About image — only the hero's is
+          measured — so the box can never be the right one. Letting the image
+          keep its own proportions is the only version that cannot crop.
+
+          The phone keeps exactly what it had: object-cover at the same two
+          heights renders identically to the bg-cover it replaces.
+        */}
+        <img
+          src={config.aboutImage}
+          alt={`${config.companyName} crew at work`}
+          loading="lazy"
+          className="order-2 h-[260px] w-full rounded-[10px] object-cover shadow-soft sm:h-[380px] lg:order-none lg:mx-auto lg:h-auto lg:max-h-[520px] lg:w-auto lg:max-w-full lg:self-start lg:object-contain"
         />
         <div className="order-1 grid gap-5 lg:order-none lg:content-start lg:gap-7 lg:py-2">
           {defaultWhyPoints.map((point) => (
