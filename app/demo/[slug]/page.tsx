@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import {
   AboutUs,
   AfterServicesPitch,
-  CtaBand,
   WarningSigns,
   FaqSection,
   QuoteCta,
@@ -53,7 +52,6 @@ export default async function DemoHome({ params }: Params) {
       <AfterServicesPitch config={config} lockHref={lockHref} />
       <WarningSigns config={config} links={links} />
       <AboutUs config={config} />
-      <CtaBand config={config} links={links} />
       <WorkGallery config={config} lockHref={lockHref} />
       <Reviews config={config} />
       <ServiceAreaMap config={config} />
