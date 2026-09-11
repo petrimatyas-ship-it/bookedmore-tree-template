@@ -604,7 +604,13 @@ const defaultSigns = [
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
     <section className="bg-night px-5 py-4 sm:px-10 sm:py-11 lg:px-16">
-      <div className="mx-auto max-w-3xl text-center">
+      {/*
+        Wider on a laptop than the 3xl the heading wants. Four short warnings
+        in one 768px column left a third of the screen empty either side and
+        made the section look unfinished, so the list goes two across from lg.
+        The heading keeps its own narrower measure so it still reads well.
+      */}
+      <div className="mx-auto max-w-3xl text-center lg:max-w-5xl">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
           Signs it&apos;s time to call about a tree.
@@ -612,7 +618,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-cream/65 sm:text-lg">
           Any one of these is worth a free look. Catching it early is cheaper than the storm that finds it first.
         </p>
-        <div className="mt-8 grid gap-3 text-left">
+        <div className="mt-8 grid gap-3 text-left lg:grid-cols-2 lg:gap-4">
           {defaultSigns.map((sign) => (
             <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4">
               <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500" aria-hidden="true" />
@@ -640,7 +646,9 @@ export function CtaBand({ config = business, links = defaultLinks }: SectionProp
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
           One call gets it on the schedule. Emergencies get a same-day answer.
         </p>
-        <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3">
+        {/* Side by side once there is room: two stacked buttons in a 384px
+            column is a phone layout, and on a laptop it reads as a thin strip. */}
+        <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3 sm:max-w-xl sm:flex-row sm:justify-center">
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
