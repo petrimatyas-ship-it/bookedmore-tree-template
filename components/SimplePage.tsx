@@ -3,7 +3,7 @@ import { Footer } from "@/components/Sections";
 
 export function SimplePage({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   return (
-    <main className="min-h-screen bg-[#f7f6f1]">
+    <main className="min-h-screen bg-night">
       <Header />
       <section className="px-5 py-24 lg:px-8">
         <div className="mx-auto max-w-5xl rounded-[10px] bg-white p-10 shadow-soft sm:p-14">
