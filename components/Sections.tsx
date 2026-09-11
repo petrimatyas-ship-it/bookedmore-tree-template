@@ -43,9 +43,11 @@ export function TreeCareServices({
   return (
     <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-10 lg:pb-12 sm:pt-10 lg:px-10">
       <div className="mx-auto max-w-6xl lg:max-w-[1320px] text-center">
-        <div className="mx-auto max-w-2xl">
+        {/* One line on a laptop. The size is tied to the window rather than
+            fixed, so a long city name shrinks the line instead of wrapping it. */}
+        <div className="mx-auto max-w-2xl lg:max-w-none">
           <Pill>Our Services</Pill>
-          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(28px,2.5vw,38px)] lg:whitespace-nowrap">
             Tree services for {config.city} homes and properties.
           </h2>
         </div>
@@ -74,7 +76,7 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className="mx-auto mt-8 flex max-w-6xl lg:max-w-[1320px] flex-wrap justify-center gap-5">
+      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-5xl" : "max-w-6xl lg:max-w-[1320px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}

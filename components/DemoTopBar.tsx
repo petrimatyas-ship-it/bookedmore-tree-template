@@ -5,7 +5,7 @@ import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
 import { demoCopy, marketingUrl } from "@/lib/demo-copy";
 
 /** Kept in step with the bar's real height, so the header can sit under it. */
-const BAR_H = 42;
+const BAR_H = 46;
 const VAR = "--demo-bar-h";
 
 /**
@@ -77,19 +77,20 @@ export function DemoTopBar({ href }: { href: string }) {
         */}
         <div className="mx-auto grid h-full max-w-[1320px] grid-cols-[1fr_auto] items-center gap-2 px-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-3 sm:px-5 lg:px-10">
           <p className="hidden min-w-0 truncate text-[13px] text-white/70 sm:block">{t.label}</p>
-          <div className="flex items-center justify-center gap-2 sm:gap-3">
+          <div className="flex items-center justify-center gap-2 sm:gap-5">
             <a
               href={href}
-              className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-ember-500 px-4 text-[13px] font-bold text-white transition hover:bg-ember-600 sm:h-9 sm:min-w-[210px] sm:text-sm"
+              className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-ember-500 px-4 text-[13px] font-bold text-white transition hover:bg-ember-600 sm:h-9 sm:min-w-[248px] sm:text-sm"
             >
               {t.cta}
               <IconArrowRight size={15} stroke={2.4} />
             </a>
-            {/* Was solid blue, which belonged to no palette on the page. */}
+            {/* Our own blue, but a lighter one: the deep shade sat on the dark
+               green like a hole punched in the bar. */}
             <a
               href={marketingUrl}
               aria-label={t.backLabel}
-              className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-full border border-white/35 px-3.5 text-[12.5px] font-semibold text-white/90 transition hover:border-white hover:bg-white/10 hover:text-white sm:h-9 sm:min-w-[210px] sm:text-sm"
+              className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-full border border-mbn-blue-300/70 bg-mbn-blue-300/10 px-3.5 text-[12.5px] font-semibold text-mbn-blue-200 transition hover:border-mbn-blue-200 hover:bg-mbn-blue-300/20 hover:text-white sm:h-9 sm:min-w-[248px] sm:text-sm"
             >
               <IconExternalLink size={15} stroke={2.2} />
               {t.back}
