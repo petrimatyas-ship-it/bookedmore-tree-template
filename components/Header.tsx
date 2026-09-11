@@ -246,11 +246,19 @@ export function Header({
         entire site first is the one place we were losing them.
       */}
       <div className="pointer-events-none fixed bottom-5 right-5 z-[55] hidden flex-col items-end gap-3 lg:flex">
+        {/*
+          A definite height, capped to the window. Without one the panel grew to
+          whatever the quote form needed, which on a laptop pushed its own top
+          off the screen: the form could not be read from the start and the
+          close button went with it, so the thing could not be shut. A fixed
+          height also gives the chat room to breathe, since it was taking only
+          as much as its greeting needed.
+        */}
         {panel && (
-          <div className="pointer-events-auto w-[400px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(18,49,25,0.32)]">
+          <div className="pointer-events-auto flex h-[min(640px,calc(100vh-7rem))] w-[400px] flex-col overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(18,49,25,0.32)]">
             {/* No title: the panel carries its own tabs, and repeating the
                 name of the open one above them just said it twice. */}
-            <div className="flex items-center justify-end bg-forest-900 px-3 py-1.5 text-white">
+            <div className="flex shrink-0 items-center justify-end bg-forest-900 px-3 py-1.5 text-white">
               <button
                 type="button"
                 aria-label="Close"
@@ -260,7 +268,11 @@ export function Header({
                 <IconX size={17} stroke={2.4} />
               </button>
             </div>
-            <HeroPanel key={`desk-${panel}`} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
+            {/* min-h-0 so the form's own scroll area can shrink inside the flex
+                column rather than forcing the panel taller than its cap. */}
+            <div className="min-h-0 flex-1">
+              <HeroPanel key={`desk-${panel}`} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
+            </div>
           </div>
         )}
         {!panel && (
