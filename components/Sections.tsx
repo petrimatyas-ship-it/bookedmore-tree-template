@@ -243,12 +243,12 @@ export function AboutUs({ config = business }: SectionProps) {
         {/* Laptop puts the photo first; the phone keeps the order it had,
             with the three promises above it. */}
         <div
-          className="order-2 h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px] lg:order-none lg:h-[440px]"
+          className="order-2 h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px] lg:order-none lg:aspect-video lg:h-auto lg:self-start"
           style={{ backgroundImage: `url(${config.aboutImage})` }}
           role="img"
           aria-label={`${config.companyName} crew at work`}
         />
-        <div className="order-1 grid gap-5 lg:order-none lg:content-between lg:gap-0 lg:py-2">
+        <div className="order-1 grid gap-5 lg:order-none lg:content-start lg:gap-7 lg:py-2">
           {defaultWhyPoints.map((point) => (
             <div key={point.title} className="flex gap-3.5">
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
@@ -346,7 +346,7 @@ export function Reviews({ config = business }: SectionProps) {
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             {hasReviews ? `What ${config.city} homeowners say.` : demoCopy.reviews.emptyTitle}
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-6 text-cream/65 sm:text-base sm:leading-7">
+          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-6 text-cream/65 sm:text-base sm:leading-7 lg:max-w-4xl">
             {hasReviews
               ? "Good tree work is not just the cut. It is clear communication, careful equipment, and a yard left in order."
               : demoCopy.reviews.emptyBody}
@@ -411,7 +411,7 @@ export function Reviews({ config = business }: SectionProps) {
               </a>
             )}
             {config.isDemo && fromGoogle && (
-              <OwnerNote className="mx-auto mt-4 max-w-2xl text-left">{demoCopy.notes.reviews}</OwnerNote>
+              <OwnerNote className="mt-4 text-left">{demoCopy.notes.reviews}</OwnerNote>
             )}
             </>
           ) : (
