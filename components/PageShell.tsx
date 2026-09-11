@@ -22,7 +22,7 @@ export function PageShell({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-[#f7f6f1]">
+    <main className="min-h-screen bg-night">
       <LocalBusinessSchema />
       <Header />
       <PageHead eyebrow={eyebrow} title={title} description={description} />

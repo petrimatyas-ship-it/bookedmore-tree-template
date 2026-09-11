@@ -330,8 +330,29 @@ export function HowItWorks({ config = business }: SectionProps) {
   );
 }
 
+/**
+ * Past this, a review stops being a quote and becomes an essay.
+ *
+ * Google reviews run to any length, and the three sit in a row of equal
+ * height: one 1,100-character story about a kid's bicycle stretched its card
+ * to 700px and left the two beside it as tall columns of white. The long one
+ * is rarely the persuasive one anyway — "took the tree out, cleaned up, would
+ * use again" is what a homeowner reads.
+ */
+const MAX_REVIEW_CHARS = 420;
+
 export function Reviews({ config = business }: SectionProps) {
-  const reviews = config.reviews ?? [];
+  const allReviews = config.reviews ?? [];
+  /*
+   * Short enough to read, newest order preserved. If a business has nothing
+   * but long ones, the three shortest are still better than an empty section.
+   */
+  const shortEnough = allReviews.filter((r) => (r.text ?? "").length <= MAX_REVIEW_CHARS);
+  const reviews = (
+    shortEnough.length > 0
+      ? shortEnough
+      : [...allReviews].sort((a, b) => (a.text ?? "").length - (b.text ?? "").length)
+  ).slice(0, 3);
   const summary = config.reviewSummary;
   const hasReviews = reviews.length > 0;
   // Only reviews actually pulled from a listing carry a link back to it, so
@@ -374,7 +395,7 @@ export function Reviews({ config = business }: SectionProps) {
           {hasReviews ? (
             <>
             <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {reviews.slice(0, 3).map((review, index) =>
+              {reviews.map((review, index) =>
                 fromGoogle ? (
                   <GoogleReviewCard key={`${review.name}-${index}`} review={review} />
                 ) : (
