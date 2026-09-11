@@ -76,11 +76,11 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-5xl" : "max-w-6xl lg:max-w-[1320px]"}`}>
+      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-5xl lg:gap-8" : "max-w-6xl lg:max-w-[1320px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-1.25rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
+            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-2rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -233,13 +233,13 @@ export function AboutUs({ config = business }: SectionProps) {
           name shrinks the line rather than breaking it in two. */}
       <div className="mx-auto mb-8 max-w-2xl text-center lg:max-w-none">
         <Pill>Why Us</Pill>
-        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(22px,2.2vw,36px)] lg:whitespace-nowrap">
+        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(28px,2.5vw,38px)] lg:whitespace-nowrap">
           Why {config.city} homeowners call {config.companyName}.
         </h2>
       </div>
       {/* Photo first, promises beside it: the picture is the proof and the
           three lines are the argument, so the eye should land on the proof. */}
-      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-14">
         {/* Laptop puts the photo first; the phone keeps the order it had,
             with the three promises above it. */}
         <div
@@ -248,7 +248,7 @@ export function AboutUs({ config = business }: SectionProps) {
           role="img"
           aria-label={`${config.companyName} crew at work`}
         />
-        <div className="order-1 grid gap-5 lg:order-none">
+        <div className="order-1 grid gap-5 lg:order-none lg:content-between lg:gap-0 lg:py-2">
           {defaultWhyPoints.map((point) => (
             <div key={point.title} className="flex gap-3.5">
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
@@ -264,15 +264,18 @@ export function AboutUs({ config = business }: SectionProps) {
       </div>
       {/* The four numbers under both columns, in one box of their own rather
           than tucked under the photo where they read as a caption. */}
-      <div className="mx-auto mt-8 max-w-6xl rounded-[14px] border border-forest-600/35 bg-forest-500/[0.12] p-3 shadow-soft sm:p-4 lg:max-w-4xl">
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="rounded-[10px] bg-night/70 px-5 py-4 text-center">
-              <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
-              <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
+      <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:max-w-[1320px] lg:grid-cols-4 lg:gap-5">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-[10px] border border-forest-600/35 bg-forest-500/15 px-5 py-3 text-center shadow-soft lg:py-6"
+          >
+            <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl lg:text-3xl">{stat.value}</div>
+            <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55 lg:mt-2 lg:text-[13.5px]">
+              {stat.label}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -631,9 +634,9 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         <div className="mt-8 grid gap-3 text-left lg:grid-cols-2 lg:gap-4">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4">
-              <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500" aria-hidden="true" />
-              <p className="text-[15px] leading-6 text-cream">{sign}</p>
+            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4 lg:gap-4 lg:px-6 lg:py-6">
+              <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500 lg:h-7 lg:w-7" aria-hidden="true" />
+              <p className="text-[15px] leading-6 text-cream lg:text-[17px] lg:leading-7">{sign}</p>
             </div>
           ))}
         </div>

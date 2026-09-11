@@ -38,7 +38,7 @@ export default async function DemoLayout({
   const links = demoLinks(demo.slug);
 
   return (
-    <main className="min-h-screen bg-[#f7f6f1]">
+    <main className="min-h-screen bg-night">
       {/*
         One bar, not three. A banner that scrolled away and a note parked over
         the page were both asking for the same attention; this hides as they
