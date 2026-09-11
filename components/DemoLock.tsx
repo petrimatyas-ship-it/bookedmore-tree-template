@@ -44,7 +44,7 @@ export function DemoLock({
       </div>
 
       {/* Fades the blurred page out rather than cutting it off mid-section. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f6f1]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
 
       <div className="absolute inset-0 flex items-start justify-center px-5 pt-16 sm:pt-24">
         <div className="w-full max-w-lg rounded-[10px] border border-forest-900/10 bg-white/95 p-7 text-center shadow-[0_24px_60px_rgba(18,49,25,0.18)] backdrop-blur-sm sm:p-9">

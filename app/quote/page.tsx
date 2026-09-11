@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function QuotePage() {
   return (
-    <main className="min-h-screen bg-[#f7f6f1]">
+    <main className="min-h-screen bg-night">
       <LocalBusinessSchema />
       <Header />
       <section className="px-5 py-16 sm:py-20 lg:px-8">

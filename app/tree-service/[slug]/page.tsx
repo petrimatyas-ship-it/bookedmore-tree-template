@@ -31,7 +31,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   const nearby = nearbyAreas(area);
 
   return (
-    <main className="min-h-screen bg-[#f7f6f1]">
+    <main className="min-h-screen bg-night">
       <LocalBusinessSchema />
       <Header />
 
