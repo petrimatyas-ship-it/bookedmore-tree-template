@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconPhoneCall, IconX } from "@tabler/icons-react";
+import { IconMessageChatbot, IconPhoneCall, IconX } from "@tabler/icons-react";
 import { HeroPanel, type PanelTab } from "@/components/HeroPanel";
 import { business } from "@/lib/business";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
@@ -238,6 +238,51 @@ export function Header({
           </div>
         </div>
       )}
+
+      {/*
+        The same two things on a laptop, where they had nowhere to live but the
+        band at the very foot of the page. The after-hours visitor is the whole
+        argument for having an assistant at all, and asking them to scroll the
+        entire site first is the one place we were losing them.
+      */}
+      <div className="pointer-events-none fixed bottom-5 right-5 z-[55] hidden flex-col items-end gap-3 lg:flex">
+        {panel && (
+          <div className="pointer-events-auto w-[400px] overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(18,49,25,0.32)]">
+            {/* No title: the panel carries its own tabs, and repeating the
+                name of the open one above them just said it twice. */}
+            <div className="flex items-center justify-end bg-forest-900 px-3 py-1.5 text-white">
+              <button
+                type="button"
+                aria-label="Close"
+                onClick={() => setPanel(null)}
+                className="flex h-7 w-7 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                <IconX size={17} stroke={2.4} />
+              </button>
+            </div>
+            <HeroPanel key={`desk-${panel}`} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
+          </div>
+        )}
+        {!panel && (
+          <div className="pointer-events-auto flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => setPanel("form")}
+              className="inline-flex h-12 items-center gap-2 rounded-full border-2 border-ember-500 bg-white px-5 text-[14.5px] font-bold text-ember-600 shadow-lg transition hover:bg-ember-500 hover:text-white"
+            >
+              Free quote
+            </button>
+            <button
+              type="button"
+              onClick={() => setPanel("chat")}
+              className="inline-flex h-12 items-center gap-2 rounded-full bg-forest-900 px-5 text-[14.5px] font-bold text-white shadow-lg transition hover:bg-forest-700"
+            >
+              <IconMessageChatbot size={20} stroke={2} aria-hidden="true" />
+              Ask a question
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

@@ -24,6 +24,10 @@
      Ours, not the tree company's, so it reads as a different destination. */
   --color-mbn-blue: #2f6fb5;
   --color-mbn-blue-600: #275e9a;
+  /* Lighter steps, for the back-to-us button sitting on a dark green bar,
+     where the deep blue read as a hole rather than as a link home. */
+  --color-mbn-blue-300: #8ec0ef;
+  --color-mbn-blue-200: #c2ddf7;
 
   /* Surface and text tokens. Named for their role so the sections read the same on any palette. */
   --color-night: #f2f6f1;   /* page background: one soft green tint everywhere */
