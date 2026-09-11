@@ -31,11 +31,26 @@ export function Hero({
   const summary = config.reviewSummary;
   const badgeText = config.heroBadgeText ?? (summary ? `${summary.rating}/5 from ${summary.count} ${summary.source}` : null);
 
+  /*
+    The generated hero is portrait, shaped for a phone held upright, and it is
+    the right picture there. Stretched across a laptop it becomes a crop of a
+    crop: a chest and a bit of sky. So a wide screen gets a landscape photo
+    instead, preferring a real one off their Google listing, then the generated
+    16:9 about shot, and only falling back to the portrait if there is nothing
+    else. Nothing here touches how the images are generated.
+  */
+  const wideHero = config.heroImageWide || config.gallery?.[0] || config.aboutImage || config.heroImage;
+
   return (
     <section className="relative overflow-hidden bg-forest-900 text-white">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center lg:hidden"
         style={{ backgroundImage: `url(${config.heroImage})` }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 hidden bg-cover bg-center lg:block"
+        style={{ backgroundImage: `url(${wideHero})` }}
         aria-hidden="true"
       />
       {/*

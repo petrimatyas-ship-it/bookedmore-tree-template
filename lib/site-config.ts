@@ -75,6 +75,12 @@ export type SiteConfig = {
   isDemo?: boolean;
   heroImage: string;
   aboutImage: string;
+  /**
+   * Landscape hero for wide screens. The generated `heroImage` is portrait,
+   * made for a phone, and a laptop crops it to nothing. Optional: without it
+   * the hero falls back to a listing photo, then `aboutImage`.
+   */
+  heroImageWide?: string;
 
   /* Hero */
   heroHeadline?: string;
