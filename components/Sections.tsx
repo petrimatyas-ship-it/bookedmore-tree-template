@@ -47,7 +47,7 @@ export function TreeCareServices({
             fixed, so a long city name shrinks the line instead of wrapping it. */}
         <div className="mx-auto max-w-2xl lg:max-w-none">
           <Pill>Our Services</Pill>
-          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(28px,2.5vw,38px)] lg:whitespace-nowrap">
+          <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(30px,2.9vw,42px)] lg:whitespace-nowrap">
             Tree services for {config.city} homes and properties.
           </h2>
         </div>
@@ -76,13 +76,13 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-5xl lg:gap-8" : "max-w-6xl lg:max-w-[1320px]"}`}>
+      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1320px] lg:gap-12" : "max-w-6xl lg:max-w-[1320px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-2rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
+            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-3rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
           >
-            <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
+            <div className={`relative h-52 overflow-hidden bg-forest-900/8 sm:h-56 ${wide ? "lg:h-[340px]" : "lg:h-64"}`}>
               <div
                 className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
                 style={{ backgroundImage: `url(${service.image}), url(${config.heroImage})` }}
@@ -233,7 +233,7 @@ export function AboutUs({ config = business }: SectionProps) {
           name shrinks the line rather than breaking it in two. */}
       <div className="mx-auto mb-8 max-w-2xl text-center lg:max-w-none">
         <Pill>Why Us</Pill>
-        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(28px,2.5vw,38px)] lg:whitespace-nowrap">
+        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(30px,2.9vw,42px)] lg:whitespace-nowrap">
           Why {config.city} homeowners call {config.companyName}.
         </h2>
       </div>
@@ -624,19 +624,21 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         made the section look unfinished, so the list goes two across from lg.
         The heading keeps its own narrower measure so it still reads well.
       */}
-      <div className="mx-auto max-w-3xl text-center lg:max-w-6xl">
+      <div className="mx-auto max-w-3xl text-center lg:max-w-[1320px]">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
           Signs it&apos;s time to call about a tree.
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-cream/65 sm:text-lg">
+        <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-cream/65 sm:text-lg lg:max-w-none lg:whitespace-nowrap">
           Any one of these is worth a free look. Catching it early is cheaper than the storm that finds it first.
         </p>
-        <div className="mt-8 grid gap-3 text-left lg:grid-cols-2 lg:gap-4">
+        {/* auto-rows-fr so the box whose text wraps does not leave the one
+            beside it short: all four match whatever the tallest needs. */}
+        <div className="mt-8 grid gap-3 text-left lg:auto-rows-fr lg:grid-cols-2 lg:gap-4">
           {defaultSigns.map((sign) => (
-            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4 lg:gap-4 lg:px-6 lg:py-6">
+            <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4 lg:items-center lg:gap-4 lg:px-6 lg:py-6">
               <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500 lg:h-7 lg:w-7" aria-hidden="true" />
-              <p className="text-[15px] leading-6 text-cream lg:text-[17px] lg:leading-7">{sign}</p>
+              <p className="text-[15px] leading-6 text-cream lg:text-[17px] lg:font-semibold lg:leading-7">{sign}</p>
             </div>
           ))}
         </div>

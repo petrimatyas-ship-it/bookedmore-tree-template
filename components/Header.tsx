@@ -256,16 +256,19 @@ export function Header({
         */}
         {panel && (
           <div className="pointer-events-auto flex h-[min(640px,calc(100vh-7rem))] w-[400px] flex-col overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(18,49,25,0.32)]">
-            {/* No title: the panel carries its own tabs, and repeating the
-                name of the open one above them just said it twice. */}
-            <div className="flex shrink-0 items-center justify-end bg-forest-900 px-3 py-1.5 text-white">
+            {/*
+              The way out says so. A bare X in a corner is a thing people hunt
+              for; a labelled button on a lighter chip is one they see without
+              looking. No title beside it, since the panel carries its own tabs.
+            */}
+            <div className="flex shrink-0 items-center justify-end bg-forest-900 px-3 py-2 text-white">
               <button
                 type="button"
-                aria-label="Close"
                 onClick={() => setPanel(null)}
-                className="flex h-7 w-7 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full bg-white/15 pl-3 pr-2.5 text-[13px] font-semibold text-white transition hover:bg-white/25"
               >
-                <IconX size={17} stroke={2.4} />
+                Close
+                <IconX size={16} stroke={2.6} />
               </button>
             </div>
             {/* min-h-0 so the form's own scroll area can shrink inside the flex
