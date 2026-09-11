@@ -229,43 +229,49 @@ export function AboutUs({ config = business }: SectionProps) {
 
   return (
     <section id="about" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto mb-8 max-w-2xl text-center">
+      {/* One line on a laptop, sized against the window so a long company
+          name shrinks the line rather than breaking it in two. */}
+      <div className="mx-auto mb-8 max-w-2xl text-center lg:max-w-none">
         <Pill>Why Us</Pill>
-        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
+        <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[clamp(22px,2.2vw,36px)] lg:whitespace-nowrap">
           Why {config.city} homeowners call {config.companyName}.
         </h2>
       </div>
-      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-14">
-        <div>
-          <div className="grid gap-4">
-            {defaultWhyPoints.map((point) => (
-              <div key={point.title} className="flex gap-3.5">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
-                  <IconCheck size={16} stroke={3} aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="text-base font-bold leading-snug text-cream">{point.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-cream/65">{point.text}</p>
-                </div>
+      {/* Photo first, promises beside it: the picture is the proof and the
+          three lines are the argument, so the eye should land on the proof. */}
+      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+        {/* Laptop puts the photo first; the phone keeps the order it had,
+            with the three promises above it. */}
+        <div
+          className="order-2 h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px] lg:order-none lg:h-[440px]"
+          style={{ backgroundImage: `url(${config.aboutImage})` }}
+          role="img"
+          aria-label={`${config.companyName} crew at work`}
+        />
+        <div className="order-1 grid gap-5 lg:order-none">
+          {defaultWhyPoints.map((point) => (
+            <div key={point.title} className="flex gap-3.5">
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
+                <IconCheck size={16} stroke={3} aria-hidden="true" />
+              </span>
+              <div>
+                <h3 className="text-base font-bold leading-snug text-cream lg:text-lg">{point.title}</h3>
+                <p className="mt-1 text-sm leading-6 text-cream/65 lg:text-[15px] lg:leading-7">{point.text}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-        <div>
-          <div
-            className="h-[260px] rounded-[10px] bg-cover bg-center shadow-soft sm:h-[380px]"
-            style={{ backgroundImage: `url(${config.aboutImage})` }}
-            role="img"
-            aria-label={`${config.companyName} crew at work`}
-          />
-          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="rounded-[10px] border border-forest-600/35 bg-forest-500/15 px-5 py-3 text-center shadow-soft">
-                <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
-                <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+      </div>
+      {/* The four numbers under both columns, in one box of their own rather
+          than tucked under the photo where they read as a caption. */}
+      <div className="mx-auto mt-8 max-w-6xl rounded-[14px] border border-forest-600/35 bg-forest-500/[0.12] p-3 shadow-soft sm:p-4 lg:max-w-4xl">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+          {stats.map((stat) => (
+            <div key={stat.label} className="rounded-[10px] bg-night/70 px-5 py-4 text-center">
+              <div className="text-xl font-extrabold leading-none text-cream sm:text-2xl">{stat.value}</div>
+              <div className="mt-1.5 text-[12px] font-semibold leading-tight text-cream/55">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -637,39 +643,6 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         >
           Get My Free Estimate →
         </a>
-      </div>
-    </section>
-  );
-}
-
-/** A short band between sections: one question, call or request. */
-export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
-  return (
-    <section className="bg-night px-5 py-6 text-center sm:px-10 sm:py-12 lg:px-10">
-      <div className="mx-auto max-w-2xl lg:max-w-3xl">
-        <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
-        <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
-          One call gets it on the schedule. Emergencies get a same-day answer.
-        </p>
-        {/* Side by side once there is room: two stacked buttons in a 384px
-            column is a phone layout, and on a laptop it reads as a thin strip. */}
-        <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3 sm:max-w-xl sm:flex-row sm:justify-center">
-          {config.phone && (
-            <a
-              href={`tel:${config.phone}`}
-              className="call-ring inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-lime px-6 text-base font-bold text-white transition hover:bg-lime-600"
-            >
-              <IconPhoneCall size={19} stroke={2.2} aria-hidden="true" />
-              Call {config.phone}
-            </a>
-          )}
-          <a
-            href={links.quote}
-            className="inline-flex h-12 items-center justify-center rounded-2xl border-2 border-ember-500 px-6 text-base font-bold text-ember-600 transition hover:bg-ember-500 hover:text-white"
-          >
-            Request Free Estimate
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -85,7 +85,7 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
           </a>
         )}
 
-        {config.isDemo && <OwnerNote className="mt-6 max-w-2xl">{demoCopy.notes.gallery}</OwnerNote>}
+        {config.isDemo && <OwnerNote className="mt-6">{demoCopy.notes.gallery}</OwnerNote>}
       </div>
     </section>
   );

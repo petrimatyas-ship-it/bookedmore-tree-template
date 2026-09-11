@@ -1,6 +1,5 @@
 import {
   AboutUs,
-  CtaBand,
   WarningSigns,
   FaqSection,
   Footer,
@@ -25,7 +24,6 @@ export default function Home() {
       <TreeCareServices compact />
       <WarningSigns />
       <AboutUs />
-      <CtaBand />
       <WorkGallery />
       <Reviews />
       <ServiceAreaMap />
