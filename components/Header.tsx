@@ -56,7 +56,7 @@ export function Header({
 
   return (
     <header className="sticky top-[var(--demo-bar-h,0px)] z-50 border-b border-white/10 bg-forest-900 text-white shadow-sm transition-[top] duration-200 ease-out">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-4 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-3 lg:px-10">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like
           "Dallas Tree Trimming and Removal Service" sets the link's minimum
@@ -79,7 +79,7 @@ export function Header({
             "Texas Tree Surgeons" down to "eSurge".
           */}
           {config.logoImage ? (
-            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-white p-1 sm:h-14 sm:w-14 sm:p-1.5">
+            <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-white p-1 sm:h-12 sm:w-12 sm:p-1.5">
               <Image
                 src={config.logoImage}
                 alt={`${config.companyName} logo`}
@@ -112,7 +112,7 @@ export function Header({
           </span>
         </Link>
 
-        <nav className="hidden shrink-0 items-center gap-5 text-base font-semibold text-black lg:flex xl:gap-7">
+        <nav className="hidden shrink-0 items-center gap-5 text-[15px] font-semibold text-white/85 lg:flex xl:gap-6">
           {links.nav.map((item) => {
             const current = isCurrent(item.href);
             return (
@@ -120,10 +120,8 @@ export function Header({
                 key={item.label}
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className={`rounded-2xl px-3.5 py-2 transition ${
-                  current
-                    ? "bg-black/[0.06] font-bold text-forest-900"
-                    : "hover:bg-black/[0.04] hover:text-forest-900"
+                className={`rounded-xl px-3 py-1.5 transition ${
+                  current ? "bg-white/15 font-bold text-white" : "hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -136,7 +134,7 @@ export function Header({
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="phone-pulse hidden h-11 items-center gap-2 rounded-2xl bg-forest-700 px-5 text-base font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900 sm:inline-flex"
+              className="phone-pulse hidden h-10 items-center gap-2 rounded-xl bg-forest-700 px-4 text-[15px] font-bold text-white shadow-lg shadow-forest-900/20 transition hover:bg-forest-900 sm:inline-flex"
             >
               <IconPhoneCall size={18} stroke={2.2} aria-hidden="true" />
               {config.phone}
@@ -144,7 +142,7 @@ export function Header({
           )}
           <Link
             href={links.quote}
-            className="hidden h-10 items-center justify-center rounded-2xl bg-ember-500 px-3.5 text-xs font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600 sm:inline-flex sm:h-11 sm:px-6 sm:text-sm"
+            className="hidden h-10 items-center justify-center rounded-xl bg-ember-500 px-3.5 text-xs font-bold text-white shadow-lg shadow-ember-600/25 transition hover:bg-ember-600 sm:inline-flex sm:h-10 sm:px-5 sm:text-sm"
           >
             Free Estimate
           </Link>

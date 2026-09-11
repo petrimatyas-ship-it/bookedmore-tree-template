@@ -5,7 +5,7 @@ import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
 import { demoCopy, marketingUrl } from "@/lib/demo-copy";
 
 /** Kept in step with the bar's real height, so the header can sit under it. */
-const BAR_H = 48;
+const BAR_H = 42;
 const VAR = "--demo-bar-h";
 
 /**
@@ -69,23 +69,33 @@ export function DemoTopBar({ href }: { href: string }) {
         }`}
         style={{ height: BAR_H }}
       >
-        <div className="mx-auto flex h-full max-w-7xl items-center gap-2 px-3 sm:gap-3 sm:px-5 lg:px-8">
-          <p className="hidden min-w-0 flex-1 truncate text-[13px] text-white/70 sm:block">{t.label}</p>
-          <a
-            href={href}
-            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-full bg-ember-500 px-4 text-[13.5px] font-bold text-white transition hover:bg-ember-600 sm:flex-none sm:text-sm"
-          >
-            {t.cta}
-            <IconArrowRight size={16} stroke={2.4} />
-          </a>
-          <a
-            href={marketingUrl}
-            aria-label={t.backLabel}
-            className="inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-full bg-mbn-blue px-3.5 text-[13px] font-semibold text-white transition hover:bg-mbn-blue-600 sm:text-sm"
-          >
-            <IconExternalLink size={15} stroke={2.2} />
-            {t.back}
-          </a>
+        {/*
+          Three columns, so the pair of buttons is centred on the bar itself
+          rather than pushed around by however long the label is. Both are the
+          same width on a laptop: they are the two things the owner might do,
+          and one of them looking like the small one made the choice for them.
+        */}
+        <div className="mx-auto grid h-full max-w-[1320px] grid-cols-[1fr_auto] items-center gap-2 px-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-3 sm:px-5 lg:px-10">
+          <p className="hidden min-w-0 truncate text-[13px] text-white/70 sm:block">{t.label}</p>
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <a
+              href={href}
+              className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-ember-500 px-4 text-[13px] font-bold text-white transition hover:bg-ember-600 sm:h-9 sm:min-w-[210px] sm:text-sm"
+            >
+              {t.cta}
+              <IconArrowRight size={15} stroke={2.4} />
+            </a>
+            {/* Was solid blue, which belonged to no palette on the page. */}
+            <a
+              href={marketingUrl}
+              aria-label={t.backLabel}
+              className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-full border border-white/35 px-3.5 text-[12.5px] font-semibold text-white/90 transition hover:border-white hover:bg-white/10 hover:text-white sm:h-9 sm:min-w-[210px] sm:text-sm"
+            >
+              <IconExternalLink size={15} stroke={2.2} />
+              {t.back}
+            </a>
+          </div>
+          <span className="hidden sm:block" aria-hidden="true" />
         </div>
       </div>
     </>

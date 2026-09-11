@@ -37,9 +37,12 @@ export function TreeCareServices({
   links = defaultLinks,
   compact = false
 }: SectionProps & { compact?: boolean }) {
+  /* Four services go two and two. Three across would strand the fourth on a
+     row of its own, which is the hole that made the section look broken. */
+  const wide = config.serviceCards.length === 4;
   return (
-    <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-12 sm:pt-10 lg:px-16">
-      <div className="mx-auto max-w-6xl text-center">
+    <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-10 lg:pb-12 sm:pt-10 lg:px-10">
+      <div className="mx-auto max-w-6xl lg:max-w-[1320px] text-center">
         <div className="mx-auto max-w-2xl">
           <Pill>Our Services</Pill>
           <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -71,11 +74,11 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className="mx-auto mt-8 flex max-w-6xl flex-wrap justify-center gap-5">
+      <Reveal className="mx-auto mt-8 flex max-w-6xl lg:max-w-[1320px] flex-wrap justify-center gap-5">
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
-            className="group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+            className={`group flex w-full flex-col overflow-hidden rounded-[10px] border border-forest-900/20 bg-night-2 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_18px_44px_rgba(18,49,25,0.20)] md:w-[calc((100%-1.25rem)/2)] ${wide ? "lg:w-[calc((100%-1.25rem)/2)]" : "lg:w-[calc((100%-2.5rem)/3)]"}`}
           >
             <div className="relative h-52 overflow-hidden bg-forest-900/8 sm:h-56">
               <div
@@ -149,8 +152,8 @@ export function TrustBar({ config = business }: SectionProps) {
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
   return (
-    <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-16">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+    <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-10">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
           <div
             key={label}
@@ -183,8 +186,8 @@ export function AfterServicesPitch({ config = business, lockHref = "" }: Section
   const c = demoCopy.afterServices;
 
   return (
-    <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-16">
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-[10px] border border-ember-500/30 bg-forest-900 p-6 text-white shadow-soft sm:p-9">
+    <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-10">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-[14px] border-2 border-ember-500/60 bg-forest-900 p-6 text-white shadow-[0_18px_50px_rgba(18,49,25,0.28)] sm:p-9 lg:max-w-[1320px] lg:p-12">
         <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
           <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
           {c.eyebrow}
@@ -223,14 +226,14 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
       <div className="mx-auto mb-8 max-w-2xl text-center">
         <Pill>Why Us</Pill>
         <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
           Why {config.city} homeowners call {config.companyName}.
         </h2>
       </div>
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-14">
         <div>
           <div className="grid gap-4">
             {defaultWhyPoints.map((point) => (
@@ -275,8 +278,8 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
-      <div className="mx-auto max-w-6xl">
+    <section id="process" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -287,7 +290,7 @@ export function HowItWorks({ config = business }: SectionProps) {
           </p>
         </div>
       </div>
-      <div className="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-8 grid max-w-6xl lg:max-w-[1320px] gap-4 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
           <article
             key={step.title}
@@ -325,8 +328,8 @@ export function Reviews({ config = business }: SectionProps) {
   const fromGoogle = Boolean(config.reviewsUrl);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
-      <div className="mx-auto max-w-6xl">
+    <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
         <div className="text-center">
           <Pill>Reviews</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -411,8 +414,8 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
-      <div className="mx-auto max-w-6xl">
+    <section className="bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
         <div
           id="areas"
           className="scroll-mt-20 overflow-hidden rounded-[10px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/20 bg-forest-900 text-white shadow-soft"
@@ -489,8 +492,8 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-10">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
@@ -512,8 +515,8 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
-      <div className="mx-auto max-w-6xl">
+    <section id="projects" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -565,8 +568,8 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-tint px-5 py-4 sm:px-10 sm:py-11 lg:px-16">
-      <div className="mx-auto max-w-3xl">
+    <section id="faq" className="scroll-mt-20 bg-tint px-5 py-4 sm:px-10 sm:py-9 lg:py-11 lg:px-10">
+      <div className="mx-auto max-w-3xl lg:max-w-5xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
           <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -603,14 +606,14 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-5 py-4 sm:px-10 sm:py-11 lg:px-16">
+    <section className="bg-night px-5 py-4 sm:px-10 sm:py-9 lg:py-11 lg:px-10">
       {/*
         Wider on a laptop than the 3xl the heading wants. Four short warnings
         in one 768px column left a third of the screen empty either side and
         made the section look unfinished, so the list goes two across from lg.
         The heading keeps its own narrower measure so it still reads well.
       */}
-      <div className="mx-auto max-w-3xl text-center lg:max-w-5xl">
+      <div className="mx-auto max-w-3xl text-center lg:max-w-6xl">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
           Signs it&apos;s time to call about a tree.
@@ -640,8 +643,8 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** A short band between sections: one question, call or request. */
 export function CtaBand({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-5 py-6 text-center sm:px-10 sm:py-12 lg:px-16">
-      <div className="mx-auto max-w-2xl">
+    <section className="bg-night px-5 py-6 text-center sm:px-10 sm:py-12 lg:px-10">
+      <div className="mx-auto max-w-2xl lg:max-w-3xl">
         <h2 className="text-[28px] font-bold leading-tight text-cream sm:text-4xl">Need a tree taken care of this week?</h2>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-cream/65 sm:text-lg">
           One call gets it on the schedule. Emergencies get a same-day answer.
@@ -673,8 +676,8 @@ export function CtaBand({ config = business, links = defaultLinks }: SectionProp
 /** The closing band: green, one promise, and the chat/quote panel that used to sit in the hero. */
 export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProps & { slug?: string; lockHref?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-14 lg:px-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+    <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-12 lg:py-14 lg:px-10">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
         <div className="text-center lg:text-left">
           <Pill>Free estimate</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -711,7 +714,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-16">
+    <section id="quote" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>
@@ -754,7 +757,7 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
 
   return (
     <footer className="bg-forest-900 text-white">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-14 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-12 lg:py-14 lg:px-8 lg:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.15fr] lg:gap-12">
           {/* Who they are */}
           <div>
