@@ -189,7 +189,14 @@ export function AfterServicesPitch({ config = business, lockHref = "" }: Section
 
   return (
     <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-[14px] border-2 border-ember-500/60 bg-forest-900 p-6 text-white shadow-[0_18px_50px_rgba(18,49,25,0.28)] sm:p-9 lg:max-w-[1320px] lg:p-12">
+      {/*
+        A tight shadow, not a wide one. This box runs to 1320px, so a 50px
+        blur at 0.28 laid a dark wash across almost the full width of the
+        page above and below it, and where the wash ended it read as a seam
+        in the background. The background is one colour everywhere; it was
+        this that made it look like two.
+      */}
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-[14px] border-2 border-ember-500/60 bg-forest-900 p-6 text-white shadow-[0_8px_20px_rgba(18,49,25,0.14)] sm:p-9 lg:max-w-[1320px] lg:p-12">
         <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
           <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
           {c.eyebrow}
@@ -223,7 +230,11 @@ export function AboutUs({ config = business }: SectionProps) {
   const stats: { value: string; label: string }[] = [
     ...(summary ? [{ value: `${summary.rating}★`, label: `${summary.count} ${summary.source}` }] : []),
     ...(years ? [{ value: `${years}+`, label: "Years in business" }] : []),
-    { value: "Free", label: "Written estimates" },
+    /* Not "Free". As a headline number beside 4.6★ and 70+ it reads as the
+       price of the work rather than the price of the quote, which is the one
+       thing on this page a homeowner could hold us to. The promise itself is
+       unchanged and still on the page as a chip and in the first bullet. */
+    { value: "Upfront", label: "Price before we start" },
     { value: "100%", label: "Cleanup on every job" }
   ].slice(0, 4);
 
