@@ -28,7 +28,7 @@ import { HeroPanel } from "@/components/HeroPanel";
 import { OpenPanelButton } from "@/components/OpenPanelButton";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
 import { findArea, slugify } from "@/lib/areas";
-import { demoCopy } from "@/lib/demo-copy";
+import { demoCopy, marketingUrl } from "@/lib/demo-copy";
 
 type SectionProps = { config?: SiteConfig; links?: SiteLinks };
 
@@ -962,7 +962,40 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
           {locality && <p>Serving {locality} and the surrounding area.</p>}
         </div>
       </div>
+
+      {/*
+        The last line on the page, and the only one that is ours. Quiet on
+        purpose: it is the customer's site, so this reads as a maker's mark
+        rather than as advertising. It is also how someone who likes the site
+        finds out who built it, which is the cheapest lead we will ever get.
+      */}
+      <div className="border-t border-forest-900/20 bg-forest-900/30">
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-5 lg:px-8">
+          <a
+            href={`${marketingUrl}/?utm_source=client-site&utm_medium=footer&utm_campaign=powered-by`}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 text-[13px] text-white/45 transition hover:text-white/80"
+          >
+            <span className="text-white/40">Website by</span>
+            <MoreBookedNowMark />
+            <span className="font-bold tracking-[-0.02em] text-white/70">
+              MoreBooked<span className="ml-[3px] rounded-[4px] bg-ember-500 px-[5px] py-[1px] text-white">Now</span>
+            </span>
+          </a>
+        </div>
+      </div>
     </footer>
+  );
+}
+
+/** The two-cards mark from morebookednow.com, at footer size. */
+function MoreBookedNowMark() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 64 64" className="h-[15px] w-[15px] shrink-0">
+      <rect x="4" y="20" width="40" height="40" rx="9" fill="currentColor" opacity="0.7" />
+      <rect x="20" y="4" width="40" height="40" rx="9" fill="#f28c28" />
+    </svg>
   );
 }
 
