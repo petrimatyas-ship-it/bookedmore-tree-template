@@ -26,7 +26,7 @@ import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { QuoteForm } from "@/components/QuoteForm";
 import { HeroPanel } from "@/components/HeroPanel";
 import { OpenPanelButton } from "@/components/OpenPanelButton";
-import { defaultLinks, initials, type SiteConfig, type SiteLinks } from "@/lib/site-config";
+import { defaultLinks, initials, type SiteConfig, type SiteLinks, reviewsHref } from "@/lib/site-config";
 import { findArea, slugify } from "@/lib/areas";
 import { demoCopy, marketingUrl } from "@/lib/demo-copy";
 
@@ -382,6 +382,7 @@ export function Reviews({ config = business }: SectionProps) {
   // Only reviews actually pulled from a listing carry a link back to it, so
   // this is the one safe signal that Google's branding may be shown.
   const fromGoogle = Boolean(config.reviewsUrl);
+  const allReviewsUrl = reviewsHref(config);
 
   return (
     <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
@@ -399,7 +400,7 @@ export function Reviews({ config = business }: SectionProps) {
 
           {summary &&
             (fromGoogle ? (
-              <GoogleRatingSummary summary={summary} reviewsUrl={config.reviewsUrl} className="mt-7 text-left" />
+              <GoogleRatingSummary summary={summary} reviewsUrl={allReviewsUrl} className="mt-7 text-left" />
             ) : (
               <div className="mt-7 flex items-center gap-4 rounded-[10px] border border-forest-900/20 bg-night p-5">
                 <div className="text-3xl font-bold text-cream">{summary.rating}</div>
@@ -444,9 +445,9 @@ export function Reviews({ config = business }: SectionProps) {
               and the owner's note the next, stranded mid-row. They belong
               under the reviews, not among them.
             */}
-            {fromGoogle && config.reviewsUrl && (
+            {fromGoogle && allReviewsUrl && (
               <a
-                href={config.reviewsUrl}
+                href={allReviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a73e8] transition hover:underline"

@@ -55,6 +55,25 @@ export type TrustBadge = { label: string; icon: string };
 
 export type Faq = { question: string; answer: string };
 
+/**
+ * Where "read all the reviews" should actually go.
+ *
+ * Demos built before this was fixed carry a reviewsUrl pointing at
+ * search.google.com/local/reviews, which resolves a place id and nothing
+ * else: when the id is stale, or Google declines it, the link lands
+ * nowhere. Those demos are already out with prospects and their links
+ * cannot be edited from here, so the bad form is swapped for the Maps
+ * listing we stored beside it. The listing carries the reviews, and it
+ * still finds the business by name and address even if the id is wrong.
+ */
+export function reviewsHref(config: { reviewsUrl?: string; listingUrl?: string }): string | undefined {
+  const { reviewsUrl, listingUrl } = config;
+  if (reviewsUrl && /search\.google\.com\/local\/reviews/.test(reviewsUrl)) {
+    return listingUrl ?? reviewsUrl;
+  }
+  return reviewsUrl;
+}
+
 export type SiteConfig = {
   /* Identity */
   companyName: string;
