@@ -59,7 +59,7 @@ export function GoogleStars({ rating, size = 15 }: { rating: number; size?: numb
 /** Initial in a coloured circle, the way Google does when there is no photo. */
 const AVATAR_COLOURS = ["#1a73e8", "#d93025", "#188038", "#e37400", "#9334e6", "#0b8043"];
 
-function Avatar({ name, src }: { name: string; src?: string }) {
+export function Avatar({ name, src }: { name: string; src?: string }) {
   if (src) {
     // Served from Google's CDN, like the review itself.
     // eslint-disable-next-line @next/next/no-img-element

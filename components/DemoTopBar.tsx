@@ -20,7 +20,13 @@ const VAR = "--demo-bar-h";
  * The header is `sticky top-[var(--demo-bar-h)]`, so hiding the bar sets that
  * variable to zero and the header takes the top back rather than leaving a gap.
  */
-export function DemoTopBar({ href }: { href: string }) {
+/**
+ * `tone` follows the design underneath: the forest bar over the first
+ * template, ink with the accent CTA over the second. Same bar, same two
+ * buttons, so the offer reads the same whichever draft they were sent.
+ */
+export function DemoTopBar({ href, tone = "forest" }: { href: string; tone?: "forest" | "ink" }) {
+  const ink = tone === "ink";
   const [shown, setShown] = useState(true);
   const lastY = useRef(0);
   const ticking = useRef(false);
@@ -64,7 +70,7 @@ export function DemoTopBar({ href }: { href: string }) {
       {/* Holds the bar's place in the flow, so nothing starts underneath it. */}
       <div style={{ height: BAR_H }} aria-hidden="true" />
       <div
-        className={`fixed inset-x-0 top-0 z-[60] border-b border-white/10 bg-forest-900 text-white transition-transform duration-200 ease-out ${
+        className={`fixed inset-x-0 top-0 z-[60] border-b border-white/10 ${ink ? "bg-ink" : "bg-forest-900"} text-white transition-transform duration-200 ease-out ${
           shown ? "translate-y-0" : "-translate-y-full"
         }`}
         style={{ height: BAR_H }}
@@ -80,7 +86,9 @@ export function DemoTopBar({ href }: { href: string }) {
           <div className="flex items-center justify-center gap-2 sm:gap-5">
             <a
               href={href}
-              className="inline-flex h-8 items-center justify-center gap-1.5 rounded-full bg-ember-500 px-4 text-[13px] font-bold text-white transition hover:bg-ember-600 sm:h-9 sm:min-w-[248px] sm:text-sm"
+              className={`inline-flex h-8 items-center justify-center gap-1.5 rounded-full px-4 text-[13px] font-bold transition sm:h-9 sm:min-w-[248px] sm:text-sm ${
+                ink ? "bg-signal text-ink hover:bg-signal-2" : "bg-ember-500 text-white hover:bg-ember-600"
+              }`}
             >
               {t.cta}
               <IconArrowRight size={15} stroke={2.4} />
