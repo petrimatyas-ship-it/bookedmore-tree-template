@@ -252,6 +252,16 @@ textarea {
   buttons it draws itself.
 */
 .modern {
+  /*
+    One edge for everything. `rounded-xl/2xl/3xl` compile to these variables,
+    so re-pointing them here sharpens this design's own cards and the shared
+    quote form together, and leaves the first template's radii alone. Tune
+    the design's whole geometry from this one line.
+  */
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+
   --color-forest-50: var(--color-bone-2);
   --color-forest-600: var(--color-moss);
   --color-forest-700: var(--color-ink-2);

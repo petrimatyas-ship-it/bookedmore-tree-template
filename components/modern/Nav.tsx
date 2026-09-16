@@ -67,7 +67,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-3.5 py-2 text-[14.5px] font-semibold text-ink/70 transition hover:bg-ink/[0.06] hover:text-ink"
+              className="rounded-[4px] px-3.5 py-2 text-[14.5px] font-semibold text-ink/70 transition hover:bg-ink/[0.06] hover:text-ink"
             >
               {item.label}
             </a>
@@ -78,7 +78,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="hidden h-11 items-center gap-2 rounded-full border border-ink/15 px-4 text-[14.5px] font-bold text-ink transition hover:border-ink/40 md:inline-flex"
+              className="hidden h-11 items-center gap-2 rounded-[4px] border border-ink/15 px-4 text-[14.5px] font-bold text-ink transition hover:border-ink/40 md:inline-flex"
             >
               <IconPhone size={17} stroke={2.2} aria-hidden="true" />
               {config.phone}
@@ -86,7 +86,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
           )}
           <a
             href="#quote"
-            className="hidden h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-[14.5px] font-bold text-bone transition hover:bg-ink-2 sm:inline-flex"
+            className="hidden h-11 items-center gap-1.5 rounded-[4px] bg-ink px-5 text-[14.5px] font-bold text-bone transition hover:bg-ink-2 sm:inline-flex"
           >
             Free estimate
             <IconArrowUpRight size={17} stroke={2.4} aria-hidden="true" />
@@ -96,7 +96,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition hover:bg-ink/[0.06] lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-[4px] border border-ink/15 text-ink transition hover:bg-ink/[0.06] lg:hidden"
           >
             <IconMenu2 size={22} stroke={2} aria-hidden="true" />
           </button>
@@ -114,7 +114,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink text-bone"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[4px] bg-ink text-bone"
             >
               <IconX size={22} stroke={2.2} aria-hidden="true" />
             </button>
@@ -138,7 +138,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
             <a
               href="#quote"
               onClick={() => setOpen(false)}
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-signal text-base font-bold text-ink"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-[4px] bg-signal text-base font-bold text-ink"
             >
               Get a free estimate
               <IconArrowUpRight size={19} stroke={2.4} aria-hidden="true" />
@@ -146,7 +146,7 @@ export function ModernNav({ config, homeHref }: { config: SiteConfig; homeHref: 
             {config.phone && (
               <a
                 href={`tel:${config.phone}`}
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-ink/15 text-base font-bold text-ink"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-[4px] border border-ink/15 text-base font-bold text-ink"
               >
                 <IconPhone size={19} stroke={2.2} aria-hidden="true" />
                 Call {config.phone}
