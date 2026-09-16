@@ -77,7 +77,7 @@ export function ModernOwnerClose({
           <a
             href={href}
             data-demo-cta="close"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-signal px-8 text-base font-bold text-ink transition hover:bg-signal-2"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-[4px] bg-signal px-8 text-base font-bold text-ink transition hover:bg-signal-2"
           >
             {c.cta}
             <IconArrowUpRight size={19} stroke={2.4} aria-hidden="true" />

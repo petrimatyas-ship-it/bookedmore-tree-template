@@ -74,19 +74,19 @@ export function ModernHero({ config }: Props) {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             {summary && (
-              <span className="inline-flex h-9 items-center gap-2 rounded-full bg-white pl-2.5 pr-3.5 text-[13px] font-semibold text-ink ring-1 ring-ink/10">
+              <span className="inline-flex h-9 items-center gap-2 rounded-[4px] bg-white pl-2.5 pr-3.5 text-[13px] font-semibold text-ink ring-1 ring-ink/10">
                 <GoogleG size={15} />
                 <span className="tabular-nums">{summary.rating}</span>
                 <GoogleStars rating={Number(summary.rating)} size={12} />
                 <span className="text-ink/55">{summary.count} reviews</span>
               </span>
             )}
-            <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-ink/[0.06] px-3.5 text-[13px] font-semibold text-ink/75">
+            <span className="inline-flex h-9 items-center gap-1.5 rounded-[4px] bg-ink/[0.06] px-3.5 text-[13px] font-semibold text-ink/75">
               <IconMapPin size={14} stroke={2.2} aria-hidden="true" />
               {place}
             </span>
             {allDay && (
-              <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-ink/[0.06] px-3.5 text-[13px] font-semibold text-ink/75">
+              <span className="inline-flex h-9 items-center gap-1.5 rounded-[4px] bg-ink/[0.06] px-3.5 text-[13px] font-semibold text-ink/75">
                 <IconClock size={14} stroke={2.2} aria-hidden="true" />
                 Open 24/7
               </span>
@@ -102,7 +102,7 @@ export function ModernHero({ config }: Props) {
             <a
               href="#quote"
               data-demo-cta="hero-quote"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-signal px-7 text-base font-bold text-ink transition hover:bg-signal-2"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-[4px] bg-signal px-7 text-base font-bold text-ink transition hover:bg-signal-2"
             >
               Get a free estimate
               <IconArrowUpRight size={19} stroke={2.4} aria-hidden="true" />
@@ -110,7 +110,7 @@ export function ModernHero({ config }: Props) {
             {config.phone && (
               <a
                 href={`tel:${config.phone}`}
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-ink/15 px-7 text-base font-bold text-ink transition hover:border-ink/40"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-[4px] border border-ink/15 px-7 text-base font-bold text-ink transition hover:border-ink/40"
               >
                 <IconPhone size={19} stroke={2.2} aria-hidden="true" />
                 {config.phone}
@@ -130,7 +130,7 @@ export function ModernHero({ config }: Props) {
 
         <div className="relative">
           {/* Portrait on a phone, where the generated photo was made for; landscape on a laptop. */}
-          <div className="overflow-hidden rounded-[28px] bg-bone-2 shadow-[0_30px_80px_rgba(20,23,26,0.18)]">
+          <div className="overflow-hidden rounded-[4px] bg-bone-2 shadow-[0_30px_80px_rgba(20,23,26,0.18)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={config.heroImage}
@@ -272,7 +272,7 @@ export function ModernServices({ config }: Props) {
                     >
                       {card.title}
                     </h3>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink/[0.06] text-ink transition group-hover:bg-signal">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[4px] bg-ink/[0.06] text-ink transition group-hover:bg-signal">
                       <IconArrowUpRight size={17} stroke={2.4} aria-hidden="true" />
                     </span>
                   </div>
@@ -328,7 +328,7 @@ export function ModernOwnerPitch({ config, href }: Props & { href: string }) {
             <a
               href={href}
               data-demo-cta="after-services"
-              className="mt-5 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-signal text-base font-bold text-ink transition hover:bg-signal-2"
+              className="mt-5 inline-flex h-14 w-full items-center justify-center gap-2 rounded-[4px] bg-signal text-base font-bold text-ink transition hover:bg-signal-2"
             >
               {c.cta}
               <IconArrowUpRight size={19} stroke={2.4} aria-hidden="true" />
@@ -607,7 +607,7 @@ export function ModernAreas({ config }: Props) {
             {config.serviceAreas.map((area) => (
               <li
                 key={area}
-                className="inline-flex h-10 items-center gap-1.5 rounded-full bg-white px-4 text-[14px] font-semibold text-ink ring-1 ring-ink/10"
+                className="inline-flex h-10 items-center gap-1.5 rounded-[4px] bg-white px-4 text-[14px] font-semibold text-ink ring-1 ring-ink/10"
               >
                 <IconMapPin size={14} stroke={2.2} className="text-moss" aria-hidden="true" />
                 {area}
@@ -617,7 +617,7 @@ export function ModernAreas({ config }: Props) {
           {config.phone && (
             <a
               href={`tel:${config.phone}`}
-              className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-bold text-bone transition hover:bg-ink-2"
+              className="mt-8 inline-flex h-12 items-center gap-2 rounded-[4px] bg-ink px-6 text-[15px] font-bold text-bone transition hover:bg-ink-2"
             >
               <IconPhone size={17} stroke={2.2} aria-hidden="true" />
               Call {config.phone}
@@ -648,7 +648,7 @@ export function ModernFaq({ config }: Props) {
             <details key={faq.question} open={i === 0} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-lg font-semibold tracking-[-0.01em] text-ink sm:text-xl">
                 {faq.question}
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink/[0.06] transition group-open:bg-signal">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[4px] bg-ink/[0.06] transition group-open:bg-signal">
                   <IconChevronDown size={18} stroke={2.4} className="chev transition-transform" aria-hidden="true" />
                 </span>
               </summary>
@@ -682,7 +682,7 @@ export function ModernQuote({ config, slug, lockHref }: Props & { slug: string; 
               { icon: IconCheck, text: "No pressure, no obligation" }
             ].map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-ink/10">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[4px] bg-white ring-1 ring-ink/10">
                   <Icon size={16} stroke={2.4} className="text-moss" aria-hidden="true" />
                 </span>
                 {text}
