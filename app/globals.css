@@ -1,12 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* See the viewport export in app/layout.tsx: the tokens below are named
-     for a dark theme but hold light values, and without this Android
-     browsers helpfully "fix" that by inverting the whole page. */
-  color-scheme: only light;
+  /*
+    See the viewport export in app/layout.tsx. `only light` was an opt-out —
+    a request that Chrome skip darkening us — and Chrome overrides it when
+    the reader has turned "dark theme for sites" on by hand, which is the
+    whole case we are trying to survive.
+
+    So the page stops asking and starts claiming: it declares that it
+    supports dark, and its dark theme is its light theme. A browser that
+    sees dark support hands the page `prefers-color-scheme: dark` and paints
+    what the page asks for, instead of running its own filter over the
+    pixels. Same design either way, and no filter.
+  */
+  color-scheme: light dark;
   --background: #f2f6f1;
   --foreground: #172116;
+}
+
+/*
+  The dark half of that claim, stated explicitly so it is a real theme and
+  not a bluff. The values are the light ones on purpose: this site has one
+  appearance, and the demo has to look like the site we are selling.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f2f6f1;
+    --foreground: #172116;
+  }
 }
 
 @theme inline {
@@ -85,6 +106,10 @@ input,
 select,
 textarea {
   font: inherit;
+  /* Pinned light: these are painted by the browser, not by us, and the
+     root's `light dark` would otherwise darken the fields, their dropdowns
+     and their carets on a page that stayed cream around them. */
+  color-scheme: light;
 }
 /* Scroll reveal */
 .reveal {

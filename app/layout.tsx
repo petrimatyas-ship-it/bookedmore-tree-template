@@ -16,21 +16,26 @@ export const metadata: Metadata = {
 };
 
 /**
- * The page is light on purpose, and it has to say so.
+ * The page has one appearance, and it has to say so in a way browsers obey.
  *
- * Chrome and Samsung Internet on Android auto-darken any site that has not
- * declared a colour scheme, and they darken the photos with it. A prospect
- * opening their demo from the email on a phone got a near-black page with a
- * near-black hero, which is the opposite of the first impression the demo
- * exists to make. `only light` is the documented opt-out; it is set here in
- * the head so it lands before the stylesheet, and again on :root in
- * globals.css for engines that read the CSS and not the meta tag.
+ * Android Chrome darkens web pages, photos included, and a prospect opening
+ * their demo from the email got a near-black page with a near-black hero —
+ * the opposite of the first impression the demo exists to make. The first
+ * attempt at this said `only light`, the documented opt-out. That stops the
+ * *automatic* darkening, but a reader who switched "dark theme for sites"
+ * on by hand overrides it, and this one had.
+ *
+ * So the page declares that it supports dark instead. A browser that sees
+ * dark support stops filtering and hands the page
+ * `prefers-color-scheme: dark`, which globals.css answers with the same
+ * light palette. Claiming beats asking. Set here so it lands before the
+ * stylesheet, and again on :root for engines that read CSS and not meta.
  *
  * `themeColor` is the dark green of the bar at the top of the page, so the
  * browser's own chrome continues it instead of picking black.
  */
 export const viewport: Viewport = {
-  colorScheme: "only light",
+  colorScheme: "light dark",
   themeColor: "#123119"
 };
 
