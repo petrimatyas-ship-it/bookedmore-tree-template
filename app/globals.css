@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  /* See the viewport export in app/layout.tsx: the tokens below are named
+     for a dark theme but hold light values, and without this Android
+     browsers helpfully "fix" that by inverting the whole page. */
+  color-scheme: only light;
   --background: #f2f6f1;
   --foreground: #172116;
 }
