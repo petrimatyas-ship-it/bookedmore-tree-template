@@ -14,17 +14,8 @@ import { demoCopy } from "@/lib/demo-copy";
  * not from a fixed list. Telling someone their reviews are loaded when they
  * are not is exactly the kind of claim that loses the sale.
  */
-export function OwnerClose({
-  config,
-  href,
-  expiresAt
-}: {
-  config: SiteConfig;
-  href: string;
-  expiresAt: string;
-}) {
-  const c = demoCopy.close;
-
+/** What enrichment actually found, as the owner would list it. Shared by both designs' closing block. */
+export function ownerRealItems(config: SiteConfig): string[] {
   const real: string[] = [];
   if (config.reviewSummary && (config.reviews?.length ?? 0) > 0) {
     real.push(
@@ -36,11 +27,25 @@ export function OwnerClose({
   if (config.phone) real.push(`Your number, ${config.phone}, on every page and every button`);
   if (config.serviceAreas.length > 1) real.push(`The ${config.serviceAreas.length} areas you actually work in`);
   real.push("An assistant that answers as your business, day and night");
+  return real;
+}
 
-  const daysLeft = Math.max(
-    0,
-    Math.ceil((new Date(expiresAt).getTime() - Date.now()) / (24 * 60 * 60 * 1000))
-  );
+export function daysUntil(iso: string): number {
+  return Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / (24 * 60 * 60 * 1000)));
+}
+
+export function OwnerClose({
+  config,
+  href,
+  expiresAt
+}: {
+  config: SiteConfig;
+  href: string;
+  expiresAt: string;
+}) {
+  const c = demoCopy.close;
+  const real = ownerRealItems(config);
+  const daysLeft = daysUntil(expiresAt);
 
   return (
     <section className="bg-forest-900 px-8 py-16 text-white sm:px-10 sm:py-20 lg:px-16">

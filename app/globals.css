@@ -30,20 +30,30 @@
   }
 }
 
+/*
+  Referenced, not inlined. The quote form, the chat and the panel around
+  them are shared by both designs and painted in these six colours. Kept as
+  live variables, a subtree can re-point them (see `.modern` below) and the
+  widgets follow the design they sit in, with no second copy of the widgets.
+  Every other token stays inlined, exactly as before.
+*/
+@theme {
+  --color-forest-50: #eef7ef;
+  --color-forest-600: #28622d;
+  --color-forest-700: #214f27;
+  --color-forest-900: #123119;
+  --color-ember-500: #ef7d1a;
+  --color-ember-600: #d8610b;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  --color-forest-50: #eef7ef;
   --color-forest-500: #357a3a;
-  --color-forest-600: #28622d;
-  --color-forest-700: #214f27;
-  --color-forest-900: #123119;
 
   --color-ember-400: #f59f38;
-  --color-ember-500: #ef7d1a;
-  --color-ember-600: #d8610b;
 
   /* MoreBookedNow's own blue, for the one button that leads back to us.
      Ours, not the tree company's, so it reads as a different destination. */
@@ -64,6 +74,28 @@
   --color-lime-600: #245f29;
 
   --shadow-soft: 0 10px 28px rgba(18, 49, 25, 0.14), 0 2px 6px rgba(18, 49, 25, 0.10);
+}
+
+/*
+  The second design. Its own type and its own palette, added beside the
+  first rather than in place of it: the two share data, not looks. Warm
+  off-white canvas, near-black ink, one electric accent for the things a
+  visitor is meant to press.
+*/
+@theme inline {
+  --font-display: "Bricolage Grotesque Variable", "Inter", system-ui, sans-serif;
+  --font-body: "Manrope Variable", "Inter", system-ui, sans-serif;
+
+  --color-bone: #f5f3ee;    /* page */
+  --color-bone-2: #ebe8df;  /* secondary surface */
+  --color-ink: #14171a;     /* text, dark bands */
+  --color-ink-2: #1f2327;   /* raised on ink */
+  --color-ink-3: #2b3036;   /* lines on ink */
+  --color-moss: #23603a;    /* brand green, sparingly */
+  --color-moss-2: #2f7a4a;
+  --color-signal: #d4f542;  /* the press-me colour */
+  --color-signal-2: #c2e62c;
+  --color-slate: #646a70;   /* secondary text */
 }
 
 * {
@@ -212,4 +244,18 @@ textarea {
   .call-ring {
     animation: none;
   }
+}
+
+/*
+  The second design's clothes for the shared widgets: forest becomes ink,
+  ember becomes ink too, since this design's one accent is reserved for the
+  buttons it draws itself.
+*/
+.modern {
+  --color-forest-50: var(--color-bone-2);
+  --color-forest-600: var(--color-moss);
+  --color-forest-700: var(--color-ink-2);
+  --color-forest-900: var(--color-ink);
+  --color-ember-500: var(--color-ink);
+  --color-ember-600: var(--color-ink-2);
 }
