@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { saveLead } from "@/lib/leads-store";
 import { getDemo, isExpired } from "@/lib/db";
+import { prepareAttachments } from "@/lib/attachments-server";
+import type { Attachment } from "@/lib/attachments";
 
 type LeadPayload = {
   name?: string;
@@ -10,6 +12,8 @@ type LeadPayload = {
   service?: string;
   notes?: string;
   slug?: string;
+  /** Photos of the tree, base64, straight through to the lead email. */
+  attachments?: Attachment[];
 };
 
 export async function POST(request: Request) {
@@ -25,6 +29,9 @@ export async function POST(request: Request) {
   const phone = (body.phone || "").trim();
   const address = (body.address || "").trim();
   const service = (body.service || "").trim();
+
+  const { files, error: fileError } = prepareAttachments(body.attachments);
+  if (fileError) return NextResponse.json({ error: fileError }, { status: 400 });
 
   if (!name || !phone || !address || !service) {
     return NextResponse.json(
@@ -55,7 +62,8 @@ export async function POST(request: Request) {
     notes: (body.notes || "").trim(),
     source: "quote-form",
     slug,
-    businessName
+    businessName,
+    attachments: files
   });
 
   return NextResponse.json({ ok: true });

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { business } from "@/lib/business";
+import { FileDrop, type DroppedFile } from "@/components/FileDrop";
 import type { SiteConfig } from "@/lib/site-config";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -18,6 +19,7 @@ export function QuoteForm({
   const serviceOptions = config.serviceCards.map((s) => s.title);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [files, setFiles] = useState<DroppedFile[]>([]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,7 +33,12 @@ export function QuoteForm({
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(slug ? { ...data, slug } : data)
+        body: JSON.stringify({
+          ...data,
+          ...(slug ? { slug } : {}),
+          // `id`, `bytes` and `preview` are the picker's own bookkeeping.
+          attachments: files.map(({ name, type, data: content }) => ({ name, type, data: content }))
+        })
       });
 
       if (!res.ok) {
@@ -41,6 +48,7 @@ export function QuoteForm({
 
       setStatus("success");
       form.reset();
+      setFiles([]);
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please call us instead.");
@@ -112,6 +120,19 @@ export function QuoteForm({
           placeholder="Tell us about the tree: size, location, how urgent it is"
         />
       </Field>
+
+      {/*
+        A photo of the tree settles in one glance what a paragraph struggles
+        to describe: how big it is, what is underneath it, how close the roof
+        is. Never required — plenty of people are asking from the office, not
+        the garden.
+      */}
+      <FileDrop
+        files={files}
+        onChange={setFiles}
+        label="Photos of the tree"
+        hint="Optional, but it speeds up your quote"
+      />
 
       {status === "error" && (
         <p className="rounded-xl bg-ember-500/10 px-4 py-3 text-sm font-semibold text-ember-600">{errorMessage}</p>
