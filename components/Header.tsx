@@ -45,6 +45,29 @@ export function Header({
     };
   }, []);
 
+  /*
+    The page behind the sheet has to stop moving.
+
+    Without this a scroll gesture over the sheet still scrolled the site
+    underneath, which on Android makes Chrome hide and show its address bar
+    — and every time it does, `vh` changes underfoot and the sheet jumps to
+    a new height. That is the drifting: not the sheet moving, the viewport
+    moving under it. It also let the foot of the page appear below the
+    sheet, since a `fixed` overlay is measured against a viewport that was
+    busy resizing.
+
+    Only on a phone. Above `lg` this same state drives a small floating
+    widget, not a modal, and freezing the page around it would be wrong.
+  */
+  useEffect(() => {
+    if (!panel || !window.matchMedia("(max-width: 1023px)").matches) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [panel]);
+
   const openPanel = (tab: PanelTab) => {
     setPanel(tab);
     setMenuOpen(false);
@@ -257,10 +280,16 @@ export function Header({
               <IconX size={20} stroke={2.4} />
             </button>
           </div>
-          {/* A tap inside the panel is aimed at the panel, not at the way out. */}
+          {/*
+            A tap inside the panel is aimed at the panel, not at the way out.
+
+            `dvh`, not `vh`: `vh` on a phone is measured as though the address
+            bar were always hidden, so it overshoots the screen whenever the
+            bar is actually there. `dvh` follows what is really visible.
+          */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="h-[min(74vh,620px)] px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+            className="h-[min(78dvh,680px)] px-4 pb-[max(1rem,env(safe-area-inset-bottom))]"
           >
             <HeroPanel key={panel} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
           </div>
