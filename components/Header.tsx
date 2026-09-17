@@ -55,7 +55,21 @@ export function Header({
     href.startsWith("/") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
-    <header className="sticky top-[var(--demo-bar-h,0px)] z-50 border-b border-white/10 bg-forest-900 text-white shadow-sm transition-[top] duration-200 ease-out">
+    /*
+      The z-index moves while the sheet is open, and it has to.
+
+      `sticky` with a z-index makes this element a stacking context, so the
+      sheet nested inside it could never rise above anything outside: at
+      z-50 the demo bar, which is z-[60] at the root, painted straight over
+      the sheet's close button whenever a scroll up brought it back. Raising
+      the whole header lifts the context with it. Nothing else is affected,
+      because the sheet covers the header anyway while it is open.
+    */
+    <header
+      className={`sticky top-[var(--demo-bar-h,0px)] border-b border-white/10 bg-forest-900 text-white shadow-sm transition-[top] duration-200 ease-out ${
+        panel ? "z-[70]" : "z-50"
+      }`}
+    >
       <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-3 px-4 py-2.5 sm:gap-6 sm:px-5 sm:py-3 lg:px-10">
         {/*
           `min-w-0` and no `min-w-fit`: with the latter, a long name like
@@ -218,9 +232,21 @@ export function Header({
         </div>
       </nav>
 
-      {/* Phone sheet: the chat/quote panel, full screen below the bar. */}
+      {/*
+        Phone sheet: the chat/quote panel, sitting on the page rather than
+        replacing it.
+
+        It used to run the full height, which made a short conversation look
+        like a page of its own and left the site nowhere in sight. Capped and
+        anchored to the bottom, it reads as a panel over their own site —
+        which is the thing being sold — and the backdrop becomes somewhere to
+        tap to get out.
+      */}
       {panel && (
-        <div className="fixed inset-x-0 bottom-0 top-0 z-[60] flex flex-col bg-forest-900/60 backdrop-blur-sm lg:hidden">
+        <div
+          onClick={() => setPanel(null)}
+          className="fixed inset-0 z-[60] flex flex-col justify-end bg-forest-900/60 backdrop-blur-sm lg:hidden"
+        >
           <div className="flex h-14 shrink-0 items-center justify-end px-3">
             <button
               type="button"
@@ -231,10 +257,12 @@ export function Header({
               <IconX size={20} stroke={2.4} />
             </button>
           </div>
-          <div className="flex min-h-0 flex-1 flex-col px-3 pb-3">
-            <div className="min-h-0 flex-1">
-              <HeroPanel key={panel} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
-            </div>
+          {/* A tap inside the panel is aimed at the panel, not at the way out. */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="h-[min(74vh,620px)] px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+          >
+            <HeroPanel key={panel} config={config} slug={slug} lockHref={lockHref} initialTab={panel} />
           </div>
         </div>
       )}

@@ -214,7 +214,11 @@ export function ChatWidget({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={photos.length ? "Add a note, or just send" : "Type a message..."}
-              className="h-11 flex-1 rounded-full border border-forest-900/15 bg-[#f7f6f1] px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
+              /* `min-w-0`, or the row overflows: an input carries an intrinsic
+                 minimum width that `flex-1` alone will not shrink past, so once
+                 the paperclip joined the row the send button was pushed off the
+                 right edge. */
+              className="h-11 min-w-0 flex-1 rounded-full border border-forest-900/15 bg-[#f7f6f1] px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
               disabled={loading}
             />
             <button
