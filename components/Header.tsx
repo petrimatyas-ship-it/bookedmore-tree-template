@@ -240,6 +240,33 @@ export function Header({
       )}
 
       {/*
+        Phone: one way in to the assistant, always on screen.
+
+        Everything else here was laptop-only, so on a phone the chat lived
+        behind the hamburger — and a phone is what a demo is opened on. The
+        one part of the page that answers at nine at night was the one part
+        you had to go looking for.
+
+        It says what it is rather than showing a bare speech bubble: an icon
+        alone is a guess, and on a demo this is the feature the owner is
+        meant to notice. It steps aside while the sheet is open, and sits
+        above the safe area so it clears the home bar.
+      */}
+      {!panel && (
+        <div className="pointer-events-none fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 z-[55] lg:hidden">
+          <button
+            type="button"
+            onClick={() => openPanel("chat")}
+            data-demo-cta="chat-bubble"
+            className="pointer-events-auto inline-flex h-13 items-center gap-2 rounded-full bg-forest-900 pl-4 pr-5 text-[14.5px] font-bold text-white shadow-[0_10px_30px_rgba(18,49,25,0.35)] transition active:scale-[0.97]"
+          >
+            <IconMessageChatbot size={21} stroke={2} aria-hidden="true" />
+            Ask a question
+          </button>
+        </div>
+      )}
+
+      {/*
         The same two things on a laptop, where they had nowhere to live but the
         band at the very foot of the page. The after-hours visitor is the whole
         argument for having an assistant at all, and asking them to scroll the
