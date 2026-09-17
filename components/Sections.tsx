@@ -41,8 +41,8 @@ export function TreeCareServices({
      row of its own, which is the hole that made the section look broken. */
   const wide = config.serviceCards.length === 4;
   return (
-    <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-10 lg:pb-12 sm:pt-10 lg:px-10">
-      <div className="mx-auto max-w-6xl lg:max-w-[1320px] text-center">
+    <section id="services" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:pb-10 lg:pb-12 sm:pt-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px] text-center">
         {/* One line on a laptop. The size is tied to the window rather than
             fixed, so a long city name shrinks the line instead of wrapping it. */}
         <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -76,7 +76,7 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1320px] lg:gap-6" : "max-w-6xl lg:max-w-[1320px]"}`}>
+      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1400px] lg:gap-6" : "max-w-6xl lg:max-w-[1400px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
@@ -154,8 +154,8 @@ export function TrustBar({ config = business }: SectionProps) {
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
   return (
-    <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-10">
-      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+    <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-12">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1400px] grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
           <div
             key={label}
@@ -188,7 +188,7 @@ export function AfterServicesPitch({ config = business, lockHref = "" }: Section
   const c = demoCopy.afterServices;
 
   return (
-    <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-10">
+    <section className="bg-night px-5 py-6 sm:px-10 sm:py-10 lg:px-12">
       {/*
         A tight shadow, not a wide one. This box runs to 1320px, so a 50px
         blur at 0.28 laid a dark wash across almost the full width of the
@@ -196,7 +196,7 @@ export function AfterServicesPitch({ config = business, lockHref = "" }: Section
         in the background. The background is one colour everywhere; it was
         this that made it look like two.
       */}
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-[14px] border-2 border-ember-500/60 bg-forest-900 p-6 text-white shadow-[0_8px_20px_rgba(18,49,25,0.14)] sm:p-9 lg:max-w-[1320px] lg:p-12">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-[14px] border-2 border-ember-500/60 bg-forest-900 p-6 text-white shadow-[0_8px_20px_rgba(18,49,25,0.14)] sm:p-9 lg:max-w-[1400px] lg:p-12">
         <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
           <span className="h-2 w-2 shrink-0 rounded-full bg-ember-500" aria-hidden="true" />
           {c.eyebrow}
@@ -239,7 +239,7 @@ export function AboutUs({ config = business }: SectionProps) {
   ].slice(0, 4);
 
   return (
-    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 pt-4 sm:px-10 sm:py-10 sm:pt-6 lg:px-10 lg:pt-6">
+    <section id="about" className="scroll-mt-20 bg-night px-5 py-5 pt-4 sm:px-10 sm:py-10 sm:pt-6 lg:px-12 lg:pt-6">
       {/* One line on a laptop, sized against the window so a long company
           name shrinks the line rather than breaking it in two. */}
       <div className="mx-auto mb-8 max-w-2xl text-center lg:max-w-none">
@@ -250,7 +250,7 @@ export function AboutUs({ config = business }: SectionProps) {
       </div>
       {/* Photo first, promises beside it: the picture is the proof and the
           three lines are the argument, so the eye should land on the proof. */}
-      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1320px] lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-14">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:max-w-[1400px] lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-14">
         {/* Laptop puts the photo first; the phone keeps the order it had,
             with the three promises above it. */}
         {/*
@@ -288,7 +288,7 @@ export function AboutUs({ config = business }: SectionProps) {
       </div>
       {/* The four numbers under both columns, in one box of their own rather
           than tucked under the photo where they read as a caption. */}
-      <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:max-w-[1320px] lg:grid-cols-4 lg:gap-5">
+      <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:max-w-[1400px] lg:grid-cols-4 lg:gap-5">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -313,8 +313,8 @@ export function HowItWorks({ config = business }: SectionProps) {
   if (steps.length === 0) return null;
 
   return (
-    <section id="process" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
+    <section id="process" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
         <div className="max-w-2xl">
           <Pill>How It Works</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -325,7 +325,7 @@ export function HowItWorks({ config = business }: SectionProps) {
           </p>
         </div>
       </div>
-      <div className="mx-auto mt-8 grid max-w-6xl lg:max-w-[1320px] gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-8 grid max-w-6xl lg:max-w-[1400px] gap-4 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
           <article
             key={step.title}
@@ -385,8 +385,8 @@ export function Reviews({ config = business }: SectionProps) {
   const allReviewsUrl = reviewsHref(config);
 
   return (
-    <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
+    <section id="reviews" className="scroll-mt-20 bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
         <div className="text-center">
           <Pill>Reviews</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -481,8 +481,8 @@ export function Reviews({ config = business }: SectionProps) {
 export function ServiceAreaMap({ config = business }: SectionProps) {
   const place = [config.city, config.stateAbbr].filter(Boolean).join(", ");
   return (
-    <section className="bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
+    <section className="bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
         <div
           id="areas"
           className="scroll-mt-20 overflow-hidden rounded-[10px] lg:grid lg:grid-cols-[1.1fr_0.9fr] border border-forest-900/20 bg-forest-900 text-white shadow-soft"
@@ -559,8 +559,8 @@ export function TrustBadges({ config = business }: SectionProps) {
   if (badges.length === 0) return null;
 
   return (
-    <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-10">
-      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-12">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1400px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
@@ -582,8 +582,8 @@ export function RecentProjects({ config = business }: SectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
-      <div className="mx-auto max-w-6xl lg:max-w-[1320px]">
+    <section id="projects" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
         <div className="max-w-2xl">
           <Pill>{demoCopy.projects.eyebrow}</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -635,7 +635,7 @@ export function FaqSection({ config = business }: SectionProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-tint px-5 py-4 sm:px-10 sm:py-9 lg:py-11 lg:px-10">
+    <section id="faq" className="scroll-mt-20 bg-tint px-5 py-4 sm:px-10 sm:py-9 lg:py-11 lg:px-12">
       <div className="mx-auto max-w-3xl lg:max-w-5xl">
         <div className="text-center">
           <Pill>{demoCopy.faq.eyebrow}</Pill>
@@ -673,14 +673,14 @@ const defaultSigns = [
 
 export function WarningSigns({ config = business, links = defaultLinks }: SectionProps) {
   return (
-    <section className="bg-night px-5 py-4 pb-5 sm:px-10 sm:py-9 sm:pb-6 lg:px-10 lg:py-11 lg:pb-7">
+    <section className="bg-night px-5 py-4 pb-5 sm:px-10 sm:py-9 sm:pb-6 lg:px-12 lg:py-11 lg:pb-7">
       {/*
         Wider on a laptop than the 3xl the heading wants. Four short warnings
         in one 768px column left a third of the screen empty either side and
         made the section look unfinished, so the list goes two across from lg.
         The heading keeps its own narrower measure so it still reads well.
       */}
-      <div className="mx-auto max-w-3xl text-center lg:max-w-[1320px]">
+      <div className="mx-auto max-w-3xl text-center lg:max-w-[1400px]">
         <Pill>Not sure yet?</Pill>
         <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
           Signs it&apos;s time to call about a tree.
@@ -712,8 +712,8 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
 /** The closing band: green, one promise, and the chat/quote panel that used to sit in the hero. */
 export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProps & { slug?: string; lockHref?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-12 lg:py-14 lg:px-10">
-      <div className="mx-auto grid max-w-6xl lg:max-w-[1320px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+    <section id="quote" className="scroll-mt-20 bg-night px-4 py-10 text-forest-900 sm:px-10 sm:py-12 lg:py-14 lg:px-12">
+      <div className="mx-auto grid max-w-6xl lg:max-w-[1400px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
         <div className="text-center lg:text-left">
           <Pill>Free estimate</Pill>
           <h2 className="mt-5 text-[26px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
@@ -750,7 +750,7 @@ export function QuoteCta({ config = business, slug, lockHref = "" }: SectionProp
 
 export function QuoteSection({ config = business, slug }: SectionProps & { slug?: string }) {
   return (
-    <section id="quote" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-10">
+    <section id="quote" className="scroll-mt-20 bg-night px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <Pill>{demoCopy.quote.eyebrow}</Pill>

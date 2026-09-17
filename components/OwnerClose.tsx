@@ -48,8 +48,8 @@ export function OwnerClose({
   const daysLeft = daysUntil(expiresAt);
 
   return (
-    <section className="bg-forest-900 px-8 py-16 text-white sm:px-10 sm:py-20 lg:px-16">
-      <div className="mx-auto max-w-6xl">
+    <section className="bg-forest-900 px-8 py-16 text-white sm:px-10 sm:py-20 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
         <span className="inline-flex rounded-full bg-white/10 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-white/80">
           {c.eyebrow}
         </span>
