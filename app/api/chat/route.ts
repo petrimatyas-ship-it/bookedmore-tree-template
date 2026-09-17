@@ -3,8 +3,30 @@ import { business } from "@/lib/business";
 import { saveLead } from "@/lib/leads-store";
 import { getDemo, isExpired } from "@/lib/db";
 import type { SiteConfig } from "@/lib/site-config";
+import { prepareAttachments, type ReadyAttachment } from "@/lib/attachments-server";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+
+/** What the API takes for a turn: plain text, or text plus pictures. */
+type Part = { type: "text"; text: string } | { type: "image_url"; image_url: { url: string } };
+type OutboundMessage = { role: string; content: string | Part[] };
+
+/**
+ * A photo the visitor sent with their latest message.
+ *
+ * Only images go to the model; a PDF is kept for the owner's email but not
+ * shown to the assistant, which has nothing useful to say about one.
+ */
+function toVisionContent(text: string, photos: ReadyAttachment[]): string | Part[] {
+  const images = photos.filter((p) => p.type.startsWith("image/"));
+  if (images.length === 0) return text;
+  return [
+    { type: "text", text: text || "Here are photos of the tree." },
+    ...images.map(
+      (p): Part => ({ type: "image_url", image_url: { url: `data:${p.type};base64,${p.content}` } })
+    )
+  ];
+}
 
 const LEAD_BLOCK_RE = /```lead\s*([\s\S]*?)```/i;
 
@@ -15,7 +37,7 @@ const MODEL = process.env.OPENAI_MODEL || "gpt-5";
  * `max_completion_tokens`, whose budget the hidden reasoning tokens also eat.
  * Older chat models take the classic parameters, so build the body per family.
  */
-function chatBody(model: string, messages: { role: string; content: string }[], temperature: number) {
+function chatBody(model: string, messages: OutboundMessage[], temperature: number) {
   const reasoning = /^(gpt-5|o\d)/.test(model);
   return reasoning
     ? { model, messages, reasoning_effort: "low", max_completion_tokens: 900 }
@@ -44,7 +66,10 @@ How you should behave:
 - Once they've told you what they need and roughly where, that is the moment to ask -- pair the request with the next step (a time window, a quote by text, a spot on the schedule) so it reads as helping, not qualifying.
 - If they answer a question but skip the number, ask once more the next time you reply, worded differently and tied to a benefit. If they decline twice, stop asking and give them the phone number to call instead.
 - Keep answering their questions either way. Never withhold pricing or availability to force them to hand over details.
-- Give rough pricing guidance using the prices above when asked, but make clear a final price needs an on-site or photo-based estimate.${isDemo ? ' Where a service is listed as "Free estimate" there is no published price: say the cost depends on size, access and cleanup, and offer a free estimate. Never guess a number.' : ""}
+- Give rough pricing guidance using the prices above when asked, but make clear a final price needs an on-site or photo-based estimate.
+- When a visitor sends a photo, say what you can actually see in plain words: roughly how big the tree is against the house or fence, what sits underneath it, how close the roof, driveway or power lines are, and anything that looks dead, split, leaning or storm-damaged. Then ask the one thing the photo cannot answer -- usually how a truck or chipper would reach it, or whether there is a gate wide enough.
+- A photo narrows a price, it never sets one. Access, slope, what is buried, and how the debris leaves the property decide as much as the tree does, and none of them show up in a picture. So never put a number on a photo that is not already in the price list above, and never let an estimate sound settled: say what it depends on and offer the free estimate.
+- If a photo shows something dangerous -- a tree on a structure, a split trunk, a limb across a power line -- say so plainly and first, before anything else.${isDemo ? ' Where a service is listed as "Free estimate" there is no published price: say the cost depends on size, access and cleanup, and offer a free estimate. Never guess a number.' : ""}
 ${isDemo ? `- Never claim certifications, licences, insurance, years in business, team size, awards, or prices unless they appear above. If asked about any of those and it is not listed, say you will have the owner confirm it directly.\n` : ""}- Never invent services, prices, or availability that aren't listed above.
 
 HOW TO WRITE
@@ -73,7 +98,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "The assistant isn't configured yet. Please call us instead." }, { status: 500 });
   }
 
-  let body: { messages?: ChatMessage[]; slug?: string };
+  let body: { messages?: ChatMessage[]; slug?: string; attachments?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -93,10 +118,24 @@ export async function POST(request: Request) {
     slug = demo.slug;
   }
 
-  const messages = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
+  const messages: ChatMessage[] = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
   if (messages.length === 0) {
     return NextResponse.json({ error: "No message provided." }, { status: 400 });
   }
+
+  const { files: photos, error: photoError } = prepareAttachments(body.attachments);
+  if (photoError) return NextResponse.json({ error: photoError }, { status: 400 });
+
+  /*
+    Only the newest message carries pictures. Re-sending every photo on every
+    turn would grow the request without end, and the assistant has already
+    said what it saw in the earlier ones.
+  */
+  const forModel: OutboundMessage[] = messages.map((m, i) =>
+    i === messages.length - 1 && m.role === "user" && photos.length > 0
+      ? { role: m.role, content: toVisionContent(m.content, photos) }
+      : m
+  );
 
   let completion: Response;
   try {
@@ -107,7 +146,7 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify(
-        chatBody(MODEL, [{ role: "system", content: buildSystemPrompt(config, Boolean(slug)) }, ...messages], 0.6)
+        chatBody(MODEL, [{ role: "system", content: buildSystemPrompt(config, Boolean(slug)) }, ...forModel], 0.6)
       )
     });
   } catch (err) {
@@ -146,7 +185,10 @@ export async function POST(request: Request) {
           notes: [parsed.urgent ? "URGENT" : "", String(parsed.notes || "").trim()].filter(Boolean).join(" -- "),
           source: "ai-chat",
           slug,
-          businessName: config.companyName
+          businessName: config.companyName,
+          // Whatever they sent lands on the owner's email with the lead, so
+          // the job is quoted from the same pictures the assistant saw.
+          attachments: photos
         });
         leadCaptured = true;
       }
