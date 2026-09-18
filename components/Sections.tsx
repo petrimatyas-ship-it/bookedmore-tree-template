@@ -24,6 +24,7 @@ import {
 } from "@tabler/icons-react";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { QuoteForm } from "@/components/QuoteForm";
+import { PriceCalculator } from "@/components/PriceCalculator";
 import { HeroPanel } from "@/components/HeroPanel";
 import { OpenPanelButton } from "@/components/OpenPanelButton";
 import { defaultLinks, initials, type SiteConfig, type SiteLinks, reviewsHref } from "@/lib/site-config";
@@ -704,6 +705,25 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         >
           Get My Free Estimate →
         </a>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * The ballpark calculator, straight after the warning signs.
+ *
+ * That section ends on "any one of these is worth a free look", which is the
+ * moment a homeowner starts wondering what it costs. The pricing page
+ * answers that, but on a demo the pricing page is behind the offer — so the
+ * answer belongs here, on the page everyone can see.
+ */
+export function PriceEstimate({ config = business, links = defaultLinks }: SectionProps) {
+  return (
+    <section className="bg-tint px-5 py-5 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto max-w-6xl lg:max-w-[1400px]">
+        <PriceCalculator links={links} />
+        {config.isDemo && <OwnerNote className="mt-6">{demoCopy.notes.calculator}</OwnerNote>}
       </div>
     </section>
   );
