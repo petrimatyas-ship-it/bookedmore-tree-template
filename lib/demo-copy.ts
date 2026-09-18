@@ -85,6 +85,8 @@ export const demoCopy = {
     reviews:
       "These are your real Google reviews. They load themselves and stay current, so your newest one is always on the page.",
     gallery: "Your own photos, pulled from your listing. The real site uses all of them, not five.",
+    calculator:
+      "These are typical ranges for the trade, not your prices. Send us yours and the numbers here become the ones you actually quote.",
     assistant:
       "This answers your customers at 9pm while you are on a job, and takes the details of the ones ready to book."
   },

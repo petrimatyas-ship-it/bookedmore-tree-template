@@ -78,7 +78,7 @@ export default async function DemoPricingPage({ params }: Params) {
 
       <section className="px-5 pt-12 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <PriceCalculator />
+          <PriceCalculator links={links} />
         </div>
       </section>
 

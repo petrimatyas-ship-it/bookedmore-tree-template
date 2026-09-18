@@ -5,6 +5,7 @@ import {
   AfterServicesPitch,
   WarningSigns,
   FaqSection,
+  PriceEstimate,
   QuoteCta,
   Reviews,
   ServiceAreaMap,
@@ -51,6 +52,7 @@ export default async function DemoHome({ params }: Params) {
       <TreeCareServices config={config} links={links} compact />
       <AfterServicesPitch config={config} lockHref={lockHref} />
       <WarningSigns config={config} links={links} />
+      <PriceEstimate config={config} links={links} />
       <AboutUs config={config} />
       <WorkGallery config={config} lockHref={lockHref} />
       <Reviews config={config} />

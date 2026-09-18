@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { defaultLinks, type SiteLinks } from "@/lib/site-config";
 
 type ServiceKey = "removal" | "trimming" | "stump" | "hedge";
 
@@ -54,7 +55,18 @@ function roundTo50(n: number) {
   return Math.round(n / 50) * 50;
 }
 
-export function PriceCalculator() {
+/**
+ * A ballpark, from typical jobs rather than from the owner's own price list.
+ *
+ * The ranges are the trade's, not theirs: a demo has no prices of its own,
+ * and the section says as much in its own words ("typical ... jobs in our
+ * area") before it says a number. It is here because a visitor who wants a
+ * figure will otherwise go and get one from somebody else's site.
+ *
+ * `links` so the button lands on the right quote page. Hardcoded, it sent a
+ * demo's visitor to the showcase site instead of the draft they were on.
+ */
+export function PriceCalculator({ links = defaultLinks }: { links?: SiteLinks }) {
   const [service, setService] = useState<ServiceKey>("removal");
   const [sizeIndex, setSizeIndex] = useState(1);
   const [nearStructure, setNearStructure] = useState(false);
@@ -139,7 +151,7 @@ export function PriceCalculator() {
             Based on typical {config.label.toLowerCase()} jobs in our area. Your written quote pins it down exactly, free.
           </p>
           <a
-            href="/quote"
+            href={links.quote}
             className="mt-6 inline-flex h-12 items-center justify-center rounded-2xl bg-ember-500 px-6 text-sm font-bold text-white shadow-lg transition hover:bg-ember-600"
           >
             Get My Exact Price →
