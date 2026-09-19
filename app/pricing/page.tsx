@@ -74,7 +74,7 @@ export default function PricingPage() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-1 flex-col border-t border-forest-900/8 bg-[#faf9f5] px-6 py-5">
+                <div className="flex flex-1 flex-col border-t border-forest-900/8 bg-[#f5f5f5] px-6 py-5">
                   <p className="flex-1 text-sm leading-6 text-forest-900/70">{guide.note}</p>
                   <a
                     href="/quote"

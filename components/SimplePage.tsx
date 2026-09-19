@@ -10,7 +10,7 @@ export function SimplePage({ eyebrow, title, description }: { eyebrow: string; t
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-ember-600">{eyebrow}</p>
           <h1 className="mt-5 text-5xl font-extrabold leading-tight text-forest-900">{title}</h1>
           <p className="mt-6 max-w-3xl text-lg leading-9 text-forest-900/70">{description}</p>
-          <div className="mt-10 rounded-[10px] border border-dashed border-forest-900/18 bg-[#f7f6f1] p-8 text-forest-900/64">
+          <div className="mt-10 rounded-[10px] border border-dashed border-forest-900/18 bg-[#f4f4f4] p-8 text-forest-900/64">
             Layout placeholder. We will design this page section by section later.
           </div>
         </div>

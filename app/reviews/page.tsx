@@ -50,7 +50,7 @@ export default function ReviewsPage() {
                 {distribution.map((row) => (
                   <div key={row.stars} className="flex items-center gap-3">
                     <span className="w-10 shrink-0 text-sm font-bold text-forest-900">{row.stars}★</span>
-                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#f3f1eb]">
+                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-[#f1f1f1]">
                       <div className="h-full rounded-full bg-ember-500" style={{ width: `${row.pct}%` }} />
                     </div>
                     <span className="w-10 shrink-0 text-right text-sm font-semibold text-forest-900/60">{row.pct}%</span>
@@ -106,7 +106,7 @@ export default function ReviewsPage() {
                   </p>
                 </div>
                 <div className="mt-3 grid flex-1 gap-3 sm:grid-cols-2">
-                  <div className="rounded-[14px] bg-[#f3f1eb] p-4">
+                  <div className="rounded-[14px] bg-[#f1f1f1] p-4">
                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-forest-900/60">Before</p>
                     <p className="mt-2 text-sm leading-6 text-forest-900/72">{project.before}</p>
                   </div>
