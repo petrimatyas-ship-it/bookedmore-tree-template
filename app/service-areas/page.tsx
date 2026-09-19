@@ -75,7 +75,7 @@ export default function ServiceAreasPage() {
                     <h3 className="text-lg font-bold text-forest-900">{area.name}</h3>
                     <div className="flex shrink-0 flex-wrap justify-end gap-1">
                       {area.zips.map((zip) => (
-                        <span key={zip} className="rounded-full bg-[#f3f1eb] px-2 py-0.5 text-[11px] font-bold text-forest-900/60">
+                        <span key={zip} className="rounded-full bg-[#f1f1f1] px-2 py-0.5 text-[11px] font-bold text-forest-900/60">
                           {zip}
                         </span>
                       ))}

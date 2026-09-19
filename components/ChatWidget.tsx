@@ -118,7 +118,7 @@ export function ChatWidget({
               className={
                 message.role === "user"
                   ? "max-w-[85%] rounded-2xl rounded-br-sm bg-ember-500 px-4 py-2.5 text-sm font-medium text-white"
-                  : "max-w-[85%] rounded-2xl rounded-bl-sm bg-[#f3f1eb] px-4 py-2.5 text-sm leading-6 text-forest-900"
+                  : "max-w-[85%] rounded-2xl rounded-bl-sm bg-[#f1f1f1] px-4 py-2.5 text-sm leading-6 text-forest-900"
               }
             >
               {message.content}
@@ -127,7 +127,7 @@ export function ChatWidget({
         ))}
         {loading && (
           <div className="flex justify-start">
-            <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-[#f3f1eb] px-4 py-3">
+            <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-[#f1f1f1] px-4 py-3">
               <Dot /> <Dot delay="0.15s" /> <Dot delay="0.3s" />
             </div>
           </div>
@@ -218,7 +218,7 @@ export function ChatWidget({
                  minimum width that `flex-1` alone will not shrink past, so once
                  the paperclip joined the row the send button was pushed off the
                  right edge. */
-              className="h-11 min-w-0 flex-1 rounded-full border border-forest-900/15 bg-[#f7f6f1] px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
+              className="h-11 min-w-0 flex-1 rounded-full border border-forest-900/15 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-forest-900/40 focus:border-forest-600/50"
               disabled={loading}
             />
             <button
