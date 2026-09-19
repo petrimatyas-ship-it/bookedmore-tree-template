@@ -65,10 +65,17 @@
   --color-mbn-blue-200: #c2ddf7;
 
   /* Surface and text tokens. Named for their role so the sections read the same on any palette. */
-  --color-night: #f2f6f1;   /* page background: one soft green tint everywhere */
+  /*
+    Whiter than it was (#f2f6f1), keeping the same green hue and about a
+    third of its strength. The floor is the cards: they are plain #ffffff,
+    so the closer the page gets to white the more they rely on their border
+    and shadow alone to lift off it. This is roughly the last step where the
+    fill still does that work by itself.
+  */
+  --color-night: #f8faf8;   /* page background: one soft green tint everywhere */
   --color-night-2: #ffffff; /* cards */
-  --color-tint: #f2f6f1;    /* same as the page: sections never band */
-  --color-night-3: #eef3ea; /* tinted bands */
+  --color-tint: #f8faf8;    /* same as the page: sections never band */
+  --color-night-3: #eff4ee; /* tinted bands, kept a step below the page */
   --color-cream: #123119;   /* text */
   --color-lime: #2f7a34;    /* green accent */
   --color-lime-600: #245f29;
