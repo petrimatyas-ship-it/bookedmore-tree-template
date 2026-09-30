@@ -48,6 +48,8 @@ function buildSystemPrompt(config: SiteConfig, isDemo: boolean) {
   const services = config.serviceCards.map((s) => `- ${s.title} (${s.price}): ${s.description}`).join("\n");
   const areas = config.serviceAreas.join(", ");
   const faqs = (config.faqs ?? []).map((f) => `Q: ${f.question}\nA: ${f.answer}`).join("\n");
+  const otherServices = (config.services ?? []).map((s) => s.title).join(", ");
+  const knowledge = (config.knowledge ?? []).map((k) => `- ${k}`).join("\n");
 
   return `You are the friendly, knowledgeable virtual assistant for ${config.companyName}, a tree service company. ${config.description}
 
@@ -56,7 +58,7 @@ Phone: ${config.phone}
 ${config.responseNote ? `Availability: ${config.responseNote}\n` : ""}
 Services and prices:
 ${services}
-${faqs ? `\nFAQs:\n${faqs}\n` : ""}
+${otherServices ? `\nAll services offered: ${otherServices}\n` : ""}${knowledge ? `\nConfirmed facts about the business (answer from these, they count as listed above):\n${knowledge}\n` : ""}${faqs ? `\nFAQs:\n${faqs}\n` : ""}
 How you should behave:
 - Have a natural, warm, concise conversation. Do not sound like a form. Ask one question at a time.
 - Help the visitor figure out what they need: what's going on with the tree (removal, trimming, storm damage, stump, etc.), roughly how urgent it is, whether it's near a structure or power line, and their property location/ZIP.
@@ -157,8 +159,18 @@ export async function POST(request: Request) {
   if (!completion.ok) {
     const errText = await completion.text().catch(() => "");
     console.error("OpenAI API error", completion.status, errText);
+    // OpenAI's own error code ("insufficient_quota", "model_not_found", ...)
+    // travels back with the status, so a failure can be read from the
+    // browser's network tab without access to the server logs.
+    let code = "";
+    try {
+      code = String(JSON.parse(errText)?.error?.code ?? JSON.parse(errText)?.error?.type ?? "");
+    } catch {}
     return NextResponse.json(
-      { error: "The assistant is having trouble right now. Please call us instead." },
+      {
+        error: "The assistant is having trouble right now. Please call us instead.",
+        upstream: { status: completion.status, code }
+      },
       { status: 502 }
     );
   }

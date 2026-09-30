@@ -24,6 +24,8 @@ Once the record expires from Upstash the override has nothing to apply to.
 | A wide wordmark logo (e.g. 395×75) is shrunk into the 48px square mark, and the name is typed again beside it | `logoWide: true` in the override: shows it at its own shape, hides the typed name | Set `logoWide` in the generator when the logo's width is more than about 2× its height |
 | Gallery ("Photos from our Google listing") hotlinked from the prospect's site, broken; also those photos came from their website, not Google | Host copies, set `gallery`, `galleryTotal`, and `galleryCaption: "Photos from our website"` | Same copying; label the gallery by where the photos really came from |
 | Generated copy is generic when their site has a clear "about" and a service list | Put their own wording in `tagline`, `description`, `heroSubline`, `aboutParagraphs`, `services` | The enricher deliberately stopped copying site text (see morebookednow HANDOFF). Decide whether a clearly factual service list and about text are worth taking back |
+| The trust bar claims "Licensed & insured" and "24/7 emergency service" for every business | `trustBarClaims` with what their site actually says | Build these two rows from facts the enricher found, and leave a row out when nothing backs it |
+| The site assistant only knows the service cards and FAQs | Put hours, towns, insurance, owner's name, disposal policy and so on in `knowledge` (one fact per line); the chat route adds them to its prompt | Have the enricher fill `knowledge` from their website pages (home, about, services, contact), Google listing (address, hours, rating) and directory profiles (Houzz and similar) |
 | Desktop hero falls back to `gallery[0]`, a hotlinked photo | Set `heroImageWide` to a hosted copy of their best landscape photo | Covered by copying photos to blob storage; pick the widest landscape photo |
 
 ## Log
@@ -51,7 +53,16 @@ duckstree.com, Aurora IL.
   work.
 - `hideDemoBar: true`: the owner already said yes, so the "This is a draft
   of your site / I want this site / morebookednow.com" bar is gone.
-- Still to check with the owner before sending: "Licensed & insured" and
-  "24/7" (their site says emergency storm work and "call us any time", not
-  24/7) are hardcoded in the template's trust bar; "11+ years" comes from a
-  founding year of 2015 the generator found.
+- From every page of duckstree.com (home, about-us, services, our-work,
+  contact-us), their Google listing and their Houzz profile: 14 service
+  towns, hours (Mon to Sat 7 to 7, Sunday closed), insured (liability and
+  workers compensation), over 20 years in the tree business (`founded:
+  "2006"`, so the stat reads 20+), year-round emergency work, free waste
+  disposal, owner Carlos, 1041 Cochran St. All in `knowledge` for the chat,
+  plus `serviceAreas`, `responseNote` and `trustBarClaims`.
+- Houzz says "Bonded & Insured" and 17 years; their own site says insured
+  and 20+. We went with their site.
+- Chat: the assistant on every demo (and on morebookednow.com, which
+  falls back to canned answers) was failing at OpenAI. The chat route now
+  returns OpenAI's status and error code as `upstream` in its 502 response,
+  readable in the browser's network tab.

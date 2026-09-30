@@ -98,6 +98,16 @@ export type SiteConfig = {
    */
   hideDemoBar?: boolean;
   /**
+   * The first two trust-bar rows, which otherwise claim "Licensed & insured"
+   * and "24/7 emergency service" for everyone. Set them to what is true.
+   */
+  trustBarClaims?: readonly [string, string];
+  /**
+   * Confirmed facts about the business, one per line, for the site
+   * assistant to answer from: hours, towns, insurance, how they work.
+   */
+  knowledge?: readonly string[];
+  /**
    * True only on a generated demo. Shared sections use it to show the notes
    * addressed to the business owner, which must never appear on the showcase
    * site or on a real customer-facing build.
