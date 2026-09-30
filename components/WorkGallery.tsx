@@ -50,7 +50,9 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
           <h2 className="mt-5 text-[28px] font-bold leading-tight text-cream sm:text-4xl lg:text-[42px]">
             Real jobs, real yards.
           </h2>
-          {config.listingUrl && (
+          {config.galleryCaption ? (
+            <p className="mt-3 text-sm text-cream/55">{config.galleryCaption}</p>
+          ) : config.listingUrl && (
             <p className="mt-3 flex items-center justify-center gap-2 text-sm text-cream/55">
               <GoogleG size={15} />
               Photos from our Google listing

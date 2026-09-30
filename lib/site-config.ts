@@ -145,6 +145,11 @@ export type SiteConfig = {
   gallery?: readonly string[];
   /** How many of their photos we actually found, for "N more on the real site". */
   galleryTotal?: number;
+  /**
+   * Replaces "Photos from our Google listing" under the gallery title, for
+   * when the photos came from somewhere else, such as their own website.
+   */
+  galleryCaption?: string;
   process?: readonly ProcessStep[];
   serviceAreas: readonly string[];
   responseNote?: string;
