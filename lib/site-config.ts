@@ -87,6 +87,12 @@ export type SiteConfig = {
   /** Optional: demos have no logo, the header falls back to initials. */
   logoImage?: string;
   /**
+   * The logo is a wide wordmark that already spells the name. The header and
+   * footer then show it at its own shape, in place of the square mark and the
+   * typed name, which would only repeat it.
+   */
+  logoWide?: boolean;
+  /**
    * True only on a generated demo. Shared sections use it to show the notes
    * addressed to the business owner, which must never appear on the showcase
    * site or on a real customer-facing build.

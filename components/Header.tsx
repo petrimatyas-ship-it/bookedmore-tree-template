@@ -115,7 +115,12 @@ export function Header({
             object-contain because wordmarks are wide and cover would crop
             "Texas Tree Surgeons" down to "eSurge".
           */}
-          {config.logoImage ? (
+          {config.logoImage && config.logoWide ? (
+            <span className="flex h-10 shrink-0 items-center rounded-[10px] bg-white px-2 sm:h-12 sm:px-3">
+              {/* eslint-disable-next-line @next/next/no-img-element -- a wordmark at its own width; fill needs a fixed box */}
+              <img src={config.logoImage} alt={`${config.companyName} logo`} className="h-8 w-auto sm:h-10" />
+            </span>
+          ) : config.logoImage ? (
             <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-[10px] bg-white p-1 sm:h-12 sm:w-12 sm:p-1.5">
               <Image
                 src={config.logoImage}
@@ -141,7 +146,7 @@ export function Header({
             also steps down a size so two lines still fit the bar.
           */}
           <span
-            className={`truncate font-bold leading-tight tracking-tight sm:line-clamp-2 sm:whitespace-normal sm:max-w-[15rem] lg:max-w-[17rem] ${
+            className={`${config.logoImage && config.logoWide ? "sr-only " : ""}truncate font-bold leading-tight tracking-tight sm:line-clamp-2 sm:whitespace-normal sm:max-w-[15rem] lg:max-w-[17rem] ${
               config.companyName.length > 26 ? "text-[15px] sm:text-base lg:text-lg" : "text-base sm:text-lg lg:text-xl"
             }`}
           >
