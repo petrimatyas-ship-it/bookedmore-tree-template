@@ -51,6 +51,9 @@ duckstree.com, Aurora IL.
   Damage, Stump Grinding, Tree Pruning, Tree Trimming, Tree Removal, Tree
   Shaping, Lot Clearing). This confirms Lot Clearing and emergency storm
   work.
+- "Why us": their crew photo (`Cutting-Up-Branches.jpg`, hosted as
+  `about.webp`) with `aboutPhotoFocus: true`: larger photo, smaller text,
+  no four stat boxes.
 - `hideDemoBar: true`: the owner already said yes, so the "This is a draft
   of your site / I want this site / morebookednow.com" bar is gone.
 - From every page of duckstree.com (home, about-us, services, our-work,
@@ -65,4 +68,5 @@ duckstree.com, Aurora IL.
 - Chat: the assistant on every demo (and on morebookednow.com, which
   falls back to canned answers) was failing at OpenAI. The chat route now
   returns OpenAI's status and error code as `upstream` in its 502 response,
-  readable in the browser's network tab.
+  readable in the browser's network tab. First reading: 429
+  `credit_balance_exhausted`, the OpenAI account is out of credit.

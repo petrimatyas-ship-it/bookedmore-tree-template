@@ -108,6 +108,11 @@ export type SiteConfig = {
    */
   knowledge?: readonly string[];
   /**
+   * "Why us" with their photo as the focus: a larger picture, smaller
+   * promise text beside it, and no row of four stat boxes underneath.
+   */
+  aboutPhotoFocus?: boolean;
+  /**
    * True only on a generated demo. Shared sections use it to show the notes
    * addressed to the business owner, which must never appear on the showcase
    * site or on a real customer-facing build.
