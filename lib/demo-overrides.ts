@@ -79,6 +79,10 @@ export const demoOverrides: Record<string, Partial<SiteConfig>> = {
     galleryTotal: 10,
     galleryCaption: "Photos from our website",
 
+    // "Why us": their own crew photo, larger, no stat boxes.
+    aboutImage: "/images/demos/ducks-tree-and-stump-service-aurora/about.webp",
+    aboutPhotoFocus: true,
+
     // He has already said yes; the draft bar was only in the way.
     hideDemoBar: true
   }
