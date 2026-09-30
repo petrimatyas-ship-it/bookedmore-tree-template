@@ -32,7 +32,7 @@ export const demoCopy = {
       "Live in 7 days, or your first month is free",
       "Your own domain, your logo, your photos",
       "The assistant on this page answers around the clock",
-      "From $149 a month, no setup fee, cancel any time"
+      "No setup fee, cancel any time"
     ],
     cta: "I want this site"
   },
