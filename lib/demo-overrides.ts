@@ -41,7 +41,36 @@ export const demoOverrides: Record<string, Partial<SiteConfig>> = {
       { title: "Tree Pruning", description: "Pruning for healthier, safer trees." },
       { title: "Tree Shaping", description: "Shaping for a tidy, even canopy." },
       { title: "Overhanging Limbs", description: "Limbs over roofs, driveways and yards cut back." },
-      { title: "Plant Trees", description: "New trees planted." }
+      { title: "Plant Trees", description: "New trees planted." },
+      { title: "Tree Bracing", description: "Bracing for weak or split trees." },
+      { title: "Shrub Removal", description: "Shrubs and bushes taken out." },
+      { title: "Tree Maintenance", description: "A regular maintenance schedule for your trees." }
+    ],
+    serviceAreas: [
+      "Aurora", "Batavia", "Boulder Hill", "Geneva", "Montgomery", "Naperville", "North Aurora",
+      "Oswego", "Plainfield", "Plano", "St. Charles", "Sugar Grove", "Warrenville", "Yorkville"
+    ],
+    responseNote: "Open Monday to Saturday, 7am to 7pm. Emergency storm work year round.",
+    // Their site: "over 20 years of experience in the tree business".
+    founded: "2006",
+    // Their site says insured (liability and workers compensation) and
+    // "year round emergency" service; it does not say licensed or 24/7.
+    trustBarClaims: ["Insured, liability & workers comp", "Year-round emergency service"],
+    // For the site assistant. From duckstree.com (home, about, services,
+    // contact), their Google listing and their Houzz profile.
+    knowledge: [
+      "Family owned and operated, based at 1041 Cochran St, Aurora, IL 60506.",
+      "The owner is Carlos. Customers often mention him by name in reviews.",
+      "Over 20 years of experience in the tree business.",
+      "Insured: liability and workers compensation.",
+      "Hours: Monday to Saturday 7am to 7pm, closed Sunday.",
+      "Year-round emergency and scheduled tree service, including storm damage and emergency tree removal.",
+      "Residential and commercial customers.",
+      "Free estimates. Customers can call or text 630-256-0181.",
+      "All waste from the job (limbs, wood, debris) is hauled away at no additional cost.",
+      "Also handles crown cleaning, crossing limbs, limbs over power lines and hazardous tree removal.",
+      "Serves Aurora, Batavia, Boulder Hill, Geneva, Montgomery, Naperville, North Aurora, Oswego, Plainfield, Plano, St. Charles, Sugar Grove, Warrenville and Yorkville.",
+      "Rated 5.0 from 120 Google reviews. Reviewers praise fair prices, fast replies, on-time crews and clean-up."
     ],
 
     // Their Google listing photos were hotlinked from duckstree.com and came

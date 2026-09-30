@@ -149,8 +149,8 @@ const defaultWhyPoints = [
 export function TrustBar({ config = business }: SectionProps) {
   const count = config.reviewSummary?.count;
   const items = [
-    { icon: IconShieldCheck, label: "Licensed & insured" },
-    { icon: IconClock, label: "24/7 emergency service" },
+    { icon: IconShieldCheck, label: config.trustBarClaims?.[0] ?? "Licensed & insured" },
+    { icon: IconClock, label: config.trustBarClaims?.[1] ?? "24/7 emergency service" },
     count ? { icon: IconStar, label: `${count} Google reviews` } : { icon: IconStar, label: "Free estimates" },
     { icon: IconMapPin, label: `Local ${config.city} crew` }
   ];
