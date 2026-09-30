@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import os from "os";
 import path from "path";
 import type { SiteConfig } from "@/lib/site-config";
+import { withOverrides } from "@/lib/demo-overrides";
 
 /**
  * The demo store, read side.
@@ -72,7 +73,8 @@ export async function getDemo(slug: string): Promise<DemoRecord | null> {
 
   if (!raw) return null;
   try {
-    return JSON.parse(raw) as DemoRecord;
+    const demo = JSON.parse(raw) as DemoRecord;
+    return { ...demo, config: withOverrides(demo.slug, demo.config) };
   } catch (err) {
     console.error("[db] Corrupt demo record", slug, err);
     return null;
