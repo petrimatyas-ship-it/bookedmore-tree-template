@@ -26,6 +26,7 @@ Once the record expires from Upstash the override has nothing to apply to.
 | Generated copy is generic when their site has a clear "about" and a service list | Put their own wording in `tagline`, `description`, `heroSubline`, `aboutParagraphs`, `services` | The enricher deliberately stopped copying site text (see morebookednow HANDOFF). Decide whether a clearly factual service list and about text are worth taking back |
 | The trust bar claims "Licensed & insured" and "24/7 emergency service" for every business | `trustBarClaims` with what their site actually says | Build these two rows from facts the enricher found, and leave a row out when nothing backs it |
 | The site assistant only knows the service cards and FAQs | Put hours, towns, insurance, owner's name, disposal policy and so on in `knowledge` (one fact per line); the chat route adds them to its prompt | Have the enricher fill `knowledge` from their website pages (home, about, services, contact), Google listing (address, hours, rating) and directory profiles (Houzz and similar) |
+| Google listing photos (better than the website's) are not pulled, and the tab shows the template icon | Screenshot and crop by hand; `iconImage` from their logo | Have the enricher save the owner's own Places photos to blob storage and build a square icon from the logo |
 | Desktop hero falls back to `gallery[0]`, a hotlinked photo | Set `heroImageWide` to a hosted copy of their best landscape photo | Covered by copying photos to blob storage; pick the widest landscape photo |
 
 ## Log
@@ -51,9 +52,16 @@ duckstree.com, Aurora IL.
   Damage, Stump Grinding, Tree Pruning, Tree Trimming, Tree Removal, Tree
   Shaping, Lot Clearing). This confirms Lot Clearing and emergency storm
   work.
-- "Why us": their crew photo (`Cutting-Up-Branches.jpg`, hosted as
-  `about.webp`) with `aboutPhotoFocus: true`: larger photo, smaller text,
-  no four stat boxes.
+- "Why us": Carlos with a chainsaw by the bucket truck, a Google listing
+  photo (July 2021). We had no API key for Places here, so it is cropped
+  from a screenshot of Google Maps, clear of its overlays (`about.webp`,
+  935x605). `aboutPhotoFocus: true`: half-width photo, the three promises
+  run exactly its height, no four stat boxes.
+- Tab icon: the tree-and-house mark from their square logo
+  (`2019/09/Ducks-Tree-Stump-Service-Logo.jpg`), lettering cropped off, as
+  `icon.png` via `iconImage`. The template's own favicon moved from
+  `app/favicon.ico` to `public/` and root metadata, so a demo icon replaces
+  it instead of sitting beside it.
 - `hideDemoBar: true`: the owner already said yes, so the "This is a draft
   of your site / I want this site / morebookednow.com" bar is gone.
 - From every page of duckstree.com (home, about-us, services, our-work,

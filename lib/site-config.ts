@@ -112,6 +112,8 @@ export type SiteConfig = {
    * promise text beside it, and no row of four stat boxes underneath.
    */
   aboutPhotoFocus?: boolean;
+  /** Their own mark for the browser tab, square. Without it the template's icon is used. */
+  iconImage?: string;
   /**
    * True only on a generated demo. Shared sections use it to show the notes
    * addressed to the business owner, which must never appear on the showcase

@@ -5,6 +5,11 @@ import { business } from "@/lib/business";
 export const metadata: Metadata = {
   title: `${business.companyName} | Tree Service in ${business.city}, ${business.stateAbbr}`,
   description: business.description,
+  // Served from public/ and declared here rather than as app/favicon.ico:
+  // the file convention adds its link to every page, so a demo's own icon
+  // would sit beside it and the browser could pick either. Declared as
+  // metadata, a demo's `icons` replaces it.
+  icons: { icon: "/favicon.ico" },
   keywords: [
     `tree service ${business.city}`,
     `tree removal ${business.city}`,

@@ -18,10 +18,15 @@ export const dynamic = "force-dynamic";
 type Params = { params: Promise<{ slug: string }> };
 
 /** Drafts, same as under /demo: never indexed. */
-export const metadata: Metadata = {
-  robots: { index: false, follow: false, nocache: true },
-  keywords: []
-};
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const icon = (await loadDemo(slug))?.config.iconImage;
+  return {
+    robots: { index: false, follow: false, nocache: true },
+    keywords: [],
+    ...(icon ? { icons: { icon, apple: icon } } : {})
+  };
+}
 
 /**
  * The second design, over the same demo record as /demo/[slug].

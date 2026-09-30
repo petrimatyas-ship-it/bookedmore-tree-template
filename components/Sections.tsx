@@ -254,7 +254,7 @@ export function AboutUs({ config = business }: SectionProps) {
           three lines are the argument, so the eye should land on the proof. */}
       <div
         className={`mx-auto grid max-w-6xl gap-8 lg:max-w-[1400px] lg:items-stretch ${
-          focus ? "lg:grid-cols-[1.5fr_1fr] lg:gap-10" : "lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
+          focus ? "lg:grid-cols-[1fr_1fr] lg:gap-12" : "lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
         }`}
       >
         {/* Laptop puts the photo first; the phone keeps the order it had,
@@ -277,18 +277,30 @@ export function AboutUs({ config = business }: SectionProps) {
           alt={`${config.companyName} crew at work`}
           loading="lazy"
           className={`order-2 h-[260px] w-full rounded-[10px] object-cover shadow-soft sm:h-[380px] lg:order-none lg:h-auto lg:self-start ${
-            focus ? "lg:w-full" : "lg:mx-auto lg:max-h-[520px] lg:w-auto lg:max-w-full lg:object-contain"
+            focus ? "lg:w-full lg:self-center" : "lg:mx-auto lg:max-h-[520px] lg:w-auto lg:max-w-full lg:object-contain"
           }`}
         />
-        <div className={`order-1 grid gap-5 lg:order-none lg:content-start lg:py-2 ${focus ? "lg:gap-5" : "lg:gap-7"}`}>
+        {/*
+          With a focus photo the promises run exactly its height: the first
+          line level with its top edge, the last with its bottom.
+        */}
+        <div
+          className={`order-1 grid gap-5 lg:order-none ${
+            focus ? "lg:flex lg:max-w-[540px] lg:flex-col lg:justify-between" : "lg:content-start lg:gap-7 lg:py-2"
+          }`}
+        >
           {defaultWhyPoints.map((point) => (
             <div key={point.title} className="flex gap-3.5">
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest-900 text-white">
                 <IconCheck size={16} stroke={3} aria-hidden="true" />
               </span>
               <div>
-                <h3 className={`text-base font-bold leading-snug text-cream ${focus ? "" : "lg:text-lg"}`}>{point.title}</h3>
-                <p className={`mt-1 text-sm leading-6 text-cream/65 ${focus ? "" : "lg:text-[15px] lg:leading-7"}`}>
+                <h3 className={`text-base font-bold leading-snug text-cream ${focus ? "lg:text-xl" : "lg:text-lg"}`}>
+                  {point.title}
+                </h3>
+                <p
+                  className={`mt-1 text-sm leading-6 text-cream/65 ${focus ? "lg:mt-2 lg:text-[17px] lg:leading-7" : "lg:text-[15px] lg:leading-7"}`}
+                >
                   {point.text}
                 </p>
               </div>

@@ -79,7 +79,10 @@ export const demoOverrides: Record<string, Partial<SiteConfig>> = {
     galleryTotal: 10,
     galleryCaption: "Photos from our website",
 
-    // "Why us": their own crew photo, larger, no stat boxes.
+    iconImage: "/images/demos/ducks-tree-and-stump-service-aurora/icon.png",
+
+    // "Why us": Carlos by the truck, from their Google listing (cropped from
+    // a screenshot, clear of Maps' overlays), no stat boxes.
     aboutImage: "/images/demos/ducks-tree-and-stump-service-aurora/about.webp",
     aboutPhotoFocus: true,
 

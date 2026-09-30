@@ -19,10 +19,15 @@ type Params = { params: Promise<{ slug: string }> };
  * Applies to every page under /demo/. Children override the title; robots is
  * inherited, so a demo page can never be indexed by forgetting to set it.
  */
-export const metadata: Metadata = {
-  robots: { index: false, follow: false, nocache: true },
-  keywords: []
-};
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const icon = (await loadDemo(slug))?.config.iconImage;
+  return {
+    robots: { index: false, follow: false, nocache: true },
+    keywords: [],
+    ...(icon ? { icons: { icon, apple: icon } } : {})
+  };
+}
 
 export default async function DemoLayout({
   children,
