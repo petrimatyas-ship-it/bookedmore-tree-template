@@ -71,10 +71,18 @@ duckstree.com, Aurora IL.
   "2006"`, so the stat reads 20+), year-round emergency work, free waste
   disposal, owner Carlos, 1041 Cochran St. All in `knowledge` for the chat,
   plus `serviceAreas`, `responseNote` and `trustBarClaims`.
+- Chat facts widened (2026-09-30, second pass) from Yelp (read through
+  Yahoo Local, Yelp itself blocks fetching), Nextdoor, Houzz and the 12
+  Google reviews: Spanish spoken, no commission, snow removal in winter,
+  bracing and cables, deadwooding, firewood on request, equipment, review
+  themes and prices vs. other quotes. Yelp shows Saturday 7 to 3 against
+  the website's 7 to 7; the chat says the website's and suggests
+  confirming. Angi and Yelp pages returned 403 to every fetch.
 - Houzz says "Bonded & Insured" and 17 years; their own site says insured
   and 20+. We went with their site.
 - Chat: the assistant on every demo (and on morebookednow.com, which
   falls back to canned answers) was failing at OpenAI. The chat route now
   returns OpenAI's status and error code as `upstream` in its 502 response,
   readable in the browser's network tab. First reading: 429
-  `credit_balance_exhausted`, the OpenAI account is out of credit.
+  `credit_balance_exhausted`, the OpenAI account is out of credit. Fixed
+  by topping up the account; no code change needed.
