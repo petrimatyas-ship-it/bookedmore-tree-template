@@ -93,6 +93,11 @@ export type SiteConfig = {
    */
   logoWide?: boolean;
   /**
+   * Leaves out the "This is a draft of your site" bar at the top of a demo,
+   * for an owner who is already sold and finds it in the way.
+   */
+  hideDemoBar?: boolean;
+  /**
    * True only on a generated demo. Shared sections use it to show the notes
    * addressed to the business owner, which must never appear on the showcase
    * site or on a real customer-facing build.

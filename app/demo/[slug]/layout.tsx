@@ -48,7 +48,7 @@ export default async function DemoLayout({
         of every page too.
       */}
       <DemoTracker slug={demo.slug} />
-      <DemoTopBar href={wantThisHref(demo.slug, demo.leadId)} />
+      {!config.hideDemoBar && <DemoTopBar href={wantThisHref(demo.slug, demo.leadId)} />}
       <Header config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       {children}
       {/*
