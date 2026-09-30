@@ -56,21 +56,32 @@ export const demoOverrides: Record<string, Partial<SiteConfig>> = {
     // Their site says insured (liability and workers compensation) and
     // "year round emergency" service; it does not say licensed or 24/7.
     trustBarClaims: ["Insured, liability & workers comp", "Year-round emergency service"],
-    // For the site assistant. From duckstree.com (home, about, services,
-    // contact), their Google listing and their Houzz profile.
+    // For the site assistant. From duckstree.com (every page), their Google
+    // listing and reviews, Yelp (via Yahoo Local), Nextdoor and Houzz.
     knowledge: [
-      "Family owned and operated, based at 1041 Cochran St, Aurora, IL 60506.",
-      "The owner is Carlos. Customers often mention him by name in reviews.",
-      "Over 20 years of experience in the tree business.",
-      "Insured: liability and workers compensation.",
-      "Hours: Monday to Saturday 7am to 7pm, closed Sunday.",
-      "Year-round emergency and scheduled tree service, including storm damage and emergency tree removal.",
+      // Business
+      "Duck's Tree & Stump Service, family owned and operated, based at 1041 Cochran St, Aurora, IL 60506 (near Cochran St and Coral Ave).",
+      "The owner is Carlos. Customers mention him by name, say he answers calls and texts quickly, sometimes as late as 9pm, and comes out himself to quote.",
+      "Over 20 years in the tree business, per their website. Some older listings say 17 years.",
+      "Insured: liability and workers compensation. Listings also describe them as fully bonded and insured, and say safety is the top priority.",
+      "Crew speaks English and Spanish.",
+      "Hours: Monday to Saturday 7am to 7pm, closed Sunday, per their website. Their Yelp listing shows Saturday 7am to 3pm, so for a Saturday visit suggest confirming by phone.",
+      "Emergency storm work year round. Their own listing text says 24/7 emergency tree service, so storm and fallen-tree calls are taken at any time.",
       "Residential and commercial customers.",
-      "Free estimates. Customers can call or text 630-256-0181.",
-      "All waste from the job (limbs, wood, debris) is hauled away at no additional cost.",
-      "Also handles crown cleaning, crossing limbs, limbs over power lines and hazardous tree removal.",
-      "Serves Aurora, Batavia, Boulder Hill, Geneva, Montgomery, Naperville, North Aurora, Oswego, Plainfield, Plano, St. Charles, Sugar Grove, Warrenville and Yorkville.",
-      "Rated 5.0 from 120 Google reviews. Reviewers praise fair prices, fast replies, on-time crews and clean-up."
+      "Free estimates, often the same day or next day. Customers can call or text 630-256-0181.",
+      "They do not work on commission, which is how they keep estimates free and rates competitive.",
+      "All waste from the job (limbs, wood, debris) is hauled away at no additional cost. They can leave firewood if the customer wants it.",
+      // Services
+      "Services: tree removal, tree trimming, tree pruning, tree shaping, crown cleaning, deadwooding, crossing limbs, limbs over houses and power lines, hazardous tree removal, storm damage and emergency removal, support cables and bracing, stump grinding and removal, lot clearing, shrub removal, tree planting, and regular tree maintenance.",
+      "In the cold months they also do snow removal for homes and businesses: plowing, and de-icing sidewalks and roads.",
+      "Equipment includes a bucket truck (cherry picker), a chipper/mulcher truck and a stump grinder. Crews of about 4 on bigger jobs.",
+      // Area
+      "Serves Aurora, Batavia, Boulder Hill, Geneva, Montgomery, Naperville, North Aurora, Oswego, Plainfield, Plano, St. Charles, Sugar Grove, Warrenville and Yorkville. Listings also mention Downers Grove and Woodridge, the western suburbs of Chicagoland.",
+      // Reputation
+      "Ratings: 5.0 from 120 Google reviews, 5.0 on Yelp (about 30 reviews), 5.0 on Angi, and recommended by neighbors on Nextdoor.",
+      "What customers say: fast and punctual, sometimes early; big trees down in about 90 minutes including cleanup; careful in tight spaces next to houses, patios and hot tubs, protecting them during the job; a bucket truck on the lawn without leaving a mark; yards left clean.",
+      "On price, customers say Duck's was cheaper than the other quotes they got, in one case the lowest of 10 quotes, in another half the price of others, and came out first after a storm.",
+      "Typical jobs from reviews: trimming four trees front and back, trimming trees off a garage roof in 2.5 hours, removing a 60 foot tree, a big silver maple next to a house, a split tree after a storm, and a locust tree and stump damaging a driveway."
     ],
 
     // Their Google listing photos were hotlinked from duckstree.com and came
