@@ -64,11 +64,7 @@ export function ModernOwnerClose({
 
         <div className="mt-10 flex flex-col gap-6 border-t border-ink-3 pt-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[15px] leading-7 text-bone/70">
-              {c.priceLead}{" "}
-              <span className="font-display text-3xl font-semibold tracking-[-0.02em] text-bone">{c.price}</span>
-            </p>
-            <p className="mt-2 text-sm text-bone/50">{c.reassure}</p>
+            <p className="text-[15px] leading-7 text-bone/70">{c.reassure}</p>
             <p className="mt-4 flex items-center gap-2 text-sm text-bone/45">
               <IconClock size={15} stroke={2} aria-hidden="true" />
               {c.expiry(daysLeft)}
