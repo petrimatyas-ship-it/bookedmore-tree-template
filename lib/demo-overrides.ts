@@ -48,7 +48,10 @@ export const demoOverrides: Record<string, Partial<SiteConfig>> = {
     // up broken; these are hosted copies of the photos on their website.
     gallery: [1, 2, 3, 4, 5].map((n) => `/images/demos/ducks-tree-and-stump-service-aurora/work-${n}.webp`),
     galleryTotal: 10,
-    galleryCaption: "Photos from our website"
+    galleryCaption: "Photos from our website",
+
+    // He has already said yes; the draft bar was only in the way.
+    hideDemoBar: true
   }
 };
 

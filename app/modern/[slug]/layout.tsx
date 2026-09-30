@@ -46,7 +46,7 @@ export default async function ModernLayout({ children, params }: Params & { chil
   return (
     <main className="modern min-h-screen bg-bone font-body text-ink antialiased">
       <DemoTracker slug={demo.slug} />
-      <DemoTopBar href={href} tone="ink" />
+      {!config.hideDemoBar && <DemoTopBar href={href} tone="ink" />}
       <ModernNav config={config} homeHref={`/modern/${demo.slug}`} />
       {children}
       <ModernOwnerClose config={config} href={href} expiresAt={demo.expiresAt} />

@@ -49,6 +49,8 @@ duckstree.com, Aurora IL.
   Damage, Stump Grinding, Tree Pruning, Tree Trimming, Tree Removal, Tree
   Shaping, Lot Clearing). This confirms Lot Clearing and emergency storm
   work.
+- `hideDemoBar: true`: the owner already said yes, so the "This is a draft
+  of your site / I want this site / morebookednow.com" bar is gone.
 - Still to check with the owner before sending: "Licensed & insured" and
   "24/7" (their site says emergency storm work and "call us any time", not
   24/7) are hardcoded in the template's trust bar; "11+ years" comes from a
