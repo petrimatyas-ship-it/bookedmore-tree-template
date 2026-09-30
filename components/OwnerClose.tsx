@@ -89,10 +89,7 @@ export function OwnerClose({
 
         <div className="mt-10 flex flex-col gap-5 border-t border-white/12 pt-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[15px] leading-7 text-white/75">
-              {c.priceLead} <span className="text-xl font-bold text-white">{c.price}</span>
-            </p>
-            <p className="mt-1.5 text-sm text-white/55">{c.reassure}</p>
+            <p className="text-[15px] leading-7 text-white/75">{c.reassure}</p>
           </div>
           <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <a

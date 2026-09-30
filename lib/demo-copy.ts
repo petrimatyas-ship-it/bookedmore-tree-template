@@ -152,8 +152,6 @@ export const demoCopy = {
       "The crew photos are stand-ins until we have yours",
       "The prices are typical ranges, not your numbers"
     ],
-    priceLead: "Everything above, built properly and looked after every month, from",
-    price: "$149/mo",
     cta: "Make this my site",
     reassure: "Live in 7 days. Cancel any time. Nothing is charged until it is live.",
     expiry: (days: number) =>
