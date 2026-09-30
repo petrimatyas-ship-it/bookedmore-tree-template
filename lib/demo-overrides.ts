@@ -13,7 +13,14 @@ import type { SiteConfig } from "@/lib/site-config";
  * An entry does nothing once the demo's record has expired from the store.
  */
 export const demoOverrides: Record<string, Partial<SiteConfig>> = {
-  "ducks-tree-and-stump-service-aurora": {}
+  "ducks-tree-and-stump-service-aurora": {
+    // Their logo and photos are copied into public/: hotlinked from their
+    // own site they came up broken in the browser.
+    logoImage: "/images/demos/ducks-tree-and-stump-service-aurora/logo.png",
+    logoWide: true,
+    heroImage: "/images/demos/ducks-tree-and-stump-service-aurora/hero.webp",
+    heroImageWide: "/images/demos/ducks-tree-and-stump-service-aurora/hero-wide.webp"
+  }
 };
 
 export function withOverrides(slug: string, config: SiteConfig): SiteConfig {

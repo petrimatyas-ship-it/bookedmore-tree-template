@@ -826,7 +826,12 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
                 stray white rectangle. A padded tile makes the white deliberate
                 and works for transparent marks too.
               */}
-              {config.logoImage ? (
+              {config.logoImage && config.logoWide ? (
+                <span className="flex h-14 shrink-0 items-center rounded-xl bg-white px-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- a wordmark at its own width */}
+                  <img src={config.logoImage} alt="" className="h-10 w-auto" />
+                </span>
+              ) : config.logoImage ? (
                 <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-night-2 p-1.5">
                   <span className="relative block h-full w-full">
                     <Image src={config.logoImage} alt="" fill sizes="48px" className="object-contain" />
@@ -839,7 +844,9 @@ export function Footer({ config = business, links = defaultLinks }: SectionProps
                   </span>
                 </span>
               )}
-              <span className="text-lg font-extrabold leading-tight">{config.companyName}</span>
+              <span className={`${config.logoImage && config.logoWide ? "sr-only " : ""}text-lg font-extrabold leading-tight`}>
+                {config.companyName}
+              </span>
             </a>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-white/62">{config.tagline}</p>
