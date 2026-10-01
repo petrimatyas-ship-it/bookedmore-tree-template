@@ -89,7 +89,18 @@ export function isExpired(demo: DemoRecord) {
 /* Engagement                                                            */
 /* ------------------------------------------------------------------ */
 
-export type EngagementEvent = { event: string; page: string; value?: number; at: string };
+export type EngagementEvent = {
+  event: string;
+  page: string;
+  value?: number;
+  at: string;
+  /** One id per page load, so events can be grouped into visits. */
+  visit?: string;
+  /** "Aurora, IL, US", from Vercel's IP location headers. Never the IP itself. */
+  where?: string;
+  /** "iPhone, Safari", from the user agent. */
+  device?: string;
+};
 
 /** Plenty to judge interest; short enough that a bored tab cannot bloat it. */
 const MAX_EVENTS = 200;

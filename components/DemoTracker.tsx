@@ -12,10 +12,12 @@ import { useEffect, useRef } from "react";
  * prioritised list.
  *
  * Only the shape of the visit is recorded — page, scroll depth, which
- * buttons — never anything typed. The chat itself is not read.
+ * buttons — never anything typed. The chat itself is not read. The track
+ * route adds a rough location and the device type, so the owner can tell a
+ * prospect's visit from their own.
  */
 
-type Event = { slug: string; event: string; page: string; value?: number };
+type Event = { slug: string; event: string; page: string; value?: number; visit: string };
 
 const SCROLL_MARKS = [25, 50, 75, 100] as const;
 
@@ -24,13 +26,15 @@ export function DemoTracker({ slug }: { slug: string }) {
 
   useEffect(() => {
     const page = window.location.pathname;
+    // Groups this page load's events into one visit in the owner's list.
+    const visit = Math.random().toString(36).slice(2, 12);
 
     /** Each event once per page load; beacons survive the tab closing. */
     const send = (event: string, value?: number) => {
       const key = `${event}:${value ?? ""}`;
       if (sent.current.has(key)) return;
       sent.current.add(key);
-      const body: Event = { slug, event, page, value };
+      const body: Event = { slug, event, page, value, visit };
       try {
         const blob = new Blob([JSON.stringify(body)], { type: "application/json" });
         if (!navigator.sendBeacon?.("/api/demo/track", blob)) {
