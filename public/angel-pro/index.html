@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angel Pro Services LLC | Garage Doors, Gates & Fences in Houston, TX</title>
+<meta name="description" content="Garage door, gate and fence installation and repair in Houston, TX. Custom driveway gates, gate operators, access control and commercial doors. Over 20 years of experience. Call (281) 206-0126.">
+<meta name="theme-color" content="#0c0c0d">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/angel-pro/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c0c0d; --ink-2:#151517; --ink-3:#1f2023; --line:#2c2d31;
+  --gold:#d9a93a; --gold-2:#f0c75e; --gold-3:#b8871f; --gold-tint:#fbf5e6;
+  --bg:#fafaf8; --text:#1a1a1c; --muted:#5d5f66; --white:#fff;
+  --r:14px; --r-lg:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:52px}
+@media(min-width:900px){body{padding-bottom:0}}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+@media(min-width:700px){.wrap{padding:0 28px}}
+h1,h2,h3,.display{font-family:Oswald,Inter,sans-serif;letter-spacing:.01em;line-height:1.12}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-3);margin-bottom:10px}
+.dark .eyebrow{color:var(--gold-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:12px;font-weight:700;font-size:1rem;border:2px solid transparent;cursor:pointer;transition:.18s;font-family:inherit;white-space:nowrap}
+.btn-gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#141006;box-shadow:0 8px 24px -10px rgba(217,169,58,.7)}
+.btn-gold:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.06)}
+.btn-ghost:hover{border-color:var(--gold-2);color:var(--gold-2)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-white{background:#0c0c0d;color:var(--gold-2);border-color:var(--gold);box-shadow:0 8px 24px -10px rgba(0,0,0,.8)}
+.btn-white:hover{background:#17171a;color:#fff}
+.pi{width:1.1em;height:1.1em;flex:none}
+.btn-dark:hover{background:var(--ink-3)}
+.ring{position:relative}
+.ring::after{content:"";position:absolute;inset:-4px;border-radius:14px;border:2px solid var(--gold-2);opacity:0;animation:ring 2.4s infinite}
+@keyframes ring{0%{opacity:.8;transform:scale(.96)}70%,100%{opacity:0;transform:scale(1.08)}}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(12,12,13,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);color:#fff}
+.hdr{display:flex;align-items:center;gap:18px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand img{width:52px;height:52px;border-radius:10px;border:1px solid #3a3320}
+.brand span{font-family:Oswald,sans-serif;font-size:1.15rem;letter-spacing:.04em;line-height:1.05}
+.brand small{display:block;font-family:Inter;font-size:.68rem;color:var(--gold-2);letter-spacing:.18em;font-weight:600}
+nav.main{display:none;gap:24px;margin-left:auto;font-weight:600;font-size:.95rem}
+nav.main a{opacity:.85}
+nav.main a:hover{opacity:1;color:var(--gold-2)}
+.hdr-phone{display:none;font-weight:700;color:var(--gold-2)}
+.hdr .btn{padding:10px 16px;font-size:.92rem}
+.hdr-cta{display:none}
+.burger{margin-left:auto;background:none;border:1px solid var(--line);color:#fff;width:44px;height:44px;border-radius:10px;font-size:1.3rem;cursor:pointer}
+@media(min-width:1000px){nav.main{display:flex}.hdr-phone{display:inline}.hdr-cta{display:inline-flex}.burger{display:none}}
+.mnav{display:none;background:var(--ink);border-top:1px solid var(--line);padding:10px 16px 18px}
+.mnav.open{display:block}
+.mnav a.l{display:block;padding:14px 4px;font-size:1.1rem;font-weight:600;border-bottom:1px solid var(--line)}
+.mnav .btn{width:100%;margin-top:12px}
+
+/* hero */
+.hero{position:relative;color:#fff;overflow:hidden;background:#0c0c0d}
+.hero .bg{position:absolute;inset:0;background:var(--hero-img,linear-gradient(135deg,#1b1b1e 0%,#0c0c0d 55%,#2a2210 100%)) center/cover no-repeat}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,9,.55) 0%,rgba(8,8,9,.72) 60%,rgba(8,8,9,.92) 100%)}
+.hero .bgm{display:none}
+@media(max-width:699px){
+  .hero .bgm.has{display:block;background:#0c0c0d var(--hero-img) center bottom/cover no-repeat}
+  .hero .bgm.has::after{background:linear-gradient(180deg,rgba(8,8,9,.88) 0%,rgba(8,8,9,.72) 38%,rgba(8,8,9,.15) 62%,rgba(8,8,9,0) 80%,rgba(8,8,9,.35) 100%)}
+  .hero:has(.bgm.has){min-height:calc(100svh - 126px)}
+  .hero:has(.bgm.has) .in{padding:26px 16px 0}
+
+}
+.hero .in{position:relative;padding:72px 0 64px;text-align:center;max-width:860px;margin:0 auto}
+@media(min-width:900px){.hero .in{padding:120px 0 104px}}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:.8rem!important;background:rgba(255,255,255,.08);border:1px solid rgba(240,199,94,.35);font-weight:600;color:#f4e3b6}
+@media(min-width:700px){.pill{font-size:.9rem!important}}
+.hero h1{font-size:2.2rem;margin:20px 0 16px;text-transform:uppercase;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero h1 em{font-style:normal;color:var(--gold-2)}
+@media(min-width:700px){.hero h1{font-size:3.4rem}}
+.hero p.sub{font-size:1.08rem;color:#e7e3d8;max-width:640px;margin:0 auto}
+.checks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin:22px 0 30px;font-weight:600;font-size:.95rem}
+.checks span::before{content:"✓";color:var(--gold-2);margin-right:7px;font-weight:800}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hero .ctas .btn{min-width:240px}
+@media(max-width:699px){.lg{display:none}}
+
+/* trust strip */
+.trust{background:var(--ink-2);color:#fff;border-top:1px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);padding:0}
+@media(min-width:800px){.trust .wrap{grid-template-columns:repeat(4,1fr)}}
+.trust div.t{background:var(--ink-2);padding:18px 14px;text-align:center;font-weight:700;font-size:.92rem}
+.trust div.t b{display:block;font-family:Oswald;font-size:1.35rem;color:var(--gold-2);font-weight:600;letter-spacing:.03em}
+
+section{padding:72px 0}
+@media(min-width:900px){section{padding:96px 0}}
+.head{max-width:720px;margin-bottom:36px}
+.head h2{font-size:2rem;text-transform:uppercase}
+@media(min-width:700px){.head h2{font-size:2.6rem}}
+.head p{color:var(--muted);font-size:1.05rem;margin-top:12px}
+.dark{background:var(--ink);color:#fff}
+.dark .head p{color:#bdbab1}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{padding:7px 14px;border-radius:999px;background:var(--gold-tint);border:1px solid #efdfb4;font-size:.85rem;font-weight:600;color:#6b5112}
+.dark .chip{background:rgba(255,255,255,.06);border-color:#3a3320;color:#f0dca8}
+
+/* services */
+.grid{display:grid;gap:18px}
+@media(min-width:700px){.grid.c2{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.grid.c3{grid-template-columns:repeat(3,1fr)}}
+.svc{background:#fff;border:1px solid #ebe8df;border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px -22px rgba(0,0,0,.4);transition:.2s}
+.svc:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(0,0,0,.5)}
+.svc .ph{aspect-ratio:16/10;background:var(--img,linear-gradient(135deg,#232326,#0f0f10)) center/cover;position:relative;display:flex;align-items:flex-end}
+.svc .ph .tag{position:absolute;top:12px;left:12px;background:rgba(12,12,13,.85);color:var(--gold-2);font-weight:700;font-size:.8rem;padding:6px 10px;border-radius:8px;border:1px solid #3a3320}
+.svc .ph .ico{position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;opacity:.35}
+.svc .bd{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.svc h3{font-size:1.4rem;text-transform:uppercase}
+.svc p{color:var(--muted);margin:6px 0 12px}
+.svc ul{list-style:none;display:grid;gap:6px;margin-bottom:18px;font-size:.95rem}
+.svc li::before{content:"✓";color:var(--gold-3);font-weight:800;margin-right:8px}
+.svc .ln{margin-top:auto;display:flex;gap:16px;font-weight:700;font-size:.95rem}
+.svc .ln a:first-child{color:var(--muted)}
+.svc .ln a:last-child{color:var(--gold-3)}
+
+/* signs */
+.signs{display:grid;gap:28px;align-items:center}
+@media(min-width:900px){.signs{grid-template-columns:1.05fr .95fr}}
+.signs ul{list-style:none;display:grid;gap:12px;margin:22px 0 26px}
+.signs li{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 14px 48px;position:relative;font-weight:500}
+.signs li::before{content:"!";position:absolute;left:14px;top:13px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#141006;font-weight:800;display:grid;place-items:center;font-size:.85rem}
+.signs .pic{border-radius:var(--r-lg);aspect-ratio:4/3;background:var(--img,linear-gradient(135deg,#262628,#111)) center/cover;border:1px solid var(--line)}
+
+/* why */
+.why{display:grid;gap:32px;align-items:center}
+@media(min-width:900px){.why{grid-template-columns:.95fr 1.05fr}}
+.why .pic{border-radius:var(--r-lg);aspect-ratio:4/5;background:var(--img,linear-gradient(160deg,#2a2a2d,#111)) center/cover;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+@media(max-width:899px){.why .pic{aspect-ratio:16/11}}
+.pt{display:flex;gap:14px;margin-bottom:18px}
+.pt i{flex:none;width:44px;height:44px;border-radius:12px;background:var(--ink);color:var(--gold-2);display:grid;place-items:center;font-style:normal;font-size:1.2rem}
+.pt h3{font-size:1.2rem;text-transform:uppercase}
+.pt p{color:var(--muted);font-size:.97rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.stat{background:#fff;border:1px solid #ebe8df;border-radius:var(--r);padding:16px}
+.stat b{display:block;font-family:Oswald;font-size:1.8rem;color:var(--gold-3);line-height:1.1}
+.stat span{font-size:.88rem;color:var(--muted);font-weight:600}
+
+.whyc .wc{background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:26px 24px;border-top:3px solid var(--gold)}
+.whyc .wc i{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:rgba(240,199,94,.12);color:var(--gold-2);font-style:normal;font-size:1.25rem;margin-bottom:14px}
+.whyc .wc h3{font-size:1.25rem;text-transform:uppercase;margin-bottom:6px}
+.whyc .wc p{color:#c9c5ba;font-size:.97rem}
+#about .stats{margin-top:18px}
+@media(min-width:800px){#about .stats{grid-template-columns:repeat(4,1fr)}}
+.stat{text-align:center;display:flex;flex-direction:column;justify-content:center}
+.stat span{line-height:1.35}
+/* reviews */
+.rv{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.rv .st{color:var(--gold-2);letter-spacing:2px;font-size:1.05rem}
+.rv q{display:block;margin:12px 0 16px;color:#ece8de;font-size:1.02rem;quotes:"“" "”"}
+.rv .who{font-weight:700}
+.rv .who small{display:block;color:#9e9a8f;font-weight:500}
+.rv.ph{border-style:dashed;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#bdbab1}
+.gbadge{display:inline-flex;align-items:center;gap:12px;margin-top:18px;background:#fff;color:var(--text);border-radius:14px;padding:10px 16px;font-weight:600;font-size:.88rem;line-height:1.3}
+.gbadge b{font-family:Oswald;font-size:2rem;color:var(--text)}
+a.rv.ph:hover{border-color:var(--gold)}
+.rv.ph b{color:#fff;font-family:Oswald;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px}
+
+/* areas */
+.areas{background:#fff;border:1px solid #ebe8df;border-radius:var(--r-lg);padding:28px;display:grid;gap:24px}
+@media(min-width:900px){.areas{grid-template-columns:1.3fr 1fr;align-items:center}}
+.areas .chips .chip{font-size:.92rem;padding:9px 16px}
+.callout{background:var(--ink);color:#fff;border-radius:var(--r);padding:22px}
+.callout p{color:#cfcbc0;margin:6px 0 14px}
+
+/* faq */
+details{background:#fff;border:1px solid #ebe8df;border-radius:var(--r);padding:0 18px;margin-bottom:10px}
+summary{cursor:pointer;list-style:none;padding:18px 28px 18px 0;font-weight:700;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.4rem;color:var(--gold-3)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 18px;color:var(--muted)}
+
+/* quote */
+.quote{display:grid;gap:28px}
+@media(min-width:900px){.quote{grid-template-columns:.9fr 1.1fr;align-items:start}}
+.card{background:#fff;color:var(--text);border-radius:var(--r-lg);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);overflow:hidden}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#f2f0ea}
+.tabs button{border:0;background:none;padding:16px;font:700 .98rem Inter;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent}
+.tabs button.on{background:#fff;color:var(--text);border-bottom-color:var(--gold)}
+.pane{display:none;padding:20px}
+.pane.on{display:block}
+.chat-h{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid #eee;margin-bottom:12px}
+.chat-h img{width:38px;height:38px;border-radius:9px}
+.chat-h small{display:block;color:#2e8a43;font-weight:600}
+.msgs{height:230px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 2px}
+.msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:.95rem}
+.msg.bot{background:#f3f1ea;border-top-left-radius:4px}
+.msg.me{background:var(--ink);color:#fff;align-self:flex-end;border-top-right-radius:4px}
+.chat-in{display:flex;gap:8px;margin-top:12px}
+.chat-in input{flex:1}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid #dcd8cc;border-radius:11px;font:inherit;background:#fcfbf8;color:var(--text)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:12px}
+label > *{margin-top:6px}
+.two{display:grid;gap:0 12px}
+@media(min-width:600px){.two{grid-template-columns:1fr 1fr}}
+.drop{border:2px dashed #dcd8cc;border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-size:.9rem;cursor:pointer}
+.fine{text-align:center;color:var(--muted);font-size:.85rem;margin-top:10px}
+.ok{display:none;background:#eef7ef;border:1px solid #cfe6d3;color:#1f5a2b;padding:14px;border-radius:12px;margin-top:12px;font-weight:600}
+
+/* footer */
+footer{background:#070708;color:#cfcbc0;padding:64px 0 28px;font-size:.95rem}
+.fg{display:grid;gap:32px}
+@media(min-width:800px){.fg{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
+footer h4{color:#fff;font-family:Oswald;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;font-size:1.05rem}
+footer li{list-style:none;margin-bottom:8px}
+footer a:hover{color:var(--gold-2)}
+.fb{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.fb span{font-size:.78rem;border:1px solid #3a3320;color:#f0dca8;border-radius:999px;padding:4px 10px}
+.copy{border-top:1px solid #222;margin-top:40px;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.85rem;color:#8d897f}
+
+/* floating + mobile bar */
+.float{position:fixed;right:20px;bottom:20px;z-index:45;display:none;flex-direction:column;gap:10px}
+@media(min-width:900px){.float{display:flex}}
+.float .btn{box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--ink);border-top:1px solid var(--line)}
+.mbar a{height:52px;display:flex;align-items:center;justify-content:center;gap:6px;color:#fff;font-weight:700;font-size:.9rem}
+.mbar a i{font-style:normal;font-size:1rem}
+.mbar a.g{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#141006}
+@media(min-width:900px){.mbar{display:none}}
+
+/* demo lock */
+.lock{position:fixed;inset:0;z-index:60;background:rgba(6,6,7,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+.lock.open{display:flex}
+.lock .box{background:#fff;border-radius:22px;max-width:440px;width:100%;padding:30px 26px;text-align:center;position:relative}
+.lock .box .k{width:64px;height:64px;border-radius:18px;background:var(--ink);color:var(--gold-2);display:grid;place-items:center;font-size:1.8rem;margin:0 auto 16px}
+.lock h3{font-size:1.6rem;text-transform:uppercase}
+.lock p{color:var(--muted);margin:10px 0 20px}
+.lock ul{list-style:none;text-align:left;margin:0 auto 22px;display:grid;gap:8px;max-width:320px}
+.lock li::before{content:"✓";color:var(--gold-3);font-weight:800;margin-right:8px}
+.lock .x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--muted)}
+.lock .btn{width:100%}
+.demo-ribbon{background:var(--gold);color:#141006;text-align:center;font-size:.8rem;font-weight:700;padding:6px 10px}
+@media(max-width:699px){
+  .hero .sub{display:none}
+  .hero h1{font-size:2rem;margin:14px 0 12px}
+  .checks{gap:6px 14px;margin:0 0 18px;font-size:.85rem}
+  .checks span:nth-child(n+3){display:none}
+  .hero .ctas{flex-wrap:nowrap;gap:8px}
+  .hero .ctas .btn{min-width:0;flex:1;padding:13px 10px;font-size:.92rem}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">Preview website made for Angel Pro Services LLC by MoreBookedNow</div>
+
+<header>
+  <div class="wrap hdr">
+    <a class="brand" href="#top"><img src="/angel-pro/logo.webp" alt="Angel Pro Services LLC logo"><span>ANGEL PRO<small>SERVICES LLC</small></span></a>
+    <nav class="main">
+      <a href="#" data-lock="Services">Services</a>
+      <a href="#" data-lock="Pricing">Pricing</a>
+      <a href="#" data-lock="Reviews">Reviews</a>
+      <a href="#" data-lock="Service Areas">Service Areas</a>
+      <a href="#" data-lock="About">About</a>
+    </nav>
+    <a class="hdr-phone" href="tel:+12812060126">(281) 206-0126</a>
+    <a class="btn btn-gold hdr-cta" href="#quote">Free Estimate</a>
+    <button class="burger" aria-label="Open menu" onclick="document.getElementById('mnav').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mnav" id="mnav">
+    <a class="l" href="#" data-lock="Services">Services</a>
+    <a class="l" href="#" data-lock="Pricing">Pricing</a>
+    <a class="l" href="#" data-lock="Reviews">Reviews</a>
+    <a class="l" href="#" data-lock="Service Areas">Service Areas</a>
+    <a class="l" href="#" data-lock="About">About</a>
+    <a class="btn btn-dark" href="#quote" onclick="tab('chat');closeNav()">💬 Ask a question</a>
+    <a class="btn btn-gold" href="#quote" onclick="tab('form');closeNav()">📋 Get a free estimate</a>
+    <a class="btn btn-ghost" style="color:#fff" href="tel:+12812060126"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call (281) 206-0126</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="bg" style="--hero-img:url('/angel-pro/hero.webp')"></div><div class="bg bgm has" style="--hero-img:url('/angel-pro/herom.webp')"></div>
+  <div class="wrap in">
+    <span class="pill"><span style="color:#fbbc04">★★★★★</span> 4.7 from 29 Google reviews</span>
+    <h1>Garage doors, gates &amp; fences <em>built right</em> and fixed fast.</h1>
+    <p class="sub">Installation, repair and maintenance of garage doors, custom driveway gates, gate operators and fences for Houston homes and businesses.</p>
+    <div class="checks"><span>20+ years experience</span><span>Free estimates</span><span>Custom fabrication</span><span>Residential · Commercial · Industrial</span></div>
+    <div class="ctas">
+      <a class="btn btn-gold" href="#quote" onclick="tab('form')">Free Estimate<span class="lg"> →</span></a>
+      <a class="btn btn-white ring" href="tel:+12812060126">Call Now<span class="lg"> (281) 206-0126</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Our services</span>
+      <h2>Everything that opens, closes and keeps you secure.</h2>
+      <p>From a broken spring to a custom steel driveway gate, one crew handles it from the first measurement to the last weld.</p>
+      <div class="chips"><span class="chip">Free estimates</span><span class="chip">All major brands</span><span class="chip">Repair or replace</span></div>
+    </div>
+    <div class="grid c2 c3">
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s1.webp')"><span class="tag">Free estimate</span></div><div class="bd">
+        <h3>Garage Door Installation</h3><p>New residential doors, custom and standard, fitted and balanced for years of quiet use.</p>
+        <ul><li>Custom and standard doors</li><li>Insulated and steel options</li><li>Old door hauled away</li><li>Tested and adjusted on site</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s2.webp')"><span class="tag">Fast response</span></div><div class="bd">
+        <h3>Garage Door Repair</h3><p>Stuck, noisy or off its track? We get it opening and closing safely again.</p>
+        <ul><li>Broken springs and cables</li><li>Off-track doors and rollers</li><li>Bent panels and slats</li><li>Safety sensor fixes</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s3.webp')"><span class="tag">Built in-house</span></div><div class="bd">
+        <h3>Custom Driveway Gates</h3><p>Steel, iron and wood gates designed and fabricated for your property, swing or slide.</p>
+        <ul><li>Steel, iron and wood designs</li><li>Swing and sliding gates</li><li>Security gates for homes</li><li>Welding and fabrication</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s4.webp');background-position:center 45%"><span class="tag">Free estimate</span></div><div class="bd">
+        <h3>Gate Operators &amp; Access Control</h3><p>Motorized openers, keypads and remotes so your gate opens for the right people only.</p>
+        <ul><li>Gate opener installation</li><li>Keypads, remotes, intercoms</li><li>Sensor and safety repairs</li><li>Upgrades to old operators</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s5.webp');background-position:center 30%"><span class="tag">Free estimate</span></div><div class="bd">
+        <h3>Fences</h3><p>Wood, iron and steel fences that match your gate and keep your property private and secure.</p>
+        <ul><li>Wood privacy fences</li><li>Wrought iron and steel</li><li>Matching gates</li><li>Repairs and replacements</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+      <article class="svc"><div class="ph" style="--img:url('/angel-pro/s6.webp')"><span class="tag">Commercial</span></div><div class="bd">
+        <h3>Commercial &amp; Industrial Doors</h3><p>Overhead and rolling steel doors for shops, warehouses and loading docks.</p>
+        <ul><li>Rolling steel doors</li><li>Overhead sectional doors</li><li>Damaged slat repair</li><li>Openers for heavy doors</li></ul>
+        <div class="ln"><a href="#" data-lock="Services">Learn more</a><a href="#quote" onclick="tab('form')">Get a quote →</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap signs">
+    <div>
+      <span class="eyebrow">Not sure yet?</span>
+      <div class="head" style="margin-bottom:0"><h2>Signs it's time to give us a call.</h2>
+      <p>Any one of these is worth a free look. A small fix today is cheaper than a door or gate that quits on you.</p></div>
+      <ul>
+        <li>Your garage door is loud, jerky or slow to open</li>
+        <li>The door reverses, won't close, or a spring looks gapped</li>
+        <li>Your gate sticks, sags or the opener has stopped answering the remote</li>
+        <li>Your fence is leaning, rotting or no longer keeps people out</li>
+      </ul>
+      <a class="btn btn-gold" href="#quote" onclick="tab('form')">Get My Free Estimate →</a>
+    </div>
+    <div class="pic" style="--img:url('/angel-pro/signs.webp');background-position:center 55%"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Why Angel Pro</span><h2>Why Houston calls Angel Pro Services.</h2></div>
+    <div class="grid c3 whyc">
+      <div class="wc"><i>⚒</i><h3>We build it, not just install it</h3><p>Gates and custom doors are fabricated and welded by our own crew, so they fit your property exactly.</p></div>
+      <div class="wc"><i>✦</i><h3>Honest work since 2004</h3><p>We started with garage doors over 20 years ago and grew one satisfied customer at a time.</p></div>
+      <div class="wc"><i>☎</i><h3>A family-run team you can reach</h3><p>Raul runs the crew and Patsy keeps every job on schedule. You talk to real people, not a call center.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>20+</b><span>Years in business</span></div>
+      <div class="stat"><b>4.7★</b><span>Google rating</span></div>
+      <div class="stat"><b>Custom</b><span>Built in-house</span></div>
+      <div class="stat"><b>Free</b><span>Estimates</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Reviews</span>
+      <h2>What customers say.</h2>
+      <p>A garage door or gate is something you use every day. Here is what Houston customers say on Google.</p>
+      <a class="gbadge" href="https://www.google.com/maps/place/Angel+Pro+Services+LLC/data=!4m2!3m1!1s0x8640cf2d40f04ac9:0x7b42fca792ca94a7?hl=en" target="_blank" rel="noopener"><b>4.7</b><span><span style="color:#fbbc04">★★★★★</span><br>29 Google reviews</span></a>
+    </div>
+    <div class="grid c3"><div class="rv"><div class="st">★★★★★</div><q>Angel pro service LLC receives 2 thumbs up! They can work around your busy schedules with weekend repairs and give you options on packages/ affordable pricing when it comes to garage door repairs. Install process was fast and tech goes over everything after repairs. Highly recommended!</q><div class="who">Joe M.<small>Google review · 5 months ago</small></div></div><div class="rv"><div class="st">★★★★★</div><q>Thank you Angel Pro Services for repairing the gate &amp; gate opener. Your professionalism and accuracy in diagnosing the issue was efficient and the workmanship was perfect. I will be highly recommending your expertise to everyone.</q><div class="who">Trish W.<small>Google review · a year ago</small></div></div><div class="rv"><div class="st">★★★★★</div><q>Very pleased with Angel Pro Services. It was nice to have Patsy so on top of the quotes and the scheduling and the two guys that came out to install my gate took the time do a job very well done. Very reasonable price for the professional work that they did.</q><div class="who">Aaron G.<small>Google review · 4 years ago</small></div></div></div>
+    <p style="text-align:center;margin-top:26px"><a class="btn btn-ghost" href="https://www.google.com/maps/place/Angel+Pro+Services+LLC/data=!4m2!3m1!1s0x8640cf2d40f04ac9:0x7b42fca792ca94a7?hl=en" target="_blank" rel="noopener">Read all 29 reviews on Google →</a></p>
+  </div>
+</section>
+
+<section id="areas">
+  <div class="wrap">
+    <div class="areas">
+      <div>
+        <span class="eyebrow">Service area</span>
+        <h2 class="display" style="font-size:1.9rem;text-transform:uppercase">Serving Houston and the surrounding areas.</h2>
+        <p style="color:var(--muted);margin-top:8px">Based in northwest Houston. Here's where our crew works most often.</p>
+        <div class="chips"><span class="chip">Houston</span><span class="chip">Sugar Land</span><span class="chip">Katy</span><span class="chip">Cypress</span><span class="chip">Pearland</span><span class="chip">Missouri City</span><span class="chip">Angleton</span><span class="chip">Spring</span></div>
+      </div>
+      <div class="callout">
+        <h3 style="text-transform:uppercase">Outside these areas?</h3>
+        <p>Call and we'll confirm availability before scheduling your free estimate.</p>
+        <a class="btn btn-gold ring" href="tel:+12812060126"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call (281) 206-0126</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap" style="max-width:860px">
+    <div class="head"><span class="eyebrow">FAQ</span><h2>Questions customers ask.</h2></div>
+    <details><summary>Do you repair garage doors you didn't install?</summary><p>Yes. We repair all major brands of residential and commercial garage doors and openers, no matter who installed them.</p></details>
+    <details><summary>Can you build a custom gate to match my house?</summary><p>Yes. We design and fabricate gates in steel, iron and wood, swing or sliding, and can match an existing fence or style.</p></details>
+    <details><summary>Can you add an opener to the gate I already have?</summary><p>In most cases, yes. We look at the gate's size, weight and hinges, then recommend the right operator and access control.</p></details>
+    <details><summary>Is the estimate really free?</summary><p>Yes. We come out, measure, and give you a clear price before any work starts. No pressure.</p></details>
+    <details><summary>Can I send photos for a faster estimate?</summary><p>Yes. Add photos in the quote form below or send them in the chat, and we can often give you a ballpark the same day.</p></details>
+    <details><summary>Do you work on commercial and industrial doors?</summary><p>Yes. We install and repair overhead and rolling steel doors for shops, warehouses and loading docks.</p></details>
+    <details><summary>How long does a new gate take?</summary><p>It depends on the design. Repairs are usually quick, while custom-fabricated gates are built to order. We give you a timeline with the estimate.</p></details>
+    <details><summary>How can I pay?</summary><p>Ask us when you get your estimate and we'll go over the payment options for your job.</p></details>
+  </div>
+</section>
+
+<section id="quote" class="dark">
+  <div class="wrap quote">
+    <div>
+      <span class="eyebrow">Free estimate</span>
+      <div class="head"><h2>Tell us about the job. We'll tell you the price.</h2>
+      <p>Ask a question or send a few details. A real person from Angel Pro Services replies the same day.</p></div>
+      <a class="btn btn-gold ring" href="tel:+12812060126"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call (281) 206-0126</a>
+      <p style="margin-top:22px;color:#bdbab1">Prefer email? <a style="color:var(--gold-2);font-weight:600" href="mailto:angelproserv@gmail.com">angelproserv@gmail.com</a></p>
+    </div>
+    <div class="card">
+      <div class="tabs"><button id="t-chat" class="on" onclick="tab('chat')">💬 Ask a question</button><button id="t-form" onclick="tab('form')">📋 Free quote</button></div>
+      <div class="pane on" id="p-chat">
+        <div class="chat-h"><img src="/angel-pro/logo.webp" alt=""><div><b>Angel Pro Assistant</b><small>● Usually replies in seconds</small></div></div>
+        <div class="msgs" id="msgs"><div class="msg bot">Hi! I'm the Angel Pro Services assistant. Tell me what's going on with your garage door, gate or fence, and I'll help you get an estimate.</div></div>
+        <form class="chat-in" onsubmit="send(event)"><input id="chatin" placeholder="Type a message..." autocomplete="off"><button class="btn btn-gold" style="padding:12px 16px">→</button></form>
+      </div>
+      <div class="pane" id="p-form">
+        <form onsubmit="quote(event)">
+          <div class="two"><label>Your name*<input required placeholder="John Smith"></label><label>Phone*<input required type="tel" placeholder="(281) 555-0123"></label></div>
+          <div class="two"><label>Email (optional)<input type="email" placeholder="your@email.com"></label><label>Address or area*<input required placeholder="Street, neighborhood, or ZIP"></label></div>
+          <label>Service needed*<select required><option value="">Choose a service...</option><option>Garage door installation</option><option>Garage door repair</option><option>Custom driveway gate</option><option>Gate operator / access control</option><option>Fence</option><option>Commercial / industrial door</option><option>Not sure yet</option></select></label>
+          <label>Tell us about it<textarea rows="3" placeholder="What's broken or what you'd like built, and how urgent it is"></textarea></label>
+          <label class="drop">📷 Tap to add a photo, or drop one here<br><small>Optional, but it speeds up your quote</small></label>
+          <button class="btn btn-gold" style="width:100%">Get My Free Quote</button>
+          <div class="ok" id="ok">Thanks! This is a preview, so nothing was sent. On your live site, this goes straight to your phone and email.</div>
+          <p class="fine">Free estimate · No pressure · Or call (281) 206-0126</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="brand" href="#top" style="color:#fff"><img src="/angel-pro/logo.webp" alt=""><span>ANGEL PRO<small>SERVICES LLC</small></span></a>
+        <p style="margin-top:14px">Garage doors, gates, operators and fences. Installation, repair and maintenance for residential, commercial and industrial properties.</p>
+        <div class="fb"><span>4.7★ Google</span><span>20+ Years</span><span>Family Run</span><span>Custom Fabrication</span><span>Free Estimates</span></div>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Garage Door Installation</a></li><li><a href="#services">Garage Door Repair</a></li><li><a href="#services">Custom Gates</a></li><li><a href="#services">Gate Operators</a></li><li><a href="#services">Fences</a></li><li><a href="#services">Commercial Doors</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li><li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li><a href="tel:+12812060126">(281) 206-0126</a></li><li><a href="mailto:angelproserv@gmail.com">angelproserv@gmail.com</a></li><li>Houston, TX</li></ul><a class="btn btn-gold" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Free Estimate</a></div>
+    </div>
+    <div class="copy"><span>© 2026 Angel Pro Services LLC. Serving Houston, TX and the surrounding area.</span><span>Website by MoreBookedNow</span></div>
+  </div>
+</footer>
+
+<div class="float"><a class="btn btn-dark" href="#quote" onclick="tab('chat')">💬 Ask a question</a><a class="btn btn-gold" href="#quote" onclick="tab('form')">📋 Free quote</a></div>
+<nav class="mbar"><a href="tel:+12812060126"><i>📞</i>Call</a><a href="#quote" onclick="tab('chat')"><i>💬</i>Ask</a><a class="g" href="#quote" onclick="tab('form')"><i>📋</i>Free quote</a></nav>
+
+<div class="lock" id="lock" onclick="if(event.target===this)unlock()">
+  <div class="box">
+    <button class="x" onclick="unlock()" aria-label="Close">×</button>
+    <div class="k">🔒</div>
+    <h3 id="lock-t">Services page</h3>
+    <p>This page is part of the full Angel Pro Services website. It unlocks when your site goes live.</p>
+    <ul id="lock-l"></ul>
+    <a class="btn btn-gold" id="lock-go" href="https://morebookednow.com/services" target="_blank" rel="noopener">See what's included →</a>
+  </div>
+</div>
+
+<script>
+const LOCK={
+  'Services':['A full page for each service','Signs you need it, what is included','Built to rank on Google for each service'],
+  'Pricing':['Instant ballpark price calculator','Price guide for doors, gates and fences','Recent jobs with real prices'],
+  'Reviews':['All your Google reviews in one place','Before and after photo sliders','Automatic review requests after each job'],
+  'Service Areas':['A page for every city you serve','Shows up when people search “gate repair near me”','Quote form on every area page'],
+  'About':['Your story, your crew, your photos','How a job runs, start to finish','Why customers pick you over the cheapest bid']
+};
+document.querySelectorAll('[data-lock]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();closeNav();const k=a.dataset.lock;document.getElementById('lock-t').textContent=k+' page';document.getElementById('lock-l').innerHTML=LOCK[k].map(x=>'<li>'+x+'</li>').join('');document.getElementById('lock-go').href='https://morebookednow.com/'+(k==='Pricing'?'pricing':'services');document.getElementById('lock').classList.add('open')}));
+function unlock(){document.getElementById('lock').classList.remove('open')}
+function closeNav(){document.getElementById('mnav').classList.remove('open')}
+function tab(w){['chat','form'].forEach(k=>{document.getElementById('t-'+k).classList.toggle('on',k===w);document.getElementById('p-'+k).classList.toggle('on',k===w)})}
+function add(t,c){const m=document.createElement('div');m.className='msg '+c;m.textContent=t;const b=document.getElementById('msgs');b.appendChild(m);b.scrollTop=b.scrollHeight}
+let step=0;
+function send(e){e.preventDefault();const i=document.getElementById('chatin');const v=i.value.trim();if(!v)return;add(v,'me');i.value='';
+  const r=step===0?'Got it, thanks! Is this for a garage door, a gate, or a fence? And what part of Houston are you in?':step===1?'Perfect. What is the best phone number to reach you? Raul or Patsy will call you back today with a free estimate.':'Thanks! This is a preview, so nothing was sent. On your live site, this conversation goes straight to your phone.';
+  step++;setTimeout(()=>add(r,'bot'),700)}
+function quote(e){e.preventDefault();document.getElementById('ok').style.display='block'}
+</script>
+</body>
+</html>
