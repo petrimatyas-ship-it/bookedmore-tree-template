@@ -498,5 +498,30 @@ function send(e){e.preventDefault();const i=document.getElementById('chatin');co
   step++;setTimeout(()=>add(r,'bot'),700)}
 function quote(e){e.preventDefault();document.getElementById('ok').style.display='block'}
 </script>
+<script>
+/* Visit tracking, same events as the generated demos (components/DemoTracker.tsx),
+   recorded as engagement:angel-pro and shown on morebookednow.com/admin/demos.
+   Only the shape of the visit: page, scroll depth, buttons. Nothing typed. */
+(function(){
+  var slug='angel-pro',page=location.pathname,visit=Math.random().toString(36).slice(2,12),sent={};
+  function send(ev,val){var k=ev+':'+(val==null?'':val);if(sent[k])return;sent[k]=1;
+    var body=JSON.stringify({slug:slug,event:ev,page:page,value:val,visit:visit});
+    try{if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/demo/track',new Blob([body],{type:'application/json'}))))
+      fetch('/api/demo/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}catch(e){}}
+  send('view');
+  function onScroll(){var d=document.documentElement,h=d.scrollHeight-innerHeight;if(h<=0)return;
+    var p=Math.round(scrollY/h*100);[25,50,75,100].forEach(function(m){if(p>=m)send('scroll',m)})}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.indexOf('tel:')===0)send('cta:call');
+    else if(href.indexOf('mailto:')===0)send('cta:email');
+    else if(a.hasAttribute('data-lock'))send('cta:locked-page');
+    else if(href==='#quote')send('cta:estimate')},true);
+  document.addEventListener('submit',function(e){if(e.target.classList.contains('chat-in'))send('assistant');else send('cta:quote-form')},true);
+  var opened=Date.now();
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send('dwell',Math.round((Date.now()-opened)/1000))});
+})();
+</script>
 </body>
 </html>
