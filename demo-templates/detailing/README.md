@@ -76,8 +76,13 @@ From the third review (October 2026):
   the label under each name).
 - Hero background: a graphic, not a photo. With no `images.hero`, the hero
   is an animated glossy-paint surface in the page's blue, with beading
-  water drops, a few drops rolling down and a light sweep. A car photo
-  (Apex's truck) and a cut-out car were both tried and turned down.
+  water drops, a few drops rolling down and a light sweep, and an
+  animated supercar (a drawn SVG, `.ride`): it outlines itself in, then
+  keeps driving with spinning wheels, road streaks, headlight beams and a
+  shine along the paint. On phones it sits in a strip at the top with the
+  text right under it (no empty space up there); on desktop, to the right.
+  A car photo (Apex's truck) and a cut-out car were both tried and turned
+  down.
   `images.hero` still works if an owner wants a photo (`photo: true` for a
   full photo).
 
