@@ -80,9 +80,10 @@ From the third review (October 2026):
   a car photo, a cut-out car, an animated paint-and-droplets graphic and a
   drawn animated supercar. `images.hero` still adds a picture if an owner
   wants one (`photo: true` for a full photo).
-- On laptops the hero's right side shows one of the package cars
-  (`hero.side.car`, e.g. the Diamond car) on a soft glow, with a glass
-  card for their specialty (`hero.card`). Phones stay text only.
+- The hero stays plain on every screen. `hero.side.car` can put a package
+  car and a specialty card on the right (from 760px wide), but the owner
+  tried it on Apex and dropped it.
+- Sections sit close together: 44px padding on phones, 64px on desktop.
 - The tier cards' "Book" buttons go straight to their booking page
   (`links.booking`).
 - No price boxes in the hero (`hero.facts` left out). Package car pictures

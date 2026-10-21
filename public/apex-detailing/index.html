@@ -694,6 +694,7 @@ ol.journey li.on button span{display:block}
 @media(min-width:1100px){.ba-row{max-width:940px}}
 /* less space between sections on phones */
 @media(max-width:899px){.sec{padding:44px 0}.hero-in{padding-bottom:28px}}
+@media(min-width:900px){.sec{padding:64px 0}#results,#about{padding-top:40px}}
 /* hero: the car sits behind the text, drifting slowly under a light sweep */
 .hero .hero-in>.hero-vis{position:absolute;inset:0;z-index:-1;order:0;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:#030609}
 .hero-vis .glass{display:none}
@@ -797,7 +798,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 
 /* laptop hero: their car and two glass cards on the right; phones stay text only */
 .hero-side{display:none}
-@media(min-width:1000px){
+@media(min-width:760px){
   .hero-in:has(.hero-side){grid-template-columns:1fr 1fr;gap:40px}
   .hero-side{display:block;position:relative;align-self:stretch;min-height:440px}
   .hs-glow{position:absolute;left:-4%;right:-10%;top:12%;bottom:6%;background:radial-gradient(50% 50% at 55% 55%,rgba(30,144,255,.32),transparent 70%);filter:blur(10px)}
@@ -805,6 +806,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
   .hs-floor{position:absolute;left:6%;right:0;top:calc(44% + 20%);height:22px;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(30,144,255,.45),transparent 70%);filter:blur(6px)}
   .hs-cer{left:-4%;right:auto;bottom:-2%;width:min(300px,62%);animation:hsup .9s .35s cubic-bezier(.2,.7,.2,1) both}
 }
+@media(min-width:760px) and (max-width:999px){.hero-in:has(.hero-side){grid-template-columns:1.25fr .75fr;gap:16px;align-items:stretch}.hero-in:has(.hero-side) h1 .b{font-size:clamp(3rem,9vw,5.4rem)}.hero-in:has(.hero-side) .ctas .btn{flex:1 1 0;min-width:0;padding:0 14px}.hero-side{min-height:360px}.hs-car{left:0;width:104%;top:40%}.hs-floor{top:calc(40% + 18%)}.hs-cer{left:0;width:min(250px,90%);bottom:0}.hs-cer h3{font-size:1.5rem}.hs-cer .pr b{font-size:1.9rem}.hs-cer ul{display:none}}
 @media(min-width:1000px) and (max-width:1279px){.hs-car{left:0;width:100%}.hs-cer{left:0;width:min(280px,66%)}.hs-floor{top:calc(44% + 17%)}}
 @keyframes hsin{from{opacity:0;transform:translate(8%,-46%)}to{opacity:1;transform:translate(0,-46%)}}
 @keyframes hsup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -921,17 +923,6 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       </div>
     </div>
 
-    <div class="hero-side" aria-hidden="true">
-      <span class="hs-glow"></span>
-      <img class="hs-car" src="/apex-detailing/tier-diamond.webp" alt="" width="728" height="320" fetchpriority="high" decoding="async">
-      <span class="hs-floor"></span>
-      <div class="glass g-cer hs-cer">
-        <span class="tag">Our specialty</span>
-        <h3 class="d">Ceramic coating</h3>
-        <div class="pr">from <b>$600</b></div>
-        <ul><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>5-year coating</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Paint correction</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Wheels &amp; glass</li></ul>
-      </div>
-    </div>
   </div>
 </section>
 
