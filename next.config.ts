@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
   // Hand-built demo pages are plain HTML in public/<name>/index.html, so
   // demo.morebookednow.com/<name> serves them without the trailing file name.
   async rewrites() {
-    return [{ source: "/angel-pro", destination: "/angel-pro/index.html" }];
+    return [
+      { source: "/angel-pro", destination: "/angel-pro/index.html" },
+      { source: "/apex-detailing", destination: "/apex-detailing/index.html" }
+    ];
   }
 };
 
