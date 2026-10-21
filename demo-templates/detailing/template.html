@@ -619,8 +619,9 @@ h2.d,h1 .b{overflow-wrap:break-word}
 @media(min-width:760px){.ba-row{margin:40px 0 0;padding:0}}
 @media(min-width:1100px){.ba-row{grid-template-columns:repeat(4,1fr)}}
 .cmp{overflow:hidden}
-.cmp img{position:absolute;top:0;height:100%;max-width:none;object-fit:fill}
-.cmp .bf{left:0}
+.ba .im.cmp{aspect-ratio:2/3}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp .af{clip-path:inset(0 0 0 var(--p))}
 .ba .im.cmp::after{display:none}
 .cmp .knob{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:rgba(220,240,255,.95);box-shadow:0 0 12px rgba(30,144,255,.8);pointer-events:none;z-index:2}
 .cmp .knob::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#0c1b2b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23e9f4ff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center no-repeat;border:2px solid #e9f4ff;box-shadow:0 4px 14px rgba(0,0,0,.6)}
@@ -644,6 +645,69 @@ ol.journey b{padding-top:0;font-size:1rem}
 .paycard>p{margin-bottom:14px}
 .paycard .pay span{display:inline-flex;align-items:center;gap:7px;padding:11px 15px;font-size:1rem;color:#fff;border-color:rgba(85,183,219,.35);background:rgba(30,144,255,.08)}
 .paycard .pay .ic{width:16px;height:16px;color:var(--sky)}
+
+/* one background for the whole page: sections sit on it with no seams */
+.hero,.ceramic,.reviews,.areawrap,.quote-sec,footer{background:none;border-top:0;border-bottom:0}
+.hero::before{background:radial-gradient(60% 45% at 85% 8%,rgba(30,144,255,.2),transparent 70%)}
+.cer-bg{top:40px;-webkit-mask-image:radial-gradient(60% 55% at 80% 40%,#000 25%,transparent 70%);mask-image:radial-gradient(60% 55% at 80% 40%,#000 25%,transparent 70%)}
+footer .copy{border-top:1px solid var(--line)}
+/* hero: book online and call, as two buttons under the main two */
+.sublinks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.sublinks a{justify-content:center;min-height:46px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.03);font-size:.95rem}
+.sublinks a:hover{border-color:rgba(143,216,255,.55)}
+@media(min-width:560px){.sublinks{grid-template-columns:repeat(2,210px)}}
+/* before & after: on phones, one photo at a time, picked by name */
+.ba-tabs{display:none}
+@media(max-width:759px){
+  .ba-tabs{display:flex;gap:8px;margin-top:28px;overflow-x:auto;scrollbar-width:none;margin-right:-16px;padding-right:16px}
+  .ba-tabs::-webkit-scrollbar{display:none}
+  .ba-tabs button{flex:none;padding:9px 14px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.03);color:var(--soft);font-weight:600;font-size:.9rem;cursor:pointer}
+  .ba-tabs button[aria-selected=true]{background:linear-gradient(180deg,#1a74d0,#0f5fae);border-color:transparent;color:#fff}
+  .ba-row{grid-template-columns:1fr;margin-top:14px}
+  .ba-row .ba:not(.on){display:none}
+}
+/* watch us work: their videos and their profiles, in one panel */
+.watch{margin-top:36px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 18px}
+@media(min-width:760px){.watch{padding:28px}}
+.w-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin-bottom:16px}
+.w-h .eyebrow{margin:0}
+.w-h b{font:italic 800 1.35rem/1.1 var(--dc);text-transform:uppercase;color:#fff;width:100%}
+.vids{display:grid;grid-auto-flow:column;grid-auto-columns:44%;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px 6px;scroll-padding:0 18px;scrollbar-width:none}
+.vids::-webkit-scrollbar{display:none}
+@media(min-width:760px){.vids{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);margin:0;padding:0;overflow:visible}}
+.vid,.vid-f{position:relative;display:block;width:100%;aspect-ratio:9/16;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:#000;scroll-snap-align:start}
+.vid{padding:0;cursor:pointer;text-align:left}
+.vid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.vid:hover img{transform:scale(1.04)}
+.vid::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,6,10,.92))}
+.vid .play{position:absolute;top:38%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(30,144,255,.88) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center no-repeat;box-shadow:0 0 22px rgba(30,144,255,.7);z-index:1}
+.vid .vt{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;color:#fff;font:italic 700 .92rem/1.12 var(--dc);text-transform:uppercase}
+@media(min-width:760px){.vid .play{top:50%}.vid .vt{font-size:1.02rem}}
+.vid-f{height:auto}
+.follow{display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
+@media(min-width:560px){.follow{grid-template-columns:1fr 1fr}}
+.follow a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:rgba(255,255,255,.03);color:#fff;font-weight:600}
+.follow a:hover{border-color:rgba(143,216,255,.55)}
+.follow i{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#0b1a29;color:var(--ice)}
+.follow i .ic{width:19px;height:19px}
+.follow span{display:flex;flex-direction:column;line-height:1.25;min-width:0;overflow-wrap:anywhere}
+.follow small{color:var(--muted);font-weight:500;font-size:.8rem}
+.follow .go{margin-left:auto;width:16px;height:16px;color:var(--muted);flex:none}
+/* ceramic steps as a route map: tap a step, the route lights up to it */
+ol.journey li{display:block;padding:0 0 14px 50px;min-height:38px}
+ol.journey li::before{transition:background .25s,border-color .25s,box-shadow .25s,color .25s}
+ol.journey li::after{background:rgba(85,183,219,.18);transition:background .25s}
+ol.journey li.done::after{background:linear-gradient(#1e90ff,#1e90ff)}
+ol.journey li:last-child::before{background:#07111b;color:var(--ice);border-color:rgba(85,183,219,.45);box-shadow:none}
+ol.journey li.done::before{border-color:#1e90ff;color:#fff;background:#0b2440}
+ol.journey li.on::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);color:#fff;border-color:transparent;box-shadow:0 0 18px rgba(30,144,255,.7)}
+ol.journey button{display:block;width:100%;text-align:left;background:none;border:0;padding:6px 0 0;cursor:pointer;color:inherit}
+ol.journey li::before{pointer-events:none}
+ol.journey b{color:var(--soft);transition:color .2s}
+ol.journey li.done b,ol.journey li.on b{color:#fff}
+ol.journey button span{display:none;margin-top:3px}
+ol.journey li.on button span{display:block}
+.jr-hint{margin-top:14px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
 <body>
@@ -753,8 +817,8 @@ ol.journey b{padding-top:0;font-size:1rem}
         <a class="btn btn-line" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text Us</a>
       </div>
       <div class="sublinks">
-        <a href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
         <a href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
+        <a href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a>
       </div>
       <div class="qf3" role="list" aria-label="Quick facts">
 {{#each hero.facts}}        <div role="listitem"><b class="chrome">{{value}}</b><span>{{label}}</span></div>
@@ -861,16 +925,19 @@ ol.journey b{padding-top:0;font-size:1rem}
       <p>{{results.intro}}</p>
     </div>
     <div class="ba-row">
-{{#each results.photos}}      <figure class="ba"><div class="im cmp" style="--s:{{split}};--p:50%"><img class="bf" src="/{{slug}}/{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><img class="af" src="/{{slug}}/{{file}}" alt="" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: {{title}}"></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
+{{#each results.photos}}      <figure class="ba"><div class="im cmp" style="--p:50%"><img class="bf" src="/{{slug}}/{{before}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><img class="af" src="/{{slug}}/{{after}}" alt="" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: {{title}}"></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
 {{/each}}    </div>
     <p class="bahint">Drag the handle left and right.</p>
-{{#if social}}    <div class="social">
-      <span>Watch us work:</span>
-{{#if social.tiktok}}      <a href="{{social.tiktok.url}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>{{social.tiktok.handle}}</a>
-{{/if}}{{#if social.instagram}}      <a href="{{social.instagram.url}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg>{{social.instagram.handle}}</a>
-{{/if}}    </div>
-{{/if}}
-{{#if social.tiktok.embed}}    <div class="tt" id="tt" data-user="{{social.tiktok.user}}"><a class="btn btn-glass" href="{{social.tiktok.url}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>See our videos on TikTok</a></div>
+{{#if social}}    <div class="watch">
+      <div class="w-h"><span class="eyebrow">Watch us work</span>{{#if social.tiktok.videos}}<b>Straight from our TikTok</b>{{/if}}</div>
+{{#if social.tiktok.videos}}      <div class="vids">
+{{#each social.tiktok.videos}}        <button type="button" class="vid" data-id="{{id}}" aria-label="Play on this page: {{title}}"><img src="/{{slug}}/{{file}}" alt="" width="360" height="640" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span><span class="vt">{{title}}</span></button>
+{{/each}}      </div>
+{{/if}}      <div class="follow">
+{{#if social.tiktok}}        <a href="{{social.tiktok.url}}" target="_blank" rel="noopener"><i><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></i><span><small>TikTok</small>{{social.tiktok.handle}}</span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+{{/if}}{{#if social.instagram}}        <a href="{{social.instagram.url}}" target="_blank" rel="noopener"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg></i><span><small>Instagram</small>{{social.instagram.handle}}</span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+{{/if}}      </div>
+    </div>
 {{/if}}  </div>
 </section>
 
@@ -908,9 +975,10 @@ ol.journey b{padding-top:0;font-size:1rem}
       <div class="cc">
         <h3>{{ceramic.stepsTitle}}</h3>
         <p style="color:var(--soft);margin-bottom:20px">{{ceramic.stepsIntro}}</p>
-        <ol class="steps journey">
-{{#each ceramic.steps}}          <li><b>{{title}}</b></li>
+        <ol class="steps journey" id="jr">
+{{#each ceramic.steps}}          <li><button type="button"><b>{{title}}</b>{{#if text}}<span>{{text}}</span>{{/if}}</button></li>
 {{/each}}        </ol>
+        <p class="jr-hint">Tap a step to see where it fits.</p>
       </div>
     </div>
 
@@ -1262,15 +1330,25 @@ function quote(e){
   try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
 }
 
-/* before & after: drag to compare; each image is one photo, before half left, after half right */
-document.querySelectorAll('.cmp').forEach(function(c){
-  var s=parseFloat(getComputedStyle(c).getPropertyValue('--s'))/100||.5,bf=c.querySelector('.bf'),af=c.querySelector('.af'),r=c.querySelector('input');
-  bf.style.width=(100/s)+'%';af.style.width=(100/(1-s))+'%';af.style.left=(-100*s/(1-s))+'%';
-  function fix(){var w=c.clientWidth;if(!w)return;var px=w*r.value/100,afw=w/(1-s),off=w*s/(1-s);af.style.clipPath='inset(0 0 0 '+((off+px)/afw*100)+'%)';c.style.setProperty('--p',r.value+'%')}
-  r.addEventListener('input',fix);addEventListener('resize',fix);fix();
-});
-/* TikTok videos: their creator embed, fetched only when the section is near */
-(function(){var t=document.getElementById('tt');if(!t||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var u=t.dataset.user;t.innerHTML='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@'+u+'" data-unique-id="'+u+'" data-embed-type="creator" style="max-width:780px;min-width:288px"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@'+u+'">@'+u+'</a></section></blockquote>';var sc=document.createElement('script');sc.async=true;sc.src='https://www.tiktok.com/embed.js';document.body.appendChild(sc)},{rootMargin:'400px'});io.observe(t)})();
+/* before & after: drag to compare; the after photo sits on top, cut at the handle */
+document.querySelectorAll('.cmp').forEach(function(c){var r=c.querySelector('input');r.addEventListener('input',function(){c.style.setProperty('--p',r.value+'%')})});
+/* TikTok videos: our copy of each cover; TikTok's own player loads only when one is tapped */
+document.querySelectorAll('.vid').forEach(function(v){v.addEventListener('click',function(){
+  var f=document.createElement('iframe');f.src='https://www.tiktok.com/player/v1/'+v.dataset.id+'?autoplay=1&music_info=0&description=0&rel=0&native_context_menu=0';
+  f.allow='autoplay; fullscreen; encrypted-media';f.title=v.querySelector('.vt').textContent;f.className='vid-f';
+  v.replaceWith(f)})});
+/* before & after on phones: one photo at a time, picked by name */
+(function(){var row=document.querySelector('.ba-row');if(!row)return;var fs=[].slice.call(row.querySelectorAll('.ba'));if(fs.length<2)return;
+  var t=document.createElement('div');t.className='ba-tabs';t.setAttribute('role','tablist');
+  fs.forEach(function(f,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=f.querySelector('figcaption b').textContent;
+    b.addEventListener('click',function(){fs.forEach(function(x,j){x.classList.toggle('on',j===i);t.children[j].setAttribute('aria-selected',j===i)})});t.appendChild(b)});
+  row.parentNode.insertBefore(t,row);t.children[0].click()})();
+/* ceramic steps: a little route map; tap a step, the route lights up to it */
+(function(){var ol=document.getElementById('jr');if(!ol)return;var li=[].slice.call(ol.children);
+  function go(n){li.forEach(function(x,i){x.classList.toggle('done',i<n);x.classList.toggle('on',i===n)});ol.style.setProperty('--at',n)}
+  li.forEach(function(x,i){x.querySelector('button').addEventListener('click',function(){go(i)})});
+  go(0);if(reduceMotion||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var n=0,k=setInterval(function(){if(++n>=li.length)return clearInterval(k);go(n)},260)},{threshold:.5});io.observe(ol)})();
 
 /* add-ons start collapsed on phones to keep the price list short; links to them open it */
 (function(){try{const a=document.getElementById('addons');if(!a)return;if(matchMedia('(max-width: 719px)').matches)a.removeAttribute('open');document.querySelectorAll('a[href="#addons"]').forEach(l=>l.addEventListener('click',()=>{a.open=true}))}catch(e){}})();
