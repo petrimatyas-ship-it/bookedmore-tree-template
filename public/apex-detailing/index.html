@@ -749,6 +749,17 @@ ol.journey li.on button span{display:block}
   .hero .hero-car.photo{left:auto;right:0;width:56%;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%);mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
   .hero-vis.photo::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(5,7,10,.9) 38%,rgba(5,7,10,.35) 62%,rgba(5,7,10,.15) 100%),linear-gradient(180deg,rgba(5,7,10,0) 70%,var(--bg) 100%)}
 }
+
+/* hero graphic: glossy paint with beading water, a few drops rolling down */
+.roll{animation:roll var(--d) ease-in var(--dl) infinite}
+@keyframes roll{0%{transform:translateY(0);opacity:0}6%{opacity:1}30%{transform:translateY(160px)}42%{transform:translateY(185px)}88%{opacity:1}100%{transform:translateY(1020px);opacity:0}}
+.hl-move{animation:hlmove 14s ease-in-out infinite alternate}
+@keyframes hlmove{to{transform:translate(-70px,34px)}}
+.beads{animation:beads 26s ease-in-out infinite alternate}
+@keyframes beads{to{transform:translate(-18px,8px)}}
+.hero-vis:not(.photo)::after{background:linear-gradient(180deg,rgba(5,7,10,.05) 0%,rgba(5,7,10,.4) 32%,rgba(5,7,10,.74) 60%,var(--bg) 100%)}
+@media(min-width:1000px){.hero-vis:not(.photo)::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(5,7,10,.72) 28%,rgba(5,7,10,.15) 58%,rgba(5,7,10,0) 78%),linear-gradient(180deg,rgba(5,7,10,0) 72%,var(--bg) 100%)}}
+@media(prefers-reduced-motion:reduce){.roll,.hl-move,.beads{animation:none}.roll{opacity:0}}
 </style>
 </head>
 <body>
@@ -863,8 +874,8 @@ ol.journey li.on button span{display:block}
       </div>
     </div>
 
-    <div class="hero-vis photo" aria-hidden="true">
-      <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice">
+    <div class="hero-vis" aria-hidden="true">
+      <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="paint" x1="0" y1="0" x2=".7" y2="1">
             <stop offset="0" stop-color="#123150"/>
@@ -879,15 +890,38 @@ ol.journey li.on button span{display:block}
           </linearGradient>
           <filter id="bl40" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="38"/></filter>
           <filter id="bl3"><feGaussianBlur stdDeviation="2.4"/></filter>
+          <linearGradient id="hp" x1="0" y1="0" x2=".85" y2="1">
+            <stop offset="0" stop-color="#0f467f"/>
+            <stop offset=".32" stop-color="#0a2c52"/>
+            <stop offset=".62" stop-color="#051629"/>
+            <stop offset="1" stop-color="#010409"/>
+          </linearGradient>
+          <radialGradient id="hg" cx="72%" cy="20%" r="55%">
+            <stop offset="0" stop-color="#4aa3ff" stop-opacity=".5"/>
+            <stop offset=".5" stop-color="#1e70c8" stop-opacity=".16"/>
+            <stop offset="1" stop-color="#0a2c52" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="trail" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8fd0ff" stop-opacity="0"/>
+            <stop offset="1" stop-color="#8fd0ff" stop-opacity=".3"/>
+          </linearGradient>
         </defs>
-        <rect width="600" height="720" fill="url(#paint)"/>
-        <path d="M-80 600C120 470 330 360 700 150" stroke="url(#hl)" stroke-width="120" fill="none" filter="url(#bl40)" opacity=".55"/>
-        <path d="M-80 640C140 505 360 400 700 205" stroke="#cfeaff" stroke-width="3" fill="none" filter="url(#bl3)" opacity=".5"/>
-        <path d="M-80 120C200 80 420 60 700 -10" stroke="#5ab4ff" stroke-width="40" fill="none" filter="url(#bl40)" opacity=".25"/>
-        <use href="#field"/>
+        <rect width="1200" height="900" fill="url(#hp)"/>
+        <rect width="1200" height="900" fill="url(#hg)"/>
+        <g class="hl-move">
+          <path d="M-150 760C220 560 640 420 1350 170" stroke="url(#hl)" stroke-width="170" fill="none" filter="url(#bl40)" opacity=".5"/>
+          <path d="M-150 805C240 600 660 465 1350 222" stroke="#d6eeff" stroke-width="3" fill="none" filter="url(#bl3)" opacity=".55"/>
+        </g>
+        <path d="M-150 860C260 690 700 590 1350 400" stroke="#fff" stroke-width="1.5" fill="none" opacity=".07"/>
+        <path d="M-100 180C300 120 760 80 1300 -20" stroke="#5ab4ff" stroke-width="60" fill="none" filter="url(#bl40)" opacity=".22"/>
+        <g class="beads"><use href="#field"/><use href="#field" transform="translate(600 0)"/><use href="#field" transform="translate(0 720)"/><use href="#field" transform="translate(600 720)"/></g>
+        <g transform="translate(170 -40)"><g class="roll" style="--d:15s;--dl:-3s"><rect x="-2.4" y="-150" width="4.8" height="150" rx="2.4" fill="url(#trail)"/><use href="#b" transform="scale(0.8)"/></g></g>
+        <g transform="translate(430 -60)"><g class="roll" style="--d:19s;--dl:-11s"><rect x="-2.4" y="-150" width="4.8" height="150" rx="2.4" fill="url(#trail)"/><use href="#b" transform="scale(0.65)"/></g></g>
+        <g transform="translate(760 -40)"><g class="roll" style="--d:13s;--dl:-7s"><rect x="-2.4" y="-150" width="4.8" height="150" rx="2.4" fill="url(#trail)"/><use href="#b" transform="scale(0.9)"/></g></g>
+        <g transform="translate(985 -50)"><g class="roll" style="--d:17s;--dl:-1s"><rect x="-2.4" y="-150" width="4.8" height="150" rx="2.4" fill="url(#trail)"/><use href="#b" transform="scale(0.7)"/></g></g>
+        <g transform="translate(1115 -30)"><g class="roll" style="--d:21s;--dl:-14s"><rect x="-2.4" y="-150" width="4.8" height="150" rx="2.4" fill="url(#trail)"/><use href="#b" transform="scale(0.6)"/></g></g>
       </svg>
       <div class="sweep"></div>
-      <img class="hero-car photo" src="/apex-detailing/hero-truck.webp" alt="Gray Chevy Silverado 2500 HD ZR2, freshly washed in a driveway" width="1200" height="1600" fetchpriority="high" decoding="async">
 
       <div class="glass g-rate"><b>5.0</b><div><span class="stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><small>21 Google reviews</small></div></div>
       <div class="glass g-cer">
