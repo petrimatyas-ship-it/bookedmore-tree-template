@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{seo.title}}</title>
+<meta name="description" content="{{seo.description}}">
+<meta name="theme-color" content="#05070a">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/{{slug}}/icon.png">
+<link rel="apple-touch-icon" href="/{{slug}}/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,600;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05070a; --bg2:#080c11; --panel:#0c1218; --panel2:#111a23;
+  --line:rgba(150,190,230,.12); --line2:rgba(150,190,230,.24);
+  --text:#e9eff5; --soft:#bfcbd7; --muted:#98a7b7;
+  --blue:#1e90ff; --blue-d:#0f72c0; --sky:#55b7db; --ice:#a8e1ff;
+  --bronze:#f0c28b; --gold:#cea656; --plat:#dde2e8; --dia:#8fd8ff;
+  --dc:'Barlow Condensed','Arial Narrow',Barlow,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:76px}
+body{font:400 16px/1.6 Barlow,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;padding-bottom:calc(62px + env(safe-area-inset-bottom))}
+@media(min-width:900px){body{padding-bottom:0}}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.wrap{padding:0 32px}}
+.ic{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ic.f{fill:currentColor;stroke:none}
+.nw{white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* type */
+.d{font-family:var(--dc);font-style:italic;font-weight:800;text-transform:uppercase;letter-spacing:.005em;line-height:.94}
+h2.d{font-size:clamp(2.4rem,8.4vw,4.3rem)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 .82rem/1 var(--dc);letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:16px}
+.eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--blue),rgba(30,144,255,0))}
+.chrome{background:linear-gradient(180deg,#ffffff 8%,#e8eef4 44%,#a3b0bd 52%,#dde5ec 64%,#ffffff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .chrome{background-size:100% .88em;background-repeat:repeat}
+.blue-t{background:linear-gradient(100deg,#6cc4ff 0%,#e6f6ff 30%,#1e90ff 55%,#8fd8ff 80%,#ffffff 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tsheen 7s ease-in-out infinite}
+@keyframes tsheen{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+.sh{max-width:680px}
+.sh p{color:var(--soft);font-size:1.08rem;margin-top:16px}
+.sec{padding:64px 0;position:relative}
+@media(min-width:900px){.sec{padding:112px 0}#results,#about{padding-top:56px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 22px;border-radius:10px;font:700 1.08rem/1 var(--dc);letter-spacing:.07em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s,background .18s;white-space:nowrap;position:relative}
+.btn:active{transform:translateY(1px)}
+.btn-blue{color:#fff;background:linear-gradient(180deg,#2a86e0 0%,#1a74d0 48%,#0f5fae 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 1px rgba(30,144,255,.55),0 12px 34px -10px rgba(30,144,255,.75)}
+.btn-blue:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 0 1px rgba(120,190,255,.8),0 16px 44px -10px rgba(30,144,255,.95);transform:translateY(-1px)}
+.btn-glass{color:#fff;background:rgba(255,255,255,.04);border-color:var(--line2)}
+.btn-glass:hover{border-color:rgba(143,216,255,.6);background:rgba(143,216,255,.07)}
+.btn-glass .ic{color:var(--sky)}
+.btn-line{color:#fff;background:rgba(30,144,255,.06);border-color:rgba(85,183,219,.55)}
+.btn-line .ic{color:var(--ice)}
+.btn-line:hover{border-color:var(--ice);background:rgba(30,144,255,.14)}
+.lnk{display:inline-flex;align-items:center;gap:7px;color:var(--ice);font-weight:600}
+.lnk:hover{color:#fff}
+
+/* ribbon + header */
+.demo-ribbon .rs{display:none}
+@media(max-width:379px){.demo-ribbon .rl{display:none}.demo-ribbon .rs{display:inline}}
+.demo-ribbon{background:linear-gradient(90deg,#0b5c9c,#1670cc 50%,#0b5c9c);color:#fff;text-align:center;font-size:.78rem;font-weight:600;padding:6px 12px;letter-spacing:.02em}
+header.top{position:sticky;top:0;z-index:40;background:rgba(5,7,10,.84);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:18px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{width:42px;height:42px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(85,183,219,.35))}
+.wm{font:italic 800 1.42rem/.9 var(--dc);letter-spacing:.02em;text-transform:uppercase;color:#fff}
+.wm small{display:block;font:600 .6rem/1.2 Barlow,system-ui,sans-serif;letter-spacing:.26em;color:var(--sky);font-style:normal;margin-top:5px}
+nav.main{display:none;margin-left:auto;gap:22px;font-weight:500;font-size:.95rem;color:var(--soft)}
+nav.main a{padding:6px 0;position:relative;white-space:nowrap}
+nav.main a:hover{color:#fff}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform .2s}
+nav.main a:hover::after{transform:scaleX(1)}
+.hdr-phone{display:none;align-items:center;gap:8px;font-weight:600;color:#fff;margin-left:auto;white-space:nowrap}
+.hdr-phone .ic{color:var(--sky)}
+.hdr-cta{display:none}
+.hdr .btn{min-height:44px;padding:0 18px;font-size:1rem}
+.burger{margin-left:auto;background:rgba(255,255,255,.03);border:1px solid var(--line2);color:#fff;width:46px;height:46px;border-radius:10px;cursor:pointer;display:grid;place-items:center}
+.burger .ic{width:22px;height:22px}
+@media(min-width:760px){.hdr-phone{display:inline-flex}.hdr-cta{display:inline-flex}.burger{margin-left:0}}
+@media(min-width:1100px){nav.main{display:flex}.hdr-phone{margin-left:8px}.burger{display:none}}
+@media(min-width:1100px) and (max-width:1239px){nav.main{gap:18px;font-size:.92rem}}
+.hdr .brand{flex:none}
+.mnav{display:none;border-top:1px solid var(--line);padding:6px 16px 18px;background:#05070a;max-height:calc(100vh - 100px);overflow-y:auto}
+.mnav.open{display:block}
+@media(min-width:760px){.mnav{padding:6px 32px 22px;max-width:480px;margin-left:auto;border-left:1px solid var(--line)}}
+.mnav a.l{display:flex;justify-content:space-between;align-items:center;padding:14px 4px;font-size:1.06rem;font-weight:600;border-bottom:1px solid var(--line)}
+.mnav a.l .ic{color:var(--muted);width:16px}
+.mnav .mb{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.mnav .mb .btn{width:100%;padding:0 12px}
+.mnav .mb .full{grid-column:1/-1}
+
+/* hero */
+.hero{position:relative;overflow:hidden;isolation:isolate;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 45% at 85% 8%,rgba(30,144,255,.22),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(85,183,219,.10),transparent 70%)}
+.hero-in{display:grid;gap:34px;padding-top:34px;padding-bottom:40px}
+@media(min-width:760px) and (max-width:999px){.hero-in{grid-template-columns:1.15fr .85fr;align-items:center;gap:32px}h1 .b{font-size:clamp(3rem,7.6vw,6.2rem)}}
+@media(min-width:1000px){.hero-in{grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:88px}}
+@media(max-width:400px){.hero-in{padding-top:20px}h1{margin:16px 0 14px}.hero .ctas{margin-top:20px}.hero .sublinks{margin-top:10px}.hero .qf3{margin-top:16px}}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line2);font-size:.86rem;font-weight:600;color:#fff}
+.pill:hover{border-color:rgba(143,216,255,.55)}
+.stars{display:inline-flex;gap:2px;color:#ffc94d}
+.stars .ic{width:15px;height:15px}
+.pill .g{color:var(--muted);font-weight:500}
+h1{margin:22px 0 18px}
+h1 .a{display:block;font:italic 700 clamp(1.45rem,4.6vw,2.2rem)/1 var(--dc);text-transform:uppercase;letter-spacing:.03em;color:var(--sky);margin-bottom:10px}
+h1 .a q{quotes:"\201C" "\201D"}
+h1 .b{display:block;font-size:clamp(3.05rem,12.6vw,6.2rem);line-height:.88;padding-right:.08em;filter:drop-shadow(0 6px 30px rgba(30,144,255,.18))}
+.lead{font-size:1.1rem;color:var(--soft);max-width:560px}
+.lead b{color:#fff;font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.ctas .btn{flex:1 1 0;min-width:0}
+@media(min-width:560px){.ctas .btn{flex:0 0 auto;min-width:210px}}
+.sublinks{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:.95rem;color:var(--muted)}
+.sublinks a{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600}
+.sublinks a:hover{color:#fff}
+.sublinks .ic{color:var(--sky)}
+.qf3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));max-width:560px}
+.qf3>div{padding:13px 12px 14px;min-width:0}
+.qf3>div+div{border-left:1px solid var(--line)}
+.qf3 b{display:block;font:italic 800 2.15rem/1 var(--dc);font-variant-numeric:tabular-nums;padding-right:.06em}
+.qf3 b small{font-size:.5em;margin-left:3px;letter-spacing:.04em}
+.qf3 span{display:block;font-size:.8rem;color:var(--muted);line-height:1.25;margin-top:5px}
+@media(min-width:560px){.qf3>div{padding:14px 18px 15px}.qf3 span{font-size:.86rem}}
+
+.hero-vis{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1/1.04;border:1px solid var(--line2);box-shadow:0 50px 90px -50px rgba(30,144,255,.55),inset 0 1px 0 rgba(255,255,255,.08);background:#030609}
+@media(min-width:560px) and (max-width:759px){.hero-vis{aspect-ratio:16/9}}
+@media(min-width:760px){.hero-vis{aspect-ratio:5/6;border-radius:26px}}
+.hero-vis>svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-logo{position:absolute;left:50%;top:4%;width:37%;max-width:240px;height:auto;transform:translateX(-50%);filter:drop-shadow(0 22px 36px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(85,183,219,.32))}
+@media(min-width:560px) and (max-width:759px){.hero-logo{left:6%;top:50%;width:27%;transform:translateY(-58%)}}
+@media(min-width:760px){.hero-logo{top:19%;width:44%}}
+@media(max-width:380px){.hero-logo{width:32%;top:3%}}
+.sweep{position:absolute;inset:-30%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.12) 49%,rgba(200,235,255,.03) 53%,transparent 60%);transform:translateX(-55%);animation:sweep 8s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%,20%{transform:translateX(-55%)}65%,100%{transform:translateX(55%)}}
+.glass{position:absolute;background:rgba(6,12,20,.58);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border:1px solid rgba(170,215,255,.22);border-radius:16px;padding:14px 16px;box-shadow:0 24px 50px -24px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.12)}
+.g-rate{top:14px;right:14px;display:none;align-items:center;gap:12px;padding:10px 14px}
+@media(min-width:560px){.g-rate{display:flex}}
+.g-rate b{font:italic 800 2rem/1 var(--dc)}
+.g-rate small{display:block;font-size:.76rem;color:var(--soft);line-height:1.3}
+.g-cer{left:14px;right:14px;bottom:14px}
+@media(min-width:560px) and (max-width:759px){.g-cer{left:auto;right:18px;bottom:18px;width:min(340px,56%)}}
+@media(min-width:760px) and (max-width:999px){.g-rate{display:none}.g-cer{left:14px;right:14px;bottom:14px}.hero-vis .g-cer ul{display:none}.hero-logo{top:5%;width:50%}}
+@media(min-width:1000px){.g-rate{top:22px;right:22px}.g-cer{left:22px;bottom:22px;right:auto;width:min(330px,80%)}}
+.g-cer .tag{display:inline-block;font:700 .66rem/1 Barlow,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:linear-gradient(180deg,#1a74d0,#0f5fae);padding:5px 8px;border-radius:999px}
+.g-cer h3{font-size:1.9rem;margin:10px 0 4px}
+.g-cer .pr{display:flex;align-items:baseline;gap:8px;color:var(--soft);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.g-cer .pr b{font:italic 800 2.3rem/1 var(--dc);color:#fff;letter-spacing:0}
+.g-cer ul{list-style:none;display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:.86rem;color:var(--soft)}
+.g-cer li{display:flex;align-items:center;gap:6px}
+.g-cer li .ic{width:14px;height:14px;color:var(--dia)}
+
+/* proof strip */
+.proof{background:var(--bg2);border-bottom:1px solid var(--line)}
+.proof .wrap{display:grid;grid-template-columns:1fr 1fr}
+@media(min-width:900px){.proof .wrap{grid-template-columns:repeat(4,1fr)}}
+.pf{display:flex;gap:12px;align-items:center;padding:18px 6px 18px 0}
+.pf:nth-child(n+3){border-top:1px solid var(--line)}
+@media(min-width:900px){.pf{padding:24px 18px;justify-content:center}.pf:nth-child(n+3){border-top:0}.pf+.pf{border-left:1px solid var(--line)}}
+.pf i{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(85,183,219,.28),rgba(30,144,255,.06));border:1px solid rgba(85,183,219,.3);color:var(--ice)}
+.pf i .ic{width:19px;height:19px}
+.pf b{display:block;font:italic 800 1.32rem/1.05 var(--dc);text-transform:uppercase;color:#fff}
+.pf span{display:block;font-size:.84rem;color:var(--muted);line-height:1.3;margin-top:2px}
+.pf .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#738293;margin:0 7px 0 0;vertical-align:.18em}
+.dot.on{background:#2ecc71;box-shadow:0 0 9px #2ecc71}
+
+/* packages */
+.tiers{display:grid;gap:16px;margin-top:44px}
+@media(min-width:720px){.tiers{grid-template-columns:1fr 1fr}}
+@media(min-width:1140px){.tiers{grid-template-columns:repeat(4,1fr);align-items:stretch}}
+.tier{--tc:var(--bronze);position:relative;isolation:isolate;background:linear-gradient(180deg,#0f161e,#090e14);border:1px solid var(--line);border-radius:18px;padding:24px 22px 22px;display:flex;flex-direction:column;overflow:hidden}
+.tier::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--tc),transparent)}
+.tier::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(90% 55% at 50% 0%,color-mix(in srgb,var(--tc) 13%,transparent),transparent 72%)}
+.t-gold{--tc:var(--gold)}.t-plat{--tc:var(--plat)}.t-dia{--tc:var(--dia)}
+.t-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.t-name{font:italic 800 2.25rem/1 var(--dc);text-transform:uppercase;background:linear-gradient(180deg,#fff -10%,var(--tc) 50%,color-mix(in srgb,var(--tc) 55%,#000) 120%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.t-sub{display:block;color:var(--soft);font-weight:600;font-size:.95rem;margin-top:6px}
+.t-price{flex:none;text-align:right}
+.t-price small{display:block;color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;font-weight:600;margin-bottom:5px}
+.t-price b{font:italic 800 3rem/.9 var(--dc);color:#fff;font-variant-numeric:tabular-nums;padding-right:.05em}
+@media(min-width:1140px){.t-top{flex-direction:column;align-items:flex-start;gap:18px;padding-bottom:18px;margin-bottom:18px}.t-price{display:flex;align-items:baseline;gap:7px;text-align:left}.t-price small{margin:0;font-size:.8rem}.t-price b{font-size:3.3rem}}
+@media(max-width:1139px){.tier.t-dia{padding-top:46px}}
+@media(min-width:720px) and (max-width:1139px){.tier{padding-top:46px}}
+.t-plus{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-weight:600;margin-bottom:10px}
+.t-list{list-style:none;display:grid;gap:9px;margin-bottom:24px}
+.t-list li{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:1.4}
+.t-list li .ic{width:17px;height:17px;margin-top:1px;color:var(--tc)}
+.tier .btn{margin-top:auto;width:100%}
+.t-dia{border-color:rgba(143,216,255,.42);background:radial-gradient(120% 60% at 50% 0%,rgba(30,144,255,.24),transparent 62%),linear-gradient(180deg,#0c1927,#07101a);box-shadow:0 0 0 1px rgba(30,144,255,.22),0 40px 70px -36px rgba(30,144,255,.75)}
+.t-dia .t-name{background:linear-gradient(180deg,#fff 0%,#bfeaff 45%,#2a9cff 100%);-webkit-background-clip:text;background-clip:text}
+.t-dia .sheen{position:absolute;inset:0;z-index:-1;overflow:hidden;border-radius:inherit;pointer-events:none}
+.t-dia .sheen::before{content:"";position:absolute;top:-50%;bottom:-50%;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent);transform:skewX(-18deg);animation:cardsheen 6.5s ease-in-out infinite}
+@keyframes cardsheen{0%,30%{left:-60%}75%,100%{left:130%}}
+.t-tag{position:absolute;top:0;right:18px;display:inline-flex;align-items:center;gap:6px;font:700 .66rem/1 Barlow,system-ui,sans-serif;letter-spacing:.15em;text-transform:uppercase;padding:7px 10px 8px;border-radius:0 0 10px 10px;background:linear-gradient(180deg,#1a74d0,#0f5fae);color:#fff;box-shadow:0 6px 18px -6px rgba(30,144,255,.8);white-space:nowrap}
+.t-tag .ic{width:12px;height:12px}
+.pfine{margin-top:18px;color:var(--muted);font-size:.92rem;display:flex;gap:8px;align-items:flex-start}
+.pfine .ic{color:var(--sky);margin-top:3px}
+
+.more{display:grid;gap:14px;margin-top:40px}
+@media(min-width:720px){.more{grid-template-columns:1fr 1fr}}
+@media(min-width:1140px){.more{grid-template-columns:repeat(4,1fr)}}
+.mc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column}
+.mc-h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.mc-h i{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(30,144,255,.1);border:1px solid rgba(30,144,255,.28);color:var(--ice)}
+.mc-h i .ic{width:18px;height:18px}
+.mc h3{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase}
+.mc .big{font:italic 800 1.9rem/1.05 var(--dc);color:#fff;font-variant-numeric:tabular-nums;margin-bottom:8px}
+.mc .big small{font:600 .78rem/1 Barlow,system-ui,sans-serif;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-right:4px}
+.mc p{color:var(--soft);font-size:.96rem}
+.mc .rows{list-style:none;display:grid;gap:6px;margin:4px 0 10px}
+.mc .rows li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line2);font-size:.98rem}
+.mc .rows li b{font:italic 800 1.25rem/1.1 var(--dc);color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mc .note{margin-top:10px;font-size:.88rem;color:var(--muted)}
+.mc .lnk{margin-top:auto;padding-top:14px}
+
+.ao{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:14px}
+.ao-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin-bottom:8px}
+details.ao summary.ao-h{font:inherit;text-transform:none;letter-spacing:0;padding:0 44px 0 0;margin:0;cursor:pointer}
+details.ao[open] summary.ao-h{margin-bottom:8px}
+details.ao summary.ao-h::after{top:0;margin-top:-2px}
+details.ao summary.ao-h:hover h3{color:var(--ice)}
+.ao-h p{flex-basis:100%}
+@media(min-width:720px){.ao-h p{flex-basis:auto}}
+.ao h3{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase}
+.ao-h p{color:var(--muted);font-size:.92rem}
+.ao ul{list-style:none;display:grid;gap:0 28px}
+@media(min-width:640px){.ao ul{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.ao ul{grid-template-columns:repeat(3,1fr);gap:0 34px}}
+.ao li{display:flex;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.ao .aonote{color:var(--muted);font-size:.88rem;margin-top:12px}
+details.ao p{padding:0;max-width:none}
+.ao li span{white-space:nowrap}
+.ao li i{flex:1;border-bottom:1px dotted rgba(150,190,230,.3);transform:translateY(-4px);min-width:12px}
+.ao li b{font:italic 700 1.15rem/1 var(--dc);color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ao li small{display:block;color:var(--muted);font-size:.8rem}
+.ao li.wide{flex-wrap:wrap}
+.mc.custom{border-color:rgba(85,183,219,.34);background:radial-gradient(100% 80% at 100% 0%,rgba(30,144,255,.2),transparent 60%),linear-gradient(180deg,#0c1520,#09111a)}
+.custom q{display:block;color:#fff;font-style:italic;font-size:.96rem;border-left:2px solid var(--blue);padding-left:14px;margin:2px 0 16px;quotes:"\201C" "\201D"}
+.custom .btn{margin-top:auto;width:100%;min-height:48px}
+
+/* ceramic */
+.ceramic{background:radial-gradient(70% 50% at 100% 0%,rgba(30,144,255,.16),transparent 70%),linear-gradient(180deg,#03070c,#060b11 60%,#05070a);overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cer-bg{position:absolute;top:0;right:0;width:min(780px,100%);height:640px;opacity:.85;-webkit-mask-image:radial-gradient(85% 75% at 100% 0%,#000 35%,transparent 72%);mask-image:radial-gradient(85% 75% at 100% 0%,#000 35%,transparent 72%);pointer-events:none}
+@media(max-width:899px){.cer-bg{height:520px;opacity:.55}}
+.ceramic .wrap{position:relative}
+.ceramic .sh p{max-width:600px}
+.props{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+@media(min-width:900px){.props{grid-template-columns:repeat(4,1fr);gap:16px}}
+.prop{background:rgba(10,18,28,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:18px 16px}
+.prop i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;color:#fff;background:radial-gradient(circle at 35% 30%,#6cc4ff,#1e90ff 45%,#0a4f8a 100%);box-shadow:0 0 22px -2px rgba(30,144,255,.7),inset 0 1px 0 rgba(255,255,255,.5)}
+.prop i .ic{width:20px;height:20px}
+.prop b{display:block;font:italic 800 1.25rem/1.05 var(--dc);text-transform:uppercase}
+.prop span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4;margin-top:6px}
+.cer-grid{display:grid;gap:16px;margin-top:16px}
+@media(min-width:1000px){.cer-grid{grid-template-columns:1fr 1fr}.cer-grid>.cc:last-child{display:flex;flex-direction:column;justify-content:center}}
+.cc{background:rgba(10,17,26,.82);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
+@media(min-width:760px){.cc{padding:30px}}
+.cc h3{font:italic 800 1.9rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
+.cc>p{color:var(--soft)}
+.nohalf{display:flex;flex-direction:column}
+.nohalf .pt{display:flex;gap:12px;margin-top:16px}
+.nohalf .pt .ic{color:var(--dia);width:20px;height:20px;margin-top:2px}
+.nohalf .pt b{display:block;color:#fff}
+.nohalf .pt span{color:var(--soft);font-size:.96rem}
+@media(max-width:559px){.dia-box{display:none}}
+.dia-box{margin-top:24px;border-radius:14px;padding:18px;background:linear-gradient(180deg,rgba(30,144,255,.14),rgba(30,144,255,.04));border:1px solid rgba(143,216,255,.32)}
+.dia-box .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.dia-box .row b{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase}
+.dia-box .row span{color:var(--soft);font-size:.82rem;text-transform:uppercase;letter-spacing:.14em;font-weight:600}
+.dia-box .row span em{font:italic 800 2rem/1 var(--dc);color:#fff;letter-spacing:0;margin-left:4px}
+.dia-box ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:14px;font-size:.93rem}
+.dia-box li{display:flex;gap:8px;align-items:flex-start;line-height:1.35}
+.dia-box li .ic{width:15px;height:15px;color:var(--dia);margin-top:2px}
+.nohalf .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.nohalf .acts .btn{flex:1 1 200px}
+ol.steps{list-style:none;counter-reset:s;margin-top:8px}
+ol.steps li{position:relative;padding:0 0 15px 48px;min-height:40px}
+ol.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;border:1px solid rgba(85,183,219,.45);display:grid;place-items:center;font:italic 700 .9rem/1 var(--dc);color:var(--ice);background:#07111b}
+ol.steps li::after{content:"";position:absolute;left:16px;top:34px;bottom:0;width:1px;background:linear-gradient(rgba(85,183,219,.45),rgba(85,183,219,.08))}
+ol.steps li:last-child{padding-bottom:0}
+ol.steps li:last-child::after{display:none}
+ol.steps li:last-child::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);color:#fff;border-color:transparent;box-shadow:0 0 18px rgba(30,144,255,.7)}
+ol.steps b{display:block;font-weight:600;color:#fff;padding-top:4px;line-height:1.3}
+ol.steps span{display:block;color:var(--muted);font-size:.9rem;line-height:1.4}
+@media(min-width:620px){ol.steps{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;column-gap:20px}ol.steps li:nth-child(5){padding-bottom:0}ol.steps li:nth-child(5)::after{display:none}}
+.cer-after{display:grid;gap:16px;margin-top:16px}
+@media(min-width:1000px){.cer-after{grid-template-columns:.85fr 1.15fr}}
+.cure{display:flex;flex-direction:column;justify-content:center}
+.cure .num{font:italic 800 4.2rem/.9 var(--dc);margin:6px 0 4px}
+.cure .num small{font-size:.42em;letter-spacing:.06em;color:var(--soft);margin-left:6px}
+.cure p{color:var(--soft)}
+.rewards{display:grid;gap:10px;margin-top:6px}
+@media(min-width:620px){.rewards{grid-template-columns:repeat(3,1fr)}}
+.rw{border-radius:14px;padding:16px;background:rgba(255,255,255,.025);border:1px solid var(--line)}
+.rw .ic{width:24px;height:24px;color:var(--dia);margin-bottom:10px}
+.rw b{display:block;font-weight:600;color:#fff;line-height:1.3}
+.rw span{display:block;color:var(--muted);font-size:.88rem;margin-top:4px;line-height:1.4}
+
+/* results */
+.ba-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,70%);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px -16px 0;padding:0 16px 12px;scroll-padding:0 16px;scrollbar-width:thin;scrollbar-color:#24384c transparent}
+@media(min-width:760px){.ba-row{margin:40px -32px 0;padding:0 32px 12px;scroll-padding:0 32px;grid-auto-columns:minmax(240px,32%)}}
+@media(min-width:1100px){.ba-row{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;margin:44px 0 0;padding:0}}
+.ba{scroll-snap-align:start;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:0}
+.ba .im{position:relative;aspect-ratio:304/454;background:#0b1117}
+.ba img{width:100%;height:100%;object-fit:cover}
+.ba .lb{position:absolute;bottom:10px;font:700 .66rem/1 Barlow,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:6px 8px;border-radius:6px;background:rgba(5,7,10,.78);color:#fff}
+.ba .lb.b{left:10px}
+.ba .lb.a{right:10px;background:linear-gradient(180deg,#1a74d0,#0f5fae)}
+.ba figcaption{padding:12px 14px 14px}
+.ba figcaption b{display:block;font:italic 800 1.15rem/1.1 var(--dc);text-transform:uppercase}
+.ba figcaption span{font-size:.84rem;color:var(--muted)}
+.swipe{margin-top:8px;font-size:.86rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.swipe .ic{width:15px;height:15px;color:var(--sky)}
+@media(min-width:1100px){.swipe{display:none}}
+.ba .im::after{content:"";position:absolute;top:0;bottom:0;left:var(--s,50%);width:2px;margin-left:-1px;background:linear-gradient(180deg,rgba(143,216,255,0),rgba(143,216,255,.85) 30%,rgba(143,216,255,.85) 70%,rgba(143,216,255,0));box-shadow:0 0 12px rgba(30,144,255,.8);pointer-events:none}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;align-items:center;color:var(--muted);font-size:.95rem}
+.social a{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line2);color:#fff;font-weight:600;font-size:.92rem}
+.social a:hover{border-color:rgba(143,216,255,.6)}
+.social a .ic{width:17px;height:17px}
+
+/* reviews */
+.reviews{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line)}
+.rv-head{display:grid;gap:26px;align-items:end}
+@media(min-width:900px){.rv-head{grid-template-columns:1fr auto}}
+.gscore{display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:18px;background:linear-gradient(180deg,#0f1822,#0a1018);border:1px solid var(--line2);box-shadow:0 30px 60px -40px rgba(30,144,255,.6)}
+.gscore>b{font:italic 800 3.6rem/.9 var(--dc)}
+.gscore .stars .ic{width:19px;height:19px}
+.gscore small{display:block;color:var(--soft);font-size:.88rem;margin-top:4px}
+.gscore .lnk{font-size:.92rem;margin-top:6px}
+.topics{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:26px}
+.topics .lab{flex-basis:100%;font:600 .8rem/1 var(--dc);letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:2px}
+@media(min-width:900px){.topics .lab{flex-basis:auto;margin:0 6px 0 0}}
+.topics span:not(.lab){padding:7px 12px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.03);font-size:.86rem;font-weight:600;color:#e3eaf1}
+.rv-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,84%);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px -16px 0;padding:0 16px 12px;scroll-padding:0 16px;scrollbar-width:thin;scrollbar-color:#24384c transparent;align-items:start}
+@media(min-width:760px){.rv-row{margin:40px -32px 0;padding:0 32px 12px;scroll-padding:0 32px;grid-auto-columns:minmax(280px,46%)}}
+@media(min-width:1100px){.rv-row{display:block;columns:3;column-gap:16px;overflow:visible;margin:44px 0 0;padding:0}}
+.rv{scroll-snap-align:start;break-inside:avoid;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin:0 0 16px;position:relative}
+@media(max-width:1099px){.rv{margin:0}}
+.rv::before{content:"\201C";position:absolute;right:18px;top:4px;font:italic 800 4.6rem/1 var(--dc);color:rgba(85,183,219,.16)}
+.rv .stars .ic{width:15px;height:15px}
+.rv blockquote{margin:12px 0 16px;color:#e2e9f0;font-size:1rem;line-height:1.55}
+.rv .who{display:flex;align-items:center;gap:10px;font-weight:600}
+.rv .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:italic 800 1rem/1 var(--dc);background:linear-gradient(180deg,#1b2a3a,#0f1822);border:1px solid var(--line2);color:var(--ice)}
+.rv .who small{display:block;color:var(--muted);font-weight:500;font-size:.82rem;line-height:1.2}
+.rv-more{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;align-items:center;color:var(--muted);font-size:.9rem}
+
+/* about + how */
+.about{display:grid;gap:34px;align-items:center}
+@media(min-width:960px){.about{grid-template-columns:.95fr 1.05fr;gap:64px}}
+.art{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 50px 90px -50px rgba(30,144,255,.55);background:#0a0c0f}
+.art img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:5% 0;background:#0e0f11}
+@media(min-width:560px) and (max-width:959px){.art{max-width:440px;margin:0 auto}}
+.art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);pointer-events:none}
+.about p.big{font-size:1.14rem;color:var(--soft);margin-top:16px}
+.about p.big b{color:#fff;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags span{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;border:1px solid var(--line2);font-size:.88rem;font-weight:600;color:#fff;background:rgba(255,255,255,.03)}
+.tags .ic{width:15px;height:15px;color:var(--sky)}
+.how{display:grid;gap:14px;margin-top:64px;counter-reset:h}
+@media(min-width:700px){.how{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.how{grid-template-columns:repeat(4,1fr)}}
+.hw{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.hw::before{counter-increment:h;content:"0" counter(h);position:absolute;top:16px;right:18px;font:italic 800 2.4rem/1 var(--dc);color:rgba(150,190,230,.13)}
+.hw i{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(30,144,255,.1);border:1px solid rgba(30,144,255,.3);color:var(--ice);margin-bottom:14px}
+.hw i .ic{width:20px;height:20px}
+.hw b{display:block;font:italic 800 1.3rem/1.05 var(--dc);text-transform:uppercase;margin-bottom:6px;padding-right:44px}
+.hw p{color:var(--soft);font-size:.95rem}
+.how-h{margin-top:72px}
+
+/* area */
+.areawrap{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.area{display:grid;gap:34px;align-items:center}
+@media(min-width:960px){.area{grid-template-columns:1.05fr .95fr;gap:56px}}
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cities span{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:rgba(30,144,255,.08);border:1px solid rgba(85,183,219,.35);font-weight:600;font-size:.95rem}
+.cities span .ic{width:14px;height:14px;color:var(--sky)}
+.cities span.plus{background:transparent;border-style:dashed;color:var(--soft)}
+.limit{display:flex;gap:12px;margin-top:20px;padding:14px 16px;border-radius:14px;border:1px solid var(--line2);background:rgba(255,255,255,.02);color:var(--soft);font-size:.96rem}
+.limit .ic{color:var(--sky);width:20px;height:20px;margin-top:2px}
+.area-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.area-acts .btn{flex:1 1 200px}
+@media(min-width:560px){.area-acts .btn{flex:0 0 auto}}
+.limit a{white-space:nowrap;color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:rgba(143,216,255,.5);text-underline-offset:3px}
+.radar{position:relative;max-width:440px;width:100%;margin:0 auto}
+@media(max-width:559px){.radar{max-width:320px}}
+.radar svg{width:100%;height:auto;display:block;overflow:visible}
+.radar .sweepr{transform-origin:200px 200px;animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.info3{display:grid;gap:14px;margin-top:52px}
+@media(min-width:900px){.info3{grid-template-columns:repeat(3,1fr)}}
+.ic3{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.ic3 h3{display:flex;align-items:center;gap:10px;font:italic 800 1.35rem/1 var(--dc);text-transform:uppercase;margin-bottom:14px}
+.ic3 h3 .ic{color:var(--sky);width:20px;height:20px}
+.ic3 h3 .st{margin-left:auto;font:700 .66rem/1 Barlow,system-ui,sans-serif;letter-spacing:.14em;padding:5px 8px;border-radius:999px;font-style:normal;display:none}
+.ic3 h3 .st.on{display:inline-block;background:rgba(46,204,113,.14);color:#6fe0a0;border:1px solid rgba(46,204,113,.4)}
+.ic3 h3 .st.off{display:inline-block;background:rgba(255,255,255,.05);color:var(--soft);border:1px solid var(--line2)}
+.hrs{list-style:none}
+.hrs li{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;font-size:.98rem}
+.hrs li span{color:var(--soft)}
+.hrs li b{font-weight:600;font-variant-numeric:tabular-nums}
+.hrs li.today{background:rgba(30,144,255,.1);box-shadow:inset 2px 0 0 var(--blue)}
+.pay{display:flex;flex-wrap:wrap;gap:8px}
+.pay span{padding:8px 12px;border-radius:10px;border:1px solid var(--line2);font-weight:600;font-size:.92rem;background:rgba(255,255,255,.03)}
+.ic3 p{color:var(--soft);font-size:.96rem}
+.ic3 p+p{margin-top:8px}
+
+/* faq */
+.faqg{display:grid;gap:36px}
+@media(min-width:960px){.faqg{grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}.faq-side{position:sticky;top:96px}}
+.askcard{margin-top:28px;padding:20px;border-radius:16px;border:1px solid var(--line2);background:radial-gradient(100% 90% at 100% 0%,rgba(30,144,255,.14),transparent 60%),var(--panel);max-width:460px}
+.askcard b{display:block;font:italic 800 1.35rem/1 var(--dc);text-transform:uppercase}
+.askcard span{display:block;color:var(--soft);font-size:.95rem;margin:8px 0 16px}
+.askcard .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.askcard .btn{padding:0 10px;min-height:48px}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:20px 44px 20px 0;font:italic 700 1.3rem/1.2 var(--dc);text-transform:uppercase;letter-spacing:.01em;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:4px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;border:1px solid var(--line2);background:no-repeat center/12px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355b7db' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+summary:hover{color:var(--ice)}
+details p{padding:0 0 20px;color:var(--soft);max-width:760px}
+details p a{color:var(--ice);font-weight:600}
+
+/* quote */
+.quote-sec{background:radial-gradient(60% 50% at 0% 0%,rgba(30,144,255,.16),transparent 70%),var(--bg2);border-top:1px solid var(--line)}
+.quote{display:grid;gap:34px}
+@media(min-width:1000px){.quote{grid-template-columns:.85fr 1.15fr;align-items:start;gap:56px}}
+.qopts{display:grid;gap:10px;margin-top:26px;max-width:480px}
+.qo{display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:14px;border:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));transition:border-color .18s,background .18s,transform .18s}
+.qo:hover{border-color:rgba(143,216,255,.6);background:rgba(30,144,255,.08);transform:translateY(-1px)}
+.qo>i{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 35% 30%,#6cc4ff,#1e90ff 45%,#0a4f8a 100%);box-shadow:0 0 18px -4px rgba(30,144,255,.75),inset 0 1px 0 rgba(255,255,255,.45)}
+.qo>i .ic{width:20px;height:20px}
+.qo b{display:block;color:#fff;font-weight:600;line-height:1.25}
+.qo small{display:block;color:var(--muted);font-size:.88rem;line-height:1.35;margin-top:2px}
+.qo .go{margin-left:auto;color:var(--sky);width:18px;height:18px}
+.qchk{list-style:none;display:grid;gap:9px;margin-top:22px;color:var(--soft);font-size:.96rem}
+.qchk li{display:flex;gap:10px;align-items:flex-start}
+.qchk .ic{color:var(--dia);width:18px;height:18px;margin-top:3px}
+.card{background:linear-gradient(180deg,#0e151d,#0a1016);border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:0 50px 90px -50px rgba(0,0,0,.9),0 0 0 1px rgba(30,144,255,.08)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;padding:17px 10px;font:700 1.02rem/1 var(--dc);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:9px;position:relative}
+.tabs button .ic{width:18px;height:18px}
+.tabs button.on{color:#fff;background:rgba(30,144,255,.06)}
+.tabs button.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue);box-shadow:0 0 14px rgba(30,144,255,.9)}
+.pane{display:none;padding:20px}
+@media(min-width:600px){.pane{padding:24px}}
+.pane.on{display:block}
+.chat-h{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.chat-h img{width:40px;height:40px;object-fit:contain}
+.chat-h b{display:block;line-height:1.2}
+.chat-h small{display:flex;align-items:center;gap:6px;color:#6fe0a0;font-weight:600;font-size:.8rem}
+.chat-h small::before{content:"";width:7px;height:7px;border-radius:50%;background:#2ecc71;box-shadow:0 0 8px #2ecc71}
+.msgs{height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 2px 8px;scrollbar-width:thin;scrollbar-color:#24384c transparent}
+.msg{max-width:86%;padding:10px 14px;border-radius:16px;font-size:.96rem;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.bot{background:#131d28;border:1px solid var(--line);border-top-left-radius:5px;color:#e6edf3}
+.msg.me{background:linear-gradient(180deg,#1a74d0,#0f5fae);color:#fff;align-self:flex-end;border-top-right-radius:5px}
+.msg.err{border-color:rgba(255,170,120,.35);background:#1d1714}
+.msg.err a{color:var(--ice);font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.msg.note{align-self:center;max-width:100%;font-size:.84rem;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.35);color:#9debbf;text-align:center}
+.typing{display:inline-flex;gap:5px;align-items:center;padding:14px 16px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--sky);opacity:.4;animation:blink 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.qr{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.qr button{border:1px solid rgba(85,183,219,.4);background:rgba(30,144,255,.07);color:var(--ice);border-radius:999px;padding:8px 12px;font-size:.86rem;font-weight:600;cursor:pointer;min-height:38px}
+.qr button:hover{background:rgba(30,144,255,.16);color:#fff}
+.chat-in{display:flex;gap:8px;margin-top:12px}
+.chat-in input{flex:1;min-width:0}
+.chat-in .btn{min-height:50px;width:54px;padding:0}
+.chat-in .btn .ic{width:20px;height:20px}
+.chat-in .btn[disabled]{opacity:.55;cursor:wait}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid #223041;border-radius:10px;font:inherit;font-size:1rem;background:#070b10;color:var(--text);color-scheme:dark}
+input::placeholder,textarea::placeholder{color:#7d8c9c}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(85,183,219,.22)}
+select{appearance:none;-webkit-appearance:none;padding-right:40px;background:#070b10 no-repeat right 14px center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355b7db' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+label,.lg{display:block;font-weight:600;font-size:.9rem;margin-bottom:14px;color:#dfe7ee}
+label>input,label>select,label>textarea{margin-top:6px}
+label em{font-style:normal;color:var(--muted);font-weight:500}
+fieldset{border:0;margin:0 0 14px;padding:0;min-width:0}
+legend{font-weight:600;font-size:.9rem;margin-bottom:8px;color:#dfe7ee;padding:0}
+.two{display:grid;gap:0 12px}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(min-width:560px){.seg.s4{grid-template-columns:repeat(4,1fr)}.seg.s3{grid-template-columns:repeat(3,1fr)}}
+.seg.s3{grid-template-columns:repeat(3,1fr)}
+.seg label{margin:0;position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:6px 8px;border-radius:10px;border:1px solid #223041;background:#070b10;font-size:.88rem;font-weight:600;color:var(--soft);cursor:pointer;line-height:1.2;transition:.15s}
+.seg span small{display:block;font-weight:500;color:var(--muted);font-size:.76rem}
+.seg input:checked+span{border-color:var(--blue);background:rgba(30,144,255,.14);color:#fff;box-shadow:0 0 0 1px var(--blue),0 0 18px -6px rgba(30,144,255,.9)}
+.seg input:focus-visible+span{outline:2px solid var(--ice);outline-offset:2px}
+@media(max-width:380px){.seg span{font-size:.8rem;padding:6px 4px}}
+.addpick{border:1px solid #223041;border-radius:10px;margin:0 0 14px;background:#070b10}
+.addpick summary{font:600 .92rem/1.2 Barlow,system-ui,sans-serif;text-transform:none;letter-spacing:0;padding:14px 44px 14px 14px;color:#dfe7ee}
+.addpick summary::after{right:10px;width:24px;height:24px;margin-top:-12px}
+.addpick summary small{color:var(--muted);font-weight:500}
+.addpick .g{display:grid;gap:0 16px;padding:0 14px 10px}
+@media(min-width:560px){.addpick .g{grid-template-columns:1fr 1fr}}
+.addpick label{display:flex;align-items:center;gap:10px;margin:0;padding:9px 0;border-top:1px solid var(--line);font-weight:500;font-size:.92rem;cursor:pointer}
+.addpick input{width:18px;height:18px;flex:none;accent-color:var(--blue);margin:0}
+.addpick label b{margin-left:auto;font:italic 700 1.05rem/1 var(--dc);color:#fff;white-space:nowrap}
+.qform .btn{width:100%;margin-top:4px}
+.fine{text-align:center;color:var(--muted);font-size:.85rem;margin-top:12px}
+.fine a{color:var(--soft);font-weight:600;white-space:nowrap}
+.ok{display:none;margin-top:14px;padding:16px;border-radius:12px;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.38);color:#bff0d3;font-weight:500}
+.ok b{display:block;color:#fff;margin-bottom:4px}
+.alock{margin-top:12px;padding:16px;border-radius:14px;border:1px solid rgba(143,216,255,.4);background:radial-gradient(100% 90% at 100% 0%,rgba(30,144,255,.18),transparent 60%),#0c1520}
+.alock b{display:block;font:italic 800 1.3rem/1.05 var(--dc);text-transform:uppercase;color:#fff}
+.alock p{color:var(--soft);font-size:.92rem;margin:6px 0 14px}
+.alock .btn{width:100%}
+
+/* footer */
+footer{background:#020406;border-top:1px solid var(--line);padding:60px 0 28px;font-size:.95rem;color:var(--soft)}
+.fg{display:grid;gap:34px}
+@media(min-width:700px){.fg{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.fg{grid-template-columns:1.5fr 1fr 1fr 1.2fr}}
+footer h4{color:#fff;font:italic 800 1.15rem/1 var(--dc);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+footer ul{list-style:none}
+footer li{margin-bottom:9px}
+footer a:hover{color:#fff}
+.fabout{margin-top:16px;max-width:340px}
+.fsoc{display:flex;gap:10px;margin-top:18px}
+.fsoc a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--line2);color:#fff}
+.fsoc a:hover{border-color:rgba(143,216,255,.6);background:rgba(143,216,255,.06)}
+.fsoc .ic{width:19px;height:19px}
+.copy{border-top:1px solid var(--line);margin-top:44px;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--muted)}
+
+/* floating + mobile bar */
+.float{position:fixed;right:22px;bottom:22px;z-index:45;display:none;flex-direction:column;gap:10px;transition:opacity .2s,transform .2s}
+@media(min-width:1580px){.float{display:flex}}
+.float.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+.float .btn{box-shadow:0 16px 36px -12px rgba(0,0,0,.85)}
+.float .btn-glass{background:rgba(8,12,18,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(5,8,12,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line2);padding-bottom:env(safe-area-inset-bottom)}
+.mbar{transition:transform .25s ease}
+.mbar.hide{transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s}
+.mbar a{height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff;font:700 .78rem/1 var(--dc);letter-spacing:.1em;text-transform:uppercase}
+.mbar a .ic{width:21px;height:21px;color:var(--sky)}
+.mbar a.g{background:linear-gradient(180deg,#1a74d0,#0f5fae);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.mbar a.g .ic{color:#fff}
+@media(min-width:900px){.mbar{display:none}}
+
+/* demo lock */
+.lock{position:fixed;inset:0;z-index:60;background:rgba(2,4,7,.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;overscroll-behavior:contain}
+.lock.open{display:flex}
+.lock .box{background:linear-gradient(180deg,#0f1822,#0a1016);border:1px solid var(--line2);border-radius:22px;max-width:440px;width:100%;margin:auto;padding:32px 26px 26px;text-align:center;position:relative;box-shadow:0 60px 120px -40px rgba(30,144,255,.45)}
+.lock .k{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin:0 auto 18px;color:#fff;background:radial-gradient(circle at 35% 30%,#6cc4ff,#1e90ff 45%,#0a4f8a);box-shadow:0 0 30px -4px rgba(30,144,255,.8),inset 0 1px 0 rgba(255,255,255,.5)}
+.lock .k .ic{width:28px;height:28px}
+.lock h3{font:italic 800 2rem/1 var(--dc);text-transform:uppercase}
+.lock p{color:var(--soft);margin:12px 0 20px}
+.lock ul{list-style:none;text-align:left;margin:0 auto 24px;display:grid;gap:10px;max-width:330px}
+.lock li{display:flex;gap:10px;align-items:flex-start;color:#e3eaf1}
+.lock li .ic{color:var(--dia);margin-top:3px}
+.lock .x{position:absolute;top:12px;right:12px;background:none;border:0;width:40px;height:40px;border-radius:10px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.lock .x:hover{color:#fff;background:rgba(255,255,255,.05)}
+.lock .btn{width:100%}
+
+@media(max-width:400px){.mnav .mb{grid-template-columns:1fr}.ao li span{white-space:normal}.ao li{min-width:0}.btn{white-space:normal;text-align:center;line-height:1.1}.ctas .btn{padding:0 12px;letter-spacing:.05em}}
+h2.d,h1 .b{overflow-wrap:break-word}
+@media(max-width:359px){.wm{font-size:1.2rem}.wm small{letter-spacing:.16em}.hdr{gap:10px}h2.d{font-size:2.15rem}h1 .b{font-size:2.8rem}.props{grid-template-columns:1fr}.pf{gap:10px}.proof .wrap{grid-template-columns:1fr}.pf:nth-child(n+2){border-top:1px solid var(--line)}}
+.tiers>*,.more>*,.props>*,.cer-grid>*,.cer-after>*,.info3>*,.how>*,.quote>*,.about>*,.area>*,.faqg>*,.fg>*,.hero-in>*{min-width:0}
+@media(max-width:559px){
+  .lead{font-size:1.02rem}
+  .pf b{font-size:1.14rem}
+  .pf i{width:36px;height:36px}
+  .hw{display:grid;grid-template-columns:42px 1fr;column-gap:14px;padding:18px}
+  .hw i{grid-row:span 2;margin:0}
+  .hw::before{top:14px;font-size:1.9rem}
+  .rw{display:grid;grid-template-columns:26px 1fr;column-gap:12px;padding:14px}
+  .rw .ic{grid-row:span 2;margin:2px 0 0}
+  .msgs{height:250px}
+  .fg{grid-template-columns:1fr 1fr;gap:30px 16px}
+  .fg>div:first-child,.fg>div:last-child{grid-column:1/-1}
+}
+@media(max-width:719px){
+  .tier{padding:22px 20px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="gb" cx="50%" cy="42%" r="56%">
+      <stop offset="0" stop-color="#0d2238" stop-opacity=".15"/>
+      <stop offset=".62" stop-color="#06111d" stop-opacity=".55"/>
+      <stop offset=".86" stop-color="#3f8fd0" stop-opacity=".35"/>
+      <stop offset=".97" stop-color="#d6efff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gs" cx="50%" cy="50%" r="50%">
+      <stop offset=".55" stop-color="#000" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <g id="b">
+      <ellipse cx="1.8" cy="2.6" rx="10.6" ry="10" fill="url(#gs)"/>
+      <circle r="10" fill="url(#gb)"/>
+      <path d="M-7 3.2A7.6 7.6 0 0 0 7 3.2 9.4 5.6 0 0 1-7 3.2Z" fill="#8fd0ff" opacity=".5"/>
+      <ellipse cx="-3.6" cy="-4.6" rx="3.1" ry="1.6" transform="rotate(-32 -3.6 -4.6)" fill="#fff" opacity=".92"/>
+      <circle cx="4.2" cy="-5" r=".9" fill="#fff" opacity=".55"/>
+    </g>
+    <g id="field"><use href="#b" transform="translate(485 544) scale(0.24 0.21)"/><use href="#b" transform="translate(459 668) scale(0.25 0.22)"/><use href="#b" transform="translate(485 118) scale(0.24 0.21)"/><use href="#b" transform="translate(28 189) scale(0.25 0.21)"/><use href="#b" transform="translate(275 597) scale(0.26 0.21)"/><use href="#b" transform="translate(145 1) scale(0.25 0.21)"/><use href="#b" transform="translate(276 114) scale(0.22 0.20)"/><use href="#b" transform="translate(135 342) scale(0.26 0.22)"/><use href="#b" transform="translate(7 197) scale(0.23 0.21)"/><use href="#b" transform="translate(73 257) scale(0.22 0.22)"/><use href="#b" transform="translate(402 270) scale(0.24 0.21)"/><use href="#b" transform="translate(475 162) scale(0.26 0.21)"/><use href="#b" transform="translate(12 36) scale(0.26 0.20)"/><use href="#b" transform="translate(525 326) scale(0.23 0.21)"/><use href="#b" transform="translate(46 304) scale(0.25 0.20)"/><use href="#b" transform="translate(268 397) scale(0.26 0.22)"/><use href="#b" transform="translate(50 359) scale(0.25 0.21)"/><use href="#b" transform="translate(512 634) scale(0.25 0.21)"/><use href="#b" transform="translate(337 174) scale(0.24 0.22)"/><use href="#b" transform="translate(498 310) scale(0.24 0.22)"/><use href="#b" transform="translate(181 594) scale(0.23 0.22)"/><use href="#b" transform="translate(544 137) scale(0.27 0.22)"/><use href="#b" transform="translate(564 518) scale(0.26 0.21)"/><use href="#b" transform="translate(264 44) scale(0.24 0.21)"/><use href="#b" transform="translate(588 143) scale(0.24 0.22)"/><use href="#b" transform="translate(283 244) scale(0.24 0.22)"/><use href="#b" transform="translate(-1 708) scale(0.25 0.22)"/><use href="#b" transform="translate(499 366) scale(0.26 0.22)"/><use href="#b" transform="translate(147 540) scale(0.24 0.22)"/><use href="#b" transform="translate(53 259) scale(0.23 0.23)"/><use href="#b" transform="translate(434 479) scale(0.24 0.23)"/><use href="#b" transform="translate(469 384) scale(0.27 0.22)"/><use href="#b" transform="translate(-8 197) scale(0.25 0.23)"/><use href="#b" transform="translate(221 698) scale(0.28 0.24)"/><use href="#b" transform="translate(46 243) scale(0.25 0.22)"/><use href="#b" transform="translate(143 172) scale(0.25 0.24)"/><use href="#b" transform="translate(183 216) scale(0.28 0.23)"/><use href="#b" transform="translate(412 306) scale(0.26 0.24)"/><use href="#b" transform="translate(91 242) scale(0.25 0.22)"/><use href="#b" transform="translate(351 95) scale(0.27 0.25)"/><use href="#b" transform="translate(594 95) scale(0.25 0.22)"/><use href="#b" transform="translate(552 727) scale(0.27 0.23)"/><use href="#b" transform="translate(493 719) scale(0.29 0.25)"/><use href="#b" transform="translate(379 691) scale(0.28 0.24)"/><use href="#b" transform="translate(127 553) scale(0.27 0.25)"/><use href="#b" transform="translate(547 350) scale(0.26 0.23)"/><use href="#b" transform="translate(248 449) scale(0.29 0.25)"/><use href="#b" transform="translate(172 330) scale(0.27 0.24)"/><use href="#b" transform="translate(172 168) scale(0.29 0.24)"/><use href="#b" transform="translate(362 472) scale(0.27 0.24)"/><use href="#b" transform="translate(472 690) scale(0.27 0.26)"/><use href="#b" transform="translate(586 710) scale(0.29 0.25)"/><use href="#b" transform="translate(46 286) scale(0.27 0.24)"/><use href="#b" transform="translate(504 109) scale(0.27 0.27)"/><use href="#b" transform="translate(570 175) scale(0.29 0.27)"/><use href="#b" transform="translate(134 423) scale(0.32 0.28)"/><use href="#b" transform="translate(511 -9) scale(0.34 0.29)"/><use href="#b" transform="translate(84 472) scale(0.31 0.29)"/><use href="#b" transform="translate(598 644) scale(0.36 0.28)"/><use href="#b" transform="translate(411 127) scale(0.32 0.28)"/><use href="#b" transform="translate(377 369) scale(0.31 0.31)"/><use href="#b" transform="translate(251 495) scale(0.32 0.31)"/><use href="#b" transform="translate(216 81) scale(0.37 0.32)"/><use href="#b" transform="translate(127 158) scale(0.34 0.31)"/><use href="#b" transform="translate(26 366) scale(0.34 0.31)"/><use href="#b" transform="translate(341 695) scale(0.38 0.32)"/><use href="#b" transform="translate(234 729) scale(0.37 0.32)"/><use href="#b" transform="translate(304 499) scale(0.42 0.33)"/><use href="#b" transform="translate(547 644) scale(0.40 0.36)"/><use href="#b" transform="translate(54 459) scale(0.37 0.33)"/><use href="#b" transform="translate(205 30) scale(0.38 0.33)"/><use href="#b" transform="translate(166 218) scale(0.44 0.35)"/><use href="#b" transform="translate(71 663) scale(0.41 0.36)"/><use href="#b" transform="translate(161 26) scale(0.40 0.38)"/><use href="#b" transform="translate(310 241) scale(0.41 0.37)"/><use href="#b" transform="translate(176 578) scale(0.47 0.39)"/><use href="#b" transform="translate(290 54) scale(0.44 0.40)"/><use href="#b" transform="translate(221 670) scale(0.46 0.41)"/><use href="#b" transform="translate(402 35) scale(0.50 0.43)"/><use href="#b" transform="translate(302 139) scale(0.48 0.40)"/><use href="#b" transform="translate(355 184) scale(0.46 0.43)"/><use href="#b" transform="translate(269 213) scale(0.48 0.43)"/><use href="#b" transform="translate(565 125) scale(0.53 0.45)"/><use href="#b" transform="translate(106 155) scale(0.51 0.45)"/><use href="#b" transform="translate(338 552) scale(0.57 0.46)"/><use href="#b" transform="translate(224 240) scale(0.51 0.47)"/><use href="#b" transform="translate(138 71) scale(0.53 0.46)"/><use href="#b" transform="translate(81 392) scale(0.52 0.49)"/><use href="#b" transform="translate(315 4) scale(0.56 0.48)"/><use href="#b" transform="translate(436 27) scale(0.62 0.52)"/><use href="#b" transform="translate(386 57) scale(0.56 0.53)"/><use href="#b" transform="translate(192 374) scale(0.61 0.55)"/><use href="#b" transform="translate(379 453) scale(0.63 0.53)"/><use href="#b" transform="translate(316 638) scale(0.66 0.54)"/><use href="#b" transform="translate(231 155) scale(0.67 0.54)"/><use href="#b" transform="translate(567 265) scale(0.70 0.57)"/><use href="#b" transform="translate(551 301) scale(0.70 0.57)"/><use href="#b" transform="translate(350 328) scale(0.71 0.62)"/><use href="#b" transform="translate(303 369) scale(0.73 0.62)"/><use href="#b" transform="translate(153 520) scale(0.70 0.61)"/><use href="#b" transform="translate(125 263) scale(0.68 0.61)"/><use href="#b" transform="translate(548 612) scale(0.73 0.65)"/><use href="#b" transform="translate(525 150) scale(0.72 0.63)"/><use href="#b" transform="translate(423 73) scale(0.71 0.67)"/><use href="#b" transform="translate(221 395) scale(0.71 0.64)"/><use href="#b" transform="translate(434 641) scale(0.79 0.69)"/><use href="#b" transform="translate(31 535) scale(0.78 0.68)"/><use href="#b" transform="translate(170 372) scale(0.84 0.74)"/><use href="#b" transform="translate(466 447) scale(0.89 0.72)"/><use href="#b" transform="translate(533 687) scale(0.87 0.79)"/><use href="#b" transform="translate(181 6) scale(0.92 0.82)"/><use href="#b" transform="translate(2 400) scale(0.96 0.80)"/><use href="#b" transform="translate(595 356) scale(0.99 0.88)"/><use href="#b" transform="translate(547 241) scale(0.99 0.94)"/><use href="#b" transform="translate(390 202) scale(0.97 0.95)"/><use href="#b" transform="translate(84 352) scale(0.98 0.94)"/><use href="#b" transform="translate(345 638) scale(1.05 0.96)"/><use href="#b" transform="translate(70 173) scale(1.07 0.99)"/><use href="#b" transform="translate(158 86) scale(1.11 1.02)"/><use href="#b" transform="translate(39 136) scale(1.18 0.96)"/><use href="#b" transform="translate(592 68) scale(1.11 0.95)"/><use href="#b" transform="translate(330 37) scale(1.09 1.01)"/><use href="#b" transform="translate(43 479) scale(1.26 1.06)"/><use href="#b" transform="translate(395 723) scale(1.13 1.05)"/><use href="#b" transform="translate(449 158) scale(1.25 1.07)"/><use href="#b" transform="translate(511 667) scale(1.15 1.06)"/><use href="#b" transform="translate(598 476) scale(1.24 1.11)"/><use href="#b" transform="translate(489 602) scale(1.31 1.18)"/><use href="#b" transform="translate(543 454) scale(1.35 1.17)"/><use href="#b" transform="translate(172 409) scale(1.29 1.18)"/><use href="#b" transform="translate(531 6) scale(1.24 1.20)"/><use href="#b" transform="translate(163 297) scale(1.36 1.27)"/><use href="#b" transform="translate(608 259) scale(1.33 1.25)"/><use href="#b" transform="translate(283 425) scale(1.38 1.30)"/><use href="#b" transform="translate(9 294) scale(1.59 1.36)"/><use href="#b" transform="translate(474 637) scale(1.60 1.31)"/><use href="#b" transform="translate(344 508) scale(1.49 1.33)"/><use href="#b" transform="translate(194 127) scale(1.76 1.47)"/><use href="#b" transform="translate(259 635) scale(1.74 1.40)"/><use href="#b" transform="translate(383 583) scale(1.56 1.51)"/><use href="#b" transform="translate(267 683) scale(1.89 1.59)"/><use href="#b" transform="translate(84 120) scale(1.67 1.48)"/><use href="#b" transform="translate(182 254) scale(1.64 1.53)"/><use href="#b" transform="translate(126 695) scale(1.76 1.56)"/><use href="#b" transform="translate(235 287) scale(1.94 1.61)"/><use href="#b" transform="translate(19 625) scale(1.76 1.53)"/><use href="#b" transform="translate(151 475) scale(1.77 1.60)"/><use href="#b" transform="translate(525 505) scale(1.76 1.58)"/><use href="#b" transform="translate(83 526) scale(1.91 1.55)"/><use href="#b" transform="translate(500 201) scale(1.86 1.68)"/><g fill="#bfe6ff" opacity=".28"><circle cx="122" cy="4" r="1.5"/><circle cx="254" cy="591" r="1.1"/><circle cx="530" cy="332" r="0.8"/><circle cx="384" cy="655" r="0.8"/><circle cx="373" cy="267" r="1.2"/><circle cx="88" cy="204" r="1.2"/><circle cx="555" cy="78" r="1.1"/><circle cx="483" cy="696" r="0.9"/><circle cx="76" cy="679" r="1.6"/><circle cx="290" cy="38" r="1.5"/><circle cx="233" cy="651" r="1.3"/><circle cx="495" cy="115" r="1.4"/><circle cx="133" cy="291" r="1.5"/><circle cx="498" cy="132" r="0.9"/><circle cx="240" cy="373" r="1.0"/><circle cx="25" cy="405" r="1.4"/><circle cx="23" cy="604" r="0.8"/><circle cx="360" cy="396" r="1.3"/><circle cx="184" cy="302" r="1.2"/><circle cx="255" cy="474" r="1.1"/><circle cx="263" cy="17" r="1.3"/><circle cx="294" cy="169" r="1.4"/><circle cx="468" cy="330" r="0.9"/><circle cx="284" cy="77" r="0.8"/><circle cx="258" cy="66" r="1.1"/><circle cx="306" cy="29" r="1.3"/><circle cx="49" cy="528" r="1.4"/><circle cx="307" cy="39" r="1.2"/><circle cx="227" cy="685" r="0.8"/><circle cx="514" cy="717" r="1.4"/><circle cx="489" cy="139" r="1.6"/><circle cx="295" cy="689" r="1.5"/><circle cx="99" cy="568" r="1.5"/><circle cx="39" cy="253" r="1.4"/><circle cx="95" cy="646" r="0.9"/><circle cx="489" cy="103" r="1.2"/><circle cx="552" cy="150" r="0.9"/><circle cx="304" cy="230" r="0.7"/><circle cx="109" cy="116" r="1.5"/><circle cx="408" cy="645" r="0.9"/><circle cx="471" cy="83" r="1.2"/><circle cx="382" cy="259" r="1.5"/><circle cx="333" cy="418" r="1.5"/><circle cx="63" cy="715" r="1.3"/><circle cx="237" cy="574" r="0.9"/><circle cx="594" cy="416" r="1.0"/><circle cx="459" cy="318" r="0.9"/><circle cx="446" cy="35" r="1.4"/><circle cx="590" cy="422" r="1.3"/><circle cx="20" cy="108" r="1.3"/><circle cx="259" cy="369" r="1.5"/><circle cx="392" cy="16" r="0.7"/><circle cx="214" cy="161" r="1.2"/><circle cx="353" cy="147" r="1.3"/><circle cx="285" cy="97" r="1.5"/><circle cx="146" cy="108" r="0.8"/><circle cx="383" cy="627" r="1.4"/><circle cx="241" cy="190" r="0.7"/><circle cx="387" cy="405" r="1.0"/><circle cx="387" cy="320" r="1.5"/><circle cx="440" cy="179" r="1.5"/><circle cx="26" cy="383" r="1.1"/><circle cx="143" cy="42" r="1.4"/><circle cx="565" cy="102" r="0.9"/><circle cx="365" cy="365" r="1.3"/><circle cx="488" cy="126" r="1.0"/><circle cx="180" cy="35" r="1.5"/><circle cx="470" cy="515" r="0.7"/><circle cx="507" cy="537" r="1.1"/><circle cx="445" cy="326" r="0.9"/><circle cx="23" cy="242" r="1.4"/><circle cx="417" cy="609" r="1.3"/><circle cx="160" cy="399" r="1.1"/><circle cx="473" cy="377" r="0.9"/><circle cx="385" cy="695" r="0.9"/><circle cx="156" cy="170" r="1.4"/><circle cx="567" cy="537" r="1.0"/><circle cx="528" cy="237" r="0.9"/><circle cx="416" cy="479" r="1.6"/></g></g>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.53a2 2 0 0 1-.21.9L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.07-10.12a2 2 0 0 1-.21-.9V2"/><path d="M8.5 2h7M7 16h10"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.53L12 17.5l-5.87 3.07 1.12-6.53L2.5 9.41l6.56-.95z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+    <symbol id="i-van" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65M22 12.65l-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+    <symbol id="i-build" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></symbol>
+    <symbol id="i-half" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C9.5 3 11 5 12 8c1-3 2.5-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></symbol>
+    <symbol id="i-google" viewBox="0 0 24 24"><path d="M21.6 12.23c0-.68-.06-1.33-.17-1.96H12v3.7h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.98-4.32 2.98-7.26z"/><path d="M12 22c2.7 0 4.96-.9 6.62-2.42l-3.24-2.5c-.9.6-2.04.95-3.38.95-2.6 0-4.8-1.76-5.59-4.12H3.07v2.6A10 10 0 0 0 12 22z"/><path d="M6.41 13.91A6 6 0 0 1 6.1 12c0-.66.11-1.31.31-1.91v-2.6H3.07A10 10 0 0 0 2 12c0 1.61.39 3.14 1.07 4.51z"/><path d="M12 5.98c1.47 0 2.79.5 3.83 1.5l2.87-2.88A9.6 9.6 0 0 0 12 2 10 10 0 0 0 3.07 7.49l3.34 2.6C7.2 7.74 9.4 5.98 12 5.98z"/></symbol>
+  </defs>
+</svg>
+
+<div class="demo-ribbon"><span class="rl">Preview website made for {{name}} by MoreBookedNow</span><span class="rs">Preview site by MoreBookedNow</span></div>
+
+<header class="top">
+  <div class="wrap hdr">
+    <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="{{name}} logo" width="42" height="42"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+    <nav class="main" aria-label="Main">
+      <a href="#" data-lock="Services">Services</a>
+      <a href="#" data-lock="Ceramic Coating">Ceramic</a>
+      <a href="#" data-lock="Pricing">Pricing</a>
+      <a href="#" data-lock="Reviews">Reviews</a>
+      <a href="#" data-lock="Service Areas">Areas</a>
+      <a href="#" data-lock="About">About</a>
+    </nav>
+    <a class="hdr-phone" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a>
+    <a class="btn btn-blue hdr-cta" href="#quote" onclick="tab('form')">Get a Quote</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav" onclick="toggleNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+  </div>
+  <div class="mnav" id="mnav">
+    <a class="l" href="#" data-lock="Services">Services<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <a class="l" href="#" data-lock="Ceramic Coating">Ceramic Coating<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <a class="l" href="#" data-lock="Pricing">Pricing<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <a class="l" href="#" data-lock="Reviews">Reviews<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <a class="l" href="#" data-lock="Service Areas">Service Areas<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <a class="l" href="#" data-lock="About">About<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    <div class="mb">
+      <a class="btn btn-blue full" href="#quote" onclick="tab('form');closeNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a free quote</a>
+      <a class="btn btn-glass" href="#quote" onclick="tab('chat');closeNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask us</a>
+      <a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a>
+      <a class="btn btn-glass full" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-in">
+    <div>
+      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
+      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
+      <p class="lead">{{hero.lead}}</p>
+      <div class="ctas">
+        <a class="btn btn-blue" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a Quote</a>
+        <a class="btn btn-line" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text Us</a>
+      </div>
+      <div class="sublinks">
+        <a href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
+        <a href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
+      </div>
+      <div class="qf3" role="list" aria-label="Quick facts">
+{{#each hero.facts}}        <div role="listitem"><b class="chrome">{{value}}</b><span>{{label}}</span></div>
+{{/each}}      </div>
+    </div>
+
+    <div class="hero-vis" aria-hidden="true">
+      <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="paint" x1="0" y1="0" x2=".7" y2="1">
+            <stop offset="0" stop-color="#123150"/>
+            <stop offset=".45" stop-color="#071526"/>
+            <stop offset="1" stop-color="#010307"/>
+          </linearGradient>
+          <linearGradient id="hl" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#1e90ff" stop-opacity="0"/>
+            <stop offset=".35" stop-color="#7cc8ff" stop-opacity=".8"/>
+            <stop offset=".6" stop-color="#ffffff" stop-opacity=".95"/>
+            <stop offset="1" stop-color="#1e90ff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="bl40" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="38"/></filter>
+          <filter id="bl3"><feGaussianBlur stdDeviation="2.4"/></filter>
+        </defs>
+        <rect width="600" height="720" fill="url(#paint)"/>
+        <path d="M-80 600C120 470 330 360 700 150" stroke="url(#hl)" stroke-width="120" fill="none" filter="url(#bl40)" opacity=".55"/>
+        <path d="M-80 640C140 505 360 400 700 205" stroke="#cfeaff" stroke-width="3" fill="none" filter="url(#bl3)" opacity=".5"/>
+        <path d="M-80 120C200 80 420 60 700 -10" stroke="#5ab4ff" stroke-width="40" fill="none" filter="url(#bl40)" opacity=".25"/>
+        <use href="#field"/>
+      </svg>
+      <div class="sweep"></div>
+      <img class="hero-logo" src="/{{slug}}/{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" fetchpriority="high" decoding="async">
+      <div class="glass g-rate"><b>{{google.rating}}</b><div><span class="stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><small>{{google.count}} Google reviews</small></div></div>
+      <div class="glass g-cer">
+        <span class="tag">{{hero.card.tag}}</span>
+        <h3 class="d">{{hero.card.title}}</h3>
+        <div class="pr">from <b>{{hero.card.price}}</b></div>
+        <ul>{{#each hero.card.points}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" aria-label="At a glance">
+  <div class="wrap">
+    <div class="pf"><i><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></i><div><b>{{google.rating}} on Google</b><span>{{proof.ratingNote}}</span></div></div>
+    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg></i><div><b>{{proof.mobile.title}}</b><span>{{proof.mobile.text}}</span></div></div>
+    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></i><div><b id="ps-b">{{hours.summary}}</b><span id="ps-s">{{hours.shortHtml}}</span></div></div>
+    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-user"/></svg></i><div><b>{{proof.badge.title}}</b><span>{{proof.badge.text}}</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sh">
+      <span class="eyebrow">{{packages.eyebrow}}</span>
+      <h2 class="d">{{packages.h2a}} <span class="blue-t">{{packages.h2b}}</span></h2>
+      <p>{{packages.intro}}</p>
+    </div>
+
+    <div class="tiers">
+{{#each packages.tiers}}      <article class="tier {{class}}">
+{{#if featured}}        <span class="sheen" aria-hidden="true"></span>
+        <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
+{{/if}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
+{{#if plus}}        <p class="t-plus">{{plus}}</p>
+{{/if}}        <ul class="t-list">
+{{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
+{{/each}}        </ul>
+        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="#quote" onclick="pick('{{pick}}')">{{button}}</a>
+      </article>
+{{/each}}    </div>
+    <p class="pfine"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><span>{{packages.fine}}</span></p>
+
+    <div class="more">
+{{#if packages.single}}      <div class="mc">
+        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg></i><h3>{{packages.single.title}}</h3></div>
+        <div class="big">{{packages.single.big}}</div>
+        <p>{{packages.single.text}}</p>
+        <a class="lnk" href="#quote" onclick="pick('{{packages.single.pick}}')">{{packages.single.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      </div>
+{{/if}}{{#if packages.bundles}}      <div class="mc">
+        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg></i><h3>{{packages.bundles.title}}</h3></div>
+        <ul class="rows">
+{{#each packages.bundles.rows}}          <li><span>{{label}}</span><b>{{value}}</b></li>
+{{/each}}        </ul>
+        <p>{{packages.bundles.text}}</p>
+{{#if packages.bundles.note}}        <p class="note">{{packages.bundles.note}}</p>
+{{/if}}        <a class="lnk" href="#quote" onclick="pick('bundle4')">{{packages.bundles.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      </div>
+{{/if}}{{#if packages.fleet}}      <div class="mc">
+        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-build"/></svg></i><h3>{{packages.fleet.title}}</h3></div>
+        <ul class="rows">
+{{#each packages.fleet.rows}}          <li><span>{{label}}</span><b>{{value}}</b></li>
+{{/each}}        </ul>
+        <p>{{packages.fleet.text}}</p>
+        <a class="lnk" href="sms:{{phone.tel}}">{{packages.fleet.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      </div>
+{{/if}}{{#if packages.custom}}      <div class="mc custom">
+        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg></i><h3>{{packages.custom.title}}</h3></div>
+        <p style="margin-bottom:14px">{{packages.custom.text}}</p>
+        <q>{{packages.custom.quote}}</q>
+        <a class="btn btn-blue" href="#quote" onclick="pick('custom')">{{packages.custom.button}}</a>
+      </div>
+{{/if}}    </div>
+
+{{#if addons.items}}    <details class="ao" id="addons" open>
+      <summary class="ao-h"><h3>Add-ons</h3><p>{{addons.intro}}</p></summary>
+      <ul>
+{{#each addons.items}}        <li><span>{{name}}</span><i></i><b>{{price}}</b></li>
+{{/each}}      </ul>
+{{#if addons.note}}      <p class="aonote">{{addons.note}}</p>
+{{/if}}    </details>
+{{/if}}  </div>
+</section>
+
+<section class="sec" id="results">
+  <div class="wrap">
+    <div class="sh">
+      <span class="eyebrow">{{results.eyebrow}}</span>
+      <h2 class="d">{{results.h2a}} <span class="blue-t">{{results.h2b}}</span></h2>
+      <p>{{results.intro}}</p>
+    </div>
+    <div class="ba-row" tabindex="0" role="region" aria-label="Before and after photos, scroll sideways for more">
+{{#each results.photos}}      <figure class="ba"><div class="im" style="--s:{{split}}"><img src="/{{slug}}/{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
+{{/each}}    </div>
+    <p class="swipe" aria-hidden="true">Swipe for more <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
+{{#if social}}    <div class="social">
+      <span>Watch us work:</span>
+{{#if social.tiktok}}      <a href="{{social.tiktok.url}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>{{social.tiktok.handle}}</a>
+{{/if}}{{#if social.instagram}}      <a href="{{social.instagram.url}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg>{{social.instagram.handle}}</a>
+{{/if}}    </div>
+{{/if}}  </div>
+</section>
+
+<section class="sec ceramic" id="ceramic">
+  <svg class="cer-bg" viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="720" fill="#03070c" opacity="0"/><path d="M-60 520C160 400 360 300 680 110" stroke="#4aa8ff" stroke-width="90" fill="none" filter="url(#bl40)" opacity=".22"/><use href="#field"/></svg>
+  <div class="wrap">
+    <div class="sh">
+      <span class="eyebrow">{{ceramic.eyebrow}}</span>
+      <h2 class="d">{{ceramic.h2a}} <span class="blue-t">{{ceramic.h2b}}</span></h2>
+      <p>{{ceramic.intro}}</p>
+    </div>
+    <div class="props">
+      <div class="prop"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg></i><b>Hydrophobic</b><span>Repels water, so upkeep is just a hose and a rag.</span></div>
+      <div class="prop"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-sun"/></svg></i><b>UV resistant</b><span>Shields against UV damage and oxidation.</span></div>
+      <div class="prop"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg></i><b>Scratch resistant</b><span>A line of defense between the world and your paint.</span></div>
+      <div class="prop"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-flask"/></svg></i><b>Stain resistant</b><span>Stands up to road grime and chemical stains.</span></div>
+    </div>
+
+    <div class="cer-grid">
+      <div class="cc nohalf">
+        <h3>{{ceramic.pitch.title}}</h3>
+        <p>{{ceramic.pitch.text}}</p>
+{{#each ceramic.pitch.points}}        <div class="pt"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg><div><b>{{title}}</b><span>{{text}}</span></div></div>
+{{/each}}        <div class="dia-box">
+          <div class="row"><b>{{ceramic.package.name}}</b><span>from<em>{{ceramic.package.price}}</em></span></div>
+          <ul>
+{{#each ceramic.package.items}}            <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
+{{/each}}          </ul>
+        </div>
+        <div class="acts">
+          <a class="btn btn-blue" href="#quote" onclick="pick('{{ceramic.pick}}')">{{ceramic.button}}</a>
+          <a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a>
+        </div>
+      </div>
+      <div class="cc">
+        <h3>{{ceramic.stepsTitle}}</h3>
+        <p style="color:var(--soft);margin-bottom:20px">{{ceramic.stepsIntro}}</p>
+        <ol class="steps">
+{{#each ceramic.steps}}          <li><b>{{title}}</b>{{#if text}}<span>{{text}}</span>{{/if}}</li>
+{{/each}}        </ol>
+      </div>
+    </div>
+
+    <div class="cer-after">
+      <div class="cc cure">
+        <span class="eyebrow" style="margin-bottom:6px">Aftercare</span>
+        <div class="num chrome">{{ceramic.cure.value}}<small>{{ceramic.cure.label}}</small></div>
+        <p>{{ceramic.cure.text}}</p>
+      </div>
+      <div class="cc">
+        <span class="eyebrow" style="margin-bottom:6px">{{ceramic.rewardsEyebrow}}</span>
+        <h3>{{ceramic.rewardsTitle}}</h3>
+        <div class="rewards">
+{{#each ceramic.rewards}}          <div class="rw"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg><b>{{title}}</b><span>{{text}}</span></div>
+{{/each}}        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec reviews" id="reviews">
+  <div class="wrap">
+    <div class="rv-head">
+      <div class="sh">
+        <span class="eyebrow">Google reviews</span>
+        <h2 class="d">{{reviews.h2a}} <span class="blue-t">{{reviews.h2b}}</span></h2>
+        <p>{{reviews.intro}}</p>
+      </div>
+      <div class="gscore">
+        <b class="chrome">{{google.rating}}</b>
+        <div>
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>
+          <small>{{google.count}} Google reviews, as of {{google.asOf}}</small>
+          <a class="lnk" href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+        </div>
+      </div>
+    </div>
+    {{#if reviews.topics}}<div class="topics"><span class="lab">What reviewers mention</span>{{#each reviews.topics}}<span>{{this}}</span>{{/each}}</div>{{/if}}
+
+    <div class="rv-row" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
+{{#each reviews.items}}      <figure class="rv"><span class="stars" role="img" aria-label="5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><blockquote>{{text}}</blockquote><figcaption class="who"><span class="av">{{initial}}</span><span>{{name}}<small>Google review · {{date}}</small></span></figcaption></figure>
+{{/each}}    </div>
+    <p class="swipe" aria-hidden="true">Swipe for more reviews <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
+    <div class="rv-more">
+      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
+      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="art"><img src="/{{slug}}/{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="eyebrow">{{about.eyebrow}}</span>
+        <h2 class="d">{{about.h2a}} <span class="blue-t">{{about.h2b}}</span></h2>
+{{#each about.paragraphs}}        <p class="big">{{this}}</p>
+{{/each}}        <div class="tags">
+{{#each about.tags}}          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg>{{text}}</span>
+{{/each}}        </div>
+      </div>
+    </div>
+
+    <div class="sh how-h">
+      <span class="eyebrow">How it works</span>
+      <h2 class="d">{{how.h2a}} <span class="blue-t">{{how.h2b}}</span></h2>
+    </div>
+    <div class="how" style="margin-top:36px">
+{{#each how.steps}}      <div class="hw"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></i><b>{{title}}</b><p>{{text}}</p></div>
+{{/each}}    </div>
+  </div>
+</section>
+
+<section class="sec areawrap" id="area">
+  <div class="wrap">
+    <div class="area">
+      <div>
+        <span class="eyebrow">Service area</span>
+        <h2 class="d">{{area.h2a}} <span class="blue-t">{{area.h2b}}</span></h2>
+        <p style="color:var(--soft);font-size:1.08rem;margin-top:16px">{{area.intro}}</p>
+        <div class="cities">
+{{#each area.cities}}          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>
+{{/each}}{{#if area.more}}          <span class="plus">{{area.more}}</span>
+{{/if}}        </div>
+        <div class="limit"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg><div>{{area.limitHtml}}</div></div>
+        <div class="area-acts"><a class="btn btn-line" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us your address</a><a class="btn btn-glass" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a quote</a></div>
+      </div>
+      <div class="radar" aria-hidden="true">
+        <svg viewBox="0 0 400 418">
+          <defs>
+            <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#1e90ff" stop-opacity=".22"/><stop offset="1" stop-color="#1e90ff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="sw" gradientUnits="userSpaceOnUse" x1="300" y1="50" x2="385" y2="205"><stop offset="0" stop-color="#55b7db" stop-opacity="0"/><stop offset="1" stop-color="#55b7db" stop-opacity=".32"/></linearGradient>
+          </defs>
+          <circle cx="200" cy="200" r="190" fill="url(#rg)"/>
+          <g fill="none" stroke="#55b7db" stroke-opacity=".22"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="180" stroke-dasharray="3 6" stroke-opacity=".45"/><path d="M200 14v372M14 200h372" stroke-opacity=".1"/></g>
+          <g class="sweepr"><path d="M200 200L380 200A180 180 0 0 0 327 73Z" fill="url(#sw)"/><path d="M200 200L380 200" stroke="#8fd8ff" stroke-opacity=".55" stroke-width="1.5"/></g>
+          <g font-family="Barlow Condensed,Arial Narrow,sans-serif" font-style="italic" font-weight="700" font-size="17" fill="#e9eff5" letter-spacing=".6">
+{{#each area.radar}}            <circle cx="{{cx}}" cy="{{cy}}" r="5" fill="#1e90ff"/><text x="{{tx}}" y="{{ty}}">{{label}}</text>
+{{/each}}          </g>
+          <circle cx="200" cy="200" r="34" fill="#0a1a2c" stroke="#1e90ff" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="44" fill="none" stroke="#1e90ff" stroke-opacity=".35"/>
+          <use href="#i-van" x="184" y="184" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="200" y="412" text-anchor="middle" font-family="Barlow,sans-serif" font-size="15" fill="#9aabbc" letter-spacing="1.4">{{area.radarCaption}}</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="info3">
+      <div class="ic3">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Hours<span class="st" id="openst"></span></h3>
+        <ul class="hrs">
+{{#each hours.rows}}          <li data-h="{{key}}"><span>{{label}}</span><b>{{text}}</b></li>
+{{/each}}        </ul>
+      </div>
+      <div class="ic3">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Payment</h3>
+        <div class="pay">{{#each payment}}<span>{{this}}</span>{{/each}}</div>
+      </div>
+      <div class="ic3">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg>Vehicles</h3>
+        <p>{{area.vehicles}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap faqg">
+    <div class="faq-side">
+      <div class="sh"><span class="eyebrow">FAQ</span><h2 class="d">Questions, <span class="blue-t">answered.</span></h2><p>{{faq.intro}}</p></div>
+      <div class="askcard">
+        <b>Still have a question?</b>
+        <span>{{faq.askText}}</span>
+        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a></div>
+      </div>
+    </div>
+    <div class="faq">
+{{#each faq.items}}    <details><summary>{{q}}</summary><p>{{a}}</p></details>
+{{/each}}    </div>
+  </div>
+</section>
+
+<section class="sec quote-sec" id="quote">
+  <div class="wrap quote">
+    <div>
+      <span class="eyebrow">Free quote</span>
+      <h2 class="d">Get your custom <span class="blue-t">detail quote.</span></h2>
+      <p style="color:var(--soft);font-size:1.08rem;margin-top:16px;max-width:520px">{{quote.intro}}</p>
+      <div class="qopts">
+        <a class="qo" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i><span><b>Text {{phone.display}}</b><small>Send a question or a photo</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        <a class="qo" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i><span><b>Call {{phone.display}}</b><small>{{hours.shortHtml}}</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        <a class="qo" href="{{links.booking}}" target="_blank" rel="noopener"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg></i><span><b>Book online</b><small>{{quote.bookingNote}}</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+      </div>
+      <ul class="qchk">
+{{#each quote.checks}}        <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
+{{/each}}      </ul>
+    </div>
+
+    <div class="card" id="qcard">
+      <div class="tabs" role="tablist" aria-label="Quote or question">
+        <button type="button" id="t-form" class="on" role="tab" aria-selected="true" aria-controls="p-form" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Free quote</button>
+        <button type="button" id="t-chat" role="tab" aria-selected="false" aria-controls="p-chat" tabindex="-1" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask a question</button>
+      </div>
+      <div class="pane on" id="p-form" role="tabpanel" aria-labelledby="t-form">
+        <form class="qform" id="qform" onsubmit="quote(event)">
+          <div class="two">
+            <label>Your name*<input name="name" required autocomplete="name" placeholder="First and last name"></label>
+            <label>Mobile phone*<input name="phone" required type="tel" inputmode="tel" autocomplete="tel" placeholder="{{phone.example}}"></label>
+          </div>
+          <label>Vehicle (year, make, model)*<input name="vehicle" required placeholder="e.g. 2021 Honda Civic"></label>
+          <fieldset>
+            <legend>Vehicle size</legend>
+            <div class="seg s4">
+              <label><input type="radio" name="size" value="Car / sedan" checked><span>Car / sedan</span></label>
+              <label><input type="radio" name="size" value="SUV / truck"><span>SUV / truck</span></label>
+              <label><input type="radio" name="size" value="3-row / minivan"><span>3-row / minivan</span></label>
+              <label><input type="radio" name="size" value="Van / Sprinter"><span>Van / Sprinter</span></label>
+            </div>
+          </fieldset>
+          <label>Service wanted*
+            <select name="service" id="svc" required>
+              <option value="">Choose a package or service...</option>
+{{#each quote.services}}              <option value="{{value}}">{{label}}</option>
+{{/each}}            </select>
+          </label>
+          <fieldset>
+            <legend>Condition</legend>
+            <div class="seg s3">
+              <label><input type="radio" name="cond" value="Lightly Dirty"><span>Lightly dirty</span></label>
+              <label><input type="radio" name="cond" value="Pretty Dirty"><span>Pretty dirty</span></label>
+              <label><input type="radio" name="cond" value="Very Dirty!"><span>Very dirty!</span></label>
+            </div>
+          </fieldset>
+          <div class="two">
+            <label>City*
+              <select name="city" required>
+                <option value="">Choose your city...</option>
+                {{#each area.cities}}<option>{{this}}</option>{{/each}}<option>Somewhere else</option>
+              </select>
+            </label>
+            <label>Street address <em>(optional)</em><input name="address" autocomplete="street-address" placeholder="Where should we park?"></label>
+          </div>
+          <label>Preferred day<input name="date" id="qdate" type="date"></label>
+          <details class="addpick"><summary>Add-ons <small>(optional)</small></summary><div class="g">
+{{#each addons.items}}            <label><input type="checkbox" name="addon" value="{{name}}">{{name}}<b>{{price}}</b></label>
+{{/each}}          </div></details>
+          <label>Notes <em>(optional)</em><textarea name="notes" rows="3" placeholder="Pet hair, stains, odor, where the vehicle will be parked..."></textarea></label>
+          <button type="submit" class="btn btn-blue">Get My Quote <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+          <div class="ok" id="ok" role="status" aria-live="polite"></div>
+          <p class="fine">Price confirmed before any work begins &middot; Or text <a href="sms:{{phone.tel}}">{{phone.display}}</a></p>
+        </form>
+      </div>
+      <div class="pane" id="p-chat" role="tabpanel" aria-labelledby="t-chat">
+        <div class="chat-h"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
+        <div class="msgs" id="msgs" role="log" aria-live="polite"></div>
+        <div class="qr" id="qr">
+{{#each chat.suggestions}}          <button type="button" data-q="{{q}}">{{label}}</button>
+{{/each}}        </div>
+        <form class="chat-in" id="chatform" onsubmit="send(event)">
+          <label class="sr" for="chatin">Your message</label>
+          <input id="chatin" placeholder="Ask a question…" autocomplete="off" maxlength="600">
+          <button type="submit" class="btn btn-blue" id="chatbtn" aria-label="Send message"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="brand" href="#top"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="42" height="42" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+        <p class="fabout">{{footer.about}}</p>
+        <div class="fsoc">
+          <a href="{{social.tiktok.url}}" target="_blank" rel="noopener" aria-label="TikTok {{social.tiktok.handle}}"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a>
+          <a href="{{social.instagram.url}}" target="_blank" rel="noopener" aria-label="Instagram {{social.instagram.handle}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg></a>
+          <a href="{{links.googleReviews}}" target="_blank" rel="noopener" aria-label="Google reviews"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li><li><a href="#ceramic">Ceramic coating</a></li><li><a href="#addons">Add-ons</a></li><li><a href="#packages">Bundles &amp; fleet plan</a></li><li><a href="#results">Before &amp; after</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li><li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li><li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li><li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
+    </div>
+    <div class="copy"><span>© {{footer.year}} {{name}}. {{footer.copyNote}}</span><span>Website by MoreBookedNow</span></div>
+  </div>
+</footer>
+
+<div class="float hide" id="float"><a class="btn btn-glass" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask a question</a><a class="btn btn-blue" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Free quote</a></div>
+<nav class="mbar" id="mbar" aria-label="Quick contact"><a href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call</a><a href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text</a><a href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask</a><a class="g" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Quote</a></nav>
+
+<div class="lock" id="lock" onclick="if(event.target===this)unlock()" role="dialog" aria-modal="true" aria-labelledby="lock-t">
+  <div class="box">
+    <button class="x" onclick="unlock()" aria-label="Close"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+    <div class="k"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></div>
+    <h3 id="lock-t">Services page</h3>
+    <p>This page is part of the full {{name}} website. It unlocks when your site goes live.</p>
+    <ul id="lock-l"></ul>
+    <a class="btn btn-blue" id="lock-go" href="https://morebookednow.com/services" target="_blank" rel="noopener">See what's included <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+  </div>
+</div>
+
+<script>
+const LOCK={
+  'Services':['A full page for each package and add-on','What is included, with your own before and after photos','Built to rank on Google for “mobile detailing near me”'],
+  'Ceramic Coating':['A dedicated ceramic coating page','Process, aftercare and warranty questions answered','Built to rank for “ceramic coating” in every city you serve'],
+  'Pricing':['Starting prices for every package, add-on and bundle, with a quote by text','Packages, add-ons, bundles and fleet plan in one place','Book or request a quote straight from the price'],
+  'Reviews':['All your Google reviews in one place','Before and after photo sliders','Automatic review requests after each detail'],
+  'Service Areas':['A page for every city you serve','Built to rank for “car detailing near me” in every city you serve','Quote form on every area page'],
+  'About':['Your story, your van, your photos','How a detail runs, start to finish','Why customers pick you over a car wash']
+};
+const CHECK='<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>';
+let lastFocus=null;
+document.querySelectorAll('[data-lock]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();closeNav();const k=a.dataset.lock;lastFocus=a;document.getElementById('lock-t').textContent=k+' page';document.getElementById('lock-l').innerHTML=LOCK[k].map(x=>'<li>'+CHECK+'<span>'+x+'</span></li>').join('');document.getElementById('lock-go').href='https://morebookednow.com/'+(k==='Pricing'?'pricing':'services');document.getElementById('lock').classList.add('open');setBehind(true);document.querySelector('#lock .x').focus()}));
+/* while the pop-up is open the page behind it neither scrolls nor takes focus */
+function setBehind(on){document.documentElement.style.overflow=on?'hidden':'';document.querySelectorAll('.demo-ribbon,header.top,main,footer,#float,#mbar').forEach(el=>{if(on)el.setAttribute('inert','');else el.removeAttribute('inert')})}
+document.getElementById('lock').addEventListener('keydown',e=>{if(e.key!=='Tab')return;const a=document.querySelector('#lock .x'),b=document.getElementById('lock-go');if(e.shiftKey&&document.activeElement===a){e.preventDefault();b.focus()}else if(!e.shiftKey&&document.activeElement===b){e.preventDefault();a.focus()}});
+function unlock(){document.getElementById('lock').classList.remove('open');setBehind(false);const t=(lastFocus&&lastFocus.offsetParent)?lastFocus:document.getElementById('burger');if(t&&t.offsetParent){try{t.focus()}catch(e){}}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.getElementById('lock').classList.contains('open'))unlock();else closeNav()}});
+function toggleNav(){const m=document.getElementById('mnav');const o=m.classList.toggle('open');document.getElementById('burger').setAttribute('aria-expanded',o?'true':'false')}
+function closeNav(){document.getElementById('mnav').classList.remove('open');document.getElementById('burger').setAttribute('aria-expanded','false')}
+function tab(w){['chat','form'].forEach(k=>{const on=k===w,t=document.getElementById('t-'+k);t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;document.getElementById('p-'+k).classList.toggle('on',on)})}
+/* arrow keys move between the two tabs */
+document.querySelector('.tabs').addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'&&e.key!=='Home'&&e.key!=='End')return;e.preventDefault();const cur=document.getElementById('t-form').classList.contains('on')?'form':'chat';const next=e.key==='Home'?'form':e.key==='End'?'chat':(cur==='form'?'chat':'form');tab(next);document.getElementById('t-'+next).focus()});
+/* links to #quote land on the quote card itself, so the first field is in view */
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href="#quote"]');if(!a||e.defaultPrevented)return;const c=document.getElementById('qcard');if(!c)return;e.preventDefault();const h=document.querySelector('header.top');const off=(h?h.getBoundingClientRect().height:66)+12;scrollTo({top:Math.max(0,c.getBoundingClientRect().top+scrollY-off),behavior:reduceMotion?'auto':'smooth'});try{history.replaceState(null,'','#quote')}catch(_){}});
+function pick(v){tab('form');const s=document.getElementById('svc');if(s)s.value=v}
+
+/* site assistant: real replies from /api/chat */
+const PHONE={{json phone.display}};
+const GREETING="{{chat.greeting}}";
+const chatLog=[{role:'assistant',content:GREETING}];
+let busy=false,leadShown=false,replies=0;
+const REPLY_LIMIT=3;
+const msgsEl=document.getElementById('msgs');
+function scrollMsgs(){msgsEl.scrollTop=msgsEl.scrollHeight}
+function add(t,c){const m=document.createElement('div');m.className='msg '+c;m.textContent=t;msgsEl.appendChild(m);scrollMsgs();return m}
+function addError(t){
+  const m=document.createElement('div');m.className='msg bot err';
+  m.appendChild(document.createTextNode((t||'Something went wrong.')+' '));
+  m.appendChild(document.createTextNode('You can call or text us at '));
+  const a=document.createElement('a');a.href='tel:{{phone.tel}}';a.textContent=PHONE;m.appendChild(a);
+  m.appendChild(document.createTextNode('.'));
+  msgsEl.appendChild(m);scrollMsgs();
+}
+function typing(){const m=document.createElement('div');m.className='msg bot typing';m.innerHTML='<span class="sr">The assistant is typing</span><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>';msgsEl.appendChild(m);scrollMsgs();return m}
+add(GREETING,'bot');
+async function send(e){
+  if(e)e.preventDefault();
+  const i=document.getElementById('chatin');const v=(i.value||'').trim();
+  if(!v||busy)return;
+  const btn=document.getElementById('chatbtn');const refocus=document.activeElement===btn||document.activeElement===i;
+  busy=true;btn.disabled=true;
+  i.value='';add(v,'me');chatLog.push({role:'user',content:v});
+  const qr=document.getElementById('qr');if(qr)qr.style.display='none';
+  const t=typing();
+  try{
+    let res=null,data=null;
+    const ctl=typeof AbortController!=='undefined'?new AbortController():null;
+    const timer=ctl?setTimeout(()=>ctl.abort(),30000):null;
+    try{res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:{{json slug}},messages:chatLog.slice(-20)}),signal:ctl?ctl.signal:undefined})}
+    finally{if(timer)clearTimeout(timer)}
+    try{data=await res.json()}catch(_){data=null}
+    t.remove();
+    const reply=data&&typeof data.reply==='string'?data.reply.trim():'';
+    if(res.ok&&data&&(reply||data.leadCaptured)){
+      const shown=reply||'Thanks, got it.';
+      chatLog.push({role:'assistant',content:shown});
+      add(shown,'bot');replies++;
+      if(data.leadCaptured&&!leadShown){leadShown=true;add("Got your details. We'll be in touch shortly.",'note')}
+    }else{
+      addError(data&&typeof data.error==='string'&&data.error?data.error:"The assistant isn't available right now.");
+    }
+  }catch(err){
+    try{t.remove()}catch(_){}
+    addError("Couldn't reach the assistant.");
+  }finally{busy=false;btn.disabled=false;if(replies>=REPLY_LIMIT){spent();const a=document.querySelector('#alock a');if(refocus&&a)a.focus({preventScroll:true})}else if(refocus)i.focus({preventScroll:true})}
+}
+/* the demo assistant stops after a few replies and shows what the real one does */
+function spent(){
+  if(document.getElementById('alock'))return;
+  const f=document.getElementById('chatform'),qr=document.getElementById('qr');
+  if(f)f.style.display='none';if(qr)qr.style.display='none';
+  const box=document.createElement('div');box.className='alock';box.id='alock';
+  const b=document.createElement('b');b.textContent='That is your assistant working.';
+  const p=document.createElement('p');p.textContent='On your real site it never stops: every question answered, every night, and the details of anyone ready to book sent straight to your phone.';
+  const a=document.createElement('a');a.className='btn btn-blue';a.href='https://morebookednow.com/services';a.target='_blank';a.rel='noopener';a.setAttribute('data-lock','assistant');a.textContent='Get it running on my site';
+  box.append(b,p,a);f.parentNode.appendChild(box);
+}
+document.querySelectorAll('#qr button').forEach(b=>b.addEventListener('click',()=>{const i=document.getElementById('chatin');i.value=b.dataset.q;const f=i.form;if(f.requestSubmit)f.requestSubmit();else send()}));
+
+const SVC={{json quote.serviceNames}};
+function quote(e){
+  e.preventDefault();
+  const f=e.target,ok=document.getElementById('ok');
+  const name=((f.elements.name&&f.elements.name.value)||'').trim().split(/\s+/)[0];
+  const svc=SVC[(f.elements.service&&f.elements.service.value)||''];
+  ok.textContent='';
+  const b=document.createElement('b');b.textContent='Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.';ok.appendChild(b);
+  ok.appendChild(document.createTextNode('On your live site, this request'+(svc?' for a '+svc:'')+' goes straight to your phone, with the vehicle, size, condition and city filled in.'));
+  ok.style.display='block';
+  try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
+}
+
+/* add-ons start collapsed on phones to keep the price list short; links to them open it */
+(function(){try{const a=document.getElementById('addons');if(!a)return;if(matchMedia('(max-width: 719px)').matches)a.removeAttribute('open');document.querySelectorAll('a[href="#addons"]').forEach(l=>l.addEventListener('click',()=>{a.open=true}))}catch(e){}})();
+
+/* today's hours and open-now status, from the business's hours in its own time zone */
+(function(){try{
+  const SCHED={{json hours.schedule}},ROW={{json hours.dayRow}},DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:{{json timezone}},weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+  const g=k=>(p.find(x=>x.type===k)||{}).value;
+  const wd=g('weekday'),h=+g('hour')%24,m=+g('minute'),di=DAYS.indexOf(wd);
+  const key=ROW[di];
+  const row=document.querySelector('[data-h="'+key+'"]');if(row)row.classList.add('today');
+  const span=SCHED[key];const now=h+m/60;
+  const open=!!span&&now>=span[0]&&now<span[1];
+  const st=document.getElementById('openst');if(st){st.textContent=open?'Open now':'Closed now';st.classList.add(open?'on':'off')}
+  const fmt=x=>(x>12?x-12:x)+(x>=12?' PM':' AM');
+  let sub;
+  if(open)sub='Until '+fmt(span[1])+' today';
+  else if(span&&now<span[0])sub='Opens '+fmt(span[0])+' today';
+  else{for(let i=1;i<=7;i++){const d=(di+i)%7,s=SCHED[ROW[d]];if(s){sub=i===1?'Opens '+fmt(s[0])+' tomorrow':'Opens '+DAYS[d]+' '+fmt(s[0]);break}}}
+  const pb=document.getElementById('ps-b'),ps=document.getElementById('ps-s');
+  if(pb&&ps&&sub){pb.textContent='';const dt=document.createElement('span');dt.className='dot'+(open?' on':'');dt.setAttribute('aria-hidden','true');pb.appendChild(dt);pb.appendChild(document.createTextNode(open?'Open now':'Closed now'));
+    ps.textContent='';const s1=document.createElement('span');s1.className='nw';s1.textContent=sub;const s2=document.createElement('span');s2.className='nw';s2.textContent='· '+(open?'Call or text':'Book online anytime');ps.append(s1,' ',s2)}
+  const d=document.getElementById('qdate');if(d){const t=new Date();d.min=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0')}
+}catch(e){}})();
+
+/* sticky bars: the desktop pair waits until the hero is passed; both step aside while the quote card is on screen */
+(function(){try{
+  const f=document.getElementById('float'),mb=document.getElementById('mbar'),q=document.getElementById('qcard');
+  let inQuote=false;
+  const upd=()=>{f.classList.toggle('hide',inQuote||scrollY<560);mb.classList.toggle('hide',inQuote)};
+  if('IntersectionObserver' in window&&q){new IntersectionObserver(es=>es.forEach(x=>{inQuote=x.isIntersecting;upd()}),{threshold:.08}).observe(q)}
+  addEventListener('scroll',upd,{passive:true});upd();
+}catch(e){}})();
+</script>
+<script>
+/* Visit tracking, same events as the generated demos (components/DemoTracker.tsx),
+   recorded as engagement:<slug> and shown on morebookednow.com/admin/demos.
+   Only the shape of the visit: page, scroll depth, buttons. Nothing typed. */
+(function(){
+  var slug={{json slug}},page=location.pathname,visit=Math.random().toString(36).slice(2,12),sent={};
+  function send(ev,val){var k=ev+':'+(val==null?'':val);if(sent[k])return;sent[k]=1;
+    var body=JSON.stringify({slug:slug,event:ev,page:page,value:val,visit:visit});
+    try{if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/demo/track',new Blob([body],{type:'application/json'}))))
+      fetch('/api/demo/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}catch(e){}}
+  send('view');
+  function onScroll(){var d=document.documentElement,h=d.scrollHeight-innerHeight;if(h<=0)return;
+    var p=Math.round(scrollY/h*100);[25,50,75,100].forEach(function(m){if(p>=m)send('scroll',m)})}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.indexOf('tel:')===0)send('cta:call');
+    else if(href.indexOf('sms:')===0)send('cta:text');
+    else if(href.indexOf('mailto:')===0)send('cta:email');
+    else if(a.hasAttribute('data-lock'))send('cta:locked-page');
+    else if(href==='#quote')send('cta:estimate')},true);
+  document.addEventListener('submit',function(e){if(e.target.classList.contains('chat-in'))send('assistant');else send('cta:quote-form')},true);
+  var opened=Date.now();
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send('dwell',Math.round((Date.now()-opened)/1000))});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+{
+  "slug": "apex-detailing",
+  "name": "Apex Detailing",
+  "shortName": "Apex",
+  "timezone": "America/Denver",
+  "seo": {
+    "title": "Apex Detailing | Mobile Car Detailing &amp; Ceramic Coating, Salt Lake Valley UT",
+    "description": "Mobile car detailing and ceramic coating in Kearns, Taylorsville, West Valley, West Jordan, Murray and Herriman, UT. Our van brings its own water and power. Interior and exterior packages from $150, ceramic coating from $600. Call or text (801) 835-2387."
+  },
+  "tagline": "Your Car, Our Craft",
+  "google": {
+    "count": "21",
+    "rating": "5.0",
+    "asOf": "October 2026"
+  },
+  "hero": {
+    "h1b": "We come <br>straight <br>to you.",
+    "h1a": "No <q>Detailing Near Me.</q>",
+    "lead": "Mobile car detailing and ceramic coating across Kearns, Taylorsville, West Valley, West Jordan, Murray and Herriman. Our van brings its own water and power, so <b>just leave the vehicle open.</b>",
+    "facts": [
+      {
+        "value": "$150",
+        "label": "Interior &amp; exterior, from"
+      },
+      {
+        "value": "$600",
+        "label": "Ceramic coating, from"
+      },
+      {
+        "value": "1&ndash;4<small>hrs</small>",
+        "label": "Done where you park"
+      }
+    ],
+    "card": {
+      "tag": "Our specialty",
+      "title": "Ceramic coating",
+      "price": "$600",
+      "points": [
+        "5-year coating",
+        "Paint correction",
+        "Wheels &amp; glass"
+      ]
+    }
+  },
+  "images": {
+    "heroLogo": {
+      "height": "440",
+      "width": "420",
+      "file": "logo-420.webp"
+    },
+    "about": {
+      "height": "1200",
+      "width": "1600",
+      "alt": "Apex Detailing badge logo: Established 2022, Your Car, Our Craft",
+      "file": "logo-tagline-dark.webp"
+    }
+  },
+  "proof": {
+    "ratingNote": "21 reviews, all five&#8209;star",
+    "mobile": {
+      "text": "Own water &amp; power",
+      "title": "We come to you"
+    },
+    "badge": {
+      "text": "Owner-operated by George",
+      "title": "Est. 2022"
+    }
+  },
+  "hours": {
+    "shortHtml": "<span class=\"nw\">Mon&ndash;Fri 8 AM&ndash;8 PM</span> &middot; <span class=\"nw\">Sat 9 AM&ndash;5 PM</span>",
+    "summary": "Mon to Sat",
+    "rows": [
+      {
+        "key": "wk",
+        "label": "Monday to Friday",
+        "text": "8 AM to 8 PM"
+      },
+      {
+        "key": "sat",
+        "label": "Saturday",
+        "text": "9 AM to 5 PM"
+      },
+      {
+        "key": "sun",
+        "label": "Sunday",
+        "text": "Closed"
+      }
+    ],
+    "footerHtml": "Mon to Fri 8 AM to 8 PM<br>Sat 9 AM to 5 PM · Sun closed",
+    "schedule": {
+      "wk": [
+        8,
+        20
+      ],
+      "sat": [
+        9,
+        17
+      ],
+      "sun": null
+    },
+    "dayRow": [
+      "sun",
+      "wk",
+      "wk",
+      "wk",
+      "wk",
+      "wk",
+      "sat"
+    ]
+  },
+  "packages": {
+    "intro": "Four clear packages, from a proper hand wash to a full ceramic coating. Pick one, or tell us about your vehicle and we will recommend the right fit.",
+    "h2b": "built for your vehicle.",
+    "h2a": "Detail packages",
+    "eyebrow": "Pricing / Options",
+    "tiers": [
+      {
+        "class": "t-bronze",
+        "name": "Bronze",
+        "sub": "Interior &amp; Exterior",
+        "price": "$150",
+        "items": [
+          "Hand wash &amp; dry",
+          "Wheel &amp; tire clean",
+          "Exterior sealant",
+          "Window clean",
+          "Basic interior vacuum &amp; wipe&#8209;down"
+        ],
+        "pick": "bronze",
+        "button": "Book Bronze",
+        "featured": false
+      },
+      {
+        "class": "t-gold",
+        "name": "Gold",
+        "sub": "Full Detail",
+        "price": "$200",
+        "items": [
+          "Full interior vacuum &amp; wipe&#8209;down",
+          "Dash &amp; console detail",
+          "Door jambs cleaned"
+        ],
+        "pick": "gold",
+        "button": "Book Gold",
+        "featured": false,
+        "plus": "Everything in Bronze, plus"
+      },
+      {
+        "class": "t-plat",
+        "name": "Platinum",
+        "sub": "Premium Detail",
+        "price": "$275",
+        "items": [
+          "Steam clean, seats &amp; crevices",
+          "Leather conditioning",
+          "Odor elimination"
+        ],
+        "pick": "platinum",
+        "button": "Book Platinum",
+        "featured": false,
+        "plus": "Everything in Gold, plus"
+      },
+      {
+        "class": "t-dia",
+        "name": "Diamond",
+        "sub": "Ceramic Coating",
+        "price": "$600",
+        "items": [
+          "1-stage paint correction",
+          "5-year ceramic coating",
+          "Wheel coating",
+          "Glass coating"
+        ],
+        "pick": "diamond",
+        "button": "Book Diamond",
+        "featured": true,
+        "tag": "Best value"
+      }
+    ],
+    "fine": "Starting prices. Final price depends on vehicle size, from sedan to Sprinter, and condition. Your price is confirmed before any work begins.",
+    "single": {
+      "title": "Interior or exterior only",
+      "big": "$99 to $180",
+      "text": "Just the inside or just the outside, from a refresh to a full restoration. Priced by vehicle size and condition.",
+      "pick": "interior",
+      "link": "Get a price"
+    },
+    "bundles": {
+      "title": "Express bundles",
+      "rows": [
+        {
+          "label": "4 Express details",
+          "value": "$600"
+        },
+        {
+          "label": "8 Express details",
+          "value": "$999"
+        }
+      ],
+      "text": "Saves tons and covers you for almost the whole year.",
+      "link": "Ask about bundles",
+      "note": "Ceramic Club members get 15% off bundles."
+    },
+    "fleet": {
+      "title": "Fleet plan",
+      "rows": [
+        {
+          "label": "3 to 5 vehicles",
+          "value": "15% off"
+        },
+        {
+          "label": "6 to 10 vehicles",
+          "value": "20% off"
+        },
+        {
+          "label": "11 or more",
+          "value": "Custom quote"
+        }
+      ],
+      "text": "Dealerships, rental lots and company vehicles. We come to your lot, so your vehicles never leave. Month to month, no contract.",
+      "link": "Text about your fleet"
+    },
+    "custom": {
+      "title": "Build your own",
+      "text": "Not sure which package fits? Ask for a custom one, it's free to request.",
+      "quote": "George will personally reach out to get your vehicle info and confirm your custom package and final price before any work begins.",
+      "button": "Build my package"
+    }
+  },
+  "addons": {
+    "intro": "Add any of these to a package, from $25.",
+    "items": [
+      {
+        "name": "Engine bay detail",
+        "price": "$40"
+      },
+      {
+        "name": "Odor removal (ozone)",
+        "price": "$40"
+      },
+      {
+        "name": "Seat shampoo",
+        "price": "$60"
+      },
+      {
+        "name": "Floor shampoo",
+        "price": "$60"
+      },
+      {
+        "name": "Pet hair removal",
+        "price": "$50"
+      },
+      {
+        "name": "Child car seat clean",
+        "price": "$45"
+      },
+      {
+        "name": "Leather conditioning",
+        "price": "$30"
+      },
+      {
+        "name": "Light exterior wax",
+        "price": "$25"
+      },
+      {
+        "name": "Headlight restoration",
+        "price": "$50 each"
+      }
+    ],
+    "note": "Headlight restoration includes sanding, polishing and a 5-year ceramic coat. Seat shampoo may cost more with a third row."
+  },
+  "results": {
+    "intro": "Photos from real jobs, not stock images. Left half before, right half after.",
+    "h2b": "Real satisfaction.",
+    "h2a": "Real results.",
+    "eyebrow": "Before &amp; after",
+    "photos": [
+      {
+        "split": "49.3%",
+        "file": "before-after-rear-floor.webp",
+        "alt": "Rear floor covered in crumbs and debris before, vacuumed clean black carpet after",
+        "width": "302",
+        "height": "454",
+        "title": "Rear floor",
+        "kind": "Interior"
+      },
+      {
+        "split": "48.8%",
+        "file": "before-after-front-interior.webp",
+        "alt": "Front interior with tan seats and black floor mats, dirty before and clean after",
+        "width": "309",
+        "height": "454",
+        "title": "Front cabin",
+        "kind": "Interior"
+      },
+      {
+        "split": "47.7%",
+        "file": "before-after-wheel.webp",
+        "alt": "Truck steel wheel and tire, dull and dusty before, clean and dark after",
+        "width": "310",
+        "height": "454",
+        "title": "Wheel &amp; tire",
+        "kind": "Exterior"
+      },
+      {
+        "split": "50%",
+        "file": "before-after-trunk.webp",
+        "alt": "SUV cargo area with a dirty rubber mat before and a clean mat after",
+        "width": "306",
+        "height": "454",
+        "title": "SUV cargo area",
+        "kind": "Interior"
+      }
+    ]
+  },
+  "social": {
+    "tiktok": {
+      "url": "https://www.tiktok.com/@apexdetailing801ut",
+      "handle": "@apexdetailing801ut"
+    },
+    "instagram": {
+      "url": "https://www.instagram.com/apexdetailing801",
+      "handle": "@apexdetailing801"
+    }
+  },
+  "ceramic": {
+    "intro": "A liquid polymer that chemically bonds with your paint to create a protective layer. Once cured, it shields your vehicle from UV damage, oxidation, dirt, road grime and chemical stains.",
+    "h2b": "our specialty.",
+    "h2a": "Ceramic coating is",
+    "eyebrow": "Ceramic coating",
+    "pitch": {
+      "text": "Others charge extra for windows and rims, or only coat the paint. Every Apex coating covers the full exterior.",
+      "title": "No half jobs.",
+      "points": [
+        {
+          "icon": "spark",
+          "title": "Proper prep, not shortcuts",
+          "text": "Every coating goes on after proper paint correction and surface prep."
+        },
+        {
+          "icon": "car",
+          "title": "Full exterior, not just your paint",
+          "text": "Windows and rims are included in every coating. No fees for them, it all gets done."
+        },
+        {
+          "icon": "shield",
+          "title": "Backed with a warranty",
+          "text": "Every coating is backed with a warranty. Ask us for the details on yours."
+        }
+      ]
+    },
+    "package": {
+      "name": "Diamond package",
+      "price": "$600",
+      "items": [
+        "1-stage paint correction",
+        "5-year ceramic coating",
+        "Wheel coating",
+        "Glass coating"
+      ]
+    },
+    "button": "Get my ceramic quote",
+    "pick": "diamond",
+    "stepsIntro": "Ten steps, start to finish.",
+    "stepsTitle": "What to expect on arrival",
+    "steps": [
+      {
+        "title": "Inspection together",
+        "text": "We walk the vehicle with you first"
+      },
+      {
+        "title": "Pre-wash",
+        "text": "Loosens any dirt"
+      },
+      {
+        "title": "Wheels &amp; rims",
+        "text": "A thorough clean"
+      },
+      {
+        "title": "Iron remover",
+        "text": "Lifts embedded iron"
+      },
+      {
+        "title": "Rinse"
+      },
+      {
+        "title": "Clay bar"
+      },
+      {
+        "title": "Final hand wash"
+      },
+      {
+        "title": "Dry"
+      },
+      {
+        "title": "Paint correction",
+        "text": "Removes scratches, enhances paint"
+      },
+      {
+        "title": "Ceramic applied",
+        "text": "With care, spread evenly and leveled"
+      }
+    ],
+    "cure": {
+      "text": "After curing, you only have to watch out for car washes, that's it. Just the hose and a rag, or an Apex wash bundle.",
+      "label": "days to cure",
+      "value": "1 to 7"
+    },
+    "rewardsTitle": "Instant rewards",
+    "rewardsEyebrow": "After your coating",
+    "rewards": [
+      {
+        "icon": "ticket",
+        "title": "Free exterior detail",
+        "text": "A voucher after your initial coating"
+      },
+      {
+        "icon": "layers",
+        "title": "Bundle discount",
+        "text": "Months of washes for less"
+      },
+      {
+        "icon": "award",
+        "title": "Loyalty card",
+        "text": "A free service after a few washes"
+      }
+    ]
+  },
+  "reviews": {
+    "intro": "Straight from Google, in customers' own words.",
+    "h2b": "All five stars.",
+    "h2a": "21 reviews.",
+    "topics": [
+      "Attention to detail",
+      "Communication",
+      "Interior cleaning",
+      "Quality work",
+      "Spotless interior",
+      "Truck detailing"
+    ],
+    "items": [
+      {
+        "text": "He did a phenomenal interior job on my 24 yr old truck (which has seen better days). All the oil, dirt, and grime - gone! ... Above all, great communication!",
+        "initial": "C",
+        "name": "Clarissa Y.",
+        "date": "Oct 2026"
+      },
+      {
+        "text": "George was great, friendly and professional from the first call ... he took his time and didn’t miss a spot and was very communicative. Definitely gonna book again these guys rock!",
+        "initial": "W",
+        "name": "William C.",
+        "date": "Feb 2026"
+      },
+      {
+        "text": "Did an amazing job on my 21 civic. Cleaned the interior really well. The stains are gone. And my headlights look so clean and clear.",
+        "initial": "A",
+        "name": "Adrian V.",
+        "date": "Sep 2026"
+      },
+      {
+        "text": "George does an absolutely great job. When he got done with my truck I thought it looked brand new. GREAT JOB!!!",
+        "initial": "S",
+        "name": "Scott C.",
+        "date": "Feb 2026"
+      },
+      {
+        "text": "My Tesla Model 3 Performance looked absolutely spotless inside and out — every surface was thoroughly cleaned, polished, and restored to a like-new condition.",
+        "initial": "G",
+        "name": "Garret W.",
+        "date": "Feb 2026"
+      },
+      {
+        "text": "Not only did the car come out looking better than it ever has inside and out—but the price was super affordable. Honestly, it’s the best detailing service I’ve ever had.",
+        "initial": "J",
+        "name": "Jack M.",
+        "date": "May 2026"
+      },
+      {
+        "text": "George was extremely thorough and detailed. Will definitely use Apex for all my auto detailing needs.",
+        "initial": "J",
+        "name": "Jeff W.",
+        "date": "May 2026"
+      },
+      {
+        "text": "Best guy in town. He was very professional and good in communication. My car looks amazing 👍🏽",
+        "initial": "J",
+        "name": "Jesus G.",
+        "date": "Mar 2026"
+      },
+      {
+        "text": "Best car detailing!! He does an incredible job with interior and exterior. Highly recommended.",
+        "initial": "P",
+        "name": "Pedro L.",
+        "date": "Mar 2026"
+      }
+    ]
+  },
+  "about": {
+    "h2b": "our craft.",
+    "h2a": "Your car,",
+    "eyebrow": "Owner-operated",
+    "paragraphs": [
+      "Apex Detailing is owned and operated by <b>George</b>. We're not a volume shop: every vehicle gets meticulous, panel-by-panel attention from a craftsman who treats your car like his own.",
+      "Utah's road salt, dust and harsh sun age paint and interiors faster than most owners realize. Small sedan or Sprinter, a refresh or a disaster, George brings the whole setup to you."
+    ],
+    "tags": [
+      {
+        "icon": "award",
+        "text": "Est. 2022"
+      },
+      {
+        "icon": "user",
+        "text": "Owner-operated"
+      },
+      {
+        "icon": "heart",
+        "text": "Latino-owned"
+      },
+      {
+        "icon": "car",
+        "text": "Cars, trucks &amp; SUVs"
+      }
+    ]
+  },
+  "how": {
+    "h2b": "leaving home.",
+    "h2a": "Detailed without",
+    "steps": [
+      {
+        "icon": "text",
+        "title": "Tell us about your vehicle",
+        "text": "Text, call, chat or send the quote form with your vehicle and the day that suits you."
+      },
+      {
+        "icon": "clip",
+        "title": "Get your package &amp; price",
+        "text": "We recommend the right package and confirm your price before any work begins."
+      },
+      {
+        "icon": "van",
+        "title": "We pull up ready",
+        "text": "The van carries its own water and power, so you just leave the vehicle open. That's all!"
+      },
+      {
+        "icon": "spark",
+        "title": "1 to 4 hours later",
+        "text": "Done in your driveway. Pay by debit, credit, Cash App, Venmo, Zelle or cash."
+      }
+    ]
+  },
+  "area": {
+    "intro": "We come straight to you across the Salt Lake Valley, to your driveway or your lot.",
+    "h2b": "across the valley.",
+    "h2a": "We come to you",
+    "cities": [
+      "Kearns",
+      "Taylorsville",
+      "West Valley",
+      "West Jordan",
+      "Murray",
+      "Herriman"
+    ],
+    "more": "+ surrounding areas",
+    "limitHtml": "Anywhere past our 10-mile limit costs more. Text us your address or <a href=\"tel:+18018352387\">call (801) 835-2387</a> to check.",
+    "radar": [
+      {
+        "cx": "152",
+        "cy": "92",
+        "tx": "162",
+        "ty": "80",
+        "label": "WEST VALLEY"
+      },
+      {
+        "cx": "86",
+        "cy": "178",
+        "tx": "40",
+        "ty": "164",
+        "label": "KEARNS"
+      },
+      {
+        "cx": "240",
+        "cy": "138",
+        "tx": "250",
+        "ty": "132",
+        "label": "TAYLORSVILLE"
+      },
+      {
+        "cx": "314",
+        "cy": "198",
+        "tx": "300",
+        "ty": "226",
+        "label": "MURRAY"
+      },
+      {
+        "cx": "246",
+        "cy": "270",
+        "tx": "256",
+        "ty": "276",
+        "label": "WEST JORDAN"
+      },
+      {
+        "cx": "130",
+        "cy": "322",
+        "tx": "62",
+        "ty": "350",
+        "label": "HERRIMAN"
+      }
+    ],
+    "radarCaption": "10-MILE SERVICE RADIUS · NOT TO SCALE",
+    "vehicles": "Cars, trucks and SUVs, from a small sedan to a Sprinter. A disaster or a refresh, focused or quick, we do it all."
+  },
+  "payment": [
+    "Debit",
+    "Credit",
+    "Cash App",
+    "Venmo",
+    "Zelle",
+    "Cash"
+  ],
+  "faq": {
+    "intro": "Straight answers about the van, the area, payment and ceramic coating.",
+    "askText": "Ask the assistant, or text us and George will get back to you.",
+    "items": [
+      {
+        "q": "Do you need access to water or power?",
+        "a": "No. On the van we have both power and water, so you just leave the vehicle open and that's all!"
+      },
+      {
+        "q": "What areas do you serve?",
+        "a": "Kearns, Taylorsville, West Valley, West Jordan, Murray, Herriman and surrounding areas. Anywhere past our 10-mile limit costs more, so call or text (801) 835-2387 to check your address."
+      },
+      {
+        "q": "How long does a detail take?",
+        "a": "Depending on the car and the package chosen, it can take from 1 hour to 4 hours. If you want focused or quick, we do it all."
+      },
+      {
+        "q": "What forms of payment do you take?",
+        "a": "We take debit, credit, Cash App, Venmo, Zelle and cash."
+      },
+      {
+        "q": "What is ceramic coating?",
+        "a": "Ceramic coating is a liquid polymer that is applied to the exterior of a vehicle and chemically bonds with the paint to create a protective layer. Once cured, it shields your vehicle from UV damage, oxidation, dirt, road grime and chemical stains. It's our specialty at Apex Detailing."
+      },
+      {
+        "q": "What makes your ceramic coating different?",
+        "a": "Every coating is full exterior, not just your paint, and there are no fees for windows or rims: it all gets done. Every coating is backed with a warranty. After your initial coating you also get a free exterior detail voucher, a bundle discount and a loyalty reward card with a free service after a few washes."
+      },
+      {
+        "q": "How do I maintain a ceramic coating?",
+        "a": "After the curing process, which is usually 1 to 7 days, you only have to watch out for car washes. The coating is hydrophobic, UV resistant, scratch resistant and chemical-stain resistant. Just use the hose and a rag if you can, or get a bundle for a discount and months' worth of washes with Apex."
+      },
+      {
+        "q": "Can I book online?",
+        "a": "Yes. You can <a href=\"https://apexdetailing801.setmore.com/\" target=\"_blank\" rel=\"noopener\">book online</a> up to a month ahead, or call or text (801) 835-2387 and we'll set it up with you."
+      },
+      {
+        "q": "Do you detail fleets?",
+        "a": "Yes. Our fleet plan is for dealerships, rental lots and company vehicles: we come to your lot, so your vehicles never leave. 15% off for 3 to 5 vehicles, 20% off for 6 to 10, and a custom quote for 11 or more. Month to month, no contract. Call or text for pricing."
+      }
+    ]
+  },
+  "quote": {
+    "intro": "Tell us your vehicle and your day. We'll review your vehicle information and reach out with the best package recommendation.",
+    "bookingNote": "Pick a time up to a month ahead",
+    "checks": [
+      "Our van brings its own water and power",
+      "Price confirmed before any work begins",
+      "Debit, credit, Cash App, Venmo, Zelle or cash"
+    ],
+    "services": [
+      {
+        "value": "bronze",
+        "label": "Bronze, interior &amp; exterior &middot; from $150"
+      },
+      {
+        "value": "gold",
+        "label": "Gold full detail &middot; from $200"
+      },
+      {
+        "value": "platinum",
+        "label": "Platinum premium detail &middot; from $275"
+      },
+      {
+        "value": "diamond",
+        "label": "Diamond ceramic coating &middot; from $600"
+      },
+      {
+        "value": "interior",
+        "label": "Interior only &middot; $99 to $180"
+      },
+      {
+        "value": "exterior",
+        "label": "Exterior only &middot; $99 to $180"
+      },
+      {
+        "value": "bundle4",
+        "label": "4 Express details &middot; $600"
+      },
+      {
+        "value": "bundle8",
+        "label": "8 Express details &middot; $999"
+      },
+      {
+        "value": "fleet",
+        "label": "Fleet plan &middot; 3+ vehicles"
+      },
+      {
+        "value": "custom",
+        "label": "Build my own / not sure"
+      }
+    ],
+    "serviceNames": {
+      "bronze": "Bronze",
+      "gold": "Gold full detail",
+      "platinum": "Platinum premium detail",
+      "diamond": "Diamond ceramic coating",
+      "interior": "interior-only detail",
+      "exterior": "exterior-only detail",
+      "bundle4": "4 Express details bundle",
+      "bundle8": "8 Express details bundle",
+      "fleet": "fleet plan",
+      "custom": "custom package"
+    }
+  },
+  "phone": {
+    "example": "(801) 555-0123",
+    "display": "(801) 835-2387",
+    "tel": "+18018352387"
+  },
+  "chat": {
+    "suggestions": [
+      {
+        "q": "Do you come to Murray?",
+        "label": "Do you come to Murray?"
+      },
+      {
+        "q": "Do I need to give you water or power?",
+        "label": "Do you need my water or power?"
+      }
+    ],
+    "greeting": "Hi! I'm the Apex Detailing assistant. Ask me a question, or tell me about your vehicle and I'll help you get a quote."
+  },
+  "footer": {
+    "about": "Mobile car detailing and ceramic coating across the Salt Lake Valley, UT. We come straight to you.",
+    "copyNote": "Mobile detailing across the Salt Lake Valley, UT.",
+    "year": "2026"
+  },
+  "links": {
+    "booking": "https://apexdetailing801.setmore.com/",
+    "googleReviews": "https://search.google.com/local/reviews?placeid=ChIJ3TAck2d6rg0RZw5zIR0G8-0",
+    "googleWriteReview": "https://search.google.com/local/writereview?placeid=ChIJ3TAck2d6rg0RZw5zIR0G8-0"
+  },
+  "assistant": {
+    "trade": "mobile car detailing",
+    "description": "Apex Detailing is a mobile car detailer in Utah that comes to the customer's home or work in a van carrying its own water and power. Ceramic coating is their specialty.",
+    "serviceAreas": [
+      "Kearns",
+      "Taylorsville",
+      "West Valley",
+      "West Jordan",
+      "Murray",
+      "Herriman",
+      "surrounding areas within 10 miles"
+    ],
+    "services": [
+      {
+        "title": "Bronze, interior and exterior",
+        "price": "from $150",
+        "description": "Hand wash, wheels, sealant, windows, basic interior vacuum and wipe-down"
+      },
+      {
+        "title": "Gold, full detail",
+        "price": "from $200",
+        "description": "Bronze plus full interior, dash and console, door jambs"
+      },
+      {
+        "title": "Platinum, premium detail",
+        "price": "from $275",
+        "description": "Gold plus steam cleaning, leather conditioning, odor elimination"
+      },
+      {
+        "title": "Diamond, ceramic coating",
+        "price": "from $600",
+        "description": "Paint correction, 5-year ceramic, wheel and glass coating"
+      },
+      {
+        "title": "Interior or exterior only",
+        "price": "$99 to $180",
+        "description": "By vehicle size and condition"
+      },
+      {
+        "title": "Express bundles",
+        "price": "4 for $600, 8 for $999",
+        "description": "Express details spread over the year"
+      }
+    ],
+    "knowledge": [
+      "Apex Detailing is a mobile car detailing and ceramic coating business in the southwest Salt Lake Valley, Utah, owned and operated by George.",
+      "Apex Detailing comes to you: the van carries its own water and power, so you just leave the vehicle open.",
+      "Service area: Kearns, Taylorsville, West Valley, West Jordan, Murray, Herriman and surrounding areas; anywhere past the 10-mile limit costs more.",
+      "To book, ask a question or get a quote, call or text (801) 835-2387.",
+      "You can also book online at https://apexdetailing801.setmore.com/, up to one month ahead.",
+      "Hours: Monday to Friday 8 AM to 8 PM, Saturday 9 AM to 5 PM, closed Sunday.",
+      "Payment accepted: debit, credit, Cash App, Venmo, Zelle and cash.",
+      "A detail takes about 1 to 4 hours, depending on the vehicle and the package chosen.",
+      "Apex details cars, trucks and SUVs, from small sedans to Sprinter vans.",
+      "All package prices are starting prices; the final price depends on vehicle size and condition.",
+      "Bronze (Interior & Exterior) starts at $150: hand wash and dry, wheel and tire clean, exterior sealant, window clean, and a basic interior vacuum and wipe-down.",
+      "Gold (Full Detail) starts at $200: everything in Bronze plus full interior vacuum and wipe-down, dash and console detail, and door jambs.",
+      "Platinum (Premium Detail) starts at $275: everything in Gold plus steam cleaning of seats and crevices, leather conditioning and odor elimination.",
+      "Diamond (Ceramic Coating) starts at $600: 1-stage paint correction, a 5-year ceramic coating, wheel coating and glass coating.",
+      "Interior-only or exterior-only service costs $99 to $180, depending on vehicle size and condition.",
+      "Bundles: 4 Express details for $600 or 8 Express details for $999.",
+      "Add-ons: engine bay detail $40, ozone odor removal $40, seat shampoo $60 (more with a third row), floor shampoo $60, pet hair removal $50, child car seat clean $45, leather conditioning $30, light exterior wax $25.",
+      "Headlight restoration is $50 per headlight ($100 a pair) and includes sanding, polishing and a 5-year ceramic coating.",
+      "Fleet plan for dealerships, rental lots and company vehicles: Apex comes to your lot, 15% off for 3-5 vehicles, 20% off for 6-10, custom quote for 11 or more, month to month with no contract; call or text for pricing.",
+      "For a custom package, George reaches out to confirm the services and the final price before any work begins.",
+      "Ceramic coating is Apex Detailing's specialty: a liquid polymer that bonds with the paint and, once cured, protects against UV damage, oxidation, dirt, road grime and chemical stains.",
+      "Ceramic coating is hydrophobic, UV resistant, scratch resistant and chemical-stain resistant.",
+      "Every Apex ceramic coating covers the full exterior, not just the paint, with no extra fees for windows or rims.",
+      "The ceramic process: inspection with the client, pre-wash, wheels and rims, iron remover, rinse, clay bar, hand wash, dry, paint correction, then the coating is applied, spread evenly and leveled.",
+      "After a ceramic coating, curing usually takes 1 to 7 days; after that, just watch out for car washes and use a hose and rag, or an Apex wash bundle.",
+      "Every ceramic coating is backed by a warranty; ask George for the terms.",
+      "After your first ceramic coating you get a free exterior detail voucher, a bundle discount and a loyalty card that earns a free service after a few washes.",
+      "Apex Detailing is rated 5.0 on Google from 21 reviews (October 2026)."
+    ],
+    "intake": "what vehicle they have (make, model, roughly how big: car, SUV, truck, van), what they want (full interior and exterior, interior only, exterior only, ceramic coating, or a bundle), what shape it is in, and where they are so you can check it is inside the service area",
+    "example": "A full interior and exterior on an SUV starts at $150 and depends on its condition. We bring our own water and power so you just leave it open. What's the best number to text you a time?"
+  }
+}
