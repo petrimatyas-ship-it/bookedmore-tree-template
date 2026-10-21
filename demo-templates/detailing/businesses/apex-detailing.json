@@ -49,13 +49,6 @@
       "width": "1600",
       "alt": "Apex Detailing badge logo: Established 2022, Your Car, Our Craft",
       "file": "logo-tagline-dark.webp"
-    },
-    "hero": {
-      "file": "hero-truck.webp",
-      "alt": "Gray Chevy Silverado 2500 HD ZR2, freshly washed in a driveway",
-      "width": "1200",
-      "height": "1600",
-      "photo": true
     }
   },
   "hours": {

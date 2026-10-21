@@ -74,11 +74,12 @@ From the third review (October 2026):
   background). Plus a "Compare packages" table (`packages.compare.rows`,
   each with `has`, one true/false per tier; `packages.tiers[].short` is
   the label under each name).
-- Hero photo: a real, sharp job photo from their Google listing works
-  best. `images.hero.photo: true` fills the hero with it (any shape);
-  without `photo`, `images.hero` is a wide cut-out car on the dark
-  background. Google shows logged-out visitors only the cover photo, so
-  ask the owner for more if needed.
+- Hero background: a graphic, not a photo. With no `images.hero`, the hero
+  is an animated glossy-paint surface in the page's blue, with beading
+  water drops, a few drops rolling down and a light sweep. A car photo
+  (Apex's truck) and a cut-out car were both tried and turned down.
+  `images.hero` still works if an owner wants a photo (`photo: true` for a
+  full photo).
 
 ## New detailer, step by step
 
