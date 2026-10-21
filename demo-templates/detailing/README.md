@@ -4,10 +4,10 @@ Every car-detailing demo uses the same page. It was built for Apex Detailing
 (demo.morebookednow.com/apex-detailing). Only the business changes; the
 layout and sections stay the same:
 
-hero, the strip under it, packages (tiers, single service, bundles, fleet
-plan, build your own, add-ons), before and after, ceramic coating, Google
-reviews, about and how it works, service area with hours and payment, FAQ,
-then quote form and chat. The nav links (Services, Ceramic, Pricing,
+hero, packages (tiers, compare table, single service, bundles, fleet
+plan, build your own, add-ons), before and after with their videos, Google
+reviews, ceramic coating, about and how it works, service area with hours
+and payment, FAQ, then the quote form; the chat is a bubble in the corner. The nav links (Services, Ceramic, Pricing,
 Reviews, Areas, About) open the "locked page" pop-up.
 
 - `template.html`: the page. Change the layout here, then rebuild every business.
@@ -89,6 +89,10 @@ From the third review (October 2026):
   show only their titles until tapped. The step map starts at step 1,
   any part of a step (number included) selects it, and the steps passed
   fill in blue. No "Owner-operated" tag.
+- No sticky bottom bar on phones (Call / Text / Ask / Quote). The assistant
+  is a small chat bubble in the corner that opens a chat panel; the quote
+  card is the form only. Google reviews come right after before and after,
+  ahead of ceramic. Every ceramic step has a short sentence.
   `images.hero` still works if an owner wants a photo (`photo: true` for a
   full photo).
 

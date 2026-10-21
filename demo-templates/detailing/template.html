@@ -802,6 +802,24 @@ ol.journey li.done::after{background:linear-gradient(#1e90ff,#1e90ff) top/100% 1
 ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);border-color:transparent;color:#fff}
 /* package car pictures: bright, full width across the top of the card */
 .t-car{width:calc(100% + 16px);margin:8px -8px 12px;mix-blend-mode:normal;filter:drop-shadow(0 16px 14px rgba(0,0,0,.7)) drop-shadow(0 0 18px color-mix(in srgb,var(--tc) 18%,transparent));-webkit-mask-image:none;mask-image:none}
+
+/* no bottom bar: a small chat bubble instead */
+body{padding-bottom:0}
+.cw-b{position:fixed;right:16px;bottom:16px;z-index:46;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#2a8af0,#0f5fae);box-shadow:0 14px 30px -8px rgba(30,144,255,.75),inset 0 1px 0 rgba(255,255,255,.35)}
+.cw-b .ic{width:26px;height:26px;grid-area:1/1}
+.cw-b .x{opacity:0;transform:rotate(-45deg);transition:.2s}
+.cw-b>.ic:first-child{transition:.2s}
+.cw-b.open>.ic:first-child{opacity:0;transform:rotate(45deg)}
+.cw-b.open .x{opacity:1;transform:none}
+.cw-dot{position:absolute;top:4px;right:4px;width:13px;height:13px;border-radius:50%;background:#3ddc84;border:2px solid #0a1522}
+.cw-b.open .cw-dot{display:none}
+.cw{position:fixed;right:16px;bottom:86px;z-index:46;width:min(380px,calc(100vw - 24px));max-height:min(560px,calc(100vh - 120px));display:flex;flex-direction:column;background:#0b1118;border:1px solid var(--line2);border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.9);overflow:hidden}
+.cw[hidden]{display:none}
+.cw .pane{display:flex;flex-direction:column;min-height:0;flex:1;padding:16px}
+.cw .msgs{flex:1;height:auto;min-height:180px}
+@media(max-width:599px){.cw{right:12px;left:12px;width:auto;bottom:84px;max-height:calc(100vh - 110px)}}
+body:has(.mbnr-bar) .cw-b{bottom:96px}
+body:has(.mbnr-bar) .cw{bottom:166px}
 </style>
 </head>
 <body>
@@ -891,7 +909,7 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
     <a class="l" href="#" data-lock="About">About<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     <div class="mb">
       <a class="btn btn-blue full" href="#quote" onclick="tab('form');closeNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a free quote</a>
-      <a class="btn btn-glass" href="#quote" onclick="tab('chat');closeNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask us</a>
+      <a class="btn btn-glass" href="#chat" onclick="event.preventDefault();closeNav();cw(true)"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask us</a>
       <a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a>
       <a class="btn btn-glass full" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
     </div>
@@ -1097,6 +1115,36 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
 {{/if}}  </div>
 </section>
 
+<section class="sec reviews" id="reviews">
+  <div class="wrap">
+    <div class="rv-head">
+      <div class="sh">
+        <span class="eyebrow">Google reviews</span>
+        <h2 class="d">{{reviews.h2a}} <span class="blue-t">{{reviews.h2b}}</span></h2>
+        <p>{{reviews.intro}}</p>
+      </div>
+      <div class="gscore">
+        <b class="chrome">{{google.rating}}</b>
+        <div>
+          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>
+          <small>{{google.count}} Google reviews, as of {{google.asOf}}</small>
+          <a class="lnk" href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+        </div>
+      </div>
+    </div>
+    {{#if reviews.topics}}<div class="topics"><span class="lab">What reviewers mention</span>{{#each reviews.topics}}<span>{{this}}</span>{{/each}}</div>{{/if}}
+
+    <div class="rv-row" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
+{{#each reviews.items}}      <figure class="rv"><span class="stars" role="img" aria-label="5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><blockquote>{{text}}</blockquote><figcaption class="who"><span class="av">{{initial}}</span><span>{{name}}<small>Google review · {{date}}</small></span></figcaption></figure>
+{{/each}}    </div>
+    <p class="swipe" aria-hidden="true">Swipe for more reviews <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
+    <div class="rv-more">
+      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
+      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
 <section class="sec ceramic" id="ceramic">
   <svg class="cer-bg" viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="720" fill="#03070c" opacity="0"/><path d="M-60 520C160 400 360 300 680 110" stroke="#4aa8ff" stroke-width="90" fill="none" filter="url(#bl40)" opacity=".22"/><use href="#field"/></svg>
   <div class="wrap">
@@ -1139,36 +1187,6 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
     </div>
 
     <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span><b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{ceramic.cure.text}}</span></p>
-  </div>
-</section>
-
-<section class="sec reviews" id="reviews">
-  <div class="wrap">
-    <div class="rv-head">
-      <div class="sh">
-        <span class="eyebrow">Google reviews</span>
-        <h2 class="d">{{reviews.h2a}} <span class="blue-t">{{reviews.h2b}}</span></h2>
-        <p>{{reviews.intro}}</p>
-      </div>
-      <div class="gscore">
-        <b class="chrome">{{google.rating}}</b>
-        <div>
-          <span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>
-          <small>{{google.count}} Google reviews, as of {{google.asOf}}</small>
-          <a class="lnk" href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
-        </div>
-      </div>
-    </div>
-    {{#if reviews.topics}}<div class="topics"><span class="lab">What reviewers mention</span>{{#each reviews.topics}}<span>{{this}}</span>{{/each}}</div>{{/if}}
-
-    <div class="rv-row" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
-{{#each reviews.items}}      <figure class="rv"><span class="stars" role="img" aria-label="5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><blockquote>{{text}}</blockquote><figcaption class="who"><span class="av">{{initial}}</span><span>{{name}}<small>Google review · {{date}}</small></span></figcaption></figure>
-{{/each}}    </div>
-    <p class="swipe" aria-hidden="true">Swipe for more reviews <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
-    <div class="rv-more">
-      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
-      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-    </div>
   </div>
 </section>
 
@@ -1253,7 +1271,7 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
       <div class="askcard">
         <b>Still have a question?</b>
         <span>{{faq.askText}}</span>
-        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a></div>
+        <div class="row"><a class="btn btn-blue" href="#chat" onclick="event.preventDefault();cw(true)"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a></div>
       </div>
     </div>
     <div class="faq">
@@ -1279,11 +1297,7 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
     </div>
 
     <div class="card" id="qcard">
-      <div class="tabs" role="tablist" aria-label="Quote or question">
-        <button type="button" id="t-form" class="on" role="tab" aria-selected="true" aria-controls="p-form" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Free quote</button>
-        <button type="button" id="t-chat" role="tab" aria-selected="false" aria-controls="p-chat" tabindex="-1" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask a question</button>
-      </div>
-      <div class="pane on" id="p-form" role="tabpanel" aria-labelledby="t-form">
+      <div class="pane on" id="p-form">
         <form class="qform" id="qform" onsubmit="quote(event)">
           <div class="two">
             <label>Your name*<input name="name" required autocomplete="name" placeholder="First and last name"></label>
@@ -1332,18 +1346,6 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
           <p class="fine">Price confirmed before any work begins &middot; Or text <a href="sms:{{phone.tel}}">{{phone.display}}</a></p>
         </form>
       </div>
-      <div class="pane" id="p-chat" role="tabpanel" aria-labelledby="t-chat">
-        <div class="chat-h"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
-        <div class="msgs" id="msgs" role="log" aria-live="polite"></div>
-        <div class="qr" id="qr">
-{{#each chat.suggestions}}          <button type="button" data-q="{{q}}">{{label}}</button>
-{{/each}}        </div>
-        <form class="chat-in" id="chatform" onsubmit="send(event)">
-          <label class="sr" for="chatin">Your message</label>
-          <input id="chatin" placeholder="Ask a question…" autocomplete="off" maxlength="600">
-          <button type="submit" class="btn btn-blue" id="chatbtn" aria-label="Send message"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
-        </form>
-      </div>
     </div>
   </div>
 </section>
@@ -1369,8 +1371,22 @@ ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);bo
   </div>
 </footer>
 
-<div class="float hide" id="float"><a class="btn btn-glass" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask a question</a><a class="btn btn-blue" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Free quote</a></div>
-<nav class="mbar" id="mbar" aria-label="Quick contact"><a href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call</a><a href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text</a><a href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask</a><a class="g" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Quote</a></nav>
+
+<button type="button" class="cw-b" id="cwb" aria-label="Chat with {{name}}" aria-expanded="false" aria-controls="cw" onclick="cw()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><svg class="ic x" aria-hidden="true" focusable="false"><use href="#i-x"/></svg><span class="cw-dot" aria-hidden="true"></span></button>
+<div class="cw" id="cw" role="dialog" aria-label="Chat with {{name}}" hidden>
+  <div class="pane on" id="p-chat">
+    <div class="chat-h"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
+    <div class="msgs" id="msgs" role="log" aria-live="polite"></div>
+    <div class="qr" id="qr">
+{{#each chat.suggestions}}          <button type="button" data-q="{{q}}">{{label}}</button>
+{{/each}}        </div>
+    <form class="chat-in" id="chatform" onsubmit="send(event)">
+      <label class="sr" for="chatin">Your message</label>
+      <input id="chatin" placeholder="Ask a question…" autocomplete="off" maxlength="600">
+      <button type="submit" class="btn btn-blue" id="chatbtn" aria-label="Send message"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
+    </form>
+  </div>
+</div>
 
 <div class="lock" id="lock" onclick="if(event.target===this)unlock()" role="dialog" aria-modal="true" aria-labelledby="lock-t">
   <div class="box">
@@ -1402,9 +1418,10 @@ function unlock(){document.getElementById('lock').classList.remove('open');setBe
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.getElementById('lock').classList.contains('open'))unlock();else closeNav()}});
 function toggleNav(){const m=document.getElementById('mnav');const o=m.classList.toggle('open');document.getElementById('burger').setAttribute('aria-expanded',o?'true':'false')}
 function closeNav(){document.getElementById('mnav').classList.remove('open');document.getElementById('burger').setAttribute('aria-expanded','false')}
-function tab(w){['chat','form'].forEach(k=>{const on=k===w,t=document.getElementById('t-'+k);t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;document.getElementById('p-'+k).classList.toggle('on',on)})}
-/* arrow keys move between the two tabs */
-document.querySelector('.tabs').addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'&&e.key!=='Home'&&e.key!=='End')return;e.preventDefault();const cur=document.getElementById('t-form').classList.contains('on')?'form':'chat';const next=e.key==='Home'?'form':e.key==='End'?'chat':(cur==='form'?'chat':'form');tab(next);document.getElementById('t-'+next).focus()});
+/* the assistant lives in the chat bubble; tab('chat') opens it */
+function cw(on){const w=document.getElementById('cw'),b=document.getElementById('cwb');if(on===undefined)on=w.hidden;w.hidden=!on;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');if(on){const i=document.getElementById('chatin');if(i&&matchMedia('(min-width: 600px)').matches)i.focus()}}
+function tab(w){if(w==='chat')cw(true)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('cw').hidden)cw(false)});
 /* links to #quote land on the quote card itself, so the first field is in view */
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href="#quote"]');if(!a||e.defaultPrevented)return;const c=document.getElementById('qcard');if(!c)return;e.preventDefault();const h=document.querySelector('header.top');const off=(h?h.getBoundingClientRect().height:66)+12;scrollTo({top:Math.max(0,c.getBoundingClientRect().top+scrollY-off),behavior:reduceMotion?'auto':'smooth'});try{history.replaceState(null,'','#quote')}catch(_){}});
@@ -1524,14 +1541,6 @@ document.querySelectorAll('.vid').forEach(function(v){v.addEventListener('click'
   const d=document.getElementById('qdate');if(d){const t=new Date();d.min=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0')}
 }catch(e){}})();
 
-/* sticky bars: the desktop pair waits until the hero is passed; both step aside while the quote card is on screen */
-(function(){try{
-  const f=document.getElementById('float'),mb=document.getElementById('mbar'),q=document.getElementById('qcard');
-  let inQuote=false;
-  const upd=()=>{f.classList.toggle('hide',inQuote||scrollY<560);mb.classList.toggle('hide',inQuote)};
-  if('IntersectionObserver' in window&&q){new IntersectionObserver(es=>es.forEach(x=>{inQuote=x.isIntersecting;upd()}),{threshold:.08}).observe(q)}
-  addEventListener('scroll',upd,{passive:true});upd();
-}catch(e){}})();
 </script>
 <script>
 /* Visit tracking, same events as the generated demos (components/DemoTracker.tsx),
