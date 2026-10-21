@@ -165,3 +165,49 @@ export async function putDemo(demo: DemoRecord): Promise<void> {
   await fs.mkdir(FILE_DIR, { recursive: true });
   await fs.writeFile(filePath(demo.slug), body, "utf8");
 }
+
+/* ------------------------------------------------------------------ */
+/* Owner review notes                                                   */
+/* ------------------------------------------------------------------ */
+
+export type FeedbackItem = {
+  id: string;
+  type: "like" | "dislike" | "change";
+  note: string;
+  /** CSS path to the element the note is pinned to. */
+  selector: string;
+  /** The element's visible text, cut short, so a note survives small layout changes. */
+  text: string;
+  /** The nearest section heading or id, for reading the list without the page. */
+  section: string;
+  page: string;
+  width: number;
+  at: string;
+  status: "open" | "done";
+};
+
+/**
+ * Notes the owner pins to parts of a demo in review mode. One JSON list per
+ * page under feedback:<slug>, kept until deleted.
+ */
+export async function getFeedback(slug: string): Promise<FeedbackItem[]> {
+  if (!SLUG_RE.test(slug)) return [];
+  try {
+    const raw = usingKv
+      ? ((await kv(["GET", `feedback:${slug}`])) as string | null)
+      : await fs.readFile(path.join(FILE_DIR, `feedback-${slug}.json`), "utf8");
+    return raw ? (JSON.parse(raw) as FeedbackItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function putFeedback(slug: string, items: FeedbackItem[]): Promise<void> {
+  const body = JSON.stringify(items);
+  if (usingKv) {
+    await kv(["SET", `feedback:${slug}`, body]);
+    return;
+  }
+  await fs.mkdir(FILE_DIR, { recursive: true });
+  await fs.writeFile(path.join(FILE_DIR, `feedback-${slug}.json`), body, "utf8");
+}

@@ -1417,5 +1417,6 @@ function quote(e){
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send('dwell',Math.round((Date.now()-opened)/1000))});
 })();
 </script>
+<script>/* review mode: ?review=<key> (see public/review.js) */(function(){try{var k=new URLSearchParams(location.search).get("review");if(k)localStorage.setItem("mbn-review",k);if(k||localStorage.getItem("mbn-review")){var s=document.createElement("script");s.src="/review.js";s.defer=true;document.head.appendChild(s)}}catch(e){}})()</script>
 </body>
 </html>

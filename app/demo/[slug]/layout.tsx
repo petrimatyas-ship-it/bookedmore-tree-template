@@ -5,6 +5,7 @@ import { DemoTopBar } from "@/components/DemoTopBar";
 import { DemoMessage } from "@/components/DemoMessage";
 import { OwnerClose } from "@/components/OwnerClose";
 import { DemoTracker } from "@/components/DemoTracker";
+import { REVIEW_LOADER } from "@/lib/review-loader";
 import { loadDemo } from "@/lib/demo-loader";
 import { isExpired } from "@/lib/db";
 import { demoCopy, wantThisHref } from "@/lib/demo-copy";
@@ -53,6 +54,7 @@ export default async function DemoLayout({
         of every page too.
       */}
       <DemoTracker slug={demo.slug} />
+      <script dangerouslySetInnerHTML={{ __html: REVIEW_LOADER }} />
       {!config.hideDemoBar && <DemoTopBar href={wantThisHref(demo.slug, demo.leadId)} />}
       <Header config={config} links={links} slug={demo.slug} lockHref={wantThisHref(demo.slug, demo.leadId)} />
       {children}

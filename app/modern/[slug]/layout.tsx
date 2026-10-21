@@ -4,6 +4,7 @@ import "@fontsource-variable/manrope";
 import { DemoTopBar } from "@/components/DemoTopBar";
 import { DemoMessage } from "@/components/DemoMessage";
 import { DemoTracker } from "@/components/DemoTracker";
+import { REVIEW_LOADER } from "@/lib/review-loader";
 import { ModernNav } from "@/components/modern/Nav";
 import { ModernMobileBar } from "@/components/modern/MobileBar";
 import { ModernOwnerClose } from "@/components/modern/OwnerClose";
@@ -51,6 +52,7 @@ export default async function ModernLayout({ children, params }: Params & { chil
   return (
     <main className="modern min-h-screen bg-bone font-body text-ink antialiased">
       <DemoTracker slug={demo.slug} />
+      <script dangerouslySetInnerHTML={{ __html: REVIEW_LOADER }} />
       {!config.hideDemoBar && <DemoTopBar href={href} tone="ink" />}
       <ModernNav config={config} homeHref={`/modern/${demo.slug}`} />
       {children}

@@ -91,6 +91,20 @@ Did not like, avoid:
 9. **Admin**: in the morebookednow repo, add a line to `HAND_BUILT` in
    `app/admin/demos/page.tsx` so its visits show on /admin/demos.
 
+## Owner review notes
+
+Any demo page (detailing, Angel Pro, generated `/demo/` and `/modern/`)
+has a review mode: open it with `?review=<key>` (the owner has the key;
+only its SHA-256 is in `lib/review.ts`). A toolbar appears with 👍 Like,
+👎 Don't like and ✏️ Change. Tap part of the page, write a note, save, and
+a numbered pin stays on that spot. The notes are stored under
+`feedback:<slug>` via `/api/demo/feedback`.
+
+To read them: `GET /api/demo/feedback?slug=<slug>&key=<key>`. After fixing
+one, mark it done:
+`POST /api/demo/feedback {slug, key, action: "status", id, status: "done"}`.
+The pin then shows ✓.
+
 ## Changing the layout for everyone
 
 Edit `template.html`, then rebuild every business:
