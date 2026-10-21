@@ -55,14 +55,19 @@ From the owner's first review of Apex (October 2026), now in the template:
 From the second review (October 2026):
 - One background for the whole page. No section gets its own background
   or a dividing line; the page should read as one surface.
-- Hero: under the two main buttons, "Book online" and "Call us" as
-  buttons, not text links.
-- Before and after on phones: one large photo at a time, picked by name,
-  not a grid of small ones.
+- Hero: only two buttons, "Book online" and "Call us".
+- Before and after: small cards (two across on phones). Business photos
+  are often low resolution, and big ones look bad.
 - Their videos shown as tiles in the page's own style, with the social
   profiles in the same panel. TikTok's own white embed looked out of place.
 - Ceramic steps as a small route map: tap a step and the route lights up
   to it.
+
+From the third review (October 2026):
+- Hero picture behind the text, not a separate box above it, with a slow
+  drift and light sweep. `images.hero` should be a wide car shot.
+- Less space between sections on phones.
+- Video tiles fairly large on phones (about 60% of the width).
 
 ## New detailer, step by step
 
