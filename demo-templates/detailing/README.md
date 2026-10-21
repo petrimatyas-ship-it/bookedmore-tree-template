@@ -83,6 +83,11 @@ From the third review (October 2026):
   text right under it (no empty space up there); on desktop, to the right.
   A car photo (Apex's truck) and a cut-out car were both tried and turned
   down.
+- No price boxes in the hero (`hero.facts` left out). Package car pictures
+  bright and full card width, not faded. The ceramic "No half jobs" points
+  show only their titles until tapped. The step map starts at step 1,
+  any part of a step (number included) selects it, and the steps passed
+  fill in blue. No "Owner-operated" tag.
   `images.hero` still works if an owner wants a photo (`photo: true` for a
   full photo).
 

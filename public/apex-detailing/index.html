@@ -784,6 +784,24 @@ ol.journey li.on button span{display:block}
 .ride .shine{animation:shine 5s ease-in-out 2.6s infinite}
 @keyframes shine{0%{transform:skewX(-20deg) translateX(0)}45%,100%{transform:skewX(-20deg) translateX(1150px)}}
 @media(prefers-reduced-motion:reduce){.ride *{animation:none!important;opacity:1!important}.ride .outline{stroke-dashoffset:0}.ride .streaks{display:none}}
+
+/* ceramic pitch: each point shows its title; tap to read more */
+.nohalf details.pt{display:block;margin-top:0;border-top:1px solid var(--line);border-bottom:0}
+.nohalf details.pt:first-of-type{margin-top:16px}
+.nohalf .pt summary{display:flex;align-items:center;gap:12px;padding:13px 40px 13px 0;font:inherit;text-transform:none;letter-spacing:0}
+.nohalf .pt summary::after{width:24px;height:24px;margin-top:-12px;right:0}
+.nohalf .pt summary::-webkit-details-marker{display:none}
+.nohalf .pt summary .ic{margin-top:0;flex:none}
+.nohalf .pt summary b{flex:1}
+.nohalf .pt>span{display:block;padding:0 0 14px 32px}
+/* step map: tap anywhere on a step, number included; passed steps fill in */
+ol.journey li{padding-left:0}
+ol.journey button{padding:6px 0 0 50px;min-height:38px}
+ol.journey li::after{background:linear-gradient(#1e90ff,#1e90ff) top/100% 0% no-repeat,rgba(85,183,219,.18);transition:background-size .35s ease}
+ol.journey li.done::after{background:linear-gradient(#1e90ff,#1e90ff) top/100% 100% no-repeat,rgba(85,183,219,.18)}
+ol.journey li.done::before{background:linear-gradient(180deg,#1a74d0,#0f5fae);border-color:transparent;color:#fff}
+/* package car pictures: bright, full width across the top of the card */
+.t-car{width:calc(100% + 44px);margin:6px -22px 12px;mix-blend-mode:normal;filter:brightness(1.18) contrast(1.06) saturate(1.1);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(180deg,transparent,#000 10%,#000 82%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent),linear-gradient(180deg,transparent,#000 10%,#000 82%,transparent);mask-composite:intersect}
 </style>
 </head>
 <body>
@@ -892,10 +910,6 @@ ol.journey li.on button span{display:block}
         <a class="btn btn-blue" href="https://apexdetailing801.setmore.com/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
         <a class="btn btn-line" href="tel:+18018352387"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a>
       </div>
-      <div class="qf3" role="list" aria-label="Quick facts">
-        <div role="listitem"><b class="chrome">$150</b><span>Interior &amp; exterior, from</span></div>
-        <div role="listitem"><b class="chrome">$600</b><span>Ceramic coating, from</span></div>
-      </div>
     </div>
 
     <div class="hero-vis" aria-hidden="true">
@@ -953,24 +967,27 @@ ol.journey li.on button span{display:block}
           <linearGradient id="rbeam" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#cfeaff" stop-opacity=".55"/><stop offset="1" stop-color="#cfeaff" stop-opacity="0"/></linearGradient>
           <linearGradient id="rfl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1e90ff" stop-opacity="0"/><stop offset=".5" stop-color="#5ab4ff" stop-opacity=".9"/><stop offset="1" stop-color="#1e90ff" stop-opacity="0"/></linearGradient>
           <filter id="rglow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <clipPath id="rclip"><path d="M30 232L24 214C24 204 32 196 48 192L250 158C292 128 340 106 390 100L462 98C530 102 590 118 650 136L744 146L770 140L772 154C774 176 770 200 762 218L756 232L664 232A64 64 0 0 0 536 232L244 232A64 64 0 0 0 116 232Z"/></clipPath>
+          <clipPath id="rclip"><path d="M26 242L34 226L100 213L292 140L432 87L514 90L762 134L774 134L772 152L766 234L752 248L686 248L676 196L648 160L600 160L572 196L562 248L258 248L248 196L220 160L168 160L140 196L130 248L32 248Z"/></clipPath>
         </defs>
         <ellipse cx="400" cy="286" rx="380" ry="14" fill="#1e90ff" opacity=".22" filter="url(#bl3)"/>
         <g class="road" stroke="url(#rfl)" stroke-width="2.5" stroke-linecap="round"><path d="M0 288H800" stroke-dasharray="70 50"/><path d="M60 297H760" stroke-dasharray="30 70" opacity=".5"/></g>
         <g class="streaks" stroke="#8fd0ff" stroke-linecap="round" opacity=".6"><path d="M780 150h70" stroke-width="2"/><path d="M790 190h110" stroke-width="1.5"/><path d="M775 110h50" stroke-width="1.5"/></g>
-        <path class="beam" d="M46 194L-260 150V272Z" fill="url(#rbeam)"/>
+        <path class="beam" d="M40 228L-260 176V290Z" fill="url(#rbeam)"/>
         <g class="car">
-          <path class="body" d="M30 232L24 214C24 204 32 196 48 192L250 158C292 128 340 106 390 100L462 98C530 102 590 118 650 136L744 146L770 140L772 154C774 176 770 200 762 218L756 232L664 232A64 64 0 0 0 536 232L244 232A64 64 0 0 0 116 232Z" fill="url(#rb)"/>
-          <g clip-path="url(#rclip)"><path d="M40 204C250 170 520 158 770 160" stroke="#cfeaff" stroke-width="2" fill="none" opacity=".55"/><rect class="shine" x="-220" y="60" width="160" height="200" fill="url(#rs)" transform="skewX(-20)"/></g>
-          <path d="M268 156C306 130 348 112 392 106L460 104C512 108 552 118 584 128L540 142L300 156Z" fill="#05101c" stroke="#5ab4ff" stroke-width="1.5" opacity=".95"/>
-          <path d="M436 105L448 142" stroke="#5ab4ff" stroke-width="2"/>
-          <path d="M486 172C522 166 556 166 584 170L560 200C536 198 508 194 492 190Z" fill="#02060b" stroke="#2c6aa8" stroke-width="1.5"/>
-          <path d="M300 158C306 186 312 212 318 232" stroke="#2c6aa8" stroke-width="1.5" fill="none"/>
-          <path class="outline" d="M30 232L24 214C24 204 32 196 48 192L250 158C292 128 340 106 390 100L462 98C530 102 590 118 650 136L744 146L770 140L772 154C774 176 770 200 762 218L756 232L664 232A64 64 0 0 0 536 232L244 232A64 64 0 0 0 116 232Z" pathLength="1" fill="none" stroke="#5ab4ff" stroke-width="2.5" filter="url(#rglow)"/>
-          <path class="hl" d="M44 194L118 180L114 187L50 199Z" fill="#e6f6ff" filter="url(#rglow)"/>
-          <path d="M746 150L770 146L769 156L747 159Z" fill="#ff3b5c" filter="url(#rglow)"/>
-          <g transform="translate(180 226)"><circle r="54" fill="#04070b" stroke="#1d3b5c" stroke-width="3"/><g class="whl"><circle r="37" fill="#0a1522" stroke="#8fd0ff" stroke-width="2.5"/><g stroke="#cfeaff" stroke-width="5" stroke-linecap="round"><path d="M0 -10V-35" transform="rotate(0)"/><path d="M0 -10V-35" transform="rotate(72)"/><path d="M0 -10V-35" transform="rotate(144)"/><path d="M0 -10V-35" transform="rotate(216)"/><path d="M0 -10V-35" transform="rotate(288)"/></g><circle r="7" fill="#cfeaff"/></g><path d="M-26 -25A36 36 0 0 1 9 -35" stroke="#ff3b5c" stroke-width="6" fill="none" stroke-linecap="round"/></g>
-          <g transform="translate(600 226)"><circle r="54" fill="#04070b" stroke="#1d3b5c" stroke-width="3"/><g class="whl"><circle r="37" fill="#0a1522" stroke="#8fd0ff" stroke-width="2.5"/><g stroke="#cfeaff" stroke-width="5" stroke-linecap="round"><path d="M0 -10V-35" transform="rotate(0)"/><path d="M0 -10V-35" transform="rotate(72)"/><path d="M0 -10V-35" transform="rotate(144)"/><path d="M0 -10V-35" transform="rotate(216)"/><path d="M0 -10V-35" transform="rotate(288)"/></g><circle r="7" fill="#cfeaff"/></g><path d="M-26 -25A36 36 0 0 1 9 -35" stroke="#ff3b5c" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+          <path class="body" d="M26 242L34 226L100 213L292 140L432 87L514 90L762 134L774 134L772 152L766 234L752 248L686 248L676 196L648 160L600 160L572 196L562 248L258 248L248 196L220 160L168 160L140 196L130 248L32 248Z" fill="url(#rb)"/>
+          <g clip-path="url(#rclip)"><path d="M40 222L292 150L432 96L514 98L762 140" stroke="#cfeaff" stroke-width="2" fill="none" opacity=".55"/><rect class="shine" x="-220" y="60" width="160" height="200" fill="url(#rs)" transform="skewX(-20)"/></g>
+          <path d="M298 142L430 94L498 97L542 116L472 133L332 147Z" fill="#05101c" stroke="#5ab4ff" stroke-width="1.5"/>
+          <path d="M452 96L466 132" stroke="#5ab4ff" stroke-width="2"/>
+          <path d="M486 150L566 158L556 216L512 194Z" fill="#02060b" stroke="#3d8ee0" stroke-width="1.8"/>
+          <path d="M60 230L296 178L562 172M686 176L766 182" stroke="#2c6aa8" stroke-width="1.5" fill="none"/>
+          <path d="M716 248L728 230M732 248L744 230M748 248L758 234" stroke="#2c6aa8" stroke-width="2"/>
+          <path d="M696 120L774 108L776 118L700 128Z" fill="#0c2a4c" stroke="#5ab4ff" stroke-width="1.5"/>
+          <path d="M734 126L732 138M760 122L760 136" stroke="#5ab4ff" stroke-width="2"/>
+          <path class="outline" d="M26 242L34 226L100 213L292 140L432 87L514 90L762 134L774 134L772 152L766 234L752 248L686 248L676 196L648 160L600 160L572 196L562 248L258 248L248 196L220 160L168 160L140 196L130 248L32 248Z" pathLength="1" fill="none" stroke="#5ab4ff" stroke-width="2.5" filter="url(#rglow)"/>
+          <path class="hl" d="M38 228L112 211L106 219L44 234Z" fill="#e6f6ff" filter="url(#rglow)"/>
+          <path d="M748 142L772 140L771 147L750 149ZM752 156L770 152L770 158L754 161Z" fill="#ff3b5c" filter="url(#rglow)"/>
+          <g transform="translate(194 224)"><circle r="56" fill="#04070b" stroke="#1d3b5c" stroke-width="3"/><g class="whl"><circle r="44" fill="#0a1522" stroke="#8fd0ff" stroke-width="2.5"/><g stroke="#cfeaff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><g transform="rotate(0)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(72)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(144)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(216)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(288)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g></g><circle r="8" fill="#cfeaff"/></g><path d="M-30 -30A42 42 0 0 1 10 -41" stroke="#ff3b5c" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+          <g transform="translate(624 224)"><circle r="56" fill="#04070b" stroke="#1d3b5c" stroke-width="3"/><g class="whl"><circle r="44" fill="#0a1522" stroke="#8fd0ff" stroke-width="2.5"/><g stroke="#cfeaff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><g transform="rotate(0)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(72)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(144)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(216)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g><g transform="rotate(288)"><path d="M0 -11V-26L-7 -40M0 -26L7 -40"/></g></g><circle r="8" fill="#cfeaff"/></g><path d="M-30 -30A42 42 0 0 1 10 -41" stroke="#ff3b5c" stroke-width="7" fill="none" stroke-linecap="round"/></g>
         </g>
       </svg>
 
@@ -1157,9 +1174,9 @@ ol.journey li.on button span{display:block}
       <div class="cc nohalf">
         <h3>No half jobs.</h3>
         <p>Others charge extra for windows and rims, or only coat the paint. Every Apex coating covers the full exterior.</p>
-        <div class="pt"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg><div><b>Proper prep, not shortcuts</b><span>Every coating goes on after proper paint correction and surface prep.</span></div></div>
-        <div class="pt"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><div><b>Full exterior, not just your paint</b><span>Windows and rims are included in every coating. No fees for them, it all gets done.</span></div></div>
-        <div class="pt"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><div><b>Backed with a warranty</b><span>Every coating is backed with a warranty. Ask us for the details on yours.</span></div></div>
+        <details class="pt"><summary><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg><b>Proper prep, not shortcuts</b></summary><span>Every coating goes on after proper paint correction and surface prep.</span></details>
+        <details class="pt"><summary><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><b>Full exterior, not just your paint</b></summary><span>Windows and rims are included in every coating. No fees for them, it all gets done.</span></details>
+        <details class="pt"><summary><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><b>Backed with a warranty</b></summary><span>Every coating is backed with a warranty. Ask us for the details on yours.</span></details>
         <div class="dia-box">
           <div class="row"><b>Diamond package</b><span>from<em>$600</em></span></div>
           <ul>
@@ -1246,7 +1263,6 @@ ol.journey li.on button span{display:block}
         <p class="big">Utah's road salt, dust and harsh sun age paint and interiors faster than most owners realize. Small sedan or Sprinter, a refresh or a disaster, George brings the whole setup to you.</p>
         <div class="tags">
           <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-award"/></svg>Est. 2022</span>
-          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-user"/></svg>Owner-operated</span>
           <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-heart"/></svg>Latino-owned</span>
           <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg>Cars, trucks &amp; SUVs</span>
         </div>
@@ -1607,8 +1623,7 @@ document.querySelectorAll('.vid').forEach(function(v){v.addEventListener('click'
 (function(){var ol=document.getElementById('jr');if(!ol)return;var li=[].slice.call(ol.children);
   function go(n){li.forEach(function(x,i){x.classList.toggle('done',i<n);x.classList.toggle('on',i===n)});ol.style.setProperty('--at',n)}
   li.forEach(function(x,i){x.querySelector('button').addEventListener('click',function(){go(i)})});
-  go(0);if(reduceMotion||!('IntersectionObserver' in window))return;
-  var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var n=0,k=setInterval(function(){if(++n>=li.length)return clearInterval(k);go(n)},260)},{threshold:.5});io.observe(ol)})();
+  go(0)})();
 
 /* add-ons start collapsed on phones to keep the price list short; links to them open it */
 (function(){try{const a=document.getElementById('addons');if(!a)return;if(matchMedia('(max-width: 719px)').matches)a.removeAttribute('open');document.querySelectorAll('a[href="#addons"]').forEach(l=>l.addEventListener('click',()=>{a.open=true}))}catch(e){}})();
