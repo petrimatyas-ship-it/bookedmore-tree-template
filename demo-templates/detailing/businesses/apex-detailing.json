@@ -17,16 +17,6 @@
     "h1b": "We come <br>straight <br>to you.",
     "h1a": "No <q>Detailing Near Me.</q>",
     "lead": "Mobile car detailing and ceramic coating across Kearns, Taylorsville, West Valley, West Jordan, Murray and Herriman. Our van brings its own water and power, so <b>just leave the vehicle open.</b>",
-    "facts": [
-      {
-        "value": "$150",
-        "label": "Interior &amp; exterior, from"
-      },
-      {
-        "value": "$600",
-        "label": "Ceramic coating, from"
-      }
-    ],
     "card": {
       "tag": "Our specialty",
       "title": "Ceramic coating",
@@ -581,10 +571,6 @@
       {
         "icon": "award",
         "text": "Est. 2022"
-      },
-      {
-        "icon": "user",
-        "text": "Owner-operated"
       },
       {
         "icon": "heart",
