@@ -51,10 +51,11 @@
       "file": "logo-tagline-dark.webp"
     },
     "hero": {
-      "file": "car-diamond.webp",
-      "alt": "Blue sports coupe with a fresh ceramic coating",
-      "width": "1053",
-      "height": "439"
+      "file": "hero-truck.webp",
+      "alt": "Gray Chevy Silverado 2500 HD ZR2, freshly washed in a driveway",
+      "width": "1200",
+      "height": "1600",
+      "photo": true
     }
   },
   "hours": {
@@ -119,7 +120,9 @@
         ],
         "pick": "bronze",
         "button": "Book Bronze",
-        "featured": false
+        "featured": false,
+        "image": "tier-bronze.webp",
+        "short": "Int. &amp; ext."
       },
       {
         "class": "t-gold",
@@ -134,7 +137,9 @@
         "pick": "gold",
         "button": "Book Gold",
         "featured": false,
-        "plus": "Everything in Bronze, plus"
+        "plus": "Everything in Bronze, plus",
+        "image": "tier-gold.webp",
+        "short": "Full detail"
       },
       {
         "class": "t-plat",
@@ -149,7 +154,9 @@
         "pick": "platinum",
         "button": "Book Platinum",
         "featured": false,
-        "plus": "Everything in Gold, plus"
+        "plus": "Everything in Gold, plus",
+        "image": "tier-platinum.webp",
+        "short": "Premium"
       },
       {
         "class": "t-dia",
@@ -165,7 +172,9 @@
         "pick": "diamond",
         "button": "Book Diamond",
         "featured": true,
-        "tag": "Best value"
+        "tag": "Best value",
+        "image": "tier-diamond.webp",
+        "short": "Ceramic"
       }
     ],
     "fine": "Starting prices. Final price depends on vehicle size, from sedan to Sprinter, and condition. Your price is confirmed before any work begins.",
@@ -217,6 +226,83 @@
       "text": "Not sure which package fits? Ask for a custom one, it's free to request.",
       "quote": "George will personally reach out to get your vehicle info and confirm your custom package and final price before any work begins.",
       "button": "Build my package"
+    },
+    "compare": {
+      "title": "Compare packages",
+      "rows": [
+        {
+          "name": "Hand wash &amp; dry",
+          "has": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "name": "Interior vacuum &amp; wipe down",
+          "has": [
+            true,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "name": "Steam clean",
+          "has": [
+            false,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "name": "Leather condition",
+          "has": [
+            false,
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "name": "Paint correction (1-stage)",
+          "has": [
+            false,
+            false,
+            true,
+            true
+          ]
+        },
+        {
+          "name": "Ceramic coating (up to 5 years)",
+          "has": [
+            false,
+            false,
+            false,
+            true
+          ]
+        },
+        {
+          "name": "Wheel coating",
+          "has": [
+            false,
+            false,
+            false,
+            true
+          ]
+        },
+        {
+          "name": "Glass coating",
+          "has": [
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      ]
     }
   },
   "addons": {

@@ -68,6 +68,17 @@ From the third review (October 2026):
   drift and light sweep. `images.hero` should be a wide car shot.
 - Less space between sections on phones.
 - Video tiles fairly large on phones (about 60% of the width).
+- Their own package-card look: each tier card shows a car photo between
+  the name and the list, and a "Starting at" price box above the button
+  (`packages.tiers[].image`, cut from their own graphics, 728×320 on a dark
+  background). Plus a "Compare packages" table (`packages.compare.rows`,
+  each with `has`, one true/false per tier; `packages.tiers[].short` is
+  the label under each name).
+- Hero photo: a real, sharp job photo from their Google listing works
+  best. `images.hero.photo: true` fills the hero with it (any shape);
+  without `photo`, `images.hero` is a wide cut-out car on the dark
+  background. Google shows logged-out visitors only the cover photo, so
+  ask the owner for more if needed.
 
 ## New detailer, step by step
 
@@ -104,8 +115,9 @@ From the third review (October 2026):
    - `icon.png`: 256×256, the tab icon.
    - `icon-96.webp`: the logo in the header.
    - the hero logo: `images.heroLogo`.
-   - the hero car photo: `images.hero` (file, alt, width, height). Without
-     it the hero shows the logo.
+   - the hero photo: `images.hero` (file, alt, width, height, and
+     `photo: true` for a full photo). Without it the hero shows the logo.
+   - one car picture per tier: `packages.tiers[].image`.
    - the about picture: `images.about`.
    - before and after photos: `results.photos`. Each has a `before` and an
      `after` file of the same size (2:3, e.g. 468×702), lined up so the
