@@ -14,6 +14,31 @@ Reviews, Areas, About) open the "locked page" pop-up.
 - `businesses/<slug>.json`: everything about one business, for the page and the chat.
 - `../../scripts/build-detailing-demo.mjs`: builds `public/<slug>/index.html` from the two.
 
+## What the owner wants (learned on Apex, October 2026)
+
+Liked, keep doing:
+- This layout, with its sections and the sub-page nav (Services, Ceramic,
+  Pricing, Reviews, Areas, About opening the locked-page pop-up). It should
+  feel like a full website with sub-sections, not a single landing page.
+- The dark, glossy automotive look in the business's own colors and logo.
+- Their own wording (slogans, FAQ answers, package names) and their real
+  photos and logo. Real prices, packages and add-ons.
+- A real chat that knows everything public about the business: website,
+  Google listing and reviews, socials, booking page.
+- Facts only from sources. The location from the business's own site and
+  Google, not from our lead list (Apex was filed under Lehi but serves
+  Kearns and the southwest Salt Lake Valley).
+
+Did not like, avoid:
+- The tree-service template's look carried over to another trade.
+- A one-page landing-page rebuild with no sub-sections (tried on Apex,
+  rolled back the same day).
+- Our price ("$149 a month") anywhere on a demo.
+- The "draft" bar and MoreBookedNow pitch blocks on a prospect who has
+  already said yes (see `hideDemoBar` on generated demos).
+- AI-made photos when the business has real ones, and stock photos.
+- Slow multi-agent runs: build the page directly, at normal effort.
+
 ## New detailer, step by step
 
 1. **Gather the facts.** Read their website (every page), their Google
