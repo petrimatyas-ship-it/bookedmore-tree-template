@@ -1,4 +1,11 @@
 import type { NextConfig } from "next";
+import { readdirSync } from "fs";
+import path from "path";
+
+/** Every detailing demo built from demo-templates/detailing (one JSON per business). */
+const detailingSlugs = readdirSync(path.join(process.cwd(), "demo-templates/detailing/businesses"))
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => f.replace(/\.json$/, ""));
 
 const nextConfig: NextConfig = {
   images: {
@@ -11,7 +18,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       { source: "/angel-pro", destination: "/angel-pro/index.html" },
-      { source: "/apex-detailing", destination: "/apex-detailing/index.html" }
+      ...detailingSlugs.map((slug) => ({ source: `/${slug}`, destination: `/${slug}/index.html` }))
     ];
   }
 };
