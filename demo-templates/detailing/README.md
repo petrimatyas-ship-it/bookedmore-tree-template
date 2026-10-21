@@ -93,6 +93,9 @@ From the third review (October 2026):
   is a small chat bubble in the corner that opens a chat panel; the quote
   card is the form only. Google reviews come right after before and after,
   ahead of ceramic. Every ceramic step has a short sentence.
+- On phones, outside links (Instagram, TikTok, Google, booking) open in the
+  same tab. The owner opens demos from apps, and those in-app browsers
+  ignore new-tab links, so the buttons seemed dead.
   `images.hero` still works if an owner wants a photo (`photo: true` for a
   full photo).
 
