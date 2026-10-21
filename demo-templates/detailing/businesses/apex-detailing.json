@@ -25,10 +25,6 @@
       {
         "value": "$600",
         "label": "Ceramic coating, from"
-      },
-      {
-        "value": "1&ndash;4<small>hrs</small>",
-        "label": "Done where you park"
       }
     ],
     "card": {
@@ -53,17 +49,12 @@
       "width": "1600",
       "alt": "Apex Detailing badge logo: Established 2022, Your Car, Our Craft",
       "file": "logo-tagline-dark.webp"
-    }
-  },
-  "proof": {
-    "ratingNote": "21 reviews, all five&#8209;star",
-    "mobile": {
-      "text": "Own water &amp; power",
-      "title": "We come to you"
     },
-    "badge": {
-      "text": "Owner-operated by George",
-      "title": "Est. 2022"
+    "hero": {
+      "file": "car-diamond.webp",
+      "alt": "Blue sports coupe with a fresh ceramic coating",
+      "width": "1053",
+      "height": "439"
     }
   },
   "hours": {
@@ -218,7 +209,8 @@
         }
       ],
       "text": "Dealerships, rental lots and company vehicles. We come to your lot, so your vehicles never leave. Month to month, no contract.",
-      "link": "Text about your fleet"
+      "link": "Text about your fleet",
+      "short": "Dealerships, rental lots and company vehicles. We come to your lot. Month to month, no contract."
     },
     "custom": {
       "title": "Build your own",
@@ -270,7 +262,7 @@
     "note": "Headlight restoration includes sanding, polishing and a 5-year ceramic coat. Seat shampoo may cost more with a third row."
   },
   "results": {
-    "intro": "Photos from real jobs, not stock images. Left half before, right half after.",
+    "intro": "Photos from real jobs, not stock images. Drag across each one to see the difference.",
     "h2b": "Real satisfaction.",
     "h2a": "Real results.",
     "eyebrow": "Before &amp; after",
@@ -316,7 +308,9 @@
   "social": {
     "tiktok": {
       "url": "https://www.tiktok.com/@apexdetailing801ut",
-      "handle": "@apexdetailing801ut"
+      "handle": "@apexdetailing801ut",
+      "embed": true,
+      "user": "apexdetailing801ut"
     },
     "instagram": {
       "url": "https://www.instagram.com/apexdetailing801",
@@ -405,26 +399,7 @@
       "text": "After curing, you only have to watch out for car washes, that's it. Just the hose and a rag, or an Apex wash bundle.",
       "label": "days to cure",
       "value": "1 to 7"
-    },
-    "rewardsTitle": "Instant rewards",
-    "rewardsEyebrow": "After your coating",
-    "rewards": [
-      {
-        "icon": "ticket",
-        "title": "Free exterior detail",
-        "text": "A voucher after your initial coating"
-      },
-      {
-        "icon": "layers",
-        "title": "Bundle discount",
-        "text": "Months of washes for less"
-      },
-      {
-        "icon": "award",
-        "title": "Loyalty card",
-        "text": "A free service after a few washes"
-      }
-    ]
+    }
   },
   "reviews": {
     "intro": "Straight from Google, in customers' own words.",
@@ -606,8 +581,7 @@
         "label": "HERRIMAN"
       }
     ],
-    "radarCaption": "10-MILE SERVICE RADIUS · NOT TO SCALE",
-    "vehicles": "Cars, trucks and SUVs, from a small sedan to a Sprinter. A disaster or a refresh, focused or quick, we do it all."
+    "radarCaption": "10-MILE SERVICE RADIUS · NOT TO SCALE"
   },
   "payment": [
     "Debit",
@@ -619,7 +593,7 @@
   ],
   "faq": {
     "intro": "Straight answers about the van, the area, payment and ceramic coating.",
-    "askText": "Ask the assistant, or text us and George will get back to you.",
+    "askText": "Ask the assistant, or give George a call.",
     "items": [
       {
         "q": "Do you need access to water or power?",
@@ -826,5 +800,6 @@
     ],
     "intake": "what vehicle they have (make, model, roughly how big: car, SUV, truck, van), what they want (full interior and exterior, interior only, exterior only, ceramic coating, or a bundle), what shape it is in, and where they are so you can check it is inside the service area",
     "example": "A full interior and exterior on an SUV starts at $150 and depends on its condition. We bring our own water and power so you just leave it open. What's the best number to text you a time?"
-  }
+  },
+  "paymentNote": "Pay when the detail is done, however suits you."
 }

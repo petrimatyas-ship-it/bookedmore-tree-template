@@ -123,7 +123,7 @@ h1 .b{display:block;font-size:clamp(3.05rem,12.6vw,6.2rem);line-height:.88;paddi
 .sublinks a{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600}
 .sublinks a:hover{color:#fff}
 .sublinks .ic{color:var(--sky)}
-.qf3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));max-width:560px}
+.qf3{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;margin-top:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));max-width:560px}
 .qf3>div{padding:13px 12px 14px;min-width:0}
 .qf3>div+div{border-left:1px solid var(--line)}
 .qf3 b{display:block;font:italic 800 2.15rem/1 var(--dc);font-variant-numeric:tabular-nums;padding-right:.06em}
@@ -588,6 +588,62 @@ h2.d,h1 .b{overflow-wrap:break-word}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+/* hero image: the business's own car picture blended into the dark panel; first on phones */
+.hero-car{position:absolute;left:-4%;width:108%;max-width:none;top:16%;height:auto;mix-blend-mode:lighten;-webkit-mask-image:radial-gradient(closest-side at 50% 55%,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side at 50% 55%,#000 72%,transparent 100%)}
+@media(max-width:759px){.hero-in>.hero-vis{order:-1;aspect-ratio:16/9}.hero-in{gap:22px}.hero-car{top:4%}}
+@media(max-width:559px){.hero-vis .g-cer{display:none}}
+/* packages swipe on phones so the price section stays short */
+@media(max-width:719px){.tiers{grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;margin:30px -16px 0;padding:0 16px 8px;scroll-padding:0 16px;scrollbar-width:none}.tiers::-webkit-scrollbar{display:none}.tier{scroll-snap-align:start;padding:20px 18px 18px}.tier.t-dia{padding-top:44px}}
+.tswipe{display:none;margin-top:8px;color:var(--muted);font-size:.85rem;align-items:center;gap:6px}
+.tswipe .ic{width:16px;height:16px}
+@media(max-width:719px){.tswipe{display:flex}}
+/* more options: one compact price list */
+.plist{margin-top:34px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+@media(min-width:760px){.plist{padding:26px 28px}}
+.plist>h3{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
+.pl-g{display:grid;gap:18px}
+@media(min-width:900px){.pl-g{grid-template-columns:repeat(3,1fr);gap:28px}}
+.pl-h{display:flex;align-items:center;gap:9px;margin-bottom:2px;color:#fff}
+.pl-h .ic{width:18px;height:18px;color:var(--sky)}
+.pl-h b{font-weight:700;font-size:1rem}
+.pl-r{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line2);color:var(--soft);font-size:.93rem}
+.pl-r:hover{color:#fff}
+.pl-r b{font:italic 800 1.2rem/1.1 var(--dc);color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pl-n{color:var(--muted);font-size:.84rem;margin-top:8px}
+.pl-custom{margin-top:18px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid rgba(85,183,219,.34);background:radial-gradient(100% 120% at 100% 0%,rgba(30,144,255,.18),transparent 60%),#0b131c;color:var(--soft);font-size:.92rem}
+.pl-custom b{display:block;color:#fff;font-size:1rem;margin-bottom:2px}
+.pl-custom>.ic{flex:none;width:22px;height:22px;color:var(--sky)}
+.pl-custom>.ic:last-child{margin-left:auto;width:18px;height:18px}
+/* before & after slider: each photo is one image, before half left, after half right */
+.ba-row{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:row;grid-auto-columns:auto;gap:12px;overflow:visible;margin:34px 0 0;padding:0;scroll-snap-type:none}
+@media(min-width:760px){.ba-row{margin:40px 0 0;padding:0}}
+@media(min-width:1100px){.ba-row{grid-template-columns:repeat(4,1fr)}}
+.cmp{overflow:hidden}
+.cmp img{position:absolute;top:0;height:100%;max-width:none;object-fit:fill}
+.cmp .bf{left:0}
+.ba .im.cmp::after{display:none}
+.cmp .knob{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:rgba(220,240,255,.95);box-shadow:0 0 12px rgba(30,144,255,.8);pointer-events:none;z-index:2}
+.cmp .knob::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#0c1b2b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23e9f4ff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center no-repeat;border:2px solid #e9f4ff;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;z-index:3}
+.ba .lb{z-index:2;pointer-events:none}
+.bahint{margin-top:12px;color:var(--muted);font-size:.85rem}
+/* TikTok videos (their official creator embed, loaded when scrolled near) */
+.tt{margin-top:22px;max-width:780px;min-height:60px}
+.tt blockquote{margin:0!important}
+/* ceramic steps as a journey: titles only, joined by a glowing line */
+ol.journey{display:grid;grid-template-columns:1fr;gap:0;position:relative}
+ol.journey li{padding:0 0 18px 50px;min-height:38px;display:flex;align-items:center}
+ol.journey li::after{top:34px;bottom:-2px;width:2px;left:15px;background:linear-gradient(#1e90ff,rgba(30,144,255,.25))}
+ol.journey b{padding-top:0;font-size:1rem}
+@media(min-width:620px){ol.journey{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,auto);grid-auto-flow:column;column-gap:24px}ol.journey li:nth-child(5){padding-bottom:0}ol.journey li:nth-child(5)::after{display:none}}
+.cure-line{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(5,7,10,.5);color:var(--muted);font-size:.88rem;max-width:760px}
+.cure-line .ic{flex:none;width:18px;height:18px;color:var(--sky);margin-top:2px}
+.cure-line b{color:#fff;font-weight:600}
+@media(min-width:900px){.info3{grid-template-columns:1fr 1fr}}
+.paycard{border-color:rgba(85,183,219,.4);background:radial-gradient(110% 90% at 100% 0%,rgba(30,144,255,.16),transparent 60%),var(--panel)}
+.paycard>p{margin-bottom:14px}
+.paycard .pay span{display:inline-flex;align-items:center;gap:7px;padding:11px 15px;font-size:1rem;color:#fff;border-color:rgba(85,183,219,.35);background:rgba(30,144,255,.08)}
+.paycard .pay .ic{width:16px;height:16px;color:var(--sky)}
 </style>
 </head>
 <body>
@@ -703,7 +759,6 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <div class="qf3" role="list" aria-label="Quick facts">
         <div role="listitem"><b class="chrome">$150</b><span>Interior &amp; exterior, from</span></div>
         <div role="listitem"><b class="chrome">$600</b><span>Ceramic coating, from</span></div>
-        <div role="listitem"><b class="chrome">1&ndash;4<small>hrs</small></b><span>Done where you park</span></div>
       </div>
     </div>
 
@@ -731,7 +786,8 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <use href="#field"/>
       </svg>
       <div class="sweep"></div>
-      <img class="hero-logo" src="/apex-detailing/logo-420.webp" alt="" width="420" height="440" fetchpriority="high" decoding="async">
+      <img class="hero-car" src="/apex-detailing/car-diamond.webp" alt="Blue sports coupe with a fresh ceramic coating" width="1053" height="439" fetchpriority="high" decoding="async">
+
       <div class="glass g-rate"><b>5.0</b><div><span class="stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><small>21 Google reviews</small></div></div>
       <div class="glass g-cer">
         <span class="tag">Our specialty</span>
@@ -740,15 +796,6 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <ul><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>5-year coating</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Paint correction</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Wheels &amp; glass</li></ul>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="proof" aria-label="At a glance">
-  <div class="wrap">
-    <div class="pf"><i><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></i><div><b>5.0 on Google</b><span>21 reviews, all five&#8209;star</span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg></i><div><b>We come to you</b><span>Own water &amp; power</span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></i><div><b id="ps-b">Mon to Sat</b><span id="ps-s"><span class="nw">Mon&ndash;Fri 8 AM&ndash;8 PM</span> &middot; <span class="nw">Sat 9 AM&ndash;5 PM</span></span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-user"/></svg></i><div><b>Est. 2022</b><span>Owner-operated by George</span></div></div>
   </div>
 </section>
 
@@ -805,41 +852,31 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <a class="btn btn-blue" href="#quote" onclick="pick('diamond')">Book Diamond</a>
       </article>
     </div>
+    <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
     <p class="pfine"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><span>Starting prices. Final price depends on vehicle size, from sedan to Sprinter, and condition. Your price is confirmed before any work begins.</span></p>
 
-    <div class="more">
-      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg></i><h3>Interior or exterior only</h3></div>
-        <div class="big">$99 to $180</div>
-        <p>Just the inside or just the outside, from a refresh to a full restoration. Priced by vehicle size and condition.</p>
-        <a class="lnk" href="#quote" onclick="pick('interior')">Get a price <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <div class="plist">
+      <h3>More options</h3>
+      <div class="pl-g">
+        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg><b>Interior or exterior only</b></div>
+          <a class="pl-r" href="#quote" onclick="pick('interior')"><span>Inside or outside, by size &amp; condition</span><b>$99 to $180</b></a>
+        </div>
+        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg><b>Express bundles</b></div>
+          <a class="pl-r" href="#quote" onclick="pick('bundle4')"><span>4 Express details</span><b>$600</b></a>
+          <a class="pl-r" href="#quote" onclick="pick('bundle4')"><span>8 Express details</span><b>$999</b></a>
+          <p class="pl-n">Ceramic Club members get 15% off bundles.</p>
+        </div>
+        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-build"/></svg><b>Fleet plan</b></div>
+          <a class="pl-r" href="tel:+18018352387"><span>3 to 5 vehicles</span><b>15% off</b></a>
+          <a class="pl-r" href="tel:+18018352387"><span>6 to 10 vehicles</span><b>20% off</b></a>
+          <a class="pl-r" href="tel:+18018352387"><span>11 or more</span><b>Custom quote</b></a>
+          <p class="pl-n">Dealerships, rental lots and company vehicles. We come to your lot. Month to month, no contract.</p>
+        </div>
       </div>
-      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg></i><h3>Express bundles</h3></div>
-        <ul class="rows">
-          <li><span>4 Express details</span><b>$600</b></li>
-          <li><span>8 Express details</span><b>$999</b></li>
-        </ul>
-        <p>Saves tons and covers you for almost the whole year.</p>
-        <p class="note">Ceramic Club members get 15% off bundles.</p>
-        <a class="lnk" href="#quote" onclick="pick('bundle4')">Ask about bundles <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-build"/></svg></i><h3>Fleet plan</h3></div>
-        <ul class="rows">
-          <li><span>3 to 5 vehicles</span><b>15% off</b></li>
-          <li><span>6 to 10 vehicles</span><b>20% off</b></li>
-          <li><span>11 or more</span><b>Custom quote</b></li>
-        </ul>
-        <p>Dealerships, rental lots and company vehicles. We come to your lot, so your vehicles never leave. Month to month, no contract.</p>
-        <a class="lnk" href="sms:+18018352387">Text about your fleet <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="mc custom">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg></i><h3>Build your own</h3></div>
-        <p style="margin-bottom:14px">Not sure which package fits? Ask for a custom one, it's free to request.</p>
-        <q>George will personally reach out to get your vehicle info and confirm your custom package and final price before any work begins.</q>
-        <a class="btn btn-blue" href="#quote" onclick="pick('custom')">Build my package</a>
-      </div>
+      <a class="pl-custom" href="#quote" onclick="pick('custom')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg><span><b>Build your own</b>Not sure which package fits? Ask for a custom one, it's free to request.</span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
     </div>
 
     <details class="ao" id="addons" open>
@@ -865,20 +902,22 @@ h2.d,h1 .b{overflow-wrap:break-word}
     <div class="sh">
       <span class="eyebrow">Before &amp; after</span>
       <h2 class="d">Real results. <span class="blue-t">Real satisfaction.</span></h2>
-      <p>Photos from real jobs, not stock images. Left half before, right half after.</p>
+      <p>Photos from real jobs, not stock images. Drag across each one to see the difference.</p>
     </div>
-    <div class="ba-row" tabindex="0" role="region" aria-label="Before and after photos, scroll sideways for more">
-      <figure class="ba"><div class="im" style="--s:49.3%"><img src="/apex-detailing/before-after-rear-floor.webp" alt="Rear floor covered in crumbs and debris before, vacuumed clean black carpet after" width="302" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>Rear floor</b><span>Interior</span></figcaption></figure>
-      <figure class="ba"><div class="im" style="--s:48.8%"><img src="/apex-detailing/before-after-front-interior.webp" alt="Front interior with tan seats and black floor mats, dirty before and clean after" width="309" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>Front cabin</b><span>Interior</span></figcaption></figure>
-      <figure class="ba"><div class="im" style="--s:47.7%"><img src="/apex-detailing/before-after-wheel.webp" alt="Truck steel wheel and tire, dull and dusty before, clean and dark after" width="310" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>Wheel &amp; tire</b><span>Exterior</span></figcaption></figure>
-      <figure class="ba"><div class="im" style="--s:50%"><img src="/apex-detailing/before-after-trunk.webp" alt="SUV cargo area with a dirty rubber mat before and a clean mat after" width="306" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>SUV cargo area</b><span>Interior</span></figcaption></figure>
+    <div class="ba-row">
+      <figure class="ba"><div class="im cmp" style="--s:49.3%;--p:50%"><img class="bf" src="/apex-detailing/before-after-rear-floor.webp" alt="Rear floor covered in crumbs and debris before, vacuumed clean black carpet after" width="302" height="454" loading="lazy" decoding="async"><img class="af" src="/apex-detailing/before-after-rear-floor.webp" alt="" width="302" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: Rear floor"></div><figcaption><b>Rear floor</b><span>Interior</span></figcaption></figure>
+      <figure class="ba"><div class="im cmp" style="--s:48.8%;--p:50%"><img class="bf" src="/apex-detailing/before-after-front-interior.webp" alt="Front interior with tan seats and black floor mats, dirty before and clean after" width="309" height="454" loading="lazy" decoding="async"><img class="af" src="/apex-detailing/before-after-front-interior.webp" alt="" width="309" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: Front cabin"></div><figcaption><b>Front cabin</b><span>Interior</span></figcaption></figure>
+      <figure class="ba"><div class="im cmp" style="--s:47.7%;--p:50%"><img class="bf" src="/apex-detailing/before-after-wheel.webp" alt="Truck steel wheel and tire, dull and dusty before, clean and dark after" width="310" height="454" loading="lazy" decoding="async"><img class="af" src="/apex-detailing/before-after-wheel.webp" alt="" width="310" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: Wheel &amp; tire"></div><figcaption><b>Wheel &amp; tire</b><span>Exterior</span></figcaption></figure>
+      <figure class="ba"><div class="im cmp" style="--s:50%;--p:50%"><img class="bf" src="/apex-detailing/before-after-trunk.webp" alt="SUV cargo area with a dirty rubber mat before and a clean mat after" width="306" height="454" loading="lazy" decoding="async"><img class="af" src="/apex-detailing/before-after-trunk.webp" alt="" width="306" height="454" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: SUV cargo area"></div><figcaption><b>SUV cargo area</b><span>Interior</span></figcaption></figure>
     </div>
-    <p class="swipe" aria-hidden="true">Swipe for more <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
+    <p class="bahint">Drag the handle left and right.</p>
     <div class="social">
       <span>Watch us work:</span>
       <a href="https://www.tiktok.com/@apexdetailing801ut" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>@apexdetailing801ut</a>
       <a href="https://www.instagram.com/apexdetailing801" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg>@apexdetailing801</a>
     </div>
+
+    <div class="tt" id="tt" data-user="apexdetailing801ut"><a class="btn btn-glass" href="https://www.tiktok.com/@apexdetailing801ut" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>See our videos on TikTok</a></div>
   </div>
 </section>
 
@@ -921,37 +960,22 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <div class="cc">
         <h3>What to expect on arrival</h3>
         <p style="color:var(--soft);margin-bottom:20px">Ten steps, start to finish.</p>
-        <ol class="steps">
-          <li><b>Inspection together</b><span>We walk the vehicle with you first</span></li>
-          <li><b>Pre-wash</b><span>Loosens any dirt</span></li>
-          <li><b>Wheels &amp; rims</b><span>A thorough clean</span></li>
-          <li><b>Iron remover</b><span>Lifts embedded iron</span></li>
+        <ol class="steps journey">
+          <li><b>Inspection together</b></li>
+          <li><b>Pre-wash</b></li>
+          <li><b>Wheels &amp; rims</b></li>
+          <li><b>Iron remover</b></li>
           <li><b>Rinse</b></li>
           <li><b>Clay bar</b></li>
           <li><b>Final hand wash</b></li>
           <li><b>Dry</b></li>
-          <li><b>Paint correction</b><span>Removes scratches, enhances paint</span></li>
-          <li><b>Ceramic applied</b><span>With care, spread evenly and leveled</span></li>
+          <li><b>Paint correction</b></li>
+          <li><b>Ceramic applied</b></li>
         </ol>
       </div>
     </div>
 
-    <div class="cer-after">
-      <div class="cc cure">
-        <span class="eyebrow" style="margin-bottom:6px">Aftercare</span>
-        <div class="num chrome">1 to 7<small>days to cure</small></div>
-        <p>After curing, you only have to watch out for car washes, that's it. Just the hose and a rag, or an Apex wash bundle.</p>
-      </div>
-      <div class="cc">
-        <span class="eyebrow" style="margin-bottom:6px">After your coating</span>
-        <h3>Instant rewards</h3>
-        <div class="rewards">
-          <div class="rw"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ticket"/></svg><b>Free exterior detail</b><span>A voucher after your initial coating</span></div>
-          <div class="rw"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg><b>Bundle discount</b><span>Months of washes for less</span></div>
-          <div class="rw"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-award"/></svg><b>Loyalty card</b><span>A free service after a few washes</span></div>
-        </div>
-      </div>
-    </div>
+    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span><b>1 to 7 days to cure.</b> After curing, you only have to watch out for car washes, that's it. Just the hose and a rag, or an Apex wash bundle.</span></p>
   </div>
 </section>
 
@@ -1077,13 +1101,10 @@ h2.d,h1 .b{overflow-wrap:break-word}
           <li data-h="sun"><span>Sunday</span><b>Closed</b></li>
         </ul>
       </div>
-      <div class="ic3">
-        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Payment</h3>
-        <div class="pay"><span>Debit</span><span>Credit</span><span>Cash App</span><span>Venmo</span><span>Zelle</span><span>Cash</span></div>
-      </div>
-      <div class="ic3">
-        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg>Vehicles</h3>
-        <p>Cars, trucks and SUVs, from a small sedan to a Sprinter. A disaster or a refresh, focused or quick, we do it all.</p>
+      <div class="ic3 paycard">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Pay your way</h3>
+        <p>Pay when the detail is done, however suits you.</p>
+        <div class="pay"><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Debit</span><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Credit</span><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Cash App</span><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Venmo</span><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Zelle</span><span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Cash</span></div>
       </div>
     </div>
   </div>
@@ -1095,8 +1116,8 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <div class="sh"><span class="eyebrow">FAQ</span><h2 class="d">Questions, <span class="blue-t">answered.</span></h2><p>Straight answers about the van, the area, payment and ceramic coating.</p></div>
       <div class="askcard">
         <b>Still have a question?</b>
-        <span>Ask the assistant, or text us and George will get back to you.</span>
-        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="sms:+18018352387"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a></div>
+        <span>Ask the assistant, or give George a call.</span>
+        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="tel:+18018352387"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a></div>
       </div>
     </div>
     <div class="faq">
@@ -1356,6 +1377,16 @@ function quote(e){
   ok.style.display='block';
   try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
 }
+
+/* before & after: drag to compare; each image is one photo, before half left, after half right */
+document.querySelectorAll('.cmp').forEach(function(c){
+  var s=parseFloat(getComputedStyle(c).getPropertyValue('--s'))/100||.5,bf=c.querySelector('.bf'),af=c.querySelector('.af'),r=c.querySelector('input');
+  bf.style.width=(100/s)+'%';af.style.width=(100/(1-s))+'%';af.style.left=(-100*s/(1-s))+'%';
+  function fix(){var w=c.clientWidth;if(!w)return;var px=w*r.value/100,afw=w/(1-s),off=w*s/(1-s);af.style.clipPath='inset(0 0 0 '+((off+px)/afw*100)+'%)';c.style.setProperty('--p',r.value+'%')}
+  r.addEventListener('input',fix);addEventListener('resize',fix);fix();
+});
+/* TikTok videos: their creator embed, fetched only when the section is near */
+(function(){var t=document.getElementById('tt');if(!t||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var u=t.dataset.user;t.innerHTML='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@'+u+'" data-unique-id="'+u+'" data-embed-type="creator" style="max-width:780px;min-width:288px"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@'+u+'">@'+u+'</a></section></blockquote>';var sc=document.createElement('script');sc.async=true;sc.src='https://www.tiktok.com/embed.js';document.body.appendChild(sc)},{rootMargin:'400px'});io.observe(t)})();
 
 /* add-ons start collapsed on phones to keep the price list short; links to them open it */
 (function(){try{const a=document.getElementById('addons');if(!a)return;if(matchMedia('(max-width: 719px)').matches)a.removeAttribute('open');document.querySelectorAll('a[href="#addons"]').forEach(l=>l.addEventListener('click',()=>{a.open=true}))}catch(e){}})();
