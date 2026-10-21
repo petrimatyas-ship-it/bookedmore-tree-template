@@ -4,6 +4,7 @@ import { saveLead } from "@/lib/leads-store";
 import { getDemo, isExpired } from "@/lib/db";
 import type { SiteConfig } from "@/lib/site-config";
 import { prepareAttachments, type ReadyAttachment } from "@/lib/attachments-server";
+import { buildTradePrompt, handBuilt } from "@/lib/hand-built";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -111,7 +112,11 @@ export async function POST(request: Request) {
   // built from the same record the page renders from.
   let config: SiteConfig = business;
   let slug: string | undefined;
-  if (typeof body.slug === "string" && body.slug) {
+  // A hand-built page has no stored record; its business is listed in code.
+  const hand = typeof body.slug === "string" ? handBuilt[body.slug] : undefined;
+  if (hand) {
+    slug = body.slug;
+  } else if (typeof body.slug === "string" && body.slug) {
     const demo = await getDemo(body.slug);
     if (!demo || isExpired(demo)) {
       return NextResponse.json({ error: "This demo is no longer available." }, { status: 404 });
@@ -148,7 +153,11 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify(
-        chatBody(MODEL, [{ role: "system", content: buildSystemPrompt(config, Boolean(slug)) }, ...forModel], 0.6)
+        chatBody(
+          MODEL,
+          [{ role: "system", content: hand ? buildTradePrompt(hand) : buildSystemPrompt(config, Boolean(slug)) }, ...forModel],
+          0.6
+        )
       )
     });
   } catch (err) {
@@ -197,7 +206,7 @@ export async function POST(request: Request) {
           notes: [parsed.urgent ? "URGENT" : "", String(parsed.notes || "").trim()].filter(Boolean).join(" -- "),
           source: "ai-chat",
           slug,
-          businessName: config.companyName,
+          businessName: hand ? hand.companyName : config.companyName,
           // Whatever they sent lands on the owner's email with the lead, so
           // the job is quoted from the same pictures the assistant saw.
           attachments: photos
