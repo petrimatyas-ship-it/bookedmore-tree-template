@@ -70,8 +70,9 @@ From the third review (October 2026):
 - Video tiles fairly large on phones (about 60% of the width).
 - Their own package-card look: each tier card shows a car photo between
   the name and the list, and a "Starting at" price box above the button
-  (`packages.tiers[].image`, cut from their own graphics, 728×320 on a dark
-  background). Plus a "Compare packages" table (`packages.compare.rows`,
+  (`packages.tiers[].image`, 728×320 transparent cut-outs of each car,
+  set near the bottom of the frame; Apex's came from a sheet the owner
+  sent, since the first crops from his site graphics looked dim). Plus a "Compare packages" table (`packages.compare.rows`,
   each with `has`, one true/false per tier; `packages.tiers[].short` is
   the label under each name).
 - Hero background: a graphic, not a photo. With no `images.hero`, the hero
