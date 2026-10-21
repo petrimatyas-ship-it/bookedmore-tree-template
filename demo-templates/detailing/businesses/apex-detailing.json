@@ -26,6 +26,9 @@
         "Paint correction",
         "Wheels &amp; glass"
       ]
+    },
+    "side": {
+      "car": "tier-diamond.webp"
     }
   },
   "images": {

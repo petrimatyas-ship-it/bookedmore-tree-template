@@ -80,6 +80,11 @@ From the third review (October 2026):
   a car photo, a cut-out car, an animated paint-and-droplets graphic and a
   drawn animated supercar. `images.hero` still adds a picture if an owner
   wants one (`photo: true` for a full photo).
+- On laptops the hero's right side shows one of the package cars
+  (`hero.side.car`, e.g. the Diamond car) on a soft glow, with a glass
+  card for their specialty (`hero.card`). Phones stay text only.
+- The tier cards' "Book" buttons go straight to their booking page
+  (`links.booking`).
 - No price boxes in the hero (`hero.facts` left out). Package car pictures
   bright and full card width, not faded. The ceramic "No half jobs" points
   show only their titles until tapped. The step map starts at step 1,
