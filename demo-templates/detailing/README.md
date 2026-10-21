@@ -39,6 +39,19 @@ Did not like, avoid:
 - AI-made photos when the business has real ones, and stock photos.
 - Slow multi-agent runs: build the page directly, at normal effort.
 
+From the owner's first review of Apex (October 2026), now in the template:
+- Hero: a real car photo (`images.hero`), shown first on phones. No fact
+  row under the headline, no "proof" bubbles under the hero.
+- Packages: the tiers swipe sideways on phones. Single service, bundles
+  and fleet are one compact price list, not separate cards.
+- Before and after: a drag slider on each photo, not a static split.
+- Their TikTok videos on the page (`social.tiktok.embed`), not just a link.
+- Ceramic steps: titles only, as a short numbered journey. Aftercare is one
+  line. No rewards block.
+- Area: no "vehicles we detail" card. Payment stands out, with a link only
+  where a real one exists.
+- FAQ's second button calls; the owner prefers calls to texts there.
+
 ## New detailer, step by step
 
 1. **Gather the facts.** Read their website (every page), their Google
@@ -74,6 +87,8 @@ Did not like, avoid:
    - `icon.png`: 256×256, the tab icon.
    - `icon-96.webp`: the logo in the header.
    - the hero logo: `images.heroLogo`.
+   - the hero car photo: `images.hero` (file, alt, width, height). Without
+     it the hero shows the logo.
    - the about picture: `images.about`.
    - before and after photos: `results.photos`. Each one is a single image,
      before on the left and after on the right; `split` is where the

@@ -123,7 +123,7 @@ h1 .b{display:block;font-size:clamp(3.05rem,12.6vw,6.2rem);line-height:.88;paddi
 .sublinks a{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600}
 .sublinks a:hover{color:#fff}
 .sublinks .ic{color:var(--sky)}
-.qf3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));max-width:560px}
+.qf3{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;margin-top:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));max-width:560px}
 .qf3>div{padding:13px 12px 14px;min-width:0}
 .qf3>div+div{border-left:1px solid var(--line)}
 .qf3 b{display:block;font:italic 800 2.15rem/1 var(--dc);font-variant-numeric:tabular-nums;padding-right:.06em}
@@ -588,6 +588,62 @@ h2.d,h1 .b{overflow-wrap:break-word}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+/* hero image: the business's own car picture blended into the dark panel; first on phones */
+.hero-car{position:absolute;left:-4%;width:108%;max-width:none;top:16%;height:auto;mix-blend-mode:lighten;-webkit-mask-image:radial-gradient(closest-side at 50% 55%,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side at 50% 55%,#000 72%,transparent 100%)}
+@media(max-width:759px){.hero-in>.hero-vis{order:-1;aspect-ratio:16/9}.hero-in{gap:22px}.hero-car{top:4%}}
+@media(max-width:559px){.hero-vis .g-cer{display:none}}
+/* packages swipe on phones so the price section stays short */
+@media(max-width:719px){.tiers{grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;margin:30px -16px 0;padding:0 16px 8px;scroll-padding:0 16px;scrollbar-width:none}.tiers::-webkit-scrollbar{display:none}.tier{scroll-snap-align:start;padding:20px 18px 18px}.tier.t-dia{padding-top:44px}}
+.tswipe{display:none;margin-top:8px;color:var(--muted);font-size:.85rem;align-items:center;gap:6px}
+.tswipe .ic{width:16px;height:16px}
+@media(max-width:719px){.tswipe{display:flex}}
+/* more options: one compact price list */
+.plist{margin-top:34px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+@media(min-width:760px){.plist{padding:26px 28px}}
+.plist>h3{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
+.pl-g{display:grid;gap:18px}
+@media(min-width:900px){.pl-g{grid-template-columns:repeat(3,1fr);gap:28px}}
+.pl-h{display:flex;align-items:center;gap:9px;margin-bottom:2px;color:#fff}
+.pl-h .ic{width:18px;height:18px;color:var(--sky)}
+.pl-h b{font-weight:700;font-size:1rem}
+.pl-r{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line2);color:var(--soft);font-size:.93rem}
+.pl-r:hover{color:#fff}
+.pl-r b{font:italic 800 1.2rem/1.1 var(--dc);color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pl-n{color:var(--muted);font-size:.84rem;margin-top:8px}
+.pl-custom{margin-top:18px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid rgba(85,183,219,.34);background:radial-gradient(100% 120% at 100% 0%,rgba(30,144,255,.18),transparent 60%),#0b131c;color:var(--soft);font-size:.92rem}
+.pl-custom b{display:block;color:#fff;font-size:1rem;margin-bottom:2px}
+.pl-custom>.ic{flex:none;width:22px;height:22px;color:var(--sky)}
+.pl-custom>.ic:last-child{margin-left:auto;width:18px;height:18px}
+/* before & after slider: each photo is one image, before half left, after half right */
+.ba-row{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:row;grid-auto-columns:auto;gap:12px;overflow:visible;margin:34px 0 0;padding:0;scroll-snap-type:none}
+@media(min-width:760px){.ba-row{margin:40px 0 0;padding:0}}
+@media(min-width:1100px){.ba-row{grid-template-columns:repeat(4,1fr)}}
+.cmp{overflow:hidden}
+.cmp img{position:absolute;top:0;height:100%;max-width:none;object-fit:fill}
+.cmp .bf{left:0}
+.ba .im.cmp::after{display:none}
+.cmp .knob{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:rgba(220,240,255,.95);box-shadow:0 0 12px rgba(30,144,255,.8);pointer-events:none;z-index:2}
+.cmp .knob::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#0c1b2b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23e9f4ff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center no-repeat;border:2px solid #e9f4ff;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;z-index:3}
+.ba .lb{z-index:2;pointer-events:none}
+.bahint{margin-top:12px;color:var(--muted);font-size:.85rem}
+/* TikTok videos (their official creator embed, loaded when scrolled near) */
+.tt{margin-top:22px;max-width:780px;min-height:60px}
+.tt blockquote{margin:0!important}
+/* ceramic steps as a journey: titles only, joined by a glowing line */
+ol.journey{display:grid;grid-template-columns:1fr;gap:0;position:relative}
+ol.journey li{padding:0 0 18px 50px;min-height:38px;display:flex;align-items:center}
+ol.journey li::after{top:34px;bottom:-2px;width:2px;left:15px;background:linear-gradient(#1e90ff,rgba(30,144,255,.25))}
+ol.journey b{padding-top:0;font-size:1rem}
+@media(min-width:620px){ol.journey{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,auto);grid-auto-flow:column;column-gap:24px}ol.journey li:nth-child(5){padding-bottom:0}ol.journey li:nth-child(5)::after{display:none}}
+.cure-line{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(5,7,10,.5);color:var(--muted);font-size:.88rem;max-width:760px}
+.cure-line .ic{flex:none;width:18px;height:18px;color:var(--sky);margin-top:2px}
+.cure-line b{color:#fff;font-weight:600}
+@media(min-width:900px){.info3{grid-template-columns:1fr 1fr}}
+.paycard{border-color:rgba(85,183,219,.4);background:radial-gradient(110% 90% at 100% 0%,rgba(30,144,255,.16),transparent 60%),var(--panel)}
+.paycard>p{margin-bottom:14px}
+.paycard .pay span{display:inline-flex;align-items:center;gap:7px;padding:11px 15px;font-size:1rem;color:#fff;border-color:rgba(85,183,219,.35);background:rgba(30,144,255,.08)}
+.paycard .pay .ic{width:16px;height:16px;color:var(--sky)}
 </style>
 </head>
 <body>
@@ -729,7 +785,9 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <use href="#field"/>
       </svg>
       <div class="sweep"></div>
-      <img class="hero-logo" src="/{{slug}}/{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" fetchpriority="high" decoding="async">
+{{#if images.hero}}      <img class="hero-car" src="/{{slug}}/{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async">
+{{else}}      <img class="hero-logo" src="/{{slug}}/{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" fetchpriority="high" decoding="async">
+{{/if}}
       <div class="glass g-rate"><b>{{google.rating}}</b><div><span class="stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><small>{{google.count}} Google reviews</small></div></div>
       <div class="glass g-cer">
         <span class="tag">{{hero.card.tag}}</span>
@@ -738,15 +796,6 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <ul>{{#each hero.card.points}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="proof" aria-label="At a glance">
-  <div class="wrap">
-    <div class="pf"><i><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></i><div><b>{{google.rating}} on Google</b><span>{{proof.ratingNote}}</span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg></i><div><b>{{proof.mobile.title}}</b><span>{{proof.mobile.text}}</span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></i><div><b id="ps-b">{{hours.summary}}</b><span id="ps-s">{{hours.shortHtml}}</span></div></div>
-    <div class="pf"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-user"/></svg></i><div><b>{{proof.badge.title}}</b><span>{{proof.badge.text}}</span></div></div>
   </div>
 </section>
 
@@ -770,38 +819,28 @@ h2.d,h1 .b{overflow-wrap:break-word}
         <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="#quote" onclick="pick('{{pick}}')">{{button}}</a>
       </article>
 {{/each}}    </div>
+    <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
     <p class="pfine"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><span>{{packages.fine}}</span></p>
 
-    <div class="more">
-{{#if packages.single}}      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg></i><h3>{{packages.single.title}}</h3></div>
-        <div class="big">{{packages.single.big}}</div>
-        <p>{{packages.single.text}}</p>
-        <a class="lnk" href="#quote" onclick="pick('{{packages.single.pick}}')">{{packages.single.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-      </div>
-{{/if}}{{#if packages.bundles}}      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg></i><h3>{{packages.bundles.title}}</h3></div>
-        <ul class="rows">
-{{#each packages.bundles.rows}}          <li><span>{{label}}</span><b>{{value}}</b></li>
-{{/each}}        </ul>
-        <p>{{packages.bundles.text}}</p>
-{{#if packages.bundles.note}}        <p class="note">{{packages.bundles.note}}</p>
-{{/if}}        <a class="lnk" href="#quote" onclick="pick('bundle4')">{{packages.bundles.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-      </div>
-{{/if}}{{#if packages.fleet}}      <div class="mc">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-build"/></svg></i><h3>{{packages.fleet.title}}</h3></div>
-        <ul class="rows">
-{{#each packages.fleet.rows}}          <li><span>{{label}}</span><b>{{value}}</b></li>
-{{/each}}        </ul>
-        <p>{{packages.fleet.text}}</p>
-        <a class="lnk" href="sms:{{phone.tel}}">{{packages.fleet.link}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-      </div>
-{{/if}}{{#if packages.custom}}      <div class="mc custom">
-        <div class="mc-h"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg></i><h3>{{packages.custom.title}}</h3></div>
-        <p style="margin-bottom:14px">{{packages.custom.text}}</p>
-        <q>{{packages.custom.quote}}</q>
-        <a class="btn btn-blue" href="#quote" onclick="pick('custom')">{{packages.custom.button}}</a>
-      </div>
+    <div class="plist">
+      <h3>More options</h3>
+      <div class="pl-g">
+{{#if packages.single}}        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg><b>{{packages.single.title}}</b></div>
+          <a class="pl-r" href="#quote" onclick="pick('{{packages.single.pick}}')"><span>Inside or outside, by size &amp; condition</span><b>{{packages.single.big}}</b></a>
+        </div>
+{{/if}}{{#if packages.bundles}}        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg><b>{{packages.bundles.title}}</b></div>
+{{#each packages.bundles.rows}}          <a class="pl-r" href="#quote" onclick="pick('bundle4')"><span>{{label}}</span><b>{{value}}</b></a>
+{{/each}}{{#if packages.bundles.note}}          <p class="pl-n">{{packages.bundles.note}}</p>
+{{/if}}        </div>
+{{/if}}{{#if packages.fleet}}        <div class="pl-grp">
+          <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-build"/></svg><b>{{packages.fleet.title}}</b></div>
+{{#each packages.fleet.rows}}          <a class="pl-r" href="tel:{{phone.tel}}"><span>{{label}}</span><b>{{value}}</b></a>
+{{/each}}          <p class="pl-n">{{packages.fleet.short}}</p>
+        </div>
+{{/if}}      </div>
+{{#if packages.custom}}      <a class="pl-custom" href="#quote" onclick="pick('custom')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg><span><b>{{packages.custom.title}}</b>{{packages.custom.text}}</span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
 {{/if}}    </div>
 
 {{#if addons.items}}    <details class="ao" id="addons" open>
@@ -821,15 +860,17 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <h2 class="d">{{results.h2a}} <span class="blue-t">{{results.h2b}}</span></h2>
       <p>{{results.intro}}</p>
     </div>
-    <div class="ba-row" tabindex="0" role="region" aria-label="Before and after photos, scroll sideways for more">
-{{#each results.photos}}      <figure class="ba"><div class="im" style="--s:{{split}}"><img src="/{{slug}}/{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
+    <div class="ba-row">
+{{#each results.photos}}      <figure class="ba"><div class="im cmp" style="--s:{{split}};--p:50%"><img class="bf" src="/{{slug}}/{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><img class="af" src="/{{slug}}/{{file}}" alt="" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: {{title}}"></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
 {{/each}}    </div>
-    <p class="swipe" aria-hidden="true">Swipe for more <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
+    <p class="bahint">Drag the handle left and right.</p>
 {{#if social}}    <div class="social">
       <span>Watch us work:</span>
 {{#if social.tiktok}}      <a href="{{social.tiktok.url}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>{{social.tiktok.handle}}</a>
 {{/if}}{{#if social.instagram}}      <a href="{{social.instagram.url}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg>{{social.instagram.handle}}</a>
 {{/if}}    </div>
+{{/if}}
+{{#if social.tiktok.embed}}    <div class="tt" id="tt" data-user="{{social.tiktok.user}}"><a class="btn btn-glass" href="{{social.tiktok.url}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg>See our videos on TikTok</a></div>
 {{/if}}  </div>
 </section>
 
@@ -867,26 +908,13 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <div class="cc">
         <h3>{{ceramic.stepsTitle}}</h3>
         <p style="color:var(--soft);margin-bottom:20px">{{ceramic.stepsIntro}}</p>
-        <ol class="steps">
-{{#each ceramic.steps}}          <li><b>{{title}}</b>{{#if text}}<span>{{text}}</span>{{/if}}</li>
+        <ol class="steps journey">
+{{#each ceramic.steps}}          <li><b>{{title}}</b></li>
 {{/each}}        </ol>
       </div>
     </div>
 
-    <div class="cer-after">
-      <div class="cc cure">
-        <span class="eyebrow" style="margin-bottom:6px">Aftercare</span>
-        <div class="num chrome">{{ceramic.cure.value}}<small>{{ceramic.cure.label}}</small></div>
-        <p>{{ceramic.cure.text}}</p>
-      </div>
-      <div class="cc">
-        <span class="eyebrow" style="margin-bottom:6px">{{ceramic.rewardsEyebrow}}</span>
-        <h3>{{ceramic.rewardsTitle}}</h3>
-        <div class="rewards">
-{{#each ceramic.rewards}}          <div class="rw"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg><b>{{title}}</b><span>{{text}}</span></div>
-{{/each}}        </div>
-      </div>
-    </div>
+    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span><b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{ceramic.cure.text}}</span></p>
   </div>
 </section>
 
@@ -985,13 +1013,10 @@ h2.d,h1 .b{overflow-wrap:break-word}
 {{#each hours.rows}}          <li data-h="{{key}}"><span>{{label}}</span><b>{{text}}</b></li>
 {{/each}}        </ul>
       </div>
-      <div class="ic3">
-        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Payment</h3>
-        <div class="pay">{{#each payment}}<span>{{this}}</span>{{/each}}</div>
-      </div>
-      <div class="ic3">
-        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg>Vehicles</h3>
-        <p>{{area.vehicles}}</p>
+      <div class="ic3 paycard">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Pay your way</h3>
+        <p>{{paymentNote}}</p>
+        <div class="pay">{{#each payment}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</span>{{/each}}</div>
       </div>
     </div>
   </div>
@@ -1004,7 +1029,7 @@ h2.d,h1 .b{overflow-wrap:break-word}
       <div class="askcard">
         <b>Still have a question?</b>
         <span>{{faq.askText}}</span>
-        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a></div>
+        <div class="row"><a class="btn btn-blue" href="#quote" onclick="tab('chat')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</a><a class="btn btn-glass" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a></div>
       </div>
     </div>
     <div class="faq">
@@ -1236,6 +1261,16 @@ function quote(e){
   ok.style.display='block';
   try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
 }
+
+/* before & after: drag to compare; each image is one photo, before half left, after half right */
+document.querySelectorAll('.cmp').forEach(function(c){
+  var s=parseFloat(getComputedStyle(c).getPropertyValue('--s'))/100||.5,bf=c.querySelector('.bf'),af=c.querySelector('.af'),r=c.querySelector('input');
+  bf.style.width=(100/s)+'%';af.style.width=(100/(1-s))+'%';af.style.left=(-100*s/(1-s))+'%';
+  function fix(){var w=c.clientWidth;if(!w)return;var px=w*r.value/100,afw=w/(1-s),off=w*s/(1-s);af.style.clipPath='inset(0 0 0 '+((off+px)/afw*100)+'%)';c.style.setProperty('--p',r.value+'%')}
+  r.addEventListener('input',fix);addEventListener('resize',fix);fix();
+});
+/* TikTok videos: their creator embed, fetched only when the section is near */
+(function(){var t=document.getElementById('tt');if(!t||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var u=t.dataset.user;t.innerHTML='<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@'+u+'" data-unique-id="'+u+'" data-embed-type="creator" style="max-width:780px;min-width:288px"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@'+u+'">@'+u+'</a></section></blockquote>';var sc=document.createElement('script');sc.async=true;sc.src='https://www.tiktok.com/embed.js';document.body.appendChild(sc)},{rootMargin:'400px'});io.observe(t)})();
 
 /* add-ons start collapsed on phones to keep the price list short; links to them open it */
 (function(){try{const a=document.getElementById('addons');if(!a)return;if(matchMedia('(max-width: 719px)').matches)a.removeAttribute('open');document.querySelectorAll('a[href="#addons"]').forEach(l=>l.addEventListener('click',()=>{a.open=true}))}catch(e){}})();
