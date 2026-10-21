@@ -794,6 +794,21 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .hero-in:not(:has(.hero-vis)){grid-template-columns:minmax(0,780px)}
 .hero:not(:has(.hero-vis))::before{background:radial-gradient(42% 50% at 78% 45%,rgba(30,144,255,.13),transparent 72%)}
 @media(max-width:759px){.hero:not(:has(.hero-vis))::before{background:radial-gradient(70% 40% at 80% 35%,rgba(30,144,255,.14),transparent 72%)}}
+
+/* laptop hero: their car and two glass cards on the right; phones stay text only */
+.hero-side{display:none}
+@media(min-width:1000px){
+  .hero-in:has(.hero-side){grid-template-columns:1fr 1fr;gap:40px}
+  .hero-side{display:block;position:relative;align-self:stretch;min-height:440px}
+  .hs-glow{position:absolute;left:-4%;right:-10%;top:12%;bottom:6%;background:radial-gradient(50% 50% at 55% 55%,rgba(30,144,255,.32),transparent 70%);filter:blur(10px)}
+  .hs-car{position:absolute;left:-2%;width:112%;max-width:none;top:44%;transform:translateY(-46%);filter:drop-shadow(0 30px 30px rgba(0,0,0,.75));animation:hsin 1.1s cubic-bezier(.2,.7,.2,1) both}
+  .hs-floor{position:absolute;left:6%;right:0;top:calc(44% + 20%);height:22px;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(30,144,255,.45),transparent 70%);filter:blur(6px)}
+  .hs-cer{left:-4%;right:auto;bottom:-2%;width:min(300px,62%);animation:hsup .9s .35s cubic-bezier(.2,.7,.2,1) both}
+}
+@media(min-width:1000px) and (max-width:1279px){.hs-car{left:0;width:100%}.hs-cer{left:0;width:min(280px,66%)}.hs-floor{top:calc(44% + 17%)}}
+@keyframes hsin{from{opacity:0;transform:translate(8%,-46%)}to{opacity:1;transform:translate(0,-46%)}}
+@keyframes hsup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hs-car,.hs-cer{animation:none}}
 </style>
 </head>
 <body>
@@ -906,6 +921,17 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       </div>
     </div>
 
+    <div class="hero-side" aria-hidden="true">
+      <span class="hs-glow"></span>
+      <img class="hs-car" src="/apex-detailing/tier-diamond.webp" alt="" width="728" height="320" fetchpriority="high" decoding="async">
+      <span class="hs-floor"></span>
+      <div class="glass g-cer hs-cer">
+        <span class="tag">Our specialty</span>
+        <h3 class="d">Ceramic coating</h3>
+        <div class="pr">from <b>$600</b></div>
+        <ul><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>5-year coating</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Paint correction</li><li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Wheels &amp; glass</li></ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -929,7 +955,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Basic interior vacuum &amp; wipe&#8209;down</li>
         </ul>
         <div class="t-pr"><span>Starting at</span><b>$150</b></div>
-        <a class="btn btn-glass" href="#quote" onclick="pick('bronze')">Book Bronze</a>
+        <a class="btn btn-glass" href="https://apexdetailing801.setmore.com/" target="_blank" rel="noopener">Book Bronze</a>
       </article>
       <article class="tier t-gold">
         <div class="t-head"><span class="t-name">Gold</span><span class="t-sub">Full Detail</span></div>
@@ -941,7 +967,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Door jambs cleaned</li>
         </ul>
         <div class="t-pr"><span>Starting at</span><b>$200</b></div>
-        <a class="btn btn-glass" href="#quote" onclick="pick('gold')">Book Gold</a>
+        <a class="btn btn-glass" href="https://apexdetailing801.setmore.com/" target="_blank" rel="noopener">Book Gold</a>
       </article>
       <article class="tier t-plat">
         <div class="t-head"><span class="t-name">Platinum</span><span class="t-sub">Premium Detail</span></div>
@@ -953,7 +979,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Odor elimination</li>
         </ul>
         <div class="t-pr"><span>Starting at</span><b>$275</b></div>
-        <a class="btn btn-glass" href="#quote" onclick="pick('platinum')">Book Platinum</a>
+        <a class="btn btn-glass" href="https://apexdetailing801.setmore.com/" target="_blank" rel="noopener">Book Platinum</a>
       </article>
       <article class="tier t-dia">
         <span class="sheen" aria-hidden="true"></span>
@@ -967,7 +993,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Glass coating</li>
         </ul>
         <div class="t-pr"><span>Starting at</span><b>$600</b></div>
-        <a class="btn btn-blue" href="#quote" onclick="pick('diamond')">Book Diamond</a>
+        <a class="btn btn-blue" href="https://apexdetailing801.setmore.com/" target="_blank" rel="noopener">Book Diamond</a>
       </article>
     </div>
     <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
