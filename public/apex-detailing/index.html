@@ -1544,6 +1544,8 @@ function unlock(){document.getElementById('lock').classList.remove('open');setBe
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.getElementById('lock').classList.contains('open'))unlock();else closeNav()}});
 function toggleNav(){const m=document.getElementById('mnav');const o=m.classList.toggle('open');document.getElementById('burger').setAttribute('aria-expanded',o?'true':'false')}
 function closeNav(){document.getElementById('mnav').classList.remove('open');document.getElementById('burger').setAttribute('aria-expanded','false')}
+/* on phones, outside links open in the same tab: in-app browsers (Gmail, Messenger and the like) often ignore new-tab links, and the same tab lets Instagram, TikTok and Google Maps hand off to their apps */
+if(matchMedia('(pointer: coarse)').matches)document.querySelectorAll('a[target="_blank"]').forEach(a=>a.removeAttribute('target'));
 /* the assistant lives in the chat bubble; tab('chat') opens it */
 function cw(on){const w=document.getElementById('cw'),b=document.getElementById('cwb');if(on===undefined)on=w.hidden;w.hidden=!on;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');if(on){const i=document.getElementById('chatin');if(i&&matchMedia('(min-width: 600px)').matches)i.focus()}}
 function tab(w){if(w==='chat')cw(true)}
