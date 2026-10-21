@@ -75,15 +75,11 @@ From the third review (October 2026):
   sent, since the first crops from his site graphics looked dim). Plus a "Compare packages" table (`packages.compare.rows`,
   each with `has`, one true/false per tier; `packages.tiers[].short` is
   the label under each name).
-- Hero background: a graphic, not a photo. With no `images.hero`, the hero
-  is an animated glossy-paint surface in the page's blue, with beading
-  water drops, a few drops rolling down and a light sweep, and an
-  animated supercar (a drawn SVG, `.ride`): it outlines itself in, then
-  keeps driving with spinning wheels, road streaks, headlight beams and a
-  shine along the paint. On phones it sits in a strip at the top with the
-  text right under it (no empty space up there); on desktop, to the right.
-  A car photo (Apex's truck) and a cut-out car were both tried and turned
-  down.
+- Hero background: plain. The page's dark background with one soft blue
+  glow, text only, starting near the top. Tried and turned down on Apex:
+  a car photo, a cut-out car, an animated paint-and-droplets graphic and a
+  drawn animated supercar. `images.hero` still adds a picture if an owner
+  wants one (`photo: true` for a full photo).
 - No price boxes in the hero (`hero.facts` left out). Package car pictures
   bright and full card width, not faded. The ceramic "No half jobs" points
   show only their titles until tapped. The step map starts at step 1,
