@@ -52,6 +52,18 @@ From the owner's first review of Apex (October 2026), now in the template:
   where a real one exists.
 - FAQ's second button calls; the owner prefers calls to texts there.
 
+From the second review (October 2026):
+- One background for the whole page. No section gets its own background
+  or a dividing line; the page should read as one surface.
+- Hero: under the two main buttons, "Book online" and "Call us" as
+  buttons, not text links.
+- Before and after on phones: one large photo at a time, picked by name,
+  not a grid of small ones.
+- Their videos shown as tiles in the page's own style, with the social
+  profiles in the same panel. TikTok's own white embed looked out of place.
+- Ceramic steps as a small route map: tap a step and the route lights up
+  to it.
+
 ## New detailer, step by step
 
 1. **Gather the facts.** Read their website (every page), their Google
@@ -90,9 +102,15 @@ From the owner's first review of Apex (October 2026), now in the template:
    - the hero car photo: `images.hero` (file, alt, width, height). Without
      it the hero shows the logo.
    - the about picture: `images.about`.
-   - before and after photos: `results.photos`. Each one is a single image,
-     before on the left and after on the right; `split` is where the
-     halves meet.
+   - before and after photos: `results.photos`. Each has a `before` and an
+     `after` file of the same size (2:3, e.g. 468×702), lined up so the
+     slider compares like with like. If the business only has side-by-side
+     composites, cut them into halves, and check the proportions: Apex's
+     were squeezed sideways in their own graphic.
+   - TikTok: `social.tiktok.videos` is a list of `{id, file, title}`. The
+     ids and covers come from TikTok's creator embed page
+     (`tiktok.com/embed/@<user>`); save each cover as `tiktok-<id>.webp`
+     (360×640). TikTok's player loads only when a video is tapped.
 
    Copy their photos here; never link to their site.
 5. **Chat**: in `lib/hand-built.ts`, import the JSON and add it to the

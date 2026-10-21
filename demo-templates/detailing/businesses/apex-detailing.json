@@ -268,40 +268,40 @@
     "eyebrow": "Before &amp; after",
     "photos": [
       {
-        "split": "49.3%",
-        "file": "before-after-rear-floor.webp",
         "alt": "Rear floor covered in crumbs and debris before, vacuumed clean black carpet after",
-        "width": "302",
-        "height": "454",
+        "width": "468",
+        "height": "702",
         "title": "Rear floor",
-        "kind": "Interior"
+        "kind": "Interior",
+        "before": "ba-rear-floor-before.webp",
+        "after": "ba-rear-floor-after.webp"
       },
       {
-        "split": "48.8%",
-        "file": "before-after-front-interior.webp",
         "alt": "Front interior with tan seats and black floor mats, dirty before and clean after",
-        "width": "309",
-        "height": "454",
+        "width": "468",
+        "height": "702",
         "title": "Front cabin",
-        "kind": "Interior"
+        "kind": "Interior",
+        "before": "ba-front-interior-before.webp",
+        "after": "ba-front-interior-after.webp"
       },
       {
-        "split": "47.7%",
-        "file": "before-after-wheel.webp",
         "alt": "Truck steel wheel and tire, dull and dusty before, clean and dark after",
-        "width": "310",
-        "height": "454",
+        "width": "468",
+        "height": "702",
         "title": "Wheel &amp; tire",
-        "kind": "Exterior"
+        "kind": "Exterior",
+        "before": "ba-wheel-before.webp",
+        "after": "ba-wheel-after.webp"
       },
       {
-        "split": "50%",
-        "file": "before-after-trunk.webp",
         "alt": "SUV cargo area with a dirty rubber mat before and a clean mat after",
-        "width": "306",
-        "height": "454",
+        "width": "468",
+        "height": "702",
         "title": "SUV cargo area",
-        "kind": "Interior"
+        "kind": "Interior",
+        "before": "ba-trunk-before.webp",
+        "after": "ba-trunk-after.webp"
       }
     ]
   },
@@ -309,8 +309,28 @@
     "tiktok": {
       "url": "https://www.tiktok.com/@apexdetailing801ut",
       "handle": "@apexdetailing801ut",
-      "embed": true,
-      "user": "apexdetailing801ut"
+      "videos": [
+        {
+          "id": "7663247384905780494",
+          "file": "tiktok-7663247384905780494.webp",
+          "title": "GMC Sierra brought back to life"
+        },
+        {
+          "id": "7670694055906495757",
+          "file": "tiktok-7670694055906495757.webp",
+          "title": "Interior &amp; exterior detail"
+        },
+        {
+          "id": "7682091283678072078",
+          "file": "tiktok-7682091283678072078.webp",
+          "title": "Chevy High Country paint polish"
+        },
+        {
+          "id": "7653570223630454029",
+          "file": "tiktok-7653570223630454029.webp",
+          "title": "Caked bugs, spotless finish"
+        }
+      ]
     },
     "instagram": {
       "url": "https://www.instagram.com/apexdetailing801",
