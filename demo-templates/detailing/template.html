@@ -710,6 +710,45 @@ ol.journey li.on button span{display:block}
   .hero .hero-logo{left:auto;right:12%;top:22%;width:26%;transform:none}
 }
 @media(prefers-reduced-motion:reduce){.hero .hero-car,.sweep{animation:none}}
+
+/* package cards with their car photos, as on their own site */
+.t-head{margin-bottom:2px}
+.t-car{display:block;width:calc(100% + 24px);max-width:none;height:auto;aspect-ratio:728/320;margin:4px -12px 10px;mix-blend-mode:lighten;-webkit-mask-image:radial-gradient(62% 62% at 52% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(62% 62% at 52% 52%,#000 55%,transparent 100%)}
+.t-pr{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:auto 0 12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.28)}
+.t-pr span{white-space:nowrap;font:600 .74rem/1 Barlow,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.t-pr b{font:italic 800 2.2rem/1 var(--dc);color:#3aa0ff}
+.tier .t-pr+.btn{margin-top:0}
+@media(min-width:1140px){.t-pr{gap:10px;padding:12px 10px}.t-pr b{font-size:1.9rem}}
+.tier .t-list{margin-bottom:18px}
+/* compare packages */
+.cmpt{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 14px 12px}
+@media(min-width:760px){.cmpt{padding:26px 26px 16px}}
+.cmpt h3{font:italic 800 1.5rem/1 var(--dc);text-transform:uppercase;color:#3aa0ff;margin:0 4px 14px}
+.cmpt-s{overflow-x:auto}
+.cmpt table{width:100%;border-collapse:collapse;font-size:.84rem;table-layout:fixed}
+.cmpt thead th:first-child,.cmpt tbody th{width:32%}
+.cmpt th,.cmpt td{padding:9px 4px;border-bottom:1px solid var(--line);text-align:center}
+.cmpt tbody tr:last-child>*{border-bottom:0}
+.cmpt thead th{vertical-align:bottom;color:var(--sky);font:700 .8rem/1.1 var(--dc);letter-spacing:.08em;text-transform:uppercase}
+.cmpt thead th:first-child{text-align:left}
+.cmpt thead b{display:block;font:italic 800 1.02rem/1 var(--dc);letter-spacing:0;background:linear-gradient(180deg,#fff -10%,var(--tc) 50%,color-mix(in srgb,var(--tc) 55%,#000) 120%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cmpt .c-t-bronze{--tc:var(--bronze)}.cmpt .c-t-gold{--tc:var(--gold)}.cmpt .c-t-plat{--tc:var(--plat)}.cmpt .c-t-dia{--tc:var(--dia)}
+.cmpt thead small{display:block;margin-top:3px;font:600 .62rem/1.1 Barlow,system-ui,sans-serif;letter-spacing:.12em;color:var(--muted)}
+.cmpt tbody th{text-align:left;font-weight:500;color:var(--text);padding-left:2px}
+.cmpt td .ic{width:20px;height:20px;padding:3px;border:1.5px solid #3aa0ff;border-radius:50%;color:#3aa0ff;vertical-align:middle;stroke-width:3}
+.cmpt td .no{color:var(--muted)}
+@media(max-width:479px){.cmpt thead small{display:none}.cmpt thead b{font-size:.8rem}.cmpt thead th:first-child{font-size:.7rem}.cmpt th,.cmpt td{padding:8px 1px}}
+@media(min-width:760px){.cmpt table{font-size:.95rem}.cmpt thead b{font-size:1.3rem}.cmpt th,.cmpt td{padding:11px 8px}}
+
+/* hero photo: a real job of theirs, full-bleed behind the text */
+.hero .hero-car.photo{inset:0;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:18% 50%;mix-blend-mode:normal;animation:drift 22s ease-in-out infinite alternate;-webkit-mask-image:none;mask-image:none}
+.hero-vis.photo::after{background:linear-gradient(180deg,rgba(5,7,10,.5) 0%,rgba(5,7,10,.66) 28%,rgba(5,7,10,.86) 50%,rgba(5,7,10,.94) 78%,var(--bg) 100%)}
+@media(max-width:999px){.hero .hero-car.photo{height:auto;width:210%;left:-8%;top:-280px;object-fit:fill}}
+@media(min-width:560px) and (max-width:999px){.hero .hero-car.photo{width:130%;left:-5%;top:-35%}}
+@media(min-width:1000px){
+  .hero .hero-car.photo{left:auto;right:0;width:56%;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%);mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
+  .hero-vis.photo::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(5,7,10,.9) 38%,rgba(5,7,10,.35) 62%,rgba(5,7,10,.15) 100%),linear-gradient(180deg,rgba(5,7,10,0) 70%,var(--bg) 100%)}
+}
 </style>
 </head>
 <body>
@@ -823,7 +862,7 @@ ol.journey li.on button span{display:block}
 {{/each}}      </div>
     </div>
 
-    <div class="hero-vis" aria-hidden="true">
+    <div class="hero-vis{{#if images.hero.photo}} photo{{/if}}" aria-hidden="true">
       <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="paint" x1="0" y1="0" x2=".7" y2="1">
@@ -847,7 +886,7 @@ ol.journey li.on button span{display:block}
         <use href="#field"/>
       </svg>
       <div class="sweep"></div>
-{{#if images.hero}}      <img class="hero-car" src="/{{slug}}/{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async">
+{{#if images.hero}}      <img class="hero-car{{#if images.hero.photo}} photo{{/if}}" src="/{{slug}}/{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async">
 {{else}}      <img class="hero-logo" src="/{{slug}}/{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" fetchpriority="high" decoding="async">
 {{/if}}
       <div class="glass g-rate"><b>{{google.rating}}</b><div><span class="stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><small>{{google.count}} Google reviews</small></div></div>
@@ -873,17 +912,30 @@ ol.journey li.on button span{display:block}
 {{#each packages.tiers}}      <article class="tier {{class}}">
 {{#if featured}}        <span class="sheen" aria-hidden="true"></span>
         <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
-{{/if}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
-{{#if plus}}        <p class="t-plus">{{plus}}</p>
+{{/if}}{{#if image}}        <div class="t-head"><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>
+        <img class="t-car" src="/{{slug}}/{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
+{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
+{{/if}}{{#if plus}}        <p class="t-plus">{{plus}}</p>
 {{/if}}        <ul class="t-list">
 {{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
 {{/each}}        </ul>
-        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="#quote" onclick="pick('{{pick}}')">{{button}}</a>
+{{#if image}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
+{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="#quote" onclick="pick('{{pick}}')">{{button}}</a>
       </article>
 {{/each}}    </div>
     <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
     <p class="pfine"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-car"/></svg><span>{{packages.fine}}</span></p>
 
+{{#if packages.compare}}    <div class="cmpt">
+      <h3>{{packages.compare.title}}</h3>
+      <div class="cmpt-s"><table>
+        <thead><tr><th scope="col">Features</th>{{#each packages.tiers}}<th scope="col" class="c-{{class}}"><b>{{name}}</b><small>{{short}}</small></th>{{/each}}</tr></thead>
+        <tbody>
+{{#each packages.compare.rows}}          <tr><th scope="row">{{name}}</th>{{#each has}}<td>{{#if this}}<svg class="ic" aria-label="Included" role="img"><use href="#i-check"/></svg>{{else}}<span class="no" aria-label="Not included">&#8211;</span>{{/if}}</td>{{/each}}</tr>
+{{/each}}        </tbody>
+      </table></div>
+    </div>
+{{/if}}
     <div class="plist">
       <h3>More options</h3>
       <div class="pl-g">
