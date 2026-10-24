@@ -184,6 +184,13 @@ the same data as `businesses/<slug>.json` to this app:
 - Its pictures live in Replymint's file store: `data.assets` is that
   folder's address, and each picture field is a file name in it
   (`scripts/detailing-assets.mjs`). A field can also hold a full address.
+- Sections a business has nothing for are left out: before and after
+  (`results`), reviews (`reviews.items`), ceramic, FAQ (`faq.items`),
+  add-ons, the about picture, the area map (`area.radar`), payment and
+  each social link. The other sections are always shown.
+- `public/detailing/cars/{bronze,gold,platinum,diamond}.webp` are the
+  package car pictures any detailer's site can use
+  (`/detailing/cars/gold.webp`), the owner's choice from Apex.
 
 ## Owner review notes
 
