@@ -13,6 +13,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { render } from "./render-template.mjs";
+import { resolveAssets } from "./detailing-assets.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const [slug, flag, outArg] = process.argv.slice(2);
@@ -24,7 +25,7 @@ const dir = join(root, "demo-templates/detailing");
 const data = JSON.parse(readFileSync(join(dir, "businesses", `${slug}.json`), "utf8"));
 if (data.slug !== slug) throw new Error(`businesses/${slug}.json has slug "${data.slug}"`);
 
-const html = render(readFileSync(join(dir, "template.html"), "utf8"), data);
+const html = render(readFileSync(join(dir, "template.html"), "utf8"), resolveAssets(data));
 const out = flag === "--out" && outArg ? outArg : join(root, "public", slug, "index.html");
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, html);

@@ -7,8 +7,8 @@
 <meta name="description" content="{{seo.description}}">
 <meta name="theme-color" content="#05070a">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="/{{slug}}/icon.png">
-<link rel="apple-touch-icon" href="/{{slug}}/icon.png">
+<link rel="icon" href="{{asset.icon}}">
+<link rel="apple-touch-icon" href="{{asset.icon}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,600;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -880,7 +880,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 
 <header class="top">
   <div class="wrap hdr">
-    <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="{{name}} logo" width="42" height="42"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+    <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="{{asset.icon96}}" srcset="{{asset.icon96}} 2x, {{asset.icon}} 3x" alt="{{name}} logo" width="42" height="42"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
     <nav class="main" aria-label="Main">
       <a href="#" data-lock="Services">Services</a>
       <a href="#" data-lock="Ceramic Coating">Ceramic</a>
@@ -928,7 +928,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 
 {{#if hero.side}}    <div class="hero-side" aria-hidden="true">
       <span class="hs-glow"></span>
-      <img class="hs-car" src="/{{slug}}/{{hero.side.car}}" alt="" width="728" height="320" fetchpriority="high" decoding="async">
+      <img class="hs-car" src="{{hero.side.car}}" alt="" width="728" height="320" fetchpriority="high" decoding="async">
       <span class="hs-floor"></span>
       <div class="glass g-cer hs-cer">
         <span class="tag">{{hero.card.tag}}</span>
@@ -938,7 +938,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       </div>
     </div>
 {{/if}}{{#if images.hero}}    <div class="hero-vis{{#if images.hero.photo}} photo{{/if}}" aria-hidden="true">
-      <img class="hero-car{{#if images.hero.photo}} photo{{/if}}" src="/{{slug}}/{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async">
+      <img class="hero-car{{#if images.hero.photo}} photo{{/if}}" src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async">
     </div>
 {{/if}}  </div>
 </section>
@@ -956,7 +956,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{#if featured}}        <span class="sheen" aria-hidden="true"></span>
         <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
 {{/if}}{{#if image}}        <div class="t-head"><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>
-        <img class="t-car" src="/{{slug}}/{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
+        <img class="t-car" src="{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
 {{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
 {{/if}}{{#if plus}}        <p class="t-plus">{{plus}}</p>
 {{/if}}        <ul class="t-list">
@@ -1018,13 +1018,13 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       <p>{{results.intro}}</p>
     </div>
     <div class="ba-row">
-{{#each results.photos}}      <figure class="ba"><div class="im cmp" style="--p:50%"><img class="bf" src="/{{slug}}/{{before}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><img class="af" src="/{{slug}}/{{after}}" alt="" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: {{title}}"></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
+{{#each results.photos}}      <figure class="ba"><div class="im cmp" style="--p:50%"><img class="bf" src="{{before}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><img class="af" src="{{after}}" alt="" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"><span class="lb b">Before</span><span class="lb a">After</span><span class="knob" aria-hidden="true"></span><input type="range" min="4" max="96" value="50" aria-label="Drag to compare before and after: {{title}}"></div><figcaption><b>{{title}}</b><span>{{kind}}</span></figcaption></figure>
 {{/each}}    </div>
     <p class="bahint">Drag the handle left and right.</p>
 {{#if social}}    <div class="watch">
       <div class="w-h"><span class="eyebrow">Watch us work</span>{{#if social.tiktok.videos}}<b>Straight from our TikTok</b>{{/if}}</div>
 {{#if social.tiktok.videos}}      <div class="vids">
-{{#each social.tiktok.videos}}        <button type="button" class="vid" data-id="{{id}}" aria-label="Play on this page: {{title}}"><img src="/{{slug}}/{{file}}" alt="" width="360" height="640" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span><span class="vt">{{title}}</span></button>
+{{#each social.tiktok.videos}}        <button type="button" class="vid" data-id="{{id}}" aria-label="Play on this page: {{title}}"><img src="{{file}}" alt="" width="360" height="640" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span><span class="vt">{{title}}</span></button>
 {{/each}}      </div>
 {{/if}}      <div class="follow">
 {{#if social.tiktok}}        <a href="{{social.tiktok.url}}" target="_blank" rel="noopener"><i><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></i><span><small>TikTok</small>{{social.tiktok.handle}}</span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
@@ -1112,7 +1112,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 <section class="sec" id="about">
   <div class="wrap">
     <div class="about">
-      <div class="art"><img src="/{{slug}}/{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div>
+      <div class="art"><img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div>
       <div>
         <span class="eyebrow">{{about.eyebrow}}</span>
         <h2 class="d">{{about.h2a}} <span class="blue-t">{{about.h2b}}</span></h2>
@@ -1274,7 +1274,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
   <div class="wrap">
     <div class="fg">
       <div>
-        <a class="brand" href="#top"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="42" height="42" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+        <a class="brand" href="#top"><img src="{{asset.icon96}}" srcset="{{asset.icon96}} 2x, {{asset.icon}} 3x" alt="" width="42" height="42" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
         <p class="fabout">{{footer.about}}</p>
         <div class="fsoc">
           <a href="{{social.tiktok.url}}" target="_blank" rel="noopener" aria-label="TikTok {{social.tiktok.handle}}"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a>
@@ -1294,7 +1294,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 <button type="button" class="cw-b" id="cwb" aria-label="Chat with {{name}}" aria-expanded="false" aria-controls="cw" onclick="cw()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><svg class="ic x" aria-hidden="true" focusable="false"><use href="#i-x"/></svg><span class="cw-dot" aria-hidden="true"></span></button>
 <div class="cw" id="cw" role="dialog" aria-label="Chat with {{name}}" hidden>
   <div class="pane on" id="p-chat">
-    <div class="chat-h"><img src="/{{slug}}/icon-96.webp" srcset="/{{slug}}/icon-96.webp 2x, /{{slug}}/icon.png 3x" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
+    <div class="chat-h"><img src="{{asset.icon96}}" srcset="{{asset.icon96}} 2x, {{asset.icon}} 3x" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
     <div class="msgs" id="msgs" role="log" aria-live="polite"></div>
     <div class="qr" id="qr">
 {{#each chat.suggestions}}          <button type="button" data-q="{{q}}">{{label}}</button>

@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { business } from "@/lib/business";
 import { saveLead } from "@/lib/leads-store";
-import { getDemo, isExpired } from "@/lib/db";
+import { getDemo, getSite, isExpired } from "@/lib/db";
 import type { SiteConfig } from "@/lib/site-config";
 import { prepareAttachments, type ReadyAttachment } from "@/lib/attachments-server";
-import { buildTradePrompt, handBuilt } from "@/lib/hand-built";
+import { buildTradePrompt, fromDetailing, handBuilt, type DetailingData } from "@/lib/hand-built";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -113,7 +113,12 @@ export async function POST(request: Request) {
   let config: SiteConfig = business;
   let slug: string | undefined;
   // A hand-built page has no stored record; its business is listed in code.
-  const hand = typeof body.slug === "string" ? handBuilt[body.slug] : undefined;
+  let hand = typeof body.slug === "string" ? handBuilt[body.slug] : undefined;
+  // A site the Replymint site maker built carries the same facts in its stored data.
+  if (!hand && typeof body.slug === "string" && body.slug) {
+    const site = await getSite(body.slug);
+    if (site) hand = fromDetailing(site.data as unknown as DetailingData);
+  }
   if (hand) {
     slug = body.slug;
   } else if (typeof body.slug === "string" && body.slug) {
