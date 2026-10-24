@@ -915,7 +915,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-in">
     <div>
-{{#if google.rating}}      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
+{{#if google.rating}}      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google{{#if google.count}} <span class="g">· {{google.count}} reviews</span>{{/if}}</a>
 {{/if}}      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
       <p class="lead">{{hero.lead}}</p>
       <div class="ctas">
@@ -1039,29 +1039,32 @@ body:has(.mbnr-bar) .cw{bottom:166px}
   <div class="wrap">
     <div class="rv-head">
       <div class="sh">
-        <span class="eyebrow">Google reviews</span>
+        <span class="eyebrow">{{#if reviews.score}}{{reviews.score.source}}{{else}}Google{{/if}} reviews</span>
         <h2 class="d">{{reviews.h2a}} <span class="blue-t">{{reviews.h2b}}</span></h2>
         <p>{{reviews.intro}}</p>
       </div>
       <div class="gscore">
-        <b class="chrome">{{google.rating}}</b>
+        <b class="chrome">{{#if reviews.score}}{{reviews.score.rating}}{{else}}{{google.rating}}{{/if}}</b>
         <div>
           <span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>
-          <small>{{google.count}} Google reviews, as of {{google.asOf}}</small>
+{{#if reviews.score}}          <small>{{reviews.score.count}} {{reviews.score.source}} reviews, as of {{google.asOf}}</small>
+          <a class="lnk" href="{{reviews.score.link}}" target="_blank" rel="noopener">Read them on {{reviews.score.source}} <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+{{else}}          <small>{{google.count}} Google reviews, as of {{google.asOf}}</small>
           <a class="lnk" href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
-        </div>
+{{/if}}        </div>
       </div>
     </div>
     {{#if reviews.topics}}<div class="topics"><span class="lab">What reviewers mention</span>{{#each reviews.topics}}<span>{{this}}</span>{{/each}}</div>{{/if}}
 
     <div class="rv-row" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
-{{#each reviews.items}}      <figure class="rv"><span class="stars" role="img" aria-label="5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><blockquote>{{text}}</blockquote><figcaption class="who"><span class="av">{{initial}}</span><span>{{name}}<small>Google review · {{date}}</small></span></figcaption></figure>
+{{#each reviews.items}}      <figure class="rv"><span class="stars" role="img" aria-label="5 stars"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><blockquote>{{text}}</blockquote><figcaption class="who"><span class="av">{{initial}}</span><span>{{name}}<small>{{#if source}}{{source}}{{else}}Google{{/if}} review · {{date}}</small></span></figcaption></figure>
 {{/each}}    </div>
     <p class="swipe" aria-hidden="true">Swipe for more reviews <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
     <div class="rv-more">
-      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
-      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-    </div>
+{{#if reviews.score}}      <a class="btn btn-glass" href="{{reviews.score.link}}" target="_blank" rel="noopener">Read all {{reviews.score.count}} on {{reviews.score.source}}</a>
+{{else}}      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
+{{/if}}{{#if links.googleWriteReview}}      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+{{/if}}    </div>
   </div>
 </section>
 {{/if}}
