@@ -915,8 +915,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-in">
     <div>
-      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
-      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
+{{#if google.rating}}      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
+{{/if}}      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
       <p class="lead">{{hero.lead}}</p>
       <div class="ctas">
         <a class="btn btn-blue" href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
