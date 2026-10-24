@@ -151,6 +151,8 @@ From the third review (October 2026):
      (360×640). TikTok's player loads only when a video is tapped.
 
    Copy their photos here; never link to their site.
+   Picture fields are file names in `public/<slug>/`, or full addresses;
+   `assets` changes the folder (see `scripts/detailing-assets.mjs`).
 5. **Chat**: in `lib/hand-built.ts`, import the JSON and add it to the
    `detailing` list (one import, one list entry).
 6. **Build**: `node scripts/build-detailing-demo.mjs <slug>`. It warns about
@@ -161,6 +163,27 @@ From the third review (October 2026):
    up the new JSON on their own (`next.config.ts`, `app/robots.ts`).
 9. **Admin**: in the morebookednow repo, add a line to `HAND_BUILT` in
    `app/admin/demos/page.tsx` so its visits show on /admin/demos.
+
+## Sites the Replymint site maker builds
+
+Replymint (the loopfinity repo, `lib/site-maker.ts`) builds a detailing
+site on its own when a prospect replies that they're interested. It sends
+the same data as `businesses/<slug>.json` to this app:
+
+- `POST /api/sites` `{ slug, template: "detailing", data }` stores it in
+  Upstash as `site:<slug>` (no expiry). `GET /api/sites?slug=` returns it
+  and its visits; `DELETE /api/sites?slug=` takes it down. Every call needs
+  `Authorization: Bearer <SITE_MAKER_KEY>`, a secret set both here on
+  Vercel and on the loopfinity Worker.
+- The data is rendered once before it is stored, so a site with a missing
+  value is refused with the field's name, never shown with a gap.
+- `app/[slug]/route.ts` serves it at `demo.morebookednow.com/<slug>`,
+  rendered per request from `template.html`. The chat finds its facts in
+  the stored `assistant` block (`app/api/chat`); review mode and visit
+  tracking work as on any page.
+- Its pictures live in Replymint's file store: `data.assets` is that
+  folder's address, and each picture field is a file name in it
+  (`scripts/detailing-assets.mjs`). A field can also hold a full address.
 
 ## Owner review notes
 

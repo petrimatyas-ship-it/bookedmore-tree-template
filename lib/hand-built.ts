@@ -35,9 +35,10 @@ export type HandBuiltBusiness = {
  * knows. Add one line here per new detailing page.
  */
 
-type DetailingData = { slug: string; name: string; phone: { display: string }; assistant: Omit<HandBuiltBusiness, "companyName" | "phone"> };
+export type DetailingData = { slug: string; name: string; phone: { display: string }; assistant: Omit<HandBuiltBusiness, "companyName" | "phone"> };
 
-function fromDetailing(d: DetailingData): HandBuiltBusiness {
+/** Also used for sites the Replymint site maker stored (app/api/chat). */
+export function fromDetailing(d: DetailingData): HandBuiltBusiness {
   return { companyName: d.name, phone: d.phone.display, ...d.assistant };
 }
 

@@ -211,3 +211,51 @@ export async function putFeedback(slug: string, items: FeedbackItem[]): Promise<
   await fs.mkdir(FILE_DIR, { recursive: true });
   await fs.writeFile(path.join(FILE_DIR, `feedback-${slug}.json`), body, "utf8");
 }
+
+/* ------------------------------------------------------------------ */
+/* Sites the Replymint site maker built                                 */
+/* ------------------------------------------------------------------ */
+
+export type StoredSite = {
+  slug: string;
+  /** Which template in demo-templates/ renders it. Only "detailing" today. */
+  template: "detailing";
+  /** Everything about the business, the same shape as demo-templates/detailing/businesses/<slug>.json. */
+  data: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};
+
+/**
+ * Kept under site:<slug> with no expiry: a site is taken down by the site
+ * maker, not by a clock, since the prospect may come back to it weeks later.
+ */
+export async function getSite(slug: string): Promise<StoredSite | null> {
+  if (!SLUG_RE.test(slug)) return null;
+  try {
+    const raw = usingKv
+      ? ((await kv(["GET", `site:${slug}`])) as string | null)
+      : await fs.readFile(path.join(FILE_DIR, `site-${slug}.json`), "utf8");
+    return raw ? (JSON.parse(raw) as StoredSite) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function putSite(site: StoredSite): Promise<void> {
+  const body = JSON.stringify(site);
+  if (usingKv) {
+    await kv(["SET", `site:${site.slug}`, body]);
+    return;
+  }
+  await fs.mkdir(FILE_DIR, { recursive: true });
+  await fs.writeFile(path.join(FILE_DIR, `site-${site.slug}.json`), body, "utf8");
+}
+
+export async function deleteSite(slug: string): Promise<void> {
+  if (usingKv) {
+    await kv(["DEL", `site:${slug}`]);
+    return;
+  }
+  await fs.rm(path.join(FILE_DIR, `site-${slug}.json`), { force: true });
+}
