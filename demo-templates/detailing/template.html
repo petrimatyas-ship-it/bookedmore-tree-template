@@ -957,13 +957,13 @@ body:has(.mbnr-bar) .cw{bottom:166px}
         <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
 {{/if}}{{#if image}}        <div class="t-head"><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>
         <img class="t-car" src="{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
-{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
+{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>{{#if price}}<div class="t-price"><small>from</small><b>{{price}}</b></div>{{/if}}</div>
 {{/if}}{{#if plus}}        <p class="t-plus">{{plus}}</p>
 {{/if}}        <ul class="t-list">
 {{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
 {{/each}}        </ul>
-{{#if image}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
-{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="{{links.booking}}" target="_blank" rel="noopener">{{button}}</a>
+{{#if image}}{{#if price}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
+{{/if}}{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="{{links.booking}}" target="_blank" rel="noopener">{{button}}</a>
       </article>
 {{/each}}    </div>
     <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
