@@ -257,6 +257,7 @@ details.ao p{padding:0;max-width:none}
 .prop span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4;margin-top:6px}
 .cer-grid{display:grid;gap:16px;margin-top:16px}
 @media(min-width:1000px){.cer-grid{grid-template-columns:1fr 1fr}.cer-grid>.cc:last-child{display:flex;flex-direction:column;justify-content:center}}
+@media(min-width:1000px){.cer-grid:not(:has(>:nth-child(2))){grid-template-columns:minmax(0,640px)}}
 .cc{background:rgba(10,17,26,.82);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
 @media(min-width:760px){.cc{padding:30px}}
 .cc h3{font:italic 800 1.9rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
@@ -914,8 +915,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-in">
     <div>
-      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
-      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
+{{#if google.rating}}      <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="stars" aria-hidden="true"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span>{{google.rating}} on Google <span class="g">· {{google.count}} reviews</span></a>
+{{/if}}      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
       <p class="lead">{{hero.lead}}</p>
       <div class="ctas">
         <a class="btn btn-blue" href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
@@ -957,13 +958,13 @@ body:has(.mbnr-bar) .cw{bottom:166px}
         <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
 {{/if}}{{#if image}}        <div class="t-head"><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>
         <img class="t-car" src="{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
-{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div><div class="t-price"><small>from</small><b>{{price}}</b></div></div>
+{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>{{#if price}}<div class="t-price"><small>from</small><b>{{price}}</b></div>{{/if}}</div>
 {{/if}}{{#if plus}}        <p class="t-plus">{{plus}}</p>
 {{/if}}        <ul class="t-list">
 {{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
 {{/each}}        </ul>
-{{#if image}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
-{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="{{links.booking}}" target="_blank" rel="noopener">{{button}}</a>
+{{#if image}}{{#if price}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
+{{/if}}{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="{{links.booking}}" target="_blank" rel="noopener">{{button}}</a>
       </article>
 {{/each}}    </div>
     <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
@@ -1010,7 +1011,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/if}}  </div>
 </section>
 
-<section class="sec" id="results">
+{{#if results}}<section class="sec" id="results">
   <div class="wrap">
     <div class="sh">
       <span class="eyebrow">{{results.eyebrow}}</span>
@@ -1033,8 +1034,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
     </div>
 {{/if}}  </div>
 </section>
-
-<section class="sec reviews" id="reviews">
+{{/if}}
+{{#if reviews.items}}<section class="sec reviews" id="reviews">
   <div class="wrap">
     <div class="rv-head">
       <div class="sh">
@@ -1063,8 +1064,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
     </div>
   </div>
 </section>
-
-<section class="sec ceramic" id="ceramic">
+{{/if}}
+{{#if ceramic}}<section class="sec ceramic" id="ceramic">
   <svg class="cer-bg" viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="720" fill="#03070c" opacity="0"/><path d="M-60 520C160 400 360 300 680 110" stroke="#4aa8ff" stroke-width="90" fill="none" filter="url(#bl40)" opacity=".22"/><use href="#field"/></svg>
   <div class="wrap">
     <div class="sh">
@@ -1095,7 +1096,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a>
         </div>
       </div>
-      <div class="cc">
+{{#if ceramic.steps}}      <div class="cc">
         <h3>{{ceramic.stepsTitle}}</h3>
         <p style="color:var(--soft);margin-bottom:20px">{{ceramic.stepsIntro}}</p>
         <ol class="steps journey" id="jr">
@@ -1103,17 +1104,17 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/each}}        </ol>
         <p class="jr-hint">Tap a step to see where it fits.</p>
       </div>
-    </div>
+{{/if}}    </div>
 
-    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span><b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{ceramic.cure.text}}</span></p>
+    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span>{{#if ceramic.cure.value}}<b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{/if}}{{ceramic.cure.text}}</span></p>
   </div>
 </section>
-
+{{/if}}
 <section class="sec" id="about">
   <div class="wrap">
     <div class="about">
-      <div class="art"><img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div>
-      <div>
+{{#if images.about}}      <div class="art"><img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div>
+{{/if}}      <div>
         <span class="eyebrow">{{about.eyebrow}}</span>
         <h2 class="d">{{about.h2a}} <span class="blue-t">{{about.h2b}}</span></h2>
 {{#each about.paragraphs}}        <p class="big">{{this}}</p>
@@ -1144,10 +1145,10 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{#each area.cities}}          <span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>
 {{/each}}{{#if area.more}}          <span class="plus">{{area.more}}</span>
 {{/if}}        </div>
-        <div class="limit"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg><div>{{area.limitHtml}}</div></div>
-        <div class="area-acts"><a class="btn btn-line" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us your address</a><a class="btn btn-glass" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a quote</a></div>
+{{#if area.limitHtml}}        <div class="limit"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-van"/></svg><div>{{area.limitHtml}}</div></div>
+{{/if}}        <div class="area-acts"><a class="btn btn-line" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us your address</a><a class="btn btn-glass" href="#quote" onclick="tab('form')"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a quote</a></div>
       </div>
-      <div class="radar" aria-hidden="true">
+{{#if area.radar}}      <div class="radar" aria-hidden="true">
         <svg viewBox="0 0 400 418">
           <defs>
             <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#1e90ff" stop-opacity=".22"/><stop offset="1" stop-color="#1e90ff" stop-opacity="0"/></radialGradient>
@@ -1165,7 +1166,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <text x="200" y="412" text-anchor="middle" font-family="Barlow,sans-serif" font-size="15" fill="#9aabbc" letter-spacing="1.4">{{area.radarCaption}}</text>
         </svg>
       </div>
-    </div>
+{{/if}}    </div>
 
     <div class="info3">
       <div class="ic3">
@@ -1174,16 +1175,16 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{#each hours.rows}}          <li data-h="{{key}}"><span>{{label}}</span><b>{{text}}</b></li>
 {{/each}}        </ul>
       </div>
-      <div class="ic3 paycard">
+{{#if payment}}      <div class="ic3 paycard">
         <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-card"/></svg>Pay your way</h3>
         <p>{{paymentNote}}</p>
         <div class="pay">{{#each payment}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</span>{{/each}}</div>
       </div>
-    </div>
+{{/if}}    </div>
   </div>
 </section>
 
-<section class="sec" id="faq">
+{{#if faq.items}}<section class="sec" id="faq">
   <div class="wrap faqg">
     <div class="faq-side">
       <div class="sh"><span class="eyebrow">FAQ</span><h2 class="d">Questions, <span class="blue-t">answered.</span></h2><p>{{faq.intro}}</p></div>
@@ -1198,7 +1199,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/each}}    </div>
   </div>
 </section>
-
+{{/if}}
 <section class="sec quote-sec" id="quote">
   <div class="wrap quote">
     <div>
@@ -1256,10 +1257,10 @@ body:has(.mbnr-bar) .cw{bottom:166px}
             <label>Street address <em>(optional)</em><input name="address" autocomplete="street-address" placeholder="Where should we park?"></label>
           </div>
           <label>Preferred day<input name="date" id="qdate" type="date"></label>
-          <details class="addpick"><summary>Add-ons <small>(optional)</small></summary><div class="g">
+{{#if addons.items}}          <details class="addpick"><summary>Add-ons <small>(optional)</small></summary><div class="g">
 {{#each addons.items}}            <label><input type="checkbox" name="addon" value="{{name}}">{{name}}<b>{{price}}</b></label>
 {{/each}}          </div></details>
-          <label>Notes <em>(optional)</em><textarea name="notes" rows="3" placeholder="Pet hair, stains, odor, where the vehicle will be parked..."></textarea></label>
+{{/if}}          <label>Notes <em>(optional)</em><textarea name="notes" rows="3" placeholder="Pet hair, stains, odor, where the vehicle will be parked..."></textarea></label>
           <button type="submit" class="btn btn-blue">Get My Quote <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
           <div class="ok" id="ok" role="status" aria-live="polite"></div>
           <p class="fine">Price confirmed before any work begins &middot; Or text <a href="sms:{{phone.tel}}">{{phone.display}}</a></p>
@@ -1277,12 +1278,12 @@ body:has(.mbnr-bar) .cw{bottom:166px}
         <a class="brand" href="#top"><img src="{{asset.icon96}}" srcset="{{asset.icon96}} 2x, {{asset.icon}} 3x" alt="" width="42" height="42" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
         <p class="fabout">{{footer.about}}</p>
         <div class="fsoc">
-          <a href="{{social.tiktok.url}}" target="_blank" rel="noopener" aria-label="TikTok {{social.tiktok.handle}}"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a>
-          <a href="{{social.instagram.url}}" target="_blank" rel="noopener" aria-label="Instagram {{social.instagram.handle}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg></a>
-          <a href="{{links.googleReviews}}" target="_blank" rel="noopener" aria-label="Google reviews"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg></a>
+{{#if social.tiktok}}          <a href="{{social.tiktok.url}}" target="_blank" rel="noopener" aria-label="TikTok {{social.tiktok.handle}}"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-tiktok"/></svg></a>
+{{#if social.instagram}}{{/if}}          <a href="{{social.instagram.url}}" target="_blank" rel="noopener" aria-label="Instagram {{social.instagram.handle}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ig"/></svg></a>
+{{/if}}          <a href="{{links.googleReviews}}" target="_blank" rel="noopener" aria-label="Google reviews"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg></a>
         </div>
       </div>
-      <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li><li><a href="#ceramic">Ceramic coating</a></li><li><a href="#addons">Add-ons</a></li><li><a href="#packages">Bundles &amp; fleet plan</a></li><li><a href="#results">Before &amp; after</a></li></ul></div>
+      <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li>{{#if ceramic}}<li><a href="#ceramic">Ceramic coating</a></li>{{/if}}<li><a href="#addons">Add-ons</a></li><li><a href="#packages">Bundles &amp; fleet plan</a></li><li><a href="#results">Before &amp; after</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li><li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li><li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
       <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li><li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
     </div>
