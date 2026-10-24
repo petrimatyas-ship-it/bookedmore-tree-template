@@ -257,6 +257,7 @@ details.ao p{padding:0;max-width:none}
 .prop span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4;margin-top:6px}
 .cer-grid{display:grid;gap:16px;margin-top:16px}
 @media(min-width:1000px){.cer-grid{grid-template-columns:1fr 1fr}.cer-grid>.cc:last-child{display:flex;flex-direction:column;justify-content:center}}
+@media(min-width:1000px){.cer-grid:not(:has(>:nth-child(2))){grid-template-columns:minmax(0,640px)}}
 .cc{background:rgba(10,17,26,.82);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
 @media(min-width:760px){.cc{padding:30px}}
 .cc h3{font:italic 800 1.9rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
@@ -1095,7 +1096,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
           <a class="btn btn-glass" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text us</a>
         </div>
       </div>
-      <div class="cc">
+{{#if ceramic.steps}}      <div class="cc">
         <h3>{{ceramic.stepsTitle}}</h3>
         <p style="color:var(--soft);margin-bottom:20px">{{ceramic.stepsIntro}}</p>
         <ol class="steps journey" id="jr">
@@ -1103,9 +1104,9 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/each}}        </ol>
         <p class="jr-hint">Tap a step to see where it fits.</p>
       </div>
-    </div>
+{{/if}}    </div>
 
-    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span><b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{ceramic.cure.text}}</span></p>
+    <p class="cure-line"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-drop"/></svg><span>{{#if ceramic.cure.value}}<b>{{ceramic.cure.value}} {{ceramic.cure.label}}.</b> {{/if}}{{ceramic.cure.text}}</span></p>
   </div>
 </section>
 {{/if}}

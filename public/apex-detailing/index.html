@@ -257,6 +257,7 @@ details.ao p{padding:0;max-width:none}
 .prop span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4;margin-top:6px}
 .cer-grid{display:grid;gap:16px;margin-top:16px}
 @media(min-width:1000px){.cer-grid{grid-template-columns:1fr 1fr}.cer-grid>.cc:last-child{display:flex;flex-direction:column;justify-content:center}}
+@media(min-width:1000px){.cer-grid:not(:has(>:nth-child(2))){grid-template-columns:minmax(0,640px)}}
 .cc{background:rgba(10,17,26,.82);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
 @media(min-width:760px){.cc{padding:30px}}
 .cc h3{font:italic 800 1.9rem/1 var(--dc);text-transform:uppercase;margin-bottom:12px}
