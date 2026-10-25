@@ -825,6 +825,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 @media(prefers-reduced-motion:reduce){.hs-car,.hs-cer{animation:none}}
 
 /* their work: a photo wall, biggest first */
+.t-photo{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin:14px 0 16px;border:1px solid var(--line)}
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px}
 @media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr);gap:14px}.gal:not(:has(.gi:nth-child(4))){grid-template-columns:2fr 1fr}.gal:not(:has(.gi:nth-child(4))) .gi:first-child{grid-column:auto}}
 .gi{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#0b1117;border:1px solid var(--line)}
@@ -1245,8 +1246,9 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{#if featured}}        <span class="sheen" aria-hidden="true"></span>
         <span class="t-tag"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>{{tag}}</span>
 {{/if}}{{#if image}}        <div class="t-head"><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>
-        <img class="t-car" src="{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
-{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>{{#if price}}<div class="t-price"><small>from</small><b>{{price}}</b></div>{{/if}}</div>
+{{#if photo}}        <img class="t-photo" src="{{photo}}" alt="{{photoAlt}}" width="1200" height="900" loading="lazy" decoding="async">
+{{else}}        <img class="t-car" src="{{image}}" alt="" width="728" height="320" loading="lazy" decoding="async">
+{{/if}}{{else}}        <div class="t-top"><div><span class="t-name">{{name}}</span><span class="t-sub">{{sub}}</span></div>{{#if price}}<div class="t-price"><small>from</small><b>{{price}}</b></div>{{/if}}</div>
 {{/if}}{{#if plus}}        <p class="t-plus">{{plus}}</p>
 {{/if}}        <ul class="t-list">
 {{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>

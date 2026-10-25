@@ -22,7 +22,10 @@ export function resolveAssets(data) {
     p.before = full(base, p.before);
     p.after = full(base, p.after);
   }
-  for (const t of d.packages?.tiers ?? []) if (t.image) t.image = full(base, t.image);
+  for (const t of d.packages?.tiers ?? []) {
+    if (t.image) t.image = full(base, t.image);
+    if (t.photo) t.photo = full(base, t.photo);
+  }
   for (const v of d.social?.tiktok?.videos ?? []) v.file = full(base, v.file);
   for (const g of d.gallery?.photos ?? []) g.file = full(base, g.file);
   if (d.hero?.side?.car) d.hero.side.car = full(base, d.hero.side.car);

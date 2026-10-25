@@ -204,6 +204,9 @@ the same data as `businesses/<slug>.json` to this app:
 - `public/detailing/cars/{bronze,gold,platinum,diamond}.webp` are the
   package car pictures any detailer's site can use
   (`/detailing/cars/gold.webp`), the owner's choice from Apex.
+  A tier's `photo` (with `photoAlt`) shows the business's own photo on
+  that card instead; use it whenever the cards are services rather than
+  car packages (an interior card under a sports car makes no sense).
 
 ## Owner review notes
 
