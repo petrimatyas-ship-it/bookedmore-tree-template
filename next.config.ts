@@ -8,11 +8,11 @@ const detailingSlugs = readdirSync(path.join(process.cwd(), "demo-templates/deta
   .map((f) => f.replace(/\.json$/, ""));
 
 const nextConfig: NextConfig = {
-  // Sites the Replymint site maker stores are rendered per request from the
-  // detailing template, so the template ships with those two routes.
+  // Sites the Replymint site maker stores are rendered per request from their
+  // template, so the templates ship with those two routes.
   outputFileTracingIncludes: {
-    "/[slug]": ["./demo-templates/detailing/template.html"],
-    "/api/sites": ["./demo-templates/detailing/**/*"]
+    "/[slug]": ["./demo-templates/detailing/template.html", "./demo-templates/pressure-washing/template.html"],
+    "/api/sites": ["./demo-templates/detailing/**/*", "./demo-templates/pressure-washing/template.html"]
   },
   images: {
     // Demo pages show the prospect's own logo, served from wherever their

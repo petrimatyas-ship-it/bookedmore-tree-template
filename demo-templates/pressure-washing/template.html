@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{seo.title}}</title>
+<meta name="description" content="{{seo.description}}">
+<meta name="theme-color" content="#12304a">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="{{asset.icon}}">
+<link rel="apple-touch-icon" href="{{asset.icon}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* A plain local-contractor page: white, blue and navy, a red button for the estimate. */
+:root{--blue:#0b6fc2;--blue-d:#095a9e;--sky:#e8f2fb;--navy:#12304a;--navy-d:#0c2236;--red:#e3262d;--red-d:#c51d24;--text:#1d2b38;--soft:#3f4f5e;--muted:#64748b;--line:#dde4ec;--bg:#fff;--bg2:#f5f8fb;--hf:Barlow,Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font:400 1rem/1.6 Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.ic{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ic.f{fill:currentColor;stroke:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--hf);color:var(--navy);line-height:1.1;letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,5.4vw,2.6rem);font-weight:800}
+h2 .a{color:var(--blue)}
+h3{font-size:1.25rem;font-weight:700}
+.eb{display:block;font:600 .82rem/1.2 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.sh{max-width:700px}
+.sh p{color:var(--soft);margin-top:12px;font-size:1.05rem}
+.ctr{text-align:center;margin-left:auto;margin-right:auto}
+.sec{padding:32px 0}
+@media(min-width:900px){.sec{padding:40px 0}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:12px 22px;border-radius:4px;border:2px solid transparent;font:700 1.02rem/1.2 var(--hf);letter-spacing:.01em;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-d)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-d)}
+.btn-ghost{border-color:rgba(255,255,255,.7);color:#fff;background:rgba(0,0,0,.12)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-line{border-color:var(--line);background:#fff;color:var(--navy)}
+.btn-line:hover{border-color:var(--blue);color:var(--blue)}
+.btn .ic{width:19px;height:19px}
+
+/* preview ribbon */
+.demo-ribbon{background:var(--navy-d);color:#fff;text-align:center;font-size:.78rem;font-weight:600;padding:6px 12px;letter-spacing:.02em}
+.demo-ribbon .rs{display:none}
+@media(max-width:379px){.demo-ribbon .rl{display:none}.demo-ribbon .rs{display:inline}}
+
+/* header */
+header.top{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 18px -16px rgba(18,48,74,.5)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{height:52px;width:auto}
+.brand .wm{font:800 1.12rem/1.1 var(--hf);color:var(--navy)}
+.brand .wm small{display:block;font:500 .78rem/1.3 Inter,sans-serif;color:var(--muted);margin-top:2px}
+nav.main{display:none;align-items:center;gap:26px;font-weight:600;font-size:.95rem;color:var(--soft)}
+nav.main a:hover{color:var(--blue)}
+.top-r{display:flex;align-items:center;gap:14px}
+.top-ph{display:none;align-items:center;gap:8px;font:700 1.05rem var(--hf);color:var(--navy)}
+.top-ph .ic{color:var(--blue)}
+.top .btn{min-height:44px;padding:10px 18px}
+.burger{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--line);border-radius:4px;background:#fff;cursor:pointer;color:var(--navy)}
+.burger .ic{width:22px;height:22px}
+#mnav{display:none;border-top:1px solid var(--line);background:#fff}
+#mnav.open{display:block}
+#mnav a{display:block;padding:14px 20px;border-bottom:1px solid var(--line);font-weight:600;color:var(--navy)}
+@media(min-width:1120px){nav.main{display:flex}.burger,#mnav{display:none!important}}
+@media(min-width:1240px){.top-ph{display:flex}}
+@media(max-width:520px){.top .btn{display:none}.brand img{height:44px}.brand .wm{font-size:1rem}}
+
+/* hero: their own photo behind the text, under a blue wash */
+.hero{position:relative;color:#fff;isolation:isolate;overflow:hidden;background:var(--navy)}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--hp,50% 50%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(9,40,70,.78),rgba(9,40,70,.86))}
+@media(min-width:900px){.hero::after{background:linear-gradient(90deg,rgba(9,40,70,.92) 0%,rgba(9,40,70,.8) 48%,rgba(9,40,70,.35) 100%)}}
+.hero .wrap{padding-top:48px;padding-bottom:72px}
+@media(min-width:900px){.hero .wrap{padding-top:84px;padding-bottom:120px}}
+.hero .kick{display:block;font:700 .9rem/1.2 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#9fd2ff;margin-bottom:14px}
+.hero h1{color:#fff;font-size:clamp(2.3rem,7.6vw,3.9rem);font-weight:800;max-width:720px}
+.hero h1 .b{display:block;color:#7cc4ff}
+.hero .lead{font-size:1.12rem;max-width:600px;margin-top:16px;color:#e7f0f8}
+.hero .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.rate{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-weight:600;color:#fff}
+.rate .st{display:flex;gap:2px;color:#ffc531}
+.rate .st .ic{width:18px;height:18px}
+.rate small{color:#cfe0ee;font-weight:500}
+.rate:hover small{text-decoration:underline}
+
+/* quick estimate bar under the hero */
+.qbar{position:relative;z-index:2;margin-top:-44px}
+.qbar .card{background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 20px 40px -24px rgba(18,48,74,.45);padding:20px}
+.qbar h2{font-size:1.3rem;text-align:center;margin-bottom:14px}
+.qbar form{display:grid;gap:10px}
+@media(min-width:760px){.qbar form{grid-template-columns:1fr 1fr 1fr auto}}
+input,select,textarea{width:100%;min-height:48px;border:1px solid #cdd7e1;border-radius:4px;padding:10px 12px;background:#fff;font-size:1rem}
+textarea{min-height:96px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;padding-right:38px;background:#fff no-repeat right 12px center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b6fc2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,111,194,.15)}
+.ok{display:none;margin-top:12px;padding:12px 14px;border-radius:4px;background:#eef8f1;border:1px solid #b9e2c6;color:#1f5133;font-size:.95rem}
+.ok b{display:block;color:#173f27}
+
+/* intro */
+.intro{display:grid;gap:30px;align-items:center}
+@media(min-width:900px){.intro{grid-template-columns:1fr 1.1fr;gap:56px}}
+.ph{position:relative}
+.ph img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:6px solid #fff;box-shadow:0 18px 40px -22px rgba(18,48,74,.55)}
+.ph .q{position:absolute;left:-6px;bottom:-22px;max-width:300px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px;box-shadow:0 14px 30px -18px rgba(18,48,74,.5);font-size:.9rem;color:var(--soft)}
+@media(min-width:900px){.ph .q{left:-24px}}
+.ph .q .st{display:flex;gap:2px;color:#ffc531;margin-bottom:6px}
+.ph .q .st .ic{width:16px;height:16px}
+.ph .q b{display:block;margin-top:6px;color:var(--navy);font-size:.88rem}
+.intro .txt p{color:var(--soft);margin-top:14px}
+.checks{list-style:none;display:grid;gap:10px;margin:20px 0 24px}
+.checks li{display:flex;gap:10px;align-items:center;font-weight:600;color:var(--navy);background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:10px 14px}
+.checks .ic{color:var(--blue);width:20px;height:20px}
+@media(max-width:899px){.intro .ph{margin-bottom:22px}}
+
+/* services */
+.svcs{display:grid;gap:16px;margin-top:28px}
+@media(min-width:640px){.svcs{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.svcs{grid-template-columns:repeat(3,1fr)}}
+.svc{background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:6px;padding:22px;display:flex;flex-direction:column}
+.svc i{width:48px;height:48px;border-radius:6px;display:grid;place-items:center;background:var(--sky);color:var(--blue);margin-bottom:14px}
+.svc i .ic{width:24px;height:24px}
+.svc p{color:var(--soft);margin-top:8px;font-size:.97rem}
+.svc ul{list-style:none;margin-top:12px;display:grid;gap:6px;font-size:.93rem;color:var(--soft)}
+.svc li{display:flex;gap:8px;align-items:flex-start}
+.svc li .ic{color:var(--blue);width:17px;height:17px;margin-top:3px}
+.svc .more{margin-top:auto;padding-top:16px;font-weight:700;color:var(--blue);display:inline-flex;align-items:center;gap:6px;font-family:var(--hf)}
+.svc .more .ic{width:17px;height:17px}
+
+/* one blue band */
+.band{background:var(--blue);color:#fff;text-align:center;padding:36px 0}
+.band h2{color:#fff;font-size:clamp(1.6rem,4.6vw,2.3rem)}
+.band p{color:#e3f0fb;margin:8px auto 0;max-width:640px;font-size:1.06rem}
+.band .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+.band .btn-ghost{background:transparent}
+
+/* steps */
+.steps{list-style:none;display:grid;gap:34px 18px;margin-top:40px;counter-reset:s}
+@media(min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{position:relative;background:#fff;border:1px solid var(--line);border-radius:6px;padding:40px 22px 22px;text-align:center;counter-increment:s}
+.steps li::before{content:"0" counter(s);position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;background:#fff;border:3px solid var(--blue);color:var(--blue);display:grid;place-items:center;font:800 1.3rem/1 var(--hf)}
+.steps p{color:var(--soft);margin-top:8px;font-size:.96rem}
+
+/* reviews */
+.rv-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.score{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.score b{font:800 2.6rem/1 var(--hf);color:var(--navy)}
+.score .st{display:flex;gap:2px;color:#ffc531}
+.score .st .ic{width:18px;height:18px}
+.score small{display:block;color:var(--muted);font-size:.88rem}
+.score a{font-weight:600;color:var(--blue);font-size:.92rem}
+.rvs{display:grid;gap:16px;margin-top:26px}
+@media(min-width:700px){.rvs{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.rvs{grid-template-columns:repeat(3,1fr)}}
+.rv{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column}
+.rv .st{display:flex;gap:2px;color:#ffc531}
+.rv .st .ic{width:16px;height:16px}
+.rv p{margin:10px 0 16px;color:var(--soft);font-size:.96rem}
+.rv .who{margin-top:auto;display:flex;align-items:center;gap:10px}
+.rv .av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sky);color:var(--blue);font:800 1rem/1 var(--hf)}
+.rv .who b{display:block;color:var(--navy);font-size:.95rem}
+.rv .who small{color:var(--muted);font-size:.82rem}
+
+/* their work */
+.gal{display:grid;gap:12px;margin-top:26px;grid-template-columns:1fr 1fr}
+.gi{margin:0;position:relative;border-radius:6px;overflow:hidden;background:#dfe7ef}
+.gi:first-child{grid-column:span 2}
+@media(min-width:760px){.gal{grid-template-columns:2fr 1fr}.gi:first-child{grid-column:auto;grid-row:span 2}}
+.gi button{display:block;width:100%;height:100%;border:0;padding:0;background:none;cursor:zoom-in;aspect-ratio:4/3}
+.gi img{width:100%;height:100%;object-fit:cover}
+.gi figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(180deg,transparent,rgba(9,30,50,.85));color:#fff;font-weight:600;font-size:.9rem;pointer-events:none}
+.gal-note{margin-top:12px;color:var(--muted);font-size:.88rem}
+.lbx{position:fixed;inset:0;z-index:60;background:rgba(5,15,25,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px}
+.lbx[hidden]{display:none}
+.lbx img{max-width:100%;max-height:82vh;border-radius:4px;object-fit:contain}
+.lbx p{color:#fff;font-weight:600}
+.lbx-x{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:1.6rem;cursor:pointer}
+
+/* area and hours */
+.area{display:grid;gap:28px}
+@media(min-width:900px){.area{grid-template-columns:1.05fr 1fr;align-items:start;gap:48px}}
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.cities span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:7px 12px;font-weight:600;font-size:.92rem;color:var(--navy)}
+.cities .ic{color:var(--blue);width:16px;height:16px}
+.map{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg2);aspect-ratio:4/3}
+.map iframe{width:100%;height:100%;border:0;display:block}
+.hrs-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:18px;margin-top:6px}
+.hrs-card h3{display:flex;align-items:center;gap:8px;font-size:1.1rem}
+.hrs-card h3 .ic{color:var(--blue)}
+.openst{margin-left:auto;font:600 .78rem/1 Inter,sans-serif;padding:5px 8px;border-radius:4px;background:var(--bg2);color:var(--muted)}
+.openst.on{background:#e8f6ed;color:#1f7a3f}
+.hrs{list-style:none;margin-top:10px}
+.hrs li{display:flex;justify-content:space-between;gap:12px;padding:8px 10px;border-radius:4px;font-size:.95rem}
+.hrs li b{font-weight:600;color:var(--navy)}
+.hrs li.today{background:var(--sky)}
+
+/* faq */
+.faqg{display:grid;gap:26px}
+@media(min-width:900px){.faqg{grid-template-columns:.8fr 1.2fr;gap:48px}}
+.ask{margin-top:20px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:18px}
+.ask b{display:block;color:var(--navy);font-family:var(--hf);font-size:1.15rem}
+.ask p{color:var(--soft);font-size:.94rem;margin:4px 0 14px}
+.ask .btns{display:flex;flex-wrap:wrap;gap:10px}
+.ask .btn{min-height:44px;padding:9px 16px}
+details{border-bottom:1px solid var(--line)}
+details:first-child{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font:700 1.08rem/1.3 var(--hf);color:var(--navy)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:4px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font:700 1.2rem/1 Inter,sans-serif}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--soft);padding:0 0 18px}
+
+/* quote */
+.quote{display:grid;gap:28px}
+@media(min-width:900px){.quote{grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}}
+.qo{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:12px;color:var(--navy)}
+.qo:hover{border-color:var(--blue)}
+.qo i{width:44px;height:44px;border-radius:6px;display:grid;place-items:center;background:var(--red);color:#fff;flex:none}
+.qo b{display:block;font-family:var(--hf);font-size:1.12rem}
+.qo small{color:var(--muted)}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;box-shadow:0 20px 40px -28px rgba(18,48,74,.5)}
+.fcard .row{display:grid;gap:12px}
+@media(min-width:560px){.fcard .row{grid-template-columns:1fr 1fr}}
+.fcard label{display:block;font-weight:600;font-size:.88rem;color:var(--navy);margin:12px 0 6px}
+.fcard label small{color:var(--muted);font-weight:500}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.picks label{margin:0;display:inline-flex;align-items:center;gap:8px;border:1px solid #cdd7e1;border-radius:4px;padding:9px 12px;cursor:pointer;font-weight:500;color:var(--text)}
+.picks input{width:18px;height:18px;min-height:0;accent-color:var(--blue)}
+.picks label:has(input:checked){border-color:var(--blue);background:var(--sky)}
+.fcard .btn{width:100%;margin-top:18px}
+.fine{margin-top:10px;text-align:center;color:var(--muted);font-size:.85rem}
+
+/* footer */
+footer{background:var(--navy);color:#c7d5e2;padding:40px 0 22px;font-size:.95rem}
+.fg{display:grid;gap:28px}
+@media(min-width:800px){.fg{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+footer .brand img{background:#fff;border-radius:6px;padding:4px;height:56px}
+footer .brand .wm{color:#fff}
+footer .brand .wm small{color:#9fb6ca}
+footer p{margin-top:14px;max-width:340px}
+footer h4{color:#fff;font:700 .9rem/1.2 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a:hover{color:#fff;text-decoration:underline}
+footer .btn{margin-top:14px}
+.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:28px;padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.85rem;color:#93a9bd}
+
+/* the chat bubble */
+.cw-b{position:fixed;right:16px;bottom:16px;z-index:46;width:58px;height:58px;border-radius:12px;border:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:var(--blue);box-shadow:0 14px 30px -10px rgba(11,111,194,.7)}
+.cw-b .ic{width:26px;height:26px}
+.cw-b .x{display:none}
+.cw-b.open .ic:not(.x){display:none}
+.cw-b.open .x{display:block}
+.cw{position:fixed;right:16px;bottom:86px;z-index:46;width:min(380px,calc(100vw - 24px));max-height:min(560px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 30px 60px -20px rgba(18,48,74,.45);padding:16px}
+.cw[hidden]{display:none}
+@media(max-width:520px){.cw{right:12px;left:12px;width:auto;bottom:84px;max-height:calc(100vh - 110px)}}
+.chat-h{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.chat-h img{width:40px;height:40px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid var(--line)}
+.chat-h b{display:block;color:var(--navy);font-family:var(--hf);font-size:1.05rem}
+.chat-h small{color:var(--muted);font-size:.82rem}
+.msgs{flex:1;min-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 2px 8px}
+.msg{max-width:86%;padding:10px 14px;border-radius:6px;font-size:.95rem;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.bot{background:var(--bg2);border:1px solid var(--line);color:var(--text)}
+.msg.me{background:var(--blue);color:#fff;align-self:flex-end}
+.msg.err a{color:var(--blue);font-weight:600;text-decoration:underline}
+.msg.note{align-self:center;max-width:100%;font-size:.84rem;background:#eef8f1;border:1px solid #b9e2c6;color:#1f5133;text-align:center}
+.typing{display:inline-flex;gap:5px;align-items:center;padding:14px 16px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--blue);opacity:.4;animation:blink 1.1s infinite}
+.typing i:nth-child(3){animation-delay:.18s}
+.typing i:nth-child(4){animation-delay:.36s}
+@keyframes blink{50%{opacity:1}}
+.qr{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.qr button{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:4px;padding:8px 12px;font-size:.86rem;font-weight:600;cursor:pointer;min-height:38px}
+.qr button:hover{border-color:var(--blue)}
+.chat-in{display:flex;gap:8px;margin-top:12px}
+.chat-in input{min-height:46px}
+.chat-in .btn{min-height:46px;padding:0 14px}
+.alock{margin-top:12px;padding:16px;border-radius:6px;border:1px solid var(--line);background:var(--bg2)}
+.alock b{display:block;font:800 1.15rem/1.15 var(--hf);color:var(--navy)}
+.alock p{color:var(--soft);font-size:.92rem;margin:6px 0 14px}
+.alock .btn{width:100%}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-text" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.53L12 17.5l-5.87 3.07 1.12-6.53L2.5 9.41l6.56-.95z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-google" viewBox="0 0 24 24"><path d="M21.6 12.23c0-.68-.06-1.33-.17-1.96H12v3.7h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.98-4.32 2.98-7.26z"/><path d="M12 22c2.7 0 4.96-.9 6.62-2.42l-3.24-2.5c-.9.6-2.04.95-3.38.95-2.6 0-4.8-1.76-5.59-4.12H3.07v2.6A10 10 0 0 0 12 22z"/><path d="M6.41 13.91A6 6 0 0 1 6.1 12c0-.66.11-1.31.31-1.91v-2.6H3.07A10 10 0 0 0 2 12c0 1.61.39 3.14 1.07 4.51z"/><path d="M12 5.98c1.47 0 2.79.5 3.83 1.5l2.87-2.88A9.6 9.6 0 0 0 12 2 10 10 0 0 0 3.07 7.49l3.34 2.6C7.2 7.74 9.4 5.98 12 5.98z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
+<symbol id="i-roof" viewBox="0 0 24 24"><path d="M2 13 12 5l10 8"/><path d="M5 11v9h14v-9"/><path d="M7.5 13.5l3-2.4M11 16l5-4"/></symbol>
+<symbol id="i-gutter" viewBox="0 0 24 24"><path d="M3 6h18v3.5A2.5 2.5 0 0 1 18.5 12h-13A2.5 2.5 0 0 1 3 9.5z"/><path d="M17 12v8"/><path d="M14.5 20h5"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+</svg>
+
+<div class="demo-ribbon"><span class="rl">Preview website made for {{name}} by MoreBookedNow</span><span class="rs">Preview site by MoreBookedNow</span></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+    <nav class="main" aria-label="Main">
+      <a href="#services">Services</a><a href="#work">Our work</a><a href="#reviews">Reviews</a><a href="#area">Service area</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="top-r">
+      <a class="top-ph" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a>
+      <a class="btn btn-red" href="#quote">Free estimate</a>
+      <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav" onclick="toggleNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+  <nav id="mnav" aria-label="Menu">
+    <a href="#services" onclick="closeNav()">Services</a><a href="#work" onclick="closeNav()">Our work</a><a href="#reviews" onclick="closeNav()">Reviews</a><a href="#area" onclick="closeNav()">Service area</a><a href="#faq" onclick="closeNav()">FAQ</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero"{{#if images.hero.position}} style="--hp:{{images.hero.position}}"{{/if}}>
+  <div class="hero-bg"><img src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async"></div>
+  <div class="wrap">
+    <span class="kick">{{hero.kicker}}</span>
+    <h1>{{hero.h1a}} <span class="b">{{hero.h1b}}</span></h1>
+    <p class="lead">{{hero.lead}}</p>
+    <div class="btns">
+      <a class="btn btn-red" href="#quote">Get a free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a>
+    </div>
+{{#if rating}}    <a class="rate" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>{{rating.score}} on Google <small>· {{rating.count}} reviews</small></a>
+{{/if}}  </div>
+</section>
+
+<div class="qbar">
+  <div class="wrap">
+    <div class="card">
+      <h2>{{quick.title}}</h2>
+      <form onsubmit="quote(event,'ok1')">
+        <label class="sr" for="q1n">Your name</label><input id="q1n" name="name" placeholder="Your name" autocomplete="name" required>
+        <label class="sr" for="q1p">Phone</label><input id="q1p" name="phone" type="tel" placeholder="Phone" autocomplete="tel" required>
+        <label class="sr" for="q1s">Service</label><select id="q1s" name="service"><option value="">What needs cleaning?</option>{{#each quote.services}}<option value="{{value}}">{{label}}</option>{{/each}}</select>
+        <button type="submit" class="btn btn-red">Get my estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+      </form>
+      <div class="ok" id="ok1" role="status"></div>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="about">
+  <div class="wrap intro">
+    <div class="ph">
+      <img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async">
+{{#if intro.review}}      <div class="q"><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>“{{intro.review.text}}”<b>{{intro.review.name}}, Google review</b></div>
+{{/if}}    </div>
+    <div class="txt">
+      <span class="eb">{{intro.eyebrow}}</span>
+      <h2>{{intro.h2a}} <span class="a">{{intro.h2b}}</span></h2>
+{{#each intro.paras}}      <p>{{this}}</p>
+{{/each}}      <ul class="checks">
+{{#each intro.checks}}        <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
+{{/each}}      </ul>
+      <a class="btn btn-red" href="#quote">Get a free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sh"><span class="eb">{{services.eyebrow}}</span><h2>{{services.h2a}} <span class="a">{{services.h2b}}</span></h2><p>{{services.intro}}</p></div>
+    <div class="svcs">
+{{#each services.items}}      <article class="svc">
+        <i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></i>
+        <h3>{{title}}</h3>
+        <p>{{text}}</p>
+{{#if points}}        <ul>{{#each points}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
+{{/if}}        <a class="more" href="#quote" onclick="pick('{{value}}')">Get a free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      </article>
+{{/each}}    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>{{band.title}}</h2>
+    <p>{{band.text}}</p>
+    <div class="btns"><a class="btn btn-red" href="#quote">Get a free estimate</a><a class="btn btn-ghost" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a></div>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sh ctr"><span class="eb">{{steps.eyebrow}}</span><h2>{{steps.h2a}} <span class="a">{{steps.h2b}}</span></h2></div>
+    <ol class="steps">
+{{#each steps.items}}      <li><h3>{{title}}</h3><p>{{text}}</p></li>
+{{/each}}    </ol>
+  </div>
+</section>
+
+{{#if gallery}}<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sh"><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <span class="a">{{gallery.h2b}}</span></h2><p>{{gallery.intro}}</p></div>
+    <div class="gal">
+{{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}    </div>
+{{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
+{{/if}}  </div>
+</section>
+{{/if}}
+{{#if reviews.items}}<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="rv-top">
+      <div class="sh"><span class="eb">{{reviews.eyebrow}}</span><h2>{{reviews.h2a}} <span class="a">{{reviews.h2b}}</span></h2></div>
+{{#if rating}}      <div class="score"><b>{{rating.score}}</b><div><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span><small>{{rating.count}} Google reviews</small><a href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google</a></div></div>
+{{/if}}    </div>
+    <div class="rvs">
+{{#each reviews.items}}      <figure class="rv"><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span><p>{{text}}</p><figcaption class="who"><span class="av" aria-hidden="true">{{initial}}</span><span><b>{{name}}</b><small>Google review · {{date}}</small></span></figcaption></figure>
+{{/each}}    </div>
+  </div>
+</section>
+{{/if}}
+<section class="sec" id="area">
+  <div class="wrap area">
+    <div>
+      <span class="eb">{{area.eyebrow}}</span>
+      <h2>{{area.h2a}} <span class="a">{{area.h2b}}</span></h2>
+      <p style="color:var(--soft);margin-top:12px">{{area.text}}</p>
+      <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
+      <div class="hrs-card">
+        <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Hours<span class="openst" id="openst"></span></h3>
+        <ul class="hrs">
+{{#each hours.rows}}          <li data-h="{{key}}"><b>{{label}}</b><span>{{text}}</span></li>
+{{/each}}        </ul>
+      </div>
+    </div>
+    <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=10&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap faqg">
+    <div>
+      <span class="eb">{{faq.eyebrow}}</span>
+      <h2>{{faq.h2a}} <span class="a">{{faq.h2b}}</span></h2>
+      <div class="ask"><b>Still have a question?</b><p>Ask the assistant, or give us a call.</p><div class="btns"><button type="button" class="btn btn-blue" onclick="cw(true)"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</button><a class="btn btn-line" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a></div></div>
+    </div>
+    <div>
+{{#each faq.items}}      <details><summary>{{q}}</summary><p>{{a}}</p></details>
+{{/each}}    </div>
+  </div>
+</section>
+
+<section class="sec" id="quote">
+  <div class="wrap quote">
+    <div>
+      <span class="eb">{{quote.eyebrow}}</span>
+      <h2>{{quote.h2a}} <span class="a">{{quote.h2b}}</span></h2>
+      <p style="color:var(--soft);margin-top:12px">{{quote.intro}}</p>
+      <a class="qo" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i><span><b>Call {{phone.display}}</b><small>{{hours.summary}}</small></span></a>
+      <a class="qo" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i><span><b>Text {{phone.display}}</b><small>Send a photo of what needs cleaning</small></span></a>
+    </div>
+    <div class="fcard" id="qcard">
+      <form onsubmit="quote(event,'ok2')">
+        <div class="row">
+          <div><label for="q2n">Your name*</label><input id="q2n" name="name" autocomplete="name" placeholder="First and last name" required></div>
+          <div><label for="q2p">Phone*</label><input id="q2p" name="phone" type="tel" autocomplete="tel" placeholder="{{phone.display}}" required></div>
+        </div>
+        <label for="q2a">Address <small>(street and city)</small></label><input id="q2a" name="address" autocomplete="street-address" placeholder="Where is the property?">
+        <fieldset style="border:0"><legend style="font-weight:600;font-size:.88rem;color:var(--navy);margin:12px 0 6px">What needs cleaning?</legend>
+          <div class="picks">{{#each quote.services}}<label><input type="checkbox" name="service" value="{{value}}" id="pk-{{value}}">{{label}}</label>{{/each}}</div>
+        </fieldset>
+        <label for="q2m">Anything we should know? <small>(optional)</small></label><textarea id="q2m" name="notes" placeholder="Size of the driveway, stains, how many stories…"></textarea>
+        <button type="submit" class="btn btn-red">Get my free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+        <p class="fine">Free estimates · Or call {{phone.display}}</p>
+      </form>
+      <div class="ok" id="ok2" role="status"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="brand" href="#top"><img src="{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+        <p>{{footer.about}}</p>
+      </div>
+      <div><h4>Services</h4><ul>{{#each services.items}}<li><a href="#services">{{title}}</a></li>{{/each}}</ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="#quote">Free estimate</a></li><li><a href="{{links.googleReviews}}" target="_blank" rel="noopener">Google reviews</a></li></ul></div>
+      <div><h4>Hours</h4><ul><li>{{hours.footerHtml}}</li></ul></div>
+    </div>
+    <div class="copy"><span>&copy; {{footer.year}} {{name}}. {{footer.copyNote}}</span><span>Website by MoreBookedNow</span></div>
+  </div>
+</footer>
+
+<div class="lbx" id="lbx" hidden><button type="button" class="lbx-x" aria-label="Close photo">&times;</button><img alt=""><p></p></div>
+<button type="button" class="cw-b" id="cwb" aria-label="Chat with {{name}}" aria-expanded="false" aria-controls="cw" onclick="cw()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><svg class="ic x" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+<div class="cw" id="cw" role="dialog" aria-label="Chat with {{name}}" hidden>
+  <div class="chat-h"><img src="{{asset.icon96}}" alt="" width="40" height="40"><div><b>{{name}} assistant</b><small>Usually replies in seconds</small></div></div>
+  <div class="msgs" id="msgs" role="log" aria-live="polite"></div>
+  <div class="qr" id="qr">
+{{#each chat.suggestions}}    <button type="button" data-q="{{q}}">{{label}}</button>
+{{/each}}  </div>
+  <form class="chat-in" id="chatform" onsubmit="send(event)">
+    <label class="sr" for="chatin">Your message</label>
+    <input id="chatin" placeholder="Ask a question…" autocomplete="off" maxlength="600">
+    <button type="submit" class="btn btn-blue" id="chatbtn" aria-label="Send message"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
+  </form>
+</div>
+
+<script>
+function toggleNav(){const m=document.getElementById('mnav');const o=m.classList.toggle('open');document.getElementById('burger').setAttribute('aria-expanded',o?'true':'false')}
+function closeNav(){document.getElementById('mnav').classList.remove('open');document.getElementById('burger').setAttribute('aria-expanded','false')}
+/* on phones, outside links open in the same tab (in-app browsers often ignore new tabs) */
+if(matchMedia('(pointer: coarse)').matches)document.querySelectorAll('a[target="_blank"]').forEach(a=>a.removeAttribute('target'));
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* the assistant lives in the chat bubble */
+function cw(on){const w=document.getElementById('cw'),b=document.getElementById('cwb');if(on===undefined)on=w.hidden;w.hidden=!on;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');if(on){const i=document.getElementById('chatin');if(i&&i.offsetParent)i.focus({preventScroll:true})}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!document.getElementById('cw').hidden)cw(false);closeNav()}});
+/* "Get a free estimate" on a service ticks that service in the form */
+function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v}
+
+const SVC={{json quote.serviceNames}};
+function quote(e,id){
+  e.preventDefault();
+  const f=e.target,ok=document.getElementById(id);
+  const name=((f.elements.name&&f.elements.name.value)||'').trim().split(/\s+/)[0];
+  const picked=[].slice.call(f.querySelectorAll('[name="service"]')).filter(x=>x.tagName==='SELECT'?x.value:x.checked).map(x=>SVC[x.value]).filter(Boolean);
+  ok.textContent='';
+  const b=document.createElement('b');b.textContent='Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.';ok.appendChild(b);
+  ok.appendChild(document.createTextNode('On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.'));
+  ok.style.display='block';
+  try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
+}
+
+/* site assistant: real replies from /api/chat */
+const PHONE={{json phone.display}};
+const GREETING={{json chat.greeting}};
+const chatLog=[{role:'assistant',content:GREETING}];
+let busy=false,leadShown=false,replies=0;
+const REPLY_LIMIT=3;
+const msgsEl=document.getElementById('msgs');
+function scrollMsgs(){msgsEl.scrollTop=msgsEl.scrollHeight}
+function add(t,c){const m=document.createElement('div');m.className='msg '+c;m.textContent=t;msgsEl.appendChild(m);scrollMsgs();return m}
+function addError(t){
+  const m=document.createElement('div');m.className='msg bot err';
+  m.appendChild(document.createTextNode((t||'Something went wrong.')+' You can call or text us at '));
+  const a=document.createElement('a');a.href='tel:{{phone.tel}}';a.textContent=PHONE;m.appendChild(a);
+  m.appendChild(document.createTextNode('.'));
+  msgsEl.appendChild(m);scrollMsgs();
+}
+function typing(){const m=document.createElement('div');m.className='msg bot typing';m.innerHTML='<span class="sr">The assistant is typing</span><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>';msgsEl.appendChild(m);scrollMsgs();return m}
+add(GREETING,'bot');
+async function send(e){
+  if(e)e.preventDefault();
+  const i=document.getElementById('chatin');const v=(i.value||'').trim();
+  if(!v||busy)return;
+  const btn=document.getElementById('chatbtn');
+  busy=true;btn.disabled=true;
+  i.value='';add(v,'me');chatLog.push({role:'user',content:v});
+  const qr=document.getElementById('qr');if(qr)qr.style.display='none';
+  const t=typing();
+  try{
+    let res=null,data=null;
+    const ctl=typeof AbortController!=='undefined'?new AbortController():null;
+    const timer=ctl?setTimeout(()=>ctl.abort(),30000):null;
+    try{res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:{{json slug}},messages:chatLog.slice(-20)}),signal:ctl?ctl.signal:undefined})}
+    finally{if(timer)clearTimeout(timer)}
+    try{data=await res.json()}catch(_){data=null}
+    t.remove();
+    const reply=data&&typeof data.reply==='string'?data.reply.trim():'';
+    if(res.ok&&data&&(reply||data.leadCaptured)){
+      const shown=reply||'Thanks, got it.';
+      chatLog.push({role:'assistant',content:shown});
+      add(shown,'bot');replies++;
+      if(data.leadCaptured&&!leadShown){leadShown=true;add("Got your details. We'll be in touch shortly.",'note')}
+    }else addError(data&&typeof data.error==='string'&&data.error?data.error:"The assistant isn't available right now.");
+  }catch(err){try{t.remove()}catch(_){}addError("Couldn't reach the assistant.")}
+  finally{busy=false;btn.disabled=false;if(replies>=REPLY_LIMIT)spent()}
+}
+/* the demo assistant stops after a few replies and shows what the real one does */
+function spent(){
+  if(document.getElementById('alock'))return;
+  const f=document.getElementById('chatform'),qr=document.getElementById('qr');
+  if(f)f.style.display='none';if(qr)qr.style.display='none';
+  const box=document.createElement('div');box.className='alock';box.id='alock';
+  const b=document.createElement('b');b.textContent='That is your assistant working.';
+  const p=document.createElement('p');p.textContent='On your real site it never stops: every question answered, every night, and the details of anyone ready to book sent straight to your phone.';
+  const a=document.createElement('a');a.className='btn btn-blue';a.href='https://morebookednow.com/services';a.target='_blank';a.rel='noopener';a.textContent='Get it running on my site';
+  box.append(b,p,a);f.parentNode.appendChild(box);
+}
+document.querySelectorAll('#qr button').forEach(b=>b.addEventListener('click',()=>{const i=document.getElementById('chatin');i.value=b.dataset.q;const f=i.form;if(f.requestSubmit)f.requestSubmit();else send()}));
+
+/* their photos: tap one to see it big */
+(function(){var box=document.getElementById('lbx');if(!box)return;var im=box.querySelector('img'),cap=box.querySelector('p');
+  document.querySelectorAll('.gi button').forEach(function(b){b.addEventListener('click',function(){var i=b.querySelector('img');im.src=i.currentSrc||i.src;im.alt=i.alt;cap.textContent=b.parentNode.querySelector('figcaption').textContent;box.hidden=false})});
+  box.addEventListener('click',function(e){if(e.target!==im)box.hidden=true});document.addEventListener('keydown',function(e){if(e.key==='Escape')box.hidden=true})})();
+
+/* today's hours and open-now status, in the business's own time zone */
+(function(){try{
+  const SCHED={{json hours.schedule}},ROW={{json hours.dayRow}},DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:{{json timezone}},weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+  const g=k=>(p.find(x=>x.type===k)||{}).value;
+  const di=DAYS.indexOf(g('weekday')),now=(+g('hour')%24)+(+g('minute'))/60,key=ROW[di];
+  const row=document.querySelector('[data-h="'+key+'"]');if(row)row.classList.add('today');
+  const span=SCHED[key],open=!!span&&now>=span[0]&&now<span[1];
+  const st=document.getElementById('openst');if(st&&SCHED[key]!==undefined){st.textContent=open?'Open now':'Closed now';if(open)st.classList.add('on')}
+}catch(e){}})();
+</script>
+<script>
+/* Visit tracking, same events as the other demos, recorded as engagement:<slug>.
+   Only the shape of the visit: page, scroll depth, buttons. Nothing typed. */
+(function(){
+  var slug={{json slug}},page=location.pathname,visit=Math.random().toString(36).slice(2,12),sent={};
+  function send(ev,val){var k=ev+':'+(val==null?'':val);if(sent[k])return;sent[k]=1;
+    var body=JSON.stringify({slug:slug,event:ev,page:page,value:val,visit:visit});
+    try{if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/demo/track',new Blob([body],{type:'application/json'}))))
+      fetch('/api/demo/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}catch(e){}}
+  send('view');
+  function onScroll(){var d=document.documentElement,h=d.scrollHeight-innerHeight;if(h<=0)return;
+    var p=Math.round(scrollY/h*100);[25,50,75,100].forEach(function(m){if(p>=m)send('scroll',m)})}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.indexOf('tel:')===0)send('cta:call');
+    else if(href.indexOf('sms:')===0)send('cta:text');
+    else if(href==='#quote')send('cta:estimate')},true);
+  document.addEventListener('submit',function(e){if(e.target.classList.contains('chat-in'))send('assistant');else send('cta:quote-form')},true);
+  var opened=Date.now();
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')send('dwell',Math.round((Date.now()-opened)/1000))});
+})();
+</script>
+<script>/* review mode: ?review=<key> (see public/review.js) */(function(){try{var k=new URLSearchParams(location.search).get("review");if(k)localStorage.setItem("mbn-review",k);if(k||localStorage.getItem("mbn-review")){var s=document.createElement("script");s.src="/review.js";s.defer=true;document.head.appendChild(s)}}catch(e){}})()</script>
+</body>
+</html>
