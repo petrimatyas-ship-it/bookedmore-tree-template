@@ -196,7 +196,7 @@ the same data as `businesses/<slug>.json` to this app:
   proud of"), first photo big. 13 photos fill the grid evenly (1 big + 12).
   Always use their own photos, from their site or their Google listing,
   never stock: the owner should recognise their work.
-- `theme: "classic"` is a light page (warm white, white cards, ink text)
+- `theme: "classic"` is a light page (near-white grey, white cards, ink text)
   with one plain font (Inter) throughout, normal-case headings and gold accents, no
   chrome or glow; its photo hero fills the hero behind the text, for a business whose brand is
   traditional rather than flashy (Let It Shine). Without it, the dark

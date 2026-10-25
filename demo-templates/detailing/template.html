@@ -850,7 +850,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic h1 .a{font-family:var(--dc);font-style:normal;font-weight:600;color:var(--ice);font-size:clamp(1.2rem,3.6vw,1.6rem)}
 .th-classic .chrome,.th-classic .blue-t,.th-classic .t-name{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;animation:none}
 .th-classic .blue-t{color:var(--ice)}
-.th-classic .t-name{color:var(--ice)}
+.th-classic .t-name{color:var(--ice);overflow-wrap:break-word;hyphens:auto}
+@media(min-width:1000px){.th-classic .t-name{font-size:clamp(1.6rem,2vw,2.25rem)}}
 .th-classic .wm{font-weight:700}
 .th-classic .eyebrow,.th-classic .topics .lab{font-family:Inter,system-ui,sans-serif;font-weight:600;letter-spacing:.18em}
 .th-classic .btn{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:.98rem;text-transform:none;letter-spacing:.01em;border-radius:999px}
@@ -935,7 +936,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic .cw{background:var(--panel)}
 .th-classic .gi{background:var(--panel)}
 /* classic is light: warm white page, white cards, ink text, gold accents */
-.th-classic{--bg:#f7f4ee;--bg2:#efeae1;--panel:#ffffff;--panel2:#f5f2ec;--line:rgba(30,35,45,.12);--line2:rgba(30,35,45,.2);--text:#1d2533;--soft:#3d4757;--muted:#6b7483;--ink:#1d2533;--sky:#a87a12;--ice:#8a6410;color-scheme:light}
+.th-classic{--bg:#f8f9fb;--bg2:#f1f3f6;--panel:#ffffff;--panel2:#f3f5f8;--line:rgba(30,35,45,.12);--line2:rgba(30,35,45,.2);--text:#1d2533;--soft:#3d4757;--muted:#6b7483;--ink:#1d2533;--sky:#a87a12;--ice:#8a6410;color-scheme:light}
 .th-classic body,body.th-classic{background:var(--bg);color:var(--text)}
 .th-classic .d,.th-classic h2.d,.th-classic .chrome,.th-classic .t-name{color:var(--ink)}
 .th-classic .blue-t{color:var(--sky);font-style:normal}
@@ -1166,7 +1167,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       <div class="pl-g">
 {{#if packages.single}}        <div class="pl-grp">
           <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-half"/></svg><b>{{packages.single.title}}</b></div>
-          <a class="pl-r" href="#quote" onclick="pick('{{packages.single.pick}}')"><span>Inside or outside, by size &amp; condition</span><b>{{packages.single.big}}</b></a>
+          <a class="pl-r" href="#quote" onclick="pick('{{packages.single.pick}}')"><span>{{#if packages.single.sub}}{{packages.single.sub}}{{else}}Inside or outside, by size &amp; condition{{/if}}</span><b>{{packages.single.big}}</b></a>
         </div>
 {{/if}}{{#if packages.bundles}}        <div class="pl-grp">
           <div class="pl-h"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg><b>{{packages.bundles.title}}</b></div>
@@ -1480,7 +1481,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/if}}          <a href="{{links.googleReviews}}" target="_blank" rel="noopener" aria-label="Google reviews"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg></a>
         </div>
       </div>
-      <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li>{{#if ceramic}}<li><a href="#ceramic">Ceramic coating</a></li>{{/if}}<li><a href="#addons">Add-ons</a></li><li><a href="#packages">Bundles &amp; fleet plan</a></li><li><a href="#results">Before &amp; after</a></li></ul></div>
+      <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li>{{#if ceramic}}<li><a href="#ceramic">Ceramic coating</a></li>{{/if}}{{#if addons.items}}<li><a href="#addons">Add-ons</a></li>{{/if}}{{#if packages.bundles}}<li><a href="#packages">{{packages.bundles.title}}</a></li>{{/if}}{{#if gallery}}<li><a href="#work">Our work</a></li>{{/if}}{{#if results}}<li><a href="#results">Before &amp; after</a></li>{{/if}}</ul></div>
       <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li>{{#if ceramic}}<li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li>{{/if}}<li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
       <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li><li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
     </div>
