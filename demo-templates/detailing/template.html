@@ -947,7 +947,6 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic .hero-logo{filter:drop-shadow(0 22px 36px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(122,78,45,0.192))}
 .th-classic .pf i{background:radial-gradient(circle at 30% 25%,rgba(122,78,45,0.168),rgba(122,78,45,0.036));border:1px solid rgba(122,78,45,0.18)}
 .th-classic .t-dia{border-color:rgba(122,78,45,0.21)}
-.th-classic .t-dia .t-name{background:linear-gradient(180deg,#fff 0%,#e2c4a2 45%,#7a4e2d 100%)}
 .th-classic .t-tag{box-shadow:0 6px 18px -6px rgba(122,78,45,0.48)}
 .th-classic .mc-h i{background:rgba(122,78,45,0.06);border:1px solid rgba(122,78,45,0.168)}
 .th-classic .mc.custom{border-color:rgba(122,78,45,0.204)}
@@ -1063,6 +1062,37 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic .radar stop{stop-color:#7a4e2d}
 .th-classic .radar g[stroke="#55b7db"]{stroke:#7a4e2d}
 .th-classic .radar path[stroke="#8fd8ff"],.th-classic .radar circle[stroke="#1e90ff"]{stroke:#7a4e2d}
+/* classic: tighter sections, plainer headings */
+.th-classic .sec{padding:26px 0}
+@media(min-width:900px){.th-classic .sec{padding:36px 0}.th-classic #results,.th-classic #about{padding-top:36px}}
+.th-classic .sec h2.d,.th-classic .sh .d{font-size:clamp(1.9rem,6.4vw,2.9rem)}
+.th-classic .sh p{margin-top:10px}
+/* classic: a few quiet colours beside the brown (slate, sage, clay, sand) and a dark footer */
+.th-classic{--c1:#44627d;--c2:#7a4e2d;--c3:#5b7a56;--c4:#b4623b;--c5:#a67c32}
+.th-classic .tiers>.tier:nth-child(4n+1){--acc:var(--c1)}.th-classic .tiers>.tier:nth-child(4n+2){--acc:var(--c2)}.th-classic .tiers>.tier:nth-child(4n+3){--acc:var(--c3)}.th-classic .tiers>.tier:nth-child(4n+4){--acc:var(--c4)}
+.th-classic .tiers>.tier::before{height:4px;background:var(--acc)}
+.th-classic .tiers>.tier{border-color:var(--line)}
+.th-classic footer .brand img{box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.th-classic .tiers>.tier .t-pr b{color:var(--acc)}
+.th-classic .tiers>.tier .t-items .ic,.th-classic .tiers>.tier li .ic{color:var(--acc)}
+.th-classic .how>.hw:nth-child(4n+1){--acc:var(--c1)}.th-classic .how>.hw:nth-child(4n+2){--acc:var(--c3)}.th-classic .how>.hw:nth-child(4n+3){--acc:var(--c4)}.th-classic .how>.hw:nth-child(4n+4){--acc:var(--c5)}
+.th-classic .how>.hw i{color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,#fff);border-color:color-mix(in srgb,var(--acc) 30%,#fff)}
+.th-classic .tags span:nth-child(4n+1) .ic{color:var(--c1)}.th-classic .tags span:nth-child(4n+2) .ic{color:var(--c5)}.th-classic .tags span:nth-child(4n+3) .ic{color:var(--c3)}.th-classic .tags span:nth-child(4n+4) .ic{color:var(--c4)}
+.th-classic .rv:nth-child(5n+1) .av{--acc:var(--c1)}.th-classic .rv:nth-child(5n+2) .av{--acc:var(--c3)}.th-classic .rv:nth-child(5n+3) .av{--acc:var(--c4)}.th-classic .rv:nth-child(5n+4) .av{--acc:var(--c2)}.th-classic .rv:nth-child(5n+5) .av{--acc:var(--c5)}
+.th-classic .rv .av{color:var(--acc,var(--c2));background:color-mix(in srgb,var(--acc,var(--c2)) 13%,#fff);border-color:color-mix(in srgb,var(--acc,var(--c2)) 30%,#fff)}
+.th-classic .topics span:not(.lab):nth-child(4n+1){--acc:var(--c1)}.th-classic .topics span:not(.lab):nth-child(4n+2){--acc:var(--c3)}.th-classic .topics span:not(.lab):nth-child(4n+3){--acc:var(--c4)}.th-classic .topics span:not(.lab):nth-child(4n+4){--acc:var(--c5)}
+.th-classic .topics span:not(.lab){color:var(--acc,var(--c2));background:color-mix(in srgb,var(--acc,var(--c2)) 9%,#fff);border-color:color-mix(in srgb,var(--acc,var(--c2)) 28%,#fff)}
+.th-classic .cities span .ic{color:var(--c3)}
+.th-classic footer{background:#2a211c;border-top:0;color:#cfc3b8}
+.th-classic footer h4,.th-classic footer .wm{color:#fff}
+.th-classic footer .wm small{color:#e2c4a2}
+.th-classic footer a,.th-classic footer li{color:#cfc3b8}
+.th-classic footer a:hover{color:#fff}
+.th-classic footer .fsoc a{color:#fff;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
+.th-classic footer .btn-blue{background:#e2c4a2;color:#2a211c;box-shadow:none}
+.th-classic footer .copy{border-top-color:rgba(255,255,255,.12);color:#a99d92}
+.th-classic footer .copy a{color:#cfc3b8}
+.th-classic footer .fabout{color:#cfc3b8}
 /* classic: square-ish corners, nothing bubbly */
 .th-classic :is(.tier,.mc,.ao,.prop,.cc,.dia-box,.rw,.ba,.gscore,.rv,.art,.hw,.limit,.ic3,.askcard,.qo,.card,.msg,.plist,.pl-custom,.watch,.vid,.vid-f,.t-pr,.cmpt,.cw,.gi,.glass,.qf3,.lock .box,details.ao){border-radius:6px}
 .th-classic :is(.btn,.pill,.topics span:not(.lab),.tags span,.cities span,.social a,.qr button,.g-cer .tag,.ic3 h3 .st,.pay span,.chips span,.follow a,.fsoc a,.hw i,.qo>i,.mc-h i,.pf i,.follow i,.ok,.seg span,.addpick,input,select,textarea,.burger,.lbx img,.alock,.hrs li){border-radius:4px}
