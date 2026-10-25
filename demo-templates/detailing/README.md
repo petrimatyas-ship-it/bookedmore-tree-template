@@ -192,8 +192,8 @@ the same data as `businesses/<slug>.json` to this app:
   hero: a band across the top on phones, the right side on laptops.
   Choose a photo that sells: a nice car, ideally with their van or sign.
 - `gallery` { eyebrow, h2a, h2b, intro, photos: [{ file, caption, alt,
-  width, height }], note } is a photo wall of their best work ("Work we're
-  proud of"), first photo big. 13 photos fill the grid evenly (1 big + 12).
+  width, height }], note } is a photo wall of their best work ("Proud of our
+  work"), first photo big. 13 photos fill the grid evenly (1 big + 12).
   Always use their own photos, from their site or their Google listing,
   never stock: the owner should recognise their work.
 - `theme: "classic"` is a light page (near-white grey, white cards, ink text) with a dark brown footer,
