@@ -826,7 +826,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 
 /* their work: a photo wall, biggest first */
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px}
-@media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr);gap:14px}}
+@media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr);gap:14px}.gal:not(:has(.gi:nth-child(4))){grid-template-columns:2fr 1fr}.gal:not(:has(.gi:nth-child(4))) .gi:first-child{grid-column:auto}}
 .gi{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#0b1117;border:1px solid var(--line)}
 .gi:first-child{grid-column:span 2;grid-row:span 2}
 .gi-b{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:4/3}
@@ -1205,7 +1205,9 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/if}}      <h1 id="h1"><span class="a">{{hero.h1a}}</span><span class="b d chrome">{{hero.h1b}}</span></h1>
       <p class="lead">{{hero.lead}}</p>
       <div class="ctas">
-        <a class="btn btn-blue" href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
+{{#if links.noBooking}}        <a class="btn btn-blue" href="#quote"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clip"/></svg>Get a quote</a>
+{{else}}        <a class="btn btn-blue" href="{{links.booking}}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg>Book online</a>
+{{/if}}
         <a class="btn btn-line" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call us</a>
       </div>
 {{#if hero.facts}}      <div class="qf3" role="list" aria-label="Quick facts">
@@ -1250,7 +1252,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{#each items}}          <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
 {{/each}}        </ul>
 {{#if image}}{{#if price}}        <div class="t-pr"><span>Starting at</span><b>{{price}}</b></div>
-{{/if}}{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" href="{{links.booking}}" target="_blank" rel="noopener">{{button}}</a>
+{{/if}}{{/if}}        <a class="btn {{#if featured}}btn-blue{{else}}btn-glass{{/if}}" {{#if links.noBooking}}href="#quote" onclick="pick('{{pick}}')"{{else}}href="{{links.booking}}" target="_blank" rel="noopener"{{/if}}>{{button}}</a>
       </article>
 {{/each}}    </div>
     <p class="tswipe" aria-hidden="true">Swipe for all packages <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></p>
@@ -1511,8 +1513,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       <div class="qopts">
         <a class="qo" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i><span><b>Text {{phone.display}}</b><small>Send a question or a photo</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
         <a class="qo" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i><span><b>Call {{phone.display}}</b><small>{{hours.shortHtml}}</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-        <a class="qo" href="{{links.booking}}" target="_blank" rel="noopener"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg></i><span><b>Book online</b><small>{{quote.bookingNote}}</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
-      </div>
+{{#if links.noBooking}}{{else}}        <a class="qo" href="{{links.booking}}" target="_blank" rel="noopener"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg></i><span><b>Book online</b><small>{{quote.bookingNote}}</small></span><svg class="ic go" aria-hidden="true" focusable="false"><use href="#i-ext"/></svg></a>
+{{/if}}      </div>
       <ul class="qchk">
 {{#each quote.checks}}        <li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>
 {{/each}}      </ul>
@@ -1565,7 +1567,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/if}}          <label>Notes <em>(optional)</em><textarea name="notes" rows="3" placeholder="Pet hair, stains, odor, where the vehicle will be parked..."></textarea></label>
           <button type="submit" class="btn btn-blue">Get My Quote <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
           <div class="ok" id="ok" role="status" aria-live="polite"></div>
-          <p class="fine">Price confirmed before any work begins &middot; Or text <a href="sms:{{phone.tel}}">{{phone.display}}</a></p>
+          <p class="fine">{{#if quote.fine}}{{quote.fine}}{{else}}Price confirmed before any work begins{{/if}} &middot; Or text <a href="sms:{{phone.tel}}">{{phone.display}}</a></p>
         </form>
       </div>
     </div>
@@ -1587,7 +1589,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
       </div>
       <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li>{{#if ceramic}}<li><a href="#ceramic">Ceramic coating</a></li>{{/if}}{{#if addons.items}}<li><a href="#addons">Add-ons</a></li>{{/if}}{{#if packages.bundles}}<li><a href="#packages">{{packages.bundles.title}}</a></li>{{/if}}{{#if gallery}}<li><a href="#work">Our work</a></li>{{/if}}{{#if results}}<li><a href="#results">Before &amp; after</a></li>{{/if}}</ul></div>
       <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li>{{#if ceramic}}<li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li>{{/if}}<li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
-      <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li><li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
+      <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li>{{#if links.noBooking}}<li><a href="#quote">Get a quote</a></li>{{else}}<li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li>{{/if}}<li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
     </div>
     <div class="copy"><span>© {{footer.year}} {{name}}. {{footer.copyNote}}</span><span>Website by MoreBookedNow</span></div>
   </div>
