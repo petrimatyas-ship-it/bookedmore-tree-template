@@ -188,6 +188,18 @@ the same data as `businesses/<slug>.json` to this app:
   (`results`), reviews (`reviews.items`), ceramic, FAQ (`faq.items`),
   add-ons, the about picture, the area map (`area.radar`), payment and
   each social link. The other sections are always shown.
+- `images.hero` with `photo: true` puts one of their own best jobs in the
+  hero: a band across the top on phones, the right side on laptops.
+  Choose a photo that sells: a nice car, ideally with their van or sign.
+- `gallery` { eyebrow, h2a, h2b, intro, photos: [{ file, caption, alt,
+  width, height }], note } is a photo wall of their best work ("Work we're
+  proud of"), first photo big. 13 photos fill the grid evenly (1 big + 12).
+  Always use their own photos, from their site or their Google listing,
+  never stock: the owner should recognise their work.
+- `theme: "classic"` switches to a serif display face, normal-case headings
+  and gold accents, with no chrome or glow, for a business whose brand is
+  traditional rather than flashy (Let It Shine). Without it, the dark
+  automotive look (Apex).
 - `public/detailing/cars/{bronze,gold,platinum,diamond}.webp` are the
   package car pictures any detailer's site can use
   (`/detailing/cars/gold.webp`), the owner's choice from Apex.

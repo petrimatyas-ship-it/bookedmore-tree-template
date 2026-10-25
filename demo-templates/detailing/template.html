@@ -11,7 +11,8 @@
 <link rel="apple-touch-icon" href="{{asset.icon}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,600;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{#if theme}}<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{/if}}<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,600;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#05070a; --bg2:#080c11; --panel:#0c1218; --panel2:#111a23;
@@ -747,15 +748,20 @@ ol.journey li.on button span{display:block}
 @media(max-width:479px){.cmpt thead small{display:none}.cmpt thead b{font-size:.8rem}.cmpt thead th:first-child{font-size:.7rem}.cmpt th,.cmpt td{padding:8px 1px}}
 @media(min-width:760px){.cmpt table{font-size:.95rem}.cmpt thead b{font-size:1.3rem}.cmpt th,.cmpt td{padding:11px 8px}}
 
-/* hero photo: a real job of theirs, full-bleed behind the text */
-.hero .hero-car.photo{inset:0;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:18% 50%;mix-blend-mode:normal;animation:drift 22s ease-in-out infinite alternate;-webkit-mask-image:none;mask-image:none}
-.hero-vis.photo::after{background:linear-gradient(180deg,rgba(5,7,10,.5) 0%,rgba(5,7,10,.66) 28%,rgba(5,7,10,.86) 50%,rgba(5,7,10,.94) 78%,var(--bg) 100%)}
-@media(max-width:999px){.hero .hero-car.photo{height:auto;width:210%;left:-8%;top:-280px;object-fit:fill}}
-@media(min-width:560px) and (max-width:999px){.hero .hero-car.photo{width:130%;left:-5%;top:-35%}}
-@media(min-width:1000px){
-  .hero .hero-car.photo{left:auto;right:0;width:56%;object-position:50% 40%;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%);mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
-  .hero-vis.photo::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(5,7,10,.9) 38%,rgba(5,7,10,.35) 62%,rgba(5,7,10,.15) 100%),linear-gradient(180deg,rgba(5,7,10,0) 70%,var(--bg) 100%)}
+/* hero photo: one of their own best jobs. A band across the top on phones, the right side on laptops. */
+.hero .hero-car.photo{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--hp,50% 55%);mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none;animation:drift 24s ease-in-out infinite alternate}
+@media(max-width:999px){
+  .hero .hero-in>.hero-vis.photo{bottom:auto;height:calc(64vw + 40px);max-height:560px}
+  .hero-vis.photo::after{background:linear-gradient(180deg,rgba(5,7,10,.15) 0%,rgba(5,7,10,.25) 55%,var(--bg) 100%)}
+  .hero-in:has(.hero-vis.photo){padding-top:calc(56vw + 20px)}
 }
+@media(min-width:560px) and (max-width:999px){.hero .hero-in>.hero-vis.photo{height:min(62vw,560px)}.hero-in:has(.hero-vis.photo){padding-top:min(48vw,440px)}}
+@media(min-width:1000px){
+  .hero .hero-car.photo{left:auto;right:0;width:62%}
+  .hero-vis.photo::after{background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 36%,rgba(5,7,10,.55) 50%,rgba(5,7,10,0) 70%),linear-gradient(180deg,rgba(5,7,10,0) 75%,var(--bg) 100%)}
+  .hero-in:has(.hero-vis.photo){min-height:620px;align-items:center}
+}
+
 
 
 
@@ -817,9 +823,49 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 @keyframes hsin{from{opacity:0;transform:translate(8%,-46%)}to{opacity:1;transform:translate(0,-46%)}}
 @keyframes hsup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.hs-car,.hs-cer{animation:none}}
+
+/* their work: a photo wall, biggest first */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px}
+@media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr);gap:14px}}
+.gi{margin:0;position:relative;border-radius:14px;overflow:hidden;background:#0b1117;border:1px solid var(--line)}
+.gi:first-child{grid-column:span 2;grid-row:span 2}
+.gi-b{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:4/3}
+.gi:first-child .gi-b{height:100%}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gi:hover img{transform:scale(1.04)}
+.gi figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(180deg,transparent,rgba(3,6,10,.88));color:#fff;font-weight:600;font-size:.86rem;pointer-events:none}
+.gal-note{margin-top:14px;color:var(--muted);font-size:.86rem}
+.lbx{position:fixed;inset:0;z-index:60;background:rgba(2,4,7,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px}
+.lbx[hidden]{display:none}
+.lbx img{max-width:100%;max-height:82vh;border-radius:10px;object-fit:contain}
+.lbx p{color:#fff;font-weight:600}
+.lbx-x{position:absolute;top:12px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.06);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer}
+
+/* classic look (theme: "classic"): a serif display face in normal case, warm gold accents,
+   no chrome or glow. For a business whose own brand is traditional rather than flashy. */
+.th-classic{--dc:'Playfair Display',Georgia,'Times New Roman',serif;--blue:#d9a62e;--blue-d:#b9871a;--sky:#e3b648;--ice:#f2d48a;--bg:#0c1420;--bg2:#101a28;--panel:#131f2f;--panel2:#182638;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.th-classic .d,.th-classic .wm,.th-classic h1 .a,.th-classic .t-name,.th-classic .cc h3,.th-classic .ao h3,.th-classic .mc h3,.th-classic .prop b,.th-classic .pf b,.th-classic .ba figcaption b,.th-classic .cmpt h3,.th-classic .w-h b,.th-classic .dia-box .row b,.th-classic .hw b,.th-classic footer h4{font-style:normal;text-transform:none;letter-spacing:0}
+.th-classic .d{font-weight:700;line-height:1.08}
+.th-classic h1 .b{font-size:clamp(2.6rem,10vw,5rem);line-height:1.02;filter:none}
+.th-classic h1 .a{font-family:var(--dc);font-style:italic;font-weight:500;color:var(--ice);font-size:clamp(1.2rem,3.6vw,1.6rem)}
+.th-classic .chrome,.th-classic .blue-t,.th-classic .t-name{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;animation:none}
+.th-classic .blue-t{color:var(--ice);font-style:italic}
+.th-classic .t-name{color:var(--ice)}
+.th-classic .wm{font-weight:700}
+.th-classic .eyebrow,.th-classic .topics .lab{font-family:Inter,system-ui,sans-serif;font-weight:600;letter-spacing:.18em}
+.th-classic .btn{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:.98rem;text-transform:none;letter-spacing:.01em;border-radius:999px}
+.th-classic .btn-blue{background:linear-gradient(180deg,#e7b84a,#c9951f);color:#111;box-shadow:0 10px 26px -12px rgba(217,166,46,.7)}
+.th-classic .btn-blue:hover{box-shadow:0 14px 30px -12px rgba(217,166,46,.85)}
+.th-classic .t-pr b,.th-classic .cmpt h3,.th-classic .cmpt td .ic{color:var(--sky);border-color:var(--sky)}
+.th-classic .tier::before{background:linear-gradient(90deg,transparent,var(--sky),transparent)}
+.th-classic .t-dia,.th-classic .tier.t-gold{box-shadow:none}
+.th-classic .hero::before{background:radial-gradient(45% 55% at 80% 40%,rgba(217,166,46,.08),transparent 72%)}
+.th-classic .cw-b{background:linear-gradient(180deg,#e7b84a,#c9951f);color:#111;box-shadow:0 14px 30px -10px rgba(217,166,46,.6)}
+.th-classic .rv::before{color:rgba(227,182,72,.18)}
+.th-classic .gscore>b,.th-classic .t-price b,.th-classic .t-pr b,.th-classic .ao li b,.th-classic .mc .big,.th-classic .mc .rows li b,.th-classic .dia-box .row span em,.th-classic .qf3 b{font-style:normal}
 </style>
 </head>
-<body>
+<body{{#if theme}} class="th-{{theme}}"{{/if}}>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -889,8 +935,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
     <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="{{asset.icon96}}" srcset="{{asset.icon96}} 2x, {{asset.icon}} 3x" alt="{{name}} logo" width="42" height="42"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
     <nav class="main" aria-label="Main">
       <a href="#" data-lock="Services">Services</a>
-      <a href="#" data-lock="Ceramic Coating">Ceramic</a>
-      <a href="#" data-lock="Pricing">Pricing</a>
+{{#if ceramic}}      <a href="#" data-lock="Ceramic Coating">Ceramic</a>
+{{/if}}      <a href="#" data-lock="Pricing">Pricing</a>
       <a href="#" data-lock="Reviews">Reviews</a>
       <a href="#" data-lock="Service Areas">Areas</a>
       <a href="#" data-lock="About">About</a>
@@ -901,8 +947,8 @@ body:has(.mbnr-bar) .cw{bottom:166px}
   </div>
   <div class="mnav" id="mnav">
     <a class="l" href="#" data-lock="Services">Services<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
-    <a class="l" href="#" data-lock="Ceramic Coating">Ceramic Coating<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
-    <a class="l" href="#" data-lock="Pricing">Pricing<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+{{#if ceramic}}    <a class="l" href="#" data-lock="Ceramic Coating">Ceramic Coating<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+{{/if}}    <a class="l" href="#" data-lock="Pricing">Pricing<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     <a class="l" href="#" data-lock="Reviews">Reviews<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     <a class="l" href="#" data-lock="Service Areas">Service Areas<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     <a class="l" href="#" data-lock="About">About<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
@@ -1016,7 +1062,20 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 {{/if}}  </div>
 </section>
 
-{{#if results}}<section class="sec" id="results">
+{{#if gallery}}<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sh">
+      <span class="eyebrow">{{gallery.eyebrow}}</span>
+      <h2 class="d">{{gallery.h2a}} <span class="blue-t">{{gallery.h2b}}</span></h2>
+      <p>{{gallery.intro}}</p>
+    </div>
+    <div class="gal">
+{{#each gallery.photos}}      <figure class="gi"><button type="button" class="gi-b" aria-label="Open photo: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}    </div>
+{{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
+{{/if}}  </div>
+</section>
+{{/if}}{{#if results}}<section class="sec" id="results">
   <div class="wrap">
     <div class="sh">
       <span class="eyebrow">{{results.eyebrow}}</span>
@@ -1292,7 +1351,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
         </div>
       </div>
       <div><h4>Detailing</h4><ul><li><a href="#packages">Detail packages</a></li>{{#if ceramic}}<li><a href="#ceramic">Ceramic coating</a></li>{{/if}}<li><a href="#addons">Add-ons</a></li><li><a href="#packages">Bundles &amp; fleet plan</a></li><li><a href="#results">Before &amp; after</a></li></ul></div>
-      <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li><li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li><li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#" data-lock="Services">Services</a></li>{{#if ceramic}}<li><a href="#" data-lock="Ceramic Coating">Ceramic Coating</a></li>{{/if}}<li><a href="#" data-lock="Pricing">Pricing</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service Areas</a></li><li><a href="#" data-lock="About">About</a></li></ul></div>
       <div><h4>Get in touch</h4><ul><li><a href="tel:{{phone.tel}}">Call {{phone.display}}</a></li><li><a href="sms:{{phone.tel}}">Text {{phone.display}}</a></li><li><a href="{{links.booking}}" target="_blank" rel="noopener">Book online</a></li><li>{{hours.footerHtml}}</li></ul><a class="btn btn-blue" href="#quote" onclick="tab('form')" style="margin-top:8px">Get a Quote</a></div>
     </div>
     <div class="copy"><span>© {{footer.year}} {{name}}. {{footer.copyNote}}</span><span>Website by MoreBookedNow</span></div>
@@ -1300,6 +1359,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 </footer>
 
 
+<div class="lbx" id="lbx" hidden><button type="button" class="lbx-x" aria-label="Close photo">&times;</button><img alt=""><p></p></div>
 <button type="button" class="cw-b" id="cwb" aria-label="Chat with {{name}}" aria-expanded="false" aria-controls="cw" onclick="cw()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><svg class="ic x" aria-hidden="true" focusable="false"><use href="#i-x"/></svg><span class="cw-dot" aria-hidden="true"></span></button>
 <div class="cw" id="cw" role="dialog" aria-label="Chat with {{name}}" hidden>
   <div class="pane on" id="p-chat">
@@ -1440,6 +1500,10 @@ document.querySelectorAll('.vid').forEach(function(v){v.addEventListener('click'
   var f=document.createElement('iframe');f.src='https://www.tiktok.com/player/v1/'+v.dataset.id+'?autoplay=1&music_info=0&description=0&rel=0&native_context_menu=0';
   f.allow='autoplay; fullscreen; encrypted-media';f.title=v.querySelector('.vt').textContent;f.className='vid-f';
   v.replaceWith(f)})});
+/* their photos: tap one to see it big */
+(function(){var box=document.getElementById('lbx');if(!box)return;var im=box.querySelector('img'),cap=box.querySelector('p');
+  document.querySelectorAll('.gi-b').forEach(function(b){b.addEventListener('click',function(){var i=b.querySelector('img');im.src=i.currentSrc||i.src;im.alt=i.alt;cap.textContent=b.parentNode.querySelector('figcaption').textContent;box.hidden=false})});
+  box.addEventListener('click',function(e){if(e.target!==im)box.hidden=true});document.addEventListener('keydown',function(e){if(e.key==='Escape')box.hidden=true})})();
 /* ceramic steps: a little route map; tap a step, the route lights up to it */
 (function(){var ol=document.getElementById('jr');if(!ol)return;var li=[].slice.call(ol.children);
   function go(n){li.forEach(function(x,i){x.classList.toggle('done',i<n);x.classList.toggle('on',i===n)});ol.style.setProperty('--at',n)}
