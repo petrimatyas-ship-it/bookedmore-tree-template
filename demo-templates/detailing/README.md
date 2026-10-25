@@ -197,7 +197,7 @@ the same data as `businesses/<slug>.json` to this app:
   Always use their own photos, from their site or their Google listing,
   never stock: the owner should recognise their work.
 - `theme: "classic"` is a light page (near-white grey, white cards, ink text) with a dark brown footer,
-  with one plain font (Inter) throughout, normal-case headings, mid-dark brown accents with quiet slate, sage, clay and sand beside them (package top bars and prices, step icons, review initials, topics), small corners (no pills or bubbles), cards and tags outlined in a thin dark line with a soft shadow, tight section spacing, no
+  with one plain font (Inter) throughout, normal-case headings, mid-dark brown accents with quiet slate, sage, clay and sand beside them (package top bars and prices, step icons, review initials, topics), small corners (no pills or bubbles), tight section spacing, no
   chrome or glow; its photo hero fills the hero behind the text, for a business whose brand is
   traditional rather than flashy (Let It Shine). Without it, the dark
   automotive look (Apex).
