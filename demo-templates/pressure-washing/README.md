@@ -6,7 +6,11 @@ corners and tight spacing. Modelled on the kind of site owners in the trade
 already like (Southern Shine Soft Washing): a photo hero under a blue wash,
 a quick estimate bar, an intro with a checklist, service cards, one blue
 band, three steps, their own photos, Google reviews, the service area with a
-map and hours, FAQ, the estimate form and a navy footer. The chat bubble
+map and hours, FAQ, the estimate form and a navy footer. The menu, the footer and each
+service's "Learn more" open the full site's other pages (Services,
+Gallery, Reviews, Service areas, About, FAQ, and a page per service) as
+locked, with what each will hold once the site goes live: the preview is
+one page, the real site many. The chat bubble
 answers from the site's `assistant` block, like the detailing pages.
 
 Stored sites use it with `template: "pressure-washing"` (`POST /api/sites`,
