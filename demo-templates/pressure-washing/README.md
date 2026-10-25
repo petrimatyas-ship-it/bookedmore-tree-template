@@ -26,7 +26,7 @@ Data, every value already HTML-escaped:
 - `intro { eyebrow, h2a, h2b, paras[], checks[], review? { text, name } }`
 - `services { eyebrow, h2a, h2b, intro, items[{ value, icon, title, text, points[] }] }`; icons: `drop`, `roof`, `house`, `gutter`, `target`, or any other in the sprite
 - `band { title, text }`, `steps { eyebrow, h2a, h2b, items[{ title, text }] }`
-- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big, best with 3
+- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 3, 5 or 9 photos fill the grid
 - `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }] }`
 - `area { eyebrow, h2a, h2b, text, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
 - `faq { eyebrow, h2a, h2b, items[{ q, a }] }`
