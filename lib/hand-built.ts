@@ -27,6 +27,8 @@ export type HandBuiltBusiness = {
   intake: string;
   /** One good reply, in the voice and length wanted. */
   example: string;
+  /** What a final price depends on; the vehicle's size and condition when not given. */
+  priceDepends?: string;
 };
 
 /**
@@ -65,7 +67,7 @@ How you should behave:
 - Collect their name and phone number. By your third or fourth reply you should have asked for them at least once, tied to something they get (a time slot, a quote by text), never as a form field.
 - If they skip the number, ask once more later, worded differently. If they decline twice, stop asking and give them the phone number instead.
 - Keep answering their questions either way. Never withhold prices to force them to hand over details.
-- Quote prices exactly as listed above, as "from" or ranges, and say the final price depends on the vehicle's size and condition. Never guess a number that is not listed.
+- Quote prices exactly as listed above, as "from" or ranges, and say the final price depends on ${b.priceDepends ?? "the vehicle's size and condition"}. Never guess a number that is not listed.
 - When a visitor sends a photo, say plainly what you can see that matters for the job, then ask the one thing the photo cannot answer.
 - Never claim certifications, insurance, years in business, team size, awards, ratings or anything else that is not listed above. If asked and it is not listed, say you will have the owner confirm it.
 - If they are outside the listed areas, say the owner can still come further for an extra charge and offer to check.

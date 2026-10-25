@@ -2,19 +2,20 @@ import { NextResponse } from "next/server";
 import { readdirSync } from "fs";
 import path from "path";
 import { deleteSite, getEngagement, getSite, putSite, SLUG_RE, type StoredSite } from "@/lib/db";
-import { renderDetailing } from "@/lib/detailing-page";
+import { isTemplate, renderSite } from "@/lib/detailing-page";
 import { siteMakerKeyOk } from "@/lib/site-maker-key";
 
 /**
  * Sites the Replymint site maker builds (loopfinity, lib/site-maker.ts).
  *
- *   POST   { slug, template: "detailing", data } -> { url }   stores or replaces it
+ *   POST   { slug, template, data } -> { url }   stores or replaces it;
+ *          template is "detailing" or "pressure-washing" (lib/detailing-page.ts)
  *   GET    ?slug=                               -> { site, visits }
  *   DELETE ?slug=                               -> { ok }
  *
  * Every call needs `Authorization: Bearer <SITE_MAKER_KEY>`. A stored site is
- * served at /<slug> by app/[slug]/route.ts with the same template the
- * hand-built detailing pages use.
+ * served at /<slug> by app/[slug]/route.ts with its template (the detailing
+ * one is the same the hand-built detailing pages use).
  */
 
 export const dynamic = "force-dynamic";
@@ -43,19 +44,20 @@ export async function POST(request: Request) {
   const slug = typeof body.slug === "string" ? body.slug : "";
   if (!SLUG_RE.test(slug)) return no("Invalid slug.", 400);
   if (taken(slug)) return no("That address is taken.", 409);
-  if (body.template !== "detailing") return no("Invalid template.", 400);
+  const template = body.template;
+  if (!isTemplate(template)) return no("Invalid template.", 400);
   const data = body.data as Record<string, unknown> | undefined;
   if (!data || typeof data !== "object" || data.slug !== slug) return no("Invalid data: its slug must match.", 400);
   if (JSON.stringify(data).length > 400_000) return no("Invalid data: too large.", 413);
   // Rendered once before storing, so a site with a gap is refused, not shown broken.
   try {
-    renderDetailing(data);
+    renderSite(template, data);
   } catch (e) {
     return no(`Invalid data: ${(e as Error).message}`, 400);
   }
   const now = new Date().toISOString();
   const before = await getSite(slug);
-  const site: StoredSite = { slug, template: "detailing", data, createdAt: before?.createdAt ?? now, updatedAt: now };
+  const site: StoredSite = { slug, template, data, createdAt: before?.createdAt ?? now, updatedAt: now };
   await putSite(site);
   return NextResponse.json({ url: new URL(`/${slug}`, request.url).toString() });
 }

@@ -1,5 +1,5 @@
 import { getSite } from "@/lib/db";
-import { renderDetailing } from "@/lib/detailing-page";
+import { isTemplate, renderSite } from "@/lib/detailing-page";
 
 /**
  * demo.morebookednow.com/<slug> for a site the Replymint site maker stored
@@ -18,7 +18,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
       headers: { "Content-Type": "text/html; charset=utf-8" }
     });
   }
-  return new Response(renderDetailing(site.data), {
+  return new Response(renderSite(isTemplate(site.template) ? site.template : "detailing", site.data), {
     headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" }
   });
 }
