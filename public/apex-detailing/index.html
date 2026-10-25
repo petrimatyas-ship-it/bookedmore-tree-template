@@ -840,15 +840,15 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .lbx p{color:#fff;font-weight:600}
 .lbx-x{position:absolute;top:12px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.06);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer}
 
-/* classic look (theme: "classic"): a serif display face in normal case, warm gold accents,
+/* classic look (theme: "classic"): one plain sans font (Inter) in normal case, warm gold accents,
    no chrome or glow. For a business whose own brand is traditional rather than flashy. */
-.th-classic{--dc:'Playfair Display',Georgia,'Times New Roman',serif;--blue:#d9a62e;--blue-d:#b9871a;--sky:#e3b648;--ice:#f2d48a;--bg:#0c1420;--bg2:#101a28;--panel:#131f2f;--panel2:#182638;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.th-classic{--dc:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--blue:#d9a62e;--blue-d:#b9871a;--sky:#e3b648;--ice:#f2d48a;--bg:#0c1420;--bg2:#101a28;--panel:#131f2f;--panel2:#182638;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
 .th-classic .d,.th-classic .wm,.th-classic h1 .a,.th-classic .t-name,.th-classic .cc h3,.th-classic .ao h3,.th-classic .mc h3,.th-classic .prop b,.th-classic .pf b,.th-classic .ba figcaption b,.th-classic .cmpt h3,.th-classic .w-h b,.th-classic .dia-box .row b,.th-classic .hw b,.th-classic footer h4{font-style:normal;text-transform:none;letter-spacing:0}
-.th-classic .d{font-weight:700;line-height:1.08}
-.th-classic h1 .b{font-size:clamp(2.6rem,10vw,5rem);line-height:1.02;filter:none}
-.th-classic h1 .a{font-family:var(--dc);font-style:italic;font-weight:500;color:var(--ice);font-size:clamp(1.2rem,3.6vw,1.6rem)}
+.th-classic .d{font-weight:800;line-height:1.08;letter-spacing:-.02em}
+.th-classic h1 .b{font-size:clamp(2.5rem,9.5vw,4.6rem);line-height:1.04;letter-spacing:-.03em;filter:none;font-style:normal}
+.th-classic h1 .a{font-family:var(--dc);font-style:normal;font-weight:600;color:var(--ice);font-size:clamp(1.2rem,3.6vw,1.6rem)}
 .th-classic .chrome,.th-classic .blue-t,.th-classic .t-name{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;animation:none}
-.th-classic .blue-t{color:var(--ice);font-style:italic}
+.th-classic .blue-t{color:var(--ice)}
 .th-classic .t-name{color:var(--ice)}
 .th-classic .wm{font-weight:700}
 .th-classic .eyebrow,.th-classic .topics .lab{font-family:Inter,system-ui,sans-serif;font-weight:600;letter-spacing:.18em}
@@ -937,7 +937,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic{--bg:#f7f4ee;--bg2:#efeae1;--panel:#ffffff;--panel2:#f5f2ec;--line:rgba(30,35,45,.12);--line2:rgba(30,35,45,.2);--text:#1d2533;--soft:#3d4757;--muted:#6b7483;--ink:#1d2533;--sky:#a87a12;--ice:#8a6410;color-scheme:light}
 .th-classic body,body.th-classic{background:var(--bg);color:var(--text)}
 .th-classic .d,.th-classic h2.d,.th-classic .chrome,.th-classic .t-name{color:var(--ink)}
-.th-classic .blue-t{color:var(--sky)}
+.th-classic .blue-t{color:var(--sky);font-style:normal}
 .th-classic header.top{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line)}
 .th-classic nav.main a{color:var(--soft)}
 .th-classic .burger{border-color:var(--line2);background:#fff}
