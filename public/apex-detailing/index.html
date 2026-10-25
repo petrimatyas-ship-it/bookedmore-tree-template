@@ -88,7 +88,11 @@ nav.main a:hover::after{transform:scaleX(1)}
 @media(min-width:760px){.hdr-phone{display:inline-flex}.hdr-cta{display:inline-flex}.burger{margin-left:0}}
 @media(min-width:1100px){nav.main{display:flex}.hdr-phone{margin-left:8px}.burger{display:none}}
 @media(min-width:1100px) and (max-width:1239px){nav.main{gap:18px;font-size:.92rem}}
-.hdr .brand{flex:none}
+.hdr .brand{flex:0 1 auto}
+/* a long name or tagline shrinks and wraps rather than pushing the menu off screen */
+.wm{min-width:0;overflow-wrap:anywhere}
+.wm small{white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical}
+@media(max-width:480px){.wm{font-size:clamp(1.05rem,5.2vw,1.42rem)}.wm small{letter-spacing:.14em}}
 .mnav{display:none;border-top:1px solid var(--line);padding:6px 16px 18px;background:#05070a;max-height:calc(100vh - 100px);overflow-y:auto}
 .mnav.open{display:block}
 @media(min-width:760px){.mnav{padding:6px 32px 22px;max-width:480px;margin-left:auto;border-left:1px solid var(--line)}}
@@ -233,7 +237,8 @@ details.ao summary.ao-h:hover h3{color:var(--ice)}
 .ao li{display:flex;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.97rem}
 .ao .aonote{color:var(--muted);font-size:.88rem;margin-top:12px}
 details.ao p{padding:0;max-width:none}
-.ao li span{white-space:nowrap}
+.ao li span{white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ao li{min-width:0}
 .ao li i{flex:1;border-bottom:1px dotted rgba(150,190,230,.3);transform:translateY(-4px);min-width:12px}
 .ao li b{font:italic 700 1.15rem/1 var(--dc);color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ao li small{display:block;color:var(--muted);font-size:.8rem}
