@@ -178,6 +178,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);bo
 .rv .av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sky);color:var(--blue);font:800 1rem/1 var(--hf)}
 .rv .who b{display:block;color:var(--navy);font-size:.95rem}
 .rv .who small{color:var(--muted);font-size:.82rem}
+/* asking happy customers for a review: straight to Google's write-a-review box */
+.rvask{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:var(--sky);border:1px solid #cfe2f3;border-radius:6px;padding:18px 20px}
+.rvask .rs{display:flex;gap:3px;color:#ffc531}
+.rvask .rs .ic{width:22px;height:22px}
+.rvask>div{flex:1;min-width:220px}
+.rvask b{display:block;font:700 1.15rem/1.2 var(--hf);color:var(--navy)}
+.rvask p{color:var(--soft);font-size:.95rem;margin-top:2px}
+.rvask .btn .ic{width:18px;height:18px}
 
 /* their work */
 .gal{display:grid;gap:12px;margin-top:26px;grid-template-columns:1fr 1fr}
@@ -461,7 +469,12 @@ footer .btn{margin-top:14px}
     <div class="rvs">
 {{#each reviews.items}}      <figure class="rv"><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span><p>{{text}}</p><figcaption class="who"><span class="av" aria-hidden="true">{{initial}}</span><span><b>{{name}}</b><small>Google review · {{date}}</small></span></figcaption></figure>
 {{/each}}    </div>
-  </div>
+{{#if links.googleWriteReview}}    <div class="rvask">
+      <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
+      <div><b>Happy with your clean?</b><p>Leave us a review on Google. It takes a minute: pick the stars and write a line.</p></div>
+      <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Write a review</a>
+    </div>
+{{/if}}  </div>
 </section>
 {{/if}}
 <section class="sec" id="area">

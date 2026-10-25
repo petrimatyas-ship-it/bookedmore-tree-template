@@ -353,6 +353,14 @@ ol.steps span{display:block;color:var(--muted);font-size:.9rem;line-height:1.4}
 .rv .who{display:flex;align-items:center;gap:10px;font-weight:600}
 .rv .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:italic 800 1rem/1 var(--dc);background:linear-gradient(180deg,#1b2a3a,#0f1822);border:1px solid var(--line2);color:var(--ice)}
 .rv .who small{display:block;color:var(--muted);font-weight:500;font-size:.82rem;line-height:1.2}
+/* asking happy customers for a review: straight to Google's write-a-review box */
+.rvask{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;background:var(--panel2);border:1px solid var(--line2);border-radius:14px;padding:18px 20px}
+.rvask .rs{display:flex;gap:3px;color:#ffc94d}
+.rvask .rs .ic{width:22px;height:22px}
+.rvask>div{flex:1;min-width:220px}
+.rvask b{display:block;font-weight:700;font-size:1.12rem;color:var(--ink,#fff)}
+.rvask p{color:var(--soft);font-size:.94rem;margin-top:2px}
+.rvask .btn .ic{width:18px;height:18px}
 .rv-more{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;align-items:center;color:var(--muted);font-size:.9rem}
 
 /* about + how */
@@ -1095,7 +1103,7 @@ body:has(.mbnr-bar) .cw{bottom:166px}
 .th-classic footer .copy a{color:#cfc3b8}
 .th-classic footer .fabout{color:#cfc3b8}
 /* classic: square-ish corners, nothing bubbly */
-.th-classic :is(.tier,.mc,.ao,.prop,.cc,.dia-box,.rw,.ba,.gscore,.rv,.art,.hw,.limit,.ic3,.askcard,.qo,.card,.msg,.plist,.pl-custom,.watch,.vid,.vid-f,.t-pr,.cmpt,.cw,.gi,.glass,.qf3,.lock .box,details.ao){border-radius:6px}
+.th-classic :is(.tier,.rvask,.mc,.ao,.prop,.cc,.dia-box,.rw,.ba,.gscore,.rv,.art,.hw,.limit,.ic3,.askcard,.qo,.card,.msg,.plist,.pl-custom,.watch,.vid,.vid-f,.t-pr,.cmpt,.cw,.gi,.glass,.qf3,.lock .box,details.ao){border-radius:6px}
 .th-classic :is(.btn,.pill,.topics span:not(.lab),.tags span,.cities span,.social a,.qr button,.g-cer .tag,.ic3 h3 .st,.pay span,.chips span,.follow a,.fsoc a,.hw i,.qo>i,.mc-h i,.pf i,.follow i,.ok,.seg span,.addpick,input,select,textarea,.burger,.lbx img,.alock,.hrs li){border-radius:4px}
 .th-classic .t-tag{border-radius:0 0 4px 4px}
 .th-classic .cw-b{border-radius:12px}
@@ -1366,8 +1374,13 @@ body:has(.mbnr-bar) .cw{bottom:166px}
     <div class="rv-more">
 {{#if reviews.score}}      <a class="btn btn-glass" href="{{reviews.score.link}}" target="_blank" rel="noopener">Read all {{reviews.score.count}} on {{reviews.score.source}}</a>
 {{else}}      <a class="btn btn-glass" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read all {{google.count}} on Google</a>
-{{/if}}{{#if links.googleWriteReview}}      <a class="lnk" href="{{links.googleWriteReview}}" target="_blank" rel="noopener">Had a detail with us? Leave a review <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
 {{/if}}    </div>
+{{#if links.googleWriteReview}}    <div class="rvask">
+      <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
+      <div><b>Happy with your detail?</b><p>Leave us a review on Google. It takes a minute: pick the stars and write a line.</p></div>
+      <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Write a review</a>
+    </div>
+{{/if}}
   </div>
 </section>
 {{/if}}
