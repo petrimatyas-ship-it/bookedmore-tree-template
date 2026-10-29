@@ -24,7 +24,7 @@ Data, every value already HTML-escaped:
 - `images.heroLogo` (their logo, header and footer), `images.hero` (behind the hero text; optional `position`), `images.about` (intro photo)
 - `rating { score, count }` (optional), `hero { kicker, h1a, h1b, lead }`, `quick { title }`
 - `intro { eyebrow, h2a, h2b, paras[], checks[], review? { text, name } }`
-- `services { eyebrow, h2a, h2b, intro, items[{ value, icon, title, text, points[] }] }`; icons: `drop`, `roof`, `house`, `gutter`, `target`, or any other in the sprite
+- `services { eyebrow, h2a, h2b, intro, items[{ value, icon, title, text, points[] }] }`; icons: `drop`, `roof`, `house`, `gutter`, `target`, `fence`, `truck`, `window`, or any other in the sprite
 - `band { title, text }`, `steps { eyebrow, h2a, h2b, items[{ title, text }] }`
 - `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 3, 5 or 9 photos fill the grid
 - `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }] }`
