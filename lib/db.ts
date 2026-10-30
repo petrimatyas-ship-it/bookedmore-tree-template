@@ -219,7 +219,7 @@ export async function putFeedback(slug: string, items: FeedbackItem[]): Promise<
 export type StoredSite = {
   slug: string;
   /** Which template in demo-templates/ renders it (lib/detailing-page.ts). */
-  template: "detailing" | "pressure-washing";
+  template: "detailing" | "pressure-washing" | "landscaping";
   /** Everything about the business, the same shape as demo-templates/detailing/businesses/<slug>.json. */
   data: Record<string, unknown>;
   createdAt: string;

@@ -14,9 +14,11 @@ import { resolveAssets } from "@/scripts/detailing-assets.mjs";
  *   pressure-washing   demo-templates/pressure-washing/template.html (a plain
  *                      local-contractor page; its pictures sit in the same
  *                      data fields, so the same asset resolver serves both)
+ *   landscaping        demo-templates/landscaping/template.html (photo-led and
+ *                      upscale: gold on cream, serif headings; README beside it)
  */
 
-export const TEMPLATES = ["detailing", "pressure-washing"] as const;
+export const TEMPLATES = ["detailing", "pressure-washing", "landscaping"] as const;
 export type TemplateName = (typeof TEMPLATES)[number];
 
 export const isTemplate = (v: unknown): v is TemplateName => typeof v === "string" && (TEMPLATES as readonly string[]).includes(v);
