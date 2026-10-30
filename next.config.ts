@@ -11,8 +11,8 @@ const nextConfig: NextConfig = {
   // Sites the Replymint site maker stores are rendered per request from their
   // template, so the templates ship with those two routes.
   outputFileTracingIncludes: {
-    "/[slug]": ["./demo-templates/detailing/template.html", "./demo-templates/pressure-washing/template.html"],
-    "/api/sites": ["./demo-templates/detailing/**/*", "./demo-templates/pressure-washing/template.html"]
+    "/[slug]": ["./demo-templates/detailing/template.html", "./demo-templates/pressure-washing/template.html", "./demo-templates/landscaping/template.html"],
+    "/api/sites": ["./demo-templates/detailing/**/*", "./demo-templates/pressure-washing/template.html", "./demo-templates/landscaping/template.html"]
   },
   images: {
     // Demo pages show the prospect's own logo, served from wherever their

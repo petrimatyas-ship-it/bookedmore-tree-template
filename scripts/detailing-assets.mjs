@@ -17,7 +17,10 @@ export function resolveAssets(data) {
   const d = structuredClone(data);
   const base = typeof d.assets === "string" && d.assets ? (d.assets.endsWith("/") ? d.assets : d.assets + "/") : `/${d.slug}/`;
   d.asset = { icon: full(base, d.icons?.png ?? "icon.png"), icon96: full(base, d.icons?.small ?? "icon-96.webp") };
-  for (const k of ["heroLogo", "about", "hero"]) if (d.images?.[k]?.file) d.images[k].file = full(base, d.images[k].file);
+  // every named picture (heroLogo, about, hero, and the landscaping page's about2)
+  for (const k of Object.keys(d.images ?? {})) if (d.images[k]?.file) d.images[k].file = full(base, d.images[k].file);
+  for (const s of d.services?.items ?? []) if (s.photo) s.photo = full(base, s.photo);
+  for (const k of ["why", "band"]) if (d[k]?.photo?.file) d[k].photo.file = full(base, d[k].photo.file);
   for (const p of d.results?.photos ?? []) {
     p.before = full(base, p.before);
     p.after = full(base, p.after);
