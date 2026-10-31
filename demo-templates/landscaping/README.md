@@ -25,7 +25,7 @@ resolves every picture field below.
 Data, every value already HTML-escaped:
 
 - `slug`, `name`, `tagline`, `seo { title, description }`, `icons`, `phone { display, tel }`, optional `phone2`, `timezone`
-- optional `style: "direct"`: for trades that should read plain and practical (a tree service): square corners everywhere and a bold sans in place of the serif
+- optional `style: "direct"`: for trades that should read plain and practical (a tree service): square corners everywhere, and a clean contractor type (Urbanist, uppercase letter-spaced buttons and labels; the fonts of Bert Roofing) in place of the serif
 - optional `colors { acc, accD, accL, cream }`: their brand colour in place of the gold (accent, its dark shade, a light tint, the section background), e.g. a tree service's forest green
 - `images.heroLogo` (round, header and footer), `images.hero` (optional `position`), `images.about`, `images.about2`
 - `hero { kicker, h1, lead }`, `stats[{ big, acc, label }]` (four; `acc` is the gold part, may be empty)

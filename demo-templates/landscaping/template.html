@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{#if style}}<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+{{/if}}
 <style>
 /* A calm, upscale landscaping page: warm gold on cream and white, serif headings, photo-led cards, a charcoal footer. */
 :root{--acc:#c4914f;--acc-d:#a87638;--acc-l:#f3e7d6;--cream:#f6f1e9;--ink:#1c1b19;--text:#2b2a27;--soft:#55524c;--muted:#7a766e;--line:#e6dccd;--bg:#fff;--sf:'Noto Serif',Georgia,'Times New Roman',serif}
@@ -352,13 +354,19 @@ footer .ci .ic{width:15px;height:15px}
 .callc p{color:#fff;font-size:.95rem}
 .callc .btn{background:var(--ink);color:#fff}
 
-/* style: "direct" — for trades that should read plain and practical (a tree service): square corners everywhere, a bold sans in place of the serif */
-.direct{--sf:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+/* style: "direct" — for trades that should read plain and practical (a tree service): square corners everywhere,
+   and the type of a clean contractor site (Bert Roofing): Urbanist, uppercase letter-spaced buttons and labels */
+.direct{--sf:Urbanist,Inter,system-ui,sans-serif;font-family:Urbanist,Inter,system-ui,sans-serif}
 .direct *,.direct *::before,.direct *::after{border-radius:0!important}
-.direct h1,.direct h2,.direct h3,.direct .brand .wm,.direct .stats b,.direct .abst b,.direct summary,.direct .rvask b,.direct .alock b,.direct .chat-h b,.direct footer h4{font-family:Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
-.direct h3,.direct summary{font-weight:700;letter-spacing:-.01em}
-.direct .tag{font-style:normal;font-weight:700}
-.direct .hero .kick{font-style:normal;font-weight:700}
+.direct button,.direct input,.direct select,.direct textarea{font-family:inherit}
+.direct h1,.direct h2,.direct h3,.direct .brand .wm,.direct .stats b,.direct .abst b,.direct summary,.direct .rvask b,.direct .alock b,.direct .chat-h b,.direct footer h4,.direct .proc li::before{font-family:Urbanist,Inter,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
+.direct h1{font-weight:800}
+.direct h3,.direct summary{font-weight:700}
+.direct .tag{font-style:normal;font-weight:700;font-size:.78rem;letter-spacing:.14em;border:0;padding:0;margin-bottom:10px;color:var(--acc)}
+.direct .hero .kick{font-style:normal;font-weight:700;font-size:.82rem;letter-spacing:.14em}
+.direct .btn{text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:.86rem}
+.direct nav.main a{font-weight:700;letter-spacing:.06em}
+.direct .brand .wm small,.direct .stats small,.direct .abst small{letter-spacing:.04em}
 .direct footer em{font-style:normal}
 </style>
 </head>
