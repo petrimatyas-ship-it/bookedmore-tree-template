@@ -92,6 +92,8 @@ nav.main a:hover{background:rgba(255,255,255,.16)}
 .hero{position:relative;min-height:600px;display:flex;align-items:center;text-align:center;padding:130px 0 120px}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--hp,50% 50%)}
+.hero-bg picture{display:block;height:100%}
+@media(max-width:700px){.hero-bg img{object-position:var(--hpm,var(--hp,50% 50%))}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,22,18,.55),rgba(20,22,18,.45) 45%,rgba(20,22,18,.7))}
 .hero .wrap{width:100%}
 .hero .kick{display:block;font:italic 500 .92rem/1.3 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--acc) 30%,#fff);margin-bottom:14px}
@@ -428,7 +430,7 @@ footer .ci .ic{width:15px;height:15px}
 
 <main id="top">
 <section class="hero"{{#if images.hero.position}} style="--hp:{{images.hero.position}}"{{/if}}>
-  <div class="hero-bg"><img src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async"></div>
+  <div class="hero-bg"{{#if images.heroMobile.position}} style="--hpm:{{images.heroMobile.position}}"{{/if}}><picture>{{#if images.heroMobile}}<source media="(max-width:700px)" srcset="{{images.heroMobile.file}}" width="{{images.heroMobile.width}}" height="{{images.heroMobile.height}}">{{/if}}<img src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async"></picture></div>
   <div class="wrap">
     <span class="kick">{{hero.kicker}}</span>
     <h1>{{hero.h1}}</h1>
