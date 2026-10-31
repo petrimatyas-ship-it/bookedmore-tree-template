@@ -25,17 +25,18 @@ resolves every picture field below.
 Data, every value already HTML-escaped:
 
 - `slug`, `name`, `tagline`, `seo { title, description }`, `icons`, `phone { display, tel }`, optional `phone2`, `timezone`
+- optional `colors { acc, accD, accL, cream }`: their brand colour in place of the gold (accent, its dark shade, a light tint, the section background), e.g. a tree service's forest green
 - `images.heroLogo` (round, header and footer), `images.hero` (optional `position`), `images.about`, `images.about2`
 - `hero { kicker, h1, lead }`, `stats[{ big, acc, label }]` (four; `acc` is the gold part, may be empty)
 - `services { eyebrow, h2, intro, items[{ value, icon, title, text, photo, photoAlt }] }`: a card with a `photo` shows it; without one, a cream card with the icon (`leaf`, `sprout`, `scissors`, `tree`, `snow`, `drop`, `fence`, …)
 - `steps { eyebrow, h2, intro, items[{ title, text }] }` (four)
 - `about { h2, caption, paras[], stats[{ big, acc, label }], areaLine }`
 - `gallery` (optional) `{ eyebrow, h2, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 5 or 9 fill the grid
-- `reviews { h2, intro, items[{ text, name, date, initial }] }`
+- `reviews { h2, intro, items[{ text, name, date, initial }], ask? }` (`ask`: the review box's question, "Happy with your yard?" when not given)
 - `why { h2, intro, left[2], right[2] ({ icon, title, text }), photo { file, alt, width, height } }`
 - `band { h2, text, photo }`, `faq { intro, items[{ q, a }] }`
 - `area { short, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
-- `quote { h2, intro, services[{ value, label }], serviceNames }` (values match `services.items[].value`)
+- `quote { h2, intro, services[{ value, label }], serviceNames, placeholder? }` (`placeholder`: the form's message box hint) (values match `services.items[].value`)
 - `links { googleReviews, googleWriteReview }` (their listing on Google Maps, by name and place id), `footer { motto, year }`, `chat { greeting, suggestions[{ label, q }] }`
 - `assistant { trade, description, serviceAreas, services, knowledge, intake, example, priceDepends }`
 
