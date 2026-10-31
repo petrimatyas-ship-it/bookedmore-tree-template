@@ -38,7 +38,7 @@ Data, every value already HTML-escaped:
 - `band { h2, text, photo }`, `faq { intro, items[{ q, a }] }`
 - `area { short, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
 - `quote { h2, intro, services[{ value, label }], serviceNames, placeholder? }` (`placeholder`: the form's message box hint)
-- optional `quote.top { h2, intro, photos? }`: the tree-service demo's quote straight after the hero, a promise beside the free quote form (name, phone, email, address, service, description, photos); on phones the form comes first. The chat stays in its bubble. The closing section then keeps map and hours with a call card, and is `#contact`; `quote.h2` and `quote.intro` head it. (values match `services.items[].value`)
+- optional `quote.top { h2, intro?, photos? }`: the tree-service demo's quote straight after the hero, a promise beside the free quote form (name, phone, email, address, service, description, photos); on phones the form comes first. The chat stays in its bubble. The closing section then keeps map and hours with a call card, and is `#contact`; `quote.h2` and `quote.intro` head it. (values match `services.items[].value`)
 - `links { googleReviews, googleWriteReview }` (their listing on Google Maps, by name and place id), `footer { motto, year }`, `chat { greeting, suggestions[{ label, q }] }`
 - `assistant { trade, description, serviceAreas, services, knowledge, intake, example, priceDepends }`
 
