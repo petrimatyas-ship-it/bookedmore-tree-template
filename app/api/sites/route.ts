@@ -9,7 +9,7 @@ import { siteMakerKeyOk } from "@/lib/site-maker-key";
  * Sites the Replymint site maker builds (loopfinity, lib/site-maker.ts).
  *
  *   POST   { slug, template, data } -> { url }   stores or replaces it;
- *          template is "detailing", "pressure-washing" or "landscaping" (lib/detailing-page.ts)
+ *          template is "detailing", "pressure-washing", "landscaping" or "contractor" (lib/detailing-page.ts)
  *   GET    ?slug=                               -> { site, visits }
  *   DELETE ?slug=                               -> { ok }
  *
