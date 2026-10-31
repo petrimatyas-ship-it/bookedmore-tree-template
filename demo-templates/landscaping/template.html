@@ -323,18 +323,14 @@ footer .ci .ic{width:15px;height:15px}
 .alock p{color:var(--soft);font-size:.92rem;margin:6px 0 14px}
 .alock .btn{width:100%}
 
-/* the tree-service quote panel after the hero (quote.top): a promise beside a chat / free quote panel */
+/* the tree-service quote form after the hero (quote.top): a promise beside the form; on phones the form comes first */
 .qtop .qt{display:grid;gap:26px;align-items:center}
 @media(min-width:960px){.qtop .qt{grid-template-columns:.85fr 1.15fr;gap:44px}}
+@media(max-width:959px){.qtop .qp{order:-1}}
 .qt-l h2{margin-top:2px}
 .qt-l p{color:var(--soft);margin:12px 0 20px;max-width:460px}
-.qp{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -24px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column;min-height:520px}
-.qp-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px;background:#f1f1f1}
-.qp-tabs button{border:0;background:none;border-radius:10px;padding:11px 10px;font-weight:700;font-size:.92rem;cursor:pointer;color:var(--soft)}
-.qp-tabs button[aria-selected="true"]{background:var(--acc-d);color:#fff}
-.qp-pane{flex:1;display:flex;flex-direction:column;padding:16px;min-height:0}
-.qp-pane[hidden]{display:none}
-#qp-chat .msgs{min-height:280px;max-height:340px}
+.qp{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -24px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column}
+.qp-pane{flex:1;display:flex;flex-direction:column;padding:18px;min-height:0}
 .qp h3{font:700 1.15rem/1.2 Inter,sans-serif;color:var(--ink)}
 .qp-sub{color:var(--muted);font-size:.9rem;margin:2px 0 12px}
 .qf{display:grid;gap:12px}
@@ -455,9 +451,7 @@ footer .ci .ic{width:15px;height:15px}
       <a class="btn btn-acc" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
     </div>
     <div class="qp" id="qpanel">
-      <div class="qp-tabs" role="tablist"><button type="button" role="tab" id="qt-chat" aria-selected="true" onclick="qtab('chat')">💬 Ask a question</button><button type="button" role="tab" id="qt-form" aria-selected="false" onclick="qtab('form')">📋 Free quote</button></div>
-      <div class="qp-pane" id="qp-chat"></div>
-      <div class="qp-pane" id="qp-form" hidden>
+      <div class="qp-pane" id="qp-form">
         <h3>Your free quote request</h3>
         <p class="qp-sub">Takes about 30 seconds.</p>
         <form onsubmit="quote(event,'ok1')" class="qf">
@@ -685,14 +679,9 @@ const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function cw(on){const w=document.getElementById('cw'),b=document.getElementById('cwb');if(on===undefined)on=w.hidden;w.hidden=!on;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');if(on){const i=document.getElementById('chatin');if(i&&i.offsetParent)i.focus({preventScroll:true})}}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!document.getElementById('cw').hidden)cw(false);closeNav()}});
 /* "Get a free estimate" on a service ticks that service in the form */
-function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v;qtab('form')}
-/* the quote panel after the hero: its tabs, and the photos picked for the quote */
-function qtab(t){const p=document.getElementById('qpanel');if(!p)return;['chat','form'].forEach(k=>{document.getElementById('qp-'+k).hidden=k!==t;document.getElementById('qt-'+k).setAttribute('aria-selected',k===t?'true':'false')})}
+function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v}
+/* the photos picked for the quote after the hero */
 function dropped(i){const n=document.getElementById('dropn');if(n)n.textContent=i.files.length?i.files.length+' photo'+(i.files.length>1?'s':'')+' added':'Optional, but it speeds up your quote'}
-/* with the panel, the assistant lives in it: the bubble takes you there */
-(function(){const pane=document.getElementById('qp-chat'),w=document.getElementById('cw');if(!pane||!w)return;
-  while(w.firstChild)pane.appendChild(w.firstChild);
-  window.cw=function(on){if(on===false)return;qtab('chat');const p=document.getElementById('qpanel');try{p.scrollIntoView({block:'center',behavior:reduceMotion?'auto':'smooth'})}catch(_){}const i=document.getElementById('chatin');if(i)setTimeout(()=>i.focus({preventScroll:true}),400)}})();
 
 const SVC={{json quote.serviceNames}};
 function quote(e,id){
