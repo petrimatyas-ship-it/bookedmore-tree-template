@@ -25,6 +25,7 @@ resolves every picture field below.
 Data, every value already HTML-escaped:
 
 - `slug`, `name`, `tagline`, `seo { title, description }`, `icons`, `phone { display, tel }`, optional `phone2`, `timezone`
+- optional `style: "direct"`: for trades that should read plain and practical (a tree service): square corners everywhere and a bold sans in place of the serif
 - optional `colors { acc, accD, accL, cream }`: their brand colour in place of the gold (accent, its dark shade, a light tint, the section background), e.g. a tree service's forest green
 - `images.heroLogo` (round, header and footer), `images.hero` (optional `position`), `images.about`, `images.about2`
 - `hero { kicker, h1, lead }`, `stats[{ big, acc, label }]` (four; `acc` is the gold part, may be empty)
@@ -36,7 +37,8 @@ Data, every value already HTML-escaped:
 - `why { h2, intro, left[2], right[2] ({ icon, title, text }), photo { file, alt, width, height } }`
 - `band { h2, text, photo }`, `faq { intro, items[{ q, a }] }`
 - `area { short, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
-- `quote { h2, intro, services[{ value, label }], serviceNames, placeholder? }` (`placeholder`: the form's message box hint) (values match `services.items[].value`)
+- `quote { h2, intro, services[{ value, label }], serviceNames, placeholder? }` (`placeholder`: the form's message box hint)
+- optional `quote.top { h2, intro, photos? }`: the tree-service demo's quote straight after the hero, a promise beside a panel with two tabs, Ask a question (the assistant moves into it; the chat bubble then jumps to it) and Free quote (name, phone, email, address, service, description, photos). The closing section then keeps map and hours with a call card, and is `#contact`; `quote.h2` and `quote.intro` head it. (values match `services.items[].value`)
 - `links { googleReviews, googleWriteReview }` (their listing on Google Maps, by name and place id), `footer { motto, year }`, `chat { greeting, suggestions[{ label, q }] }`
 - `assistant { trade, description, serviceAreas, services, knowledge, intake, example, priceDepends }`
 

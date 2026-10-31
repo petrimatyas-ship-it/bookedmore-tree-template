@@ -243,9 +243,9 @@ details p{color:var(--soft);padding:0 6px 18px}
 .fpanel .row{display:grid;gap:10px}
 @media(min-width:560px){.fpanel .row{grid-template-columns:1fr 1fr}}
 .fpanel form{display:grid;gap:10px;margin-top:14px}
-input,select,textarea{width:100%;min-height:46px;border:1px solid #e1d3bf;border-radius:10px;padding:10px 12px;background:#fff;font-size:.97rem;color:var(--text)}
+input,select,textarea{width:100%;min-height:46px;border:1px solid color-mix(in srgb,var(--acc) 22%,#d9d6d0);border-radius:10px;padding:10px 12px;background:#fff;font-size:.97rem;color:var(--text)}
 textarea{min-height:110px;resize:vertical}
-select{appearance:none;-webkit-appearance:none;padding-right:38px;background:#fff no-repeat right 12px center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a87638' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+select{appearance:none;-webkit-appearance:none;padding-right:38px;background:#fff no-repeat right 12px center/14px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a766e' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(0,0,0,.12)}
 .fpanel .btn{width:100%;background:var(--ink);color:#fff}
 .fpanel .btn:hover{background:#000}
@@ -318,9 +318,51 @@ footer .ci .ic{width:15px;height:15px}
 .alock b{display:block;font:500 1.15rem/1.15 var(--sf);color:var(--ink)}
 .alock p{color:var(--soft);font-size:.92rem;margin:6px 0 14px}
 .alock .btn{width:100%}
+
+/* the tree-service quote panel after the hero (quote.top): a promise beside a chat / free quote panel */
+.qtop .qt{display:grid;gap:26px;align-items:center}
+@media(min-width:960px){.qtop .qt{grid-template-columns:.85fr 1.15fr;gap:44px}}
+.qt-l h2{margin-top:2px}
+.qt-l p{color:var(--soft);margin:12px 0 20px;max-width:460px}
+.qp{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -24px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column;min-height:520px}
+.qp-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px;background:#f1f1f1}
+.qp-tabs button{border:0;background:none;border-radius:10px;padding:11px 10px;font-weight:700;font-size:.92rem;cursor:pointer;color:var(--soft)}
+.qp-tabs button[aria-selected="true"]{background:var(--acc-d);color:#fff}
+.qp-pane{flex:1;display:flex;flex-direction:column;padding:16px;min-height:0}
+.qp-pane[hidden]{display:none}
+#qp-chat .msgs{min-height:280px;max-height:340px}
+.qp h3{font:700 1.15rem/1.2 Inter,sans-serif;color:var(--ink)}
+.qp-sub{color:var(--muted);font-size:.9rem;margin:2px 0 12px}
+.qf{display:grid;gap:12px}
+.qf .row{display:grid;gap:12px}
+@media(min-width:560px){.qf .row{grid-template-columns:1fr 1fr}}
+.qf label{display:block;font-weight:600;font-size:.88rem;color:var(--ink)}
+.qf label input,.qf label select,.qf label textarea{margin-top:6px}
+.qf label i{font-style:normal;color:#c2410c}
+.qf .drop{display:grid;gap:2px;place-items:center;text-align:center;border:1.5px dashed color-mix(in srgb,var(--acc) 45%,#fff);border-radius:12px;padding:14px;cursor:pointer;background:var(--cream);font-weight:500}
+.qf .drop input{position:absolute;width:1px;height:1px;opacity:0}
+.qf .drop span{color:var(--muted);font-size:.84rem}
+.qf .btn{width:100%}
+.qp-fine{text-align:center;color:var(--muted);font-size:.84rem}
+.qp-fine a{color:var(--acc-d);font-weight:600;text-decoration:underline}
+.qp .ok{border:1px solid var(--line)}
+.callc{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.callc .cl{display:flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:10px;padding:14px 16px;font-weight:700;font-size:1.05rem}
+.callc .cl .ic{color:var(--acc)}
+.callc p{color:#fff;font-size:.95rem}
+.callc .btn{background:var(--ink);color:#fff}
+
+/* style: "direct" — for trades that should read plain and practical (a tree service): square corners everywhere, a bold sans in place of the serif */
+.direct{--sf:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+.direct *,.direct *::before,.direct *::after{border-radius:0!important}
+.direct h1,.direct h2,.direct h3,.direct .brand .wm,.direct .stats b,.direct .abst b,.direct summary,.direct .rvask b,.direct .alock b,.direct .chat-h b,.direct footer h4{font-family:Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
+.direct h3,.direct summary{font-weight:700;letter-spacing:-.01em}
+.direct .tag{font-style:normal;font-weight:700}
+.direct .hero .kick{font-style:normal;font-weight:700}
+.direct footer em{font-style:normal}
 </style>
 </head>
-<body{{#if colors}} style="--acc:{{colors.acc}};--acc-d:{{colors.accD}};--acc-l:{{colors.accL}};--cream:{{colors.cream}}"{{/if}}>
+<body{{#if style}} class="{{style}}"{{/if}}{{#if colors}} style="--acc:{{colors.acc}};--acc-d:{{colors.accD}};--acc-l:{{colors.accL}};--cream:{{colors.cream}}"{{/if}}>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
 <symbol id="i-text" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
@@ -394,6 +436,36 @@ footer .ci .ic{width:15px;height:15px}
 {{#each stats}}  <div role="listitem"><b>{{big}}{{#if acc}}<i>{{acc}}</i>{{/if}}</b><small>{{label}}</small></div>
 {{/each}}</div></div>
 
+{{#if quote.top}}<section class="sec qtop" id="quote">
+  <div class="wrap qt">
+    <div class="qt-l">
+      <span class="tag">Free estimate</span>
+      <h2>{{quote.top.h2}}</h2>
+      <p>{{quote.top.intro}}</p>
+      <a class="btn btn-acc" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
+    </div>
+    <div class="qp" id="qpanel">
+      <div class="qp-tabs" role="tablist"><button type="button" role="tab" id="qt-chat" aria-selected="true" onclick="qtab('chat')">💬 Ask a question</button><button type="button" role="tab" id="qt-form" aria-selected="false" onclick="qtab('form')">📋 Free quote</button></div>
+      <div class="qp-pane" id="qp-chat"></div>
+      <div class="qp-pane" id="qp-form" hidden>
+        <h3>Your free quote request</h3>
+        <p class="qp-sub">Takes about 30 seconds.</p>
+        <form onsubmit="quote(event,'ok1')" class="qf">
+          <div class="row"><label>Your name <i>*</i><input name="name" autocomplete="name" placeholder="John Smith" required></label><label>Phone <i>*</i><input name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567" required></label></div>
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="your@email.com"></label>
+          <label>Property address or area <i>*</i><input name="address" autocomplete="street-address" placeholder="Street, neighborhood, or ZIP" required></label>
+          <label>Service needed <i>*</i><select name="service" id="q1s" required><option value="" disabled selected>Choose a service...</option>{{#each quote.services}}<option value="{{value}}">{{label}}</option>{{/each}}<option value="unsure">Not sure yet</option></select></label>
+          <label>Description<textarea name="notes" rows="3" placeholder="{{#if quote.placeholder}}{{quote.placeholder}}{{else}}Tell us about the job: what, how big, how urgent{{/if}}"></textarea></label>
+          <label class="drop"><input type="file" accept="image/*" multiple onchange="dropped(this)"><b>📷 {{#if quote.top.photos}}{{quote.top.photos}}{{else}}Photos of the job{{/if}}</b><span id="dropn">Optional, but it speeds up your quote</span></label>
+          <button type="submit" class="btn btn-acc">Get my free quote</button>
+          <p class="qp-fine">Free estimate · No pressure · Or call <a href="tel:{{phone.tel}}">{{phone.display}}</a></p>
+        </form>
+        <div class="ok" id="ok1" role="status"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{{/if}}
 <section class="sec" id="services">
   <div class="wrap">
     <div class="svc-top">
@@ -496,7 +568,7 @@ footer .ci .ic{width:15px;height:15px}
   </div>
 </section>
 
-<section class="sec cream" id="quote">
+<section class="sec cream" id="{{#if quote.top}}contact{{else}}quote{{/if}}">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">Contact us</span><h2>{{quote.h2}}</h2><p>{{quote.intro}}</p></div>
     <div class="contact">
@@ -510,7 +582,14 @@ footer .ci .ic{width:15px;height:15px}
 {{/each}}          </ul>
         </div>
       </div>
-      <div class="fpanel" id="qcard">
+{{#if quote.top}}      <div class="fpanel callc">
+        <h3>Prefer to talk?</h3>
+        <a class="cl" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
+        <a class="cl" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text {{phone.display}}</a>
+        <p>Or send the free quote form at the top of the page, with photos of the job.</p>
+        <a class="btn" href="#quote">Get my free quote</a>
+      </div>
+{{else}}      <div class="fpanel" id="qcard">
         <h3>Get started!</h3>
         <form onsubmit="quote(event,'ok2')">
           <input name="name" aria-label="Name" autocomplete="name" placeholder="Name" required>
@@ -523,7 +602,7 @@ footer .ci .ic{width:15px;height:15px}
         </form>
         <div class="ok" id="ok2" role="status"></div>
       </div>
-    </div>
+{{/if}}    </div>
   </div>
 </section>
 </main>
@@ -596,7 +675,14 @@ const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function cw(on){const w=document.getElementById('cw'),b=document.getElementById('cwb');if(on===undefined)on=w.hidden;w.hidden=!on;b.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');if(on){const i=document.getElementById('chatin');if(i&&i.offsetParent)i.focus({preventScroll:true})}}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!document.getElementById('cw').hidden)cw(false);closeNav()}});
 /* "Get a free estimate" on a service ticks that service in the form */
-function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v}
+function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v;qtab('form')}
+/* the quote panel after the hero: its tabs, and the photos picked for the quote */
+function qtab(t){const p=document.getElementById('qpanel');if(!p)return;['chat','form'].forEach(k=>{document.getElementById('qp-'+k).hidden=k!==t;document.getElementById('qt-'+k).setAttribute('aria-selected',k===t?'true':'false')})}
+function dropped(i){const n=document.getElementById('dropn');if(n)n.textContent=i.files.length?i.files.length+' photo'+(i.files.length>1?'s':'')+' added':'Optional, but it speeds up your quote'}
+/* with the panel, the assistant lives in it: the bubble takes you there */
+(function(){const pane=document.getElementById('qp-chat'),w=document.getElementById('cw');if(!pane||!w)return;
+  while(w.firstChild)pane.appendChild(w.firstChild);
+  window.cw=function(on){if(on===false)return;qtab('chat');const p=document.getElementById('qpanel');try{p.scrollIntoView({block:'center',behavior:reduceMotion?'auto':'smooth'})}catch(_){}const i=document.getElementById('chatin');if(i)setTimeout(()=>i.focus({preventScroll:true}),400)}})();
 
 const SVC={{json quote.serviceNames}};
 function quote(e,id){
