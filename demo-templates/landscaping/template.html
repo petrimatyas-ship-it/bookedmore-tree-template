@@ -327,6 +327,7 @@ footer .ci .ic{width:15px;height:15px}
 .qtop .qt{display:grid;gap:26px;align-items:center}
 @media(min-width:960px){.qtop .qt{grid-template-columns:.85fr 1.15fr;gap:44px}}
 @media(max-width:959px){.qtop .qp{order:-1}}
+.qtop .qt.solo{display:block;max-width:760px}
 .qt-l h2{margin-top:2px}
 .qt-l h2+.btn{margin-top:20px}
 .qt-l p{color:var(--soft);margin:12px 0 20px;max-width:460px}
@@ -444,14 +445,14 @@ footer .ci .ic{width:15px;height:15px}
 {{/each}}</div></div>
 
 {{#if quote.top}}<section class="sec qtop" id="quote">
-  <div class="wrap qt">
-    <div class="qt-l">
+  <div class="wrap qt{{#if quote.top.h2}}{{else}} solo{{/if}}">
+{{#if quote.top.h2}}    <div class="qt-l">
       <span class="tag">Free estimate</span>
       <h2>{{quote.top.h2}}</h2>
       {{#if quote.top.intro}}<p>{{quote.top.intro}}</p>{{/if}}
       <a class="btn btn-acc" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
     </div>
-    <div class="qp" id="qpanel">
+{{/if}}    <div class="qp" id="qpanel">
       <div class="qp-pane" id="qp-form">
         <h3>Your free quote request</h3>
         <p class="qp-sub">Takes about 30 seconds.</p>
