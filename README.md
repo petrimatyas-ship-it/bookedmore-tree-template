@@ -38,3 +38,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Deploy
 
 Vercel project `bookedmore-demo` (demo.morebookednow.com) is connected to this repo and deploys every merge into `main`.
+
+## Sites built by Claude
+
+Replymint hands interested prospects to a Claude Code scheduled task, which
+builds their site with `.claude/skills/build-demo-site/SKILL.md` and the
+tools in `scripts/site-kit/`, and publishes it through `/api/sites`. Their
+pictures live in Replymint's file store, never in this repository.

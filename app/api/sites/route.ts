@@ -11,6 +11,8 @@ import { siteMakerKeyOk } from "@/lib/site-maker-key";
  *   POST   { slug, template, data } -> { url }   stores or replaces it;
  *          template is "detailing", "pressure-washing", "landscaping" or "contractor" (lib/detailing-page.ts)
  *   GET    ?slug=                               -> { site, visits }
+ *   GET    ?slug=&data=1                        -> the same, with the stored template and data
+ *                                                  (a finished site to copy from)
  *   DELETE ?slug=                               -> { ok }
  *
  * Every call needs `Authorization: Bearer <SITE_MAKER_KEY>`. A stored site is
@@ -74,7 +76,15 @@ export async function GET(request: Request) {
     visits.set(e.visit ?? e.at, { at: e.at, where: e.where, device: e.device });
   }
   return NextResponse.json(
-    { site: { slug, createdAt: site.createdAt, updatedAt: site.updatedAt }, visits: [...visits.values()] },
+    {
+      site: {
+        slug,
+        createdAt: site.createdAt,
+        updatedAt: site.updatedAt,
+        ...(new URL(request.url).searchParams.get("data") === "1" ? { template: site.template ?? "detailing", data: site.data } : {}),
+      },
+      visits: [...visits.values()],
+    },
     { headers: { "Cache-Control": "no-store" } }
   );
 }
