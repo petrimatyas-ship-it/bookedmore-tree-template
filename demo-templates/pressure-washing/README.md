@@ -21,12 +21,12 @@ detailing data (`images.heroLogo`, `images.hero`, `images.about`,
 Data, every value already HTML-escaped:
 
 - `slug`, `name`, `tagline`, `seo { title, description }`, `icons`, `phone { display, tel }`, `timezone`
-- `images.heroLogo` (their logo, header and footer), `images.hero` (behind the hero text; optional `position`), `images.about` (intro photo)
+- `images.heroLogo` (their logo, header and footer), `images.hero` (behind the hero text; optional `position`), `images.heroMobile` (optional: a different photo for the hero on phones, up to 700px wide, usually an upright one; optional `position`), `images.about` (intro photo)
 - `rating { score, count }` (optional), `hero { kicker, h1a, h1b, lead }`, `quick { title }`
 - `intro { eyebrow, h2a, h2b, paras[], checks[], review? { text, name } }`
 - `services { eyebrow, h2a, h2b, intro, items[{ value, icon, title, text, points[] }] }`; icons: `drop`, `roof`, `house`, `gutter`, `target`, `fence`, `truck`, `window`, or any other in the sprite
 - `band { title, text }`, `steps { eyebrow, h2a, h2b, items[{ title, text }] }`
-- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 3, 5 or 9 photos fill the grid
+- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 3, 5 or 9 photos fill the grid; `first: true` puts it before the services instead of after the steps
 - `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }] }`
 - `area { eyebrow, h2a, h2b, text, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
 - `faq { eyebrow, h2a, h2b, items[{ q, a }] }`

@@ -52,7 +52,8 @@ npx tsx scripts/site-kit/gather.mts $W      # LOOPFINITY_DIR if loopfinity is no
 It prints the Google listing (category, rating, review count, place id,
 address, phone, hours) and what it found on their site, and saves
 `gathered.json` (listing, up to 10 reviews, site text, links), every photo
-as `photos/g01.jpg` (Google) and `photos/s01.jpg` (their site), their
+as `photos/g01.jpg` (Google), `photos/s01.jpg` (their site) and
+`photos/r01.jpg` (customers' photos on their Google reviews), their
 `logo.jpg` and `icon.jpg`, and contact sheets `sheet-1.jpg`… Read
 `gathered.json`'s `siteText` and the reviews properly: they are the only
 source of facts.
@@ -118,9 +119,13 @@ without a template change, say so in the warnings.
   leave out logos, social icons, screenshots and text graphics from the
   photo spots. When unsure whether a photo is theirs, it isn't.
 - **Hero**: their best wide photo of the work or the crew, sharp at
-  full width (at least ~1200px wide), behind the text. On `landscaping`,
-  when their best shot is upright (a climber, a crane), use it as
-  `images.heroMobile` (phones) and a wide one as `images.hero`.
+  full width (at least ~1200px wide), behind the text. On `landscaping`
+  and `pressure-washing`, when a good upright shot exists (a climber, a
+  crane, a long clean driveway), use it as `images.heroMobile` (phones)
+  and a wide one as `images.hero`.
+- **Customers' review photos count as theirs**: Google reviews often carry
+  the best before/after shots of their jobs (the `r` photos). Use them like
+  listing photos.
 - **"Proud of our work"** gallery: their best job photos, best first.
   Fill the grid exactly: detailing 13, 9, 5 or 3; pressure-washing 9, 5 or
   3; landscaping 9 or 5. Fewer good photos than the smallest size: leave

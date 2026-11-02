@@ -1,8 +1,8 @@
 // npx tsx scripts/site-kit/gather.mts <work-dir>
 // Reads <work-dir>/business.json (the business block of the request) and gathers what is public about it:
 // the Google listing, reviews and photos (Scrapingdog, DOG_API_KEY) and up to seven pages of their own site,
-// with loopfinity's lib/site-gather.ts. Writes gathered.json, saves every photo as photos/g01.jpg (Google)
-// and photos/s01.jpg (their site), their logo and icon, and numbered contact sheets sheet-1.jpg... to look at.
+// with loopfinity's lib/site-gather.ts. Writes gathered.json, saves every photo as photos/g01.jpg (Google),
+// photos/s01.jpg (their site) and photos/r01.jpg (customers' photos on their reviews), their logo and icon, and numbered contact sheets sheet-1.jpg... to look at.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -41,12 +41,19 @@ async function save(name: string, url: string, max = 1600) {
 const two = (i: number) => String(i + 1).padStart(2, "0");
 for (const [i, u] of (g.photos as string[]).entries()) await save("g" + two(i), u);
 for (const [i, u] of (g.sitePhotos as string[]).entries()) await save("s" + two(i), u);
+// Customers' photos on their reviews: often the best before/after shots of real jobs. Up to 16.
+const reviewPics = (g.reviews as { images?: (string | { image?: string })[] }[])
+  .flatMap((r) => (r.images ?? []).map((im) => (typeof im === "string" ? im : (im.image ?? ""))))
+  .filter((u) => /^https:\/\//.test(u))
+  .map((u) => u.replace(/=[^/=]*$/, "") + "=w1600-h1600-k-no")
+  .slice(0, 16);
+for (const [i, u] of reviewPics.entries()) await save("r" + two(i), u);
 await save("logo", g.logo, 800);
 await save("icon", g.icon || g.place?.thumbnail || "", 512);
 writeFileSync(path.join(dir, "photos.json"), JSON.stringify(saved, null, 1));
 
 // Contact sheets: 12 photos each, labelled, so they can be looked at a sheet at a time.
-const pics = saved.filter((s) => /^[gs]\d/.test(s.name));
+const pics = saved.filter((s) => /^[gsr]\d/.test(s.name));
 for (let s = 0; s * 12 < pics.length; s++) {
   const page = pics.slice(s * 12, s * 12 + 12);
   const W = 1200, cw = 300, ch = 260, rows = Math.ceil(page.length / 4);
@@ -64,7 +71,7 @@ const p = g.place;
 console.log(JSON.stringify({
   google: p ? { title: p.title, category: p.type, types: p.types, rating: p.rating, reviews: p.reviews, place_id: p.place_id, address: p.address, phone: p.phone, hours: p.operating_hours } : null,
   reviews_read: g.reviews.length,
-  photos: { google: g.photos.length, site: g.sitePhotos.length, saved: saved.length, sheets: Math.ceil(pics.length / 12) },
+  photos: { google: g.photos.length, site: g.sitePhotos.length, reviews: reviewPics.length, saved: saved.length, sheets: Math.ceil(pics.length / 12) },
   site_pages: g.pages,
   links: g.links,
   warnings: g.warnings,
