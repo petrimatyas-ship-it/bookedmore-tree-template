@@ -42,6 +42,15 @@ Data, every value already HTML-escaped:
 - `links { googleReviews, googleWriteReview }` (their listing on Google Maps, by name and place id), `footer { motto, year }`, `chat { greeting, suggestions[{ label, q }] }`
 - `assistant { trade, description, serviceAreas, services, knowledge, intake, example, priceDepends }`
 
+Optional, a whole site instead of one page (`scripts/site-pages.mjs`):
+
+- `pages: true`: the menu, the footer and each card's Learn more open real pages instead of the locked previews: `/<slug>/about`, `/services`, `/services/<value>` (one per service), `/gallery`, `/reviews`, `/service-areas`, `/faq` and `/contact`, each with a photo heading and breadcrumb, the sections that belong there, and the quote form on the contact and service pages. `app/[slug]/[...rest]/route.ts` serves them; `POST /api/sites` renders every one before storing.
+- `services.items[].page { lead?, h2?, paras[], points[], photos[{ file, alt, caption, width, height }], photo?, hero? }`: the service's own page (without it, the card's text)
+- `gallery.more[]`: more work photos, on the gallery page only
+- `pageHeads.<about|services|gallery|reviews|service-areas|faq|contact> { title, lead, photo, crumb? }`: each page's heading
+- `area { h2?, text?, groups[{ name, text?, towns[] }] }`: the service areas page (else `area.cities`)
+- `phone2 { display, tel }`: a second number, in the footer and the call card
+
 Their own photos only, never stock.
 
 First site: Coreas Landscaping Services (`/coreas-landscaping-services`).

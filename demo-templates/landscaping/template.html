@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{seo.title}}</title>
+<title>{{#if view.page}}{{view.page.title}} | {{name}}{{else}}{{seo.title}}{{/if}}</title>
 <meta name="description" content="{{seo.description}}">
 <meta name="theme-color" content="#1c1b19">
 <meta name="robots" content="noindex, nofollow">
@@ -354,6 +354,35 @@ footer .ci .ic{width:15px;height:15px}
 .callc p{color:#fff;font-size:.95rem}
 .callc .btn{background:var(--ink);color:#fff}
 
+/* a full site's other pages (scripts/site-pages.mjs) */
+.phero{min-height:380px;padding:120px 0 70px}
+.hwrap + .sec,.hwrap + .svd{padding-top:56px!important}
+.crumb{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;font-size:.86rem;color:#e8efe6;margin-bottom:12px}
+.crumb a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.crumb b{font-weight:600}
+.svcs.grid{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));overflow:visible}
+.svd-g{display:grid;gap:28px;align-items:start}
+@media(min-width:900px){.svd-g{grid-template-columns:1.05fr .95fr;gap:44px}}
+.svd-t p{color:var(--soft);margin-top:12px}
+.svd-t .btns{margin-top:22px}
+.svd-p img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
+.pts{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px}
+.pts li{display:flex;gap:10px;align-items:flex-start;font-weight:600;color:var(--ink)}
+.pts .ic{width:18px;height:18px;color:var(--acc);flex:none;margin-top:3px}
+.sgal{display:grid;gap:12px;margin-top:26px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.sgal{grid-template-columns:repeat(4,1fr)}}
+.sgal .gi:first-child{grid-column:auto;grid-row:auto}
+.gal.all{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.gal.all .gi:first-child{grid-column:auto;grid-row:auto}
+.rvs.all{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));overflow:visible}
+.ags{display:grid;gap:16px;margin-top:26px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.ag{background:var(--cream);border-radius:14px;padding:20px}
+.ag h3{font-size:1.25rem}
+.ag p{color:var(--soft);font-size:.92rem;margin-top:4px}
+.ag ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+.ag li{display:flex;gap:8px;align-items:center;font-weight:600;color:var(--ink)}
+.ag .ic{width:15px;height:15px;color:var(--acc)}
+
 /* style: "direct" — for trades that should read plain and blunt (a tree service): square corners everywhere,
    heavy condensed capitals for headings, buttons, labels and menu (Barlow Condensed), and a firm body (Barlow) */
 .direct{--sf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-family:Barlow,Inter,system-ui,sans-serif;font-weight:500}
@@ -419,39 +448,66 @@ footer .ci .ic{width:15px;height:15px}
 <div class="hwrap">
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+    <a class="brand" href="{{#if view.page}}{{pages.home}}{{else}}#top{{/if}}" aria-label="{{name}}{{#if view.page}}, home{{else}}, back to top{{/if}}"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
     <nav class="main" aria-label="Main">
-      <a href="#" data-lock="About">About us</a><a href="#" data-lock="Services">Services</a><a href="#" data-lock="Our Work">Our works</a><a href="#" data-lock="FAQ">FAQ</a><a href="#" data-lock="Contact">Contact us</a>
+      <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us</a>
     </nav>
     <div class="top-r">
-      <a class="btn btn-acc" href="#quote">Free estimate</a>
+      <a class="btn btn-acc" href="{{view.q}}">Free estimate</a>
       <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav" onclick="toggleNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
     </div>
   </div>
   <nav id="mnav" aria-label="Menu">
-    <a href="#" data-lock="About">About us<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Services">Services<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Our Work">Our works<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="FAQ">FAQ<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Contact">Contact us<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+    <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
   </nav>
 </header>
 
 <main id="top">
-<section class="hero"{{#if images.hero.position}} style="--hp:{{images.hero.position}}"{{/if}}>
+{{#if view.home}}<section class="hero"{{#if images.hero.position}} style="--hp:{{images.hero.position}}"{{/if}}>
   <div class="hero-bg"{{#if images.heroMobile.position}} style="--hpm:{{images.heroMobile.position}}"{{/if}}><picture>{{#if images.heroMobile}}<source media="(max-width:700px)" srcset="{{images.heroMobile.file}}" width="{{images.heroMobile.width}}" height="{{images.heroMobile.height}}">{{/if}}<img src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high" decoding="async"></picture></div>
   <div class="wrap">
     <span class="kick">{{hero.kicker}}</span>
     <h1>{{hero.h1}}</h1>
     <p class="lead">{{hero.lead}}</p>
     <div class="btns">
-      <a class="btn btn-acc" href="#quote">Get a free estimate</a>
+      <a class="btn btn-acc" href="{{view.q}}">Get a free estimate</a>
       <a class="btn btn-ghost" href="tel:{{phone.tel}}">Call now</a>
     </div>
   </div>
-</section>
+</section>{{else}}<section class="hero phero" style="--hp:50% 50%">
+  <div class="hero-bg"><img src="{{view.page.photo.file}}" alt="{{view.page.photo.alt}}" width="{{view.page.photo.width}}" height="{{view.page.photo.height}}" fetchpriority="high" decoding="async"></div>
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="{{pages.home}}">Home</a>{{#if view.parent}}<span>/</span><a href="{{view.parent.href}}">{{view.parent.title}}</a>{{/if}}<span>/</span><b>{{view.page.crumb}}</b></nav>
+    <h1>{{view.page.title}}</h1>
+    {{#if view.page.lead}}<p class="lead">{{view.page.lead}}</p>{{/if}}
+    <div class="btns">
+      <a class="btn btn-acc" href="{{view.q}}">Get a free estimate</a>
+      <a class="btn btn-ghost" href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+    </div>
+  </div>
+</section>{{/if}}
 </div>
-<div class="wrap"><div class="stats" role="list">
+{{#if view.home}}<div class="wrap"><div class="stats" role="list">
 {{#each stats}}  <div role="listitem"><b>{{big}}{{#if acc}}<i>{{acc}}</i>{{/if}}</b><small>{{label}}</small></div>
-{{/each}}</div></div>
+{{/each}}</div></div>{{/if}}
 
-{{#if quote.top}}<section class="sec qtop" id="quote">
+{{#if view.service}}<section class="sec svd" id="service">
+  <div class="wrap svd-g">
+    <div class="svd-t">
+      <span class="tag">Our services</span>
+      <h2>{{view.service.h2}}</h2>
+{{#each view.service.paras}}      <p>{{this}}</p>
+{{/each}}{{#if view.service.points}}      <ul class="pts">{{#each view.service.points}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
+{{/if}}      <div class="btns"><a class="btn btn-acc" href="#quote" onclick="pick('{{view.service.value}}')">Free quote for {{view.service.title}}</a><a class="btn btn-line" href="tel:{{phone.tel}}">Call {{phone.display}}</a></div>
+    </div>
+{{#if view.service.photo}}    <div class="svd-p"><img src="{{view.service.photo.file}}" alt="{{view.service.photo.alt}}" width="{{view.service.photo.width}}" height="{{view.service.photo.height}}" decoding="async"></div>
+{{/if}}  </div>
+{{#if view.service.photos}}  <div class="wrap"><div class="sgal">
+{{#each view.service.photos}}    <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}  </div></div>
+{{/if}}</section>
+{{/if}}
+{{#if view.qtop}}<section class="sec qtop" id="quote">
   <div class="wrap qt{{#if quote.top.h2}}{{else}} solo{{/if}}">
 {{#if quote.top.h2}}    <div class="qt-l">
       <span class="tag">Free estimate</span>
@@ -479,40 +535,40 @@ footer .ci .ic{width:15px;height:15px}
   </div>
 </section>
 {{/if}}
-<section class="sec" id="services">
+{{#if view.services}}<section class="sec" id="services">
   <div class="wrap">
     <div class="svc-top">
-      <div class="sh"><span class="tag">{{services.eyebrow}}</span><h2>{{services.h2}}</h2><p>{{services.intro}}</p></div>
-      <a class="btn btn-acc" href="#" data-lock="Services">Explore our services</a>
+      <div class="sh"><span class="tag">{{services.eyebrow}}</span><h2>{{#if view.others}}Our other services{{else}}{{services.h2}}{{/if}}</h2>{{#if view.others}}{{else}}<p>{{services.intro}}</p>{{/if}}</div>
+      {{#if view.grid}}{{else}}<a class="btn btn-acc" {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Explore our services</a>{{/if}}
     </div>
-    <div class="svcs" tabindex="0" role="region" aria-label="Our services, scroll sideways for more">
+    <div class="svcs{{#if view.grid}} grid{{/if}}" tabindex="0" role="region" aria-label="Our services, scroll sideways for more">
 {{#each services.items}}      <article class="svc{{#if photo}}{{else}} noimg{{/if}}">
 {{#if photo}}        <img src="{{photo}}" alt="{{photoAlt}}" width="1200" height="900" loading="lazy" decoding="async">
 {{else}}        <i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></i>
 {{/if}}        <h3>{{title}}</h3>
         <p>{{text}}</p>
-        <div class="btns"><a class="btn btn-acc" href="#" data-lock="{{title}}" data-svc="1">Learn more</a><a class="btn btn-white" href="#quote" onclick="pick('{{value}}')">Free quote</a></div>
+        <div class="btns"><a class="btn btn-acc" {{#if pages}}href="{{pages.services}}/{{value}}"{{else}}href="#" data-lock="{{title}}" data-svc="1"{{/if}}>Learn more</a><a class="btn btn-white" href="{{view.q}}" onclick="pick('{{value}}')">Free quote</a></div>
       </article>
 {{/each}}    </div>
-    <p class="swipe" aria-hidden="true">Swipe for more services →</p>
+    {{#if view.grid}}{{else}}<p class="swipe" aria-hidden="true">Swipe for more services →</p>{{/if}}
   </div>
-</section>
+</section>{{/if}}
 
-<section class="sec" id="how" style="padding-top:0">
+{{#if view.how}}<section class="sec" id="how" style="padding-top:0">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">{{steps.eyebrow}}</span><h2>{{steps.h2}}</h2><p>{{steps.intro}}</p></div>
     <ol class="proc">
 {{#each steps.items}}      <li><span class="arr"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span><h3>{{title}}</h3><p>{{text}}</p></li>
 {{/each}}    </ol>
-    <div class="btns ctr" style="margin-top:22px"><a class="btn btn-acc" href="#quote">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
+    <div class="btns ctr" style="margin-top:22px"><a class="btn btn-acc" href="{{view.q}}">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
   </div>
-</section>
+</section>{{/if}}
 
-<section class="sec" id="about" style="padding-top:0">
+{{#if view.about}}<section class="sec" id="about" style="padding-top:0">
   <div class="wrap">
     <div class="ab-top">
       <div><span class="tag">About us</span><h2>{{about.h2}}</h2></div>
-      <div class="btns"><a class="btn btn-acc" href="#" data-lock="About">Learn more</a><a class="btn btn-line" href="#quote">Free quote</a></div>
+      <div class="btns">{{#if view.page}}{{else}}<a class="btn btn-acc" {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>Learn more</a>{{/if}}<a class="btn btn-line" href="{{view.q}}">Free quote</a></div>
     </div>
     <div class="ab">
       <div><div class="big"><img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async"></div><p class="cap">{{about.caption}}</p></div>
@@ -525,22 +581,23 @@ footer .ci .ic{width:15px;height:15px}
       </div>
     </div>
   </div>
-</section>
+</section>{{/if}}
 
-{{#if gallery}}<section class="sec cream" id="work">
+{{#if view.work}}{{#if gallery}}<section class="sec cream" id="work">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">{{gallery.eyebrow}}</span><h2>{{gallery.h2}}</h2><p>{{gallery.intro}}</p></div>
-    <div class="gal">
+    <div class="gal{{#if view.all}} all{{/if}}">
 {{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
-{{/each}}    </div>
+{{/each}}{{#if view.all}}{{#each gallery.more}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}{{/if}}    </div>
 {{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
 {{/if}}  </div>
 </section>
-{{/if}}
-{{#if reviews.items}}<section class="sec" id="reviews">
+{{/if}}{{/if}}
+{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">Testimonials</span><h2>{{reviews.h2}}</h2><p>{{reviews.intro}}</p></div>
-    <div class="rvs" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
+    <div class="rvs{{#if view.all}} all{{/if}}" tabindex="0" role="region" aria-label="Customer reviews, scroll sideways for more">
 {{#each reviews.items}}      <figure class="rv"><div class="hd"><svg class="g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span></div><b>{{name}}</b><small>Google · {{date}}</small><p>{{text}}</p></figure>
 {{/each}}    </div>
     <div class="rvask">
@@ -550,8 +607,8 @@ footer .ci .ic{width:15px;height:15px}
     </div>
   </div>
 </section>
-{{/if}}
-<section class="sec" id="why" style="padding-top:0">
+{{/if}}{{/if}}
+{{#if view.why}}<section class="sec" id="why" style="padding-top:0">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">Why choose us</span><h2>{{why.h2}}</h2><p>{{why.intro}}</p></div>
     <div class="why">
@@ -559,32 +616,42 @@ footer .ci .ic{width:15px;height:15px}
       <div class="mid"><img src="{{why.photo.file}}" alt="{{why.photo.alt}}" width="{{why.photo.width}}" height="{{why.photo.height}}" loading="lazy" decoding="async"></div>
       <div class="col">{{#each why.right}}<div class="rs"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></i><h3>{{title}}</h3><p>{{text}}</p></div>{{/each}}</div>
     </div>
-    <div class="btns ctr" style="margin-top:22px"><a class="btn btn-acc" href="#quote">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
+    <div class="btns ctr" style="margin-top:22px"><a class="btn btn-acc" href="{{view.q}}">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
   </div>
-</section>
+</section>{{/if}}
 
-<section class="band">
+{{#if view.band}}<section class="band">
   <img src="{{band.photo.file}}" alt="" width="{{band.photo.width}}" height="{{band.photo.height}}" loading="lazy" decoding="async">
   <div class="wrap"><div class="box">
     <h2>{{band.h2}}</h2>
     <p>{{band.text}}</p>
-    <div class="btns"><a class="btn btn-acc" href="#quote">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
+    <div class="btns"><a class="btn btn-acc" href="{{view.q}}">Get my free quote</a><a class="ph-link" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
   </div></div>
-</section>
+</section>{{/if}}
 
-<section class="sec" id="faq">
+{{#if view.areas}}<section class="sec" id="areas">
+  <div class="wrap">
+    <div class="sh ctr" style="text-align:center"><span class="tag">Service areas</span><h2>{{#if area.h2}}{{area.h2}}{{else}}Where we work{{/if}}</h2>{{#if area.text}}<p>{{area.text}}</p>{{/if}}</div>
+{{#if area.groups}}    <div class="ags">
+{{#each area.groups}}      <div class="ag"><h3>{{name}}</h3>{{#if text}}<p>{{text}}</p>{{/if}}<ul>{{#each towns}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</li>{{/each}}</ul></div>
+{{/each}}    </div>
+{{else}}    <div class="cities" style="justify-content:center">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
+{{/if}}  </div>
+</section>
+{{/if}}
+{{#if view.faq}}<section class="sec" id="faq">
   <div class="wrap">
     <div class="sh ctr" style="text-align:center"><span class="tag">FAQ</span><h2>Frequently asked questions</h2><p>{{faq.intro}}</p></div>
     <div class="faq">
 {{#each faq.items}}      <details><summary>{{q}}</summary><p>{{a}}</p></details>
 {{/each}}    </div>
   </div>
-</section>
+</section>{{/if}}
 
-<section class="sec cream" id="{{#if quote.top}}contact{{else}}quote{{/if}}">
+{{#if view.contact}}<section class="sec cream" id="{{#if quote.top}}contact{{else}}quote{{/if}}">
   <div class="wrap">
-    <div class="sh ctr" style="text-align:center"><span class="tag">Contact us</span><h2>{{quote.h2}}</h2><p>{{quote.intro}}</p></div>
-    <div class="contact">
+{{#if view.areas}}{{else}}    <div class="sh ctr" style="text-align:center"><span class="tag">Contact us</span><h2>{{quote.h2}}</h2><p>{{quote.intro}}</p></div>
+{{/if}}    <div class="contact">
       <div class="cinfo">
         <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=11&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
@@ -598,9 +665,10 @@ footer .ci .ic{width:15px;height:15px}
 {{#if quote.top}}      <div class="fpanel callc">
         <h3>Prefer to talk?</h3>
         <a class="cl" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone.display}}</a>
-        <a class="cl" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text {{phone.display}}</a>
-        <p>Or send the free quote form at the top of the page, with photos of the job.</p>
-        <a class="btn" href="#quote">Get my free quote</a>
+{{#if phone2}}        <a class="cl" href="tel:{{phone2.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call {{phone2.display}}</a>
+{{/if}}        <a class="cl" href="sms:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg>Text {{phone.display}}</a>
+        <p>{{#if view.qtop}}Or send the free quote form at the top of the page, with photos of the job.{{else}}Or send the free quote form, with photos of the job.{{/if}}</p>
+        <a class="btn" href="{{view.q}}">Get my free quote</a>
       </div>
 {{else}}      <div class="fpanel" id="qcard">
         <h3>Get started!</h3>
@@ -617,19 +685,19 @@ footer .ci .ic{width:15px;height:15px}
       </div>
 {{/if}}    </div>
   </div>
-</section>
+</section>{{/if}}
 </main>
 
 <footer>
   <div class="wrap">
     <div class="fg">
       <div>
-        <a class="brand" href="#top"><img src="{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
+        <a class="brand" href="{{#if view.page}}{{pages.home}}{{else}}#top{{/if}}"><img src="{{images.heroLogo.file}}" alt="" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" loading="lazy"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
         <em>{{footer.motto}}</em>
-        <a class="btn btn-acc" href="#quote">Get my free quote</a>
+        <a class="btn btn-acc" href="{{view.q}}">Get my free quote</a>
       </div>
       <div><h4>Our location</h4><p>{{area.short}}</p><p style="margin-top:6px"><a href="{{links.googleReviews}}" target="_blank" rel="noopener" style="text-decoration:underline">View on Maps</a></p></div>
-      <div><h4>Menu</h4><ul><li><a href="#" data-lock="About">About us</a></li><li><a href="#" data-lock="Services">Services</a></li><li><a href="#" data-lock="Our Work">Our works</a></li><li><a href="#" data-lock="FAQ">FAQ</a></li><li><a href="#" data-lock="Contact">Contact</a></li></ul></div>
+      <div><h4>Menu</h4><ul><li><a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a></li><li><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a></li><li><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a></li>{{#if pages}}<li><a href="{{pages.reviews}}">Reviews</a></li><li><a href="{{pages.areas}}">Service areas</a></li>{{/if}}<li><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a></li><li><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact</a></li></ul></div>
       <div><h4>Contact us</h4><ul><li><a class="ci" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i>{{phone.display}}</a></li>{{#if phone2}}<li><a class="ci" href="tel:{{phone2.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i>{{phone2.display}}</a></li>{{/if}}<li><a class="ci" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i>Text us</a></li><li class="ci"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></i><span>{{hours.footerHtml}}</span></li></ul></div>
     </div>
   </div>

@@ -31,6 +31,15 @@ export function resolveAssets(data) {
   }
   for (const v of d.social?.tiktok?.videos ?? []) v.file = full(base, v.file);
   for (const g of d.gallery?.photos ?? []) g.file = full(base, g.file);
+  // a full site's other pages (scripts/site-pages.mjs): more work photos, page heads, service pages
+  for (const g of d.gallery?.more ?? []) g.file = full(base, g.file);
+  for (const h of Object.values(d.pageHeads ?? {})) if (h?.photo?.file) h.photo.file = full(base, h.photo.file);
+  for (const s of d.services?.items ?? []) {
+    const pg = s.page;
+    if (!pg) continue;
+    for (const k of ["photo", "hero"]) if (pg[k]?.file) pg[k].file = full(base, pg[k].file);
+    for (const ph of pg.photos ?? []) ph.file = full(base, ph.file);
+  }
   if (d.hero?.side?.car) d.hero.side.car = full(base, d.hero.side.car);
   return d;
 }
