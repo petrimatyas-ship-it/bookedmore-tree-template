@@ -14,7 +14,11 @@
  *   /<slug>/service-areas       the towns (area.groups or area.cities), map and hours
  *   /<slug>/faq                 the FAQ
  *   /<slug>/contact             the quote form, map, hours and phones
+ *   /<slug>/<extra>             an article page (extraPages[]: commercial work, soft wash vs
+ *                               pressure wash, ...), sections of text, points and photos
  *
+ * Both the landscaping and the pressure-washing templates read the views;
+ * the gallery page shows gallery.groups (titled sets of photos) when given.
  * `withView(data, path)` returns the data the template renders for that path,
  * with `view` (which sections show, the page's heading, where quote links
  * go) and `pages` (the links), or null when the site has no such page.
@@ -34,7 +38,7 @@ const HEADS = {
 export function withView(data, path = "") {
   const p = String(path ?? "").replace(/^\/+|\/+$/g, "");
   const d = { ...data };
-  const home = { home: true, qtop: Boolean(d.quote?.top), services: true, how: true, about: true, work: true, reviews: true, why: true, band: true, faq: true, contact: true, q: "#quote" };
+  const home = { home: true, qtop: Boolean(d.quote?.top), services: true, how: true, about: true, work: true, reviews: true, why: true, band: true, areaSec: true, faq: true, contact: true, q: "#quote" };
   if (!data.pages) {
     if (p) return null;
     delete d.pages;
@@ -42,7 +46,12 @@ export function withView(data, path = "") {
     return d;
   }
   const base = `/${d.slug}`;
-  const pages = { home: base, about: `${base}/about`, services: `${base}/services`, gallery: `${base}/gallery`, reviews: `${base}/reviews`, areas: `${base}/service-areas`, faq: `${base}/faq`, contact: `${base}/contact` };
+  const extras = (d.extraPages ?? []).filter((x) => x && /^[a-z0-9-]{2,40}$/.test(x.slug ?? "") && !HEADS[x.slug] && x.slug !== "services");
+  const pages = {
+    home: base, about: `${base}/about`, services: `${base}/services`, gallery: `${base}/gallery`, reviews: `${base}/reviews`, areas: `${base}/service-areas`, faq: `${base}/faq`, contact: `${base}/contact`,
+    extra: extras.filter((x) => x.nav).map((x) => ({ href: `${base}/${x.slug}`, nav: x.nav })),
+    more: extras.map((x) => ({ href: `${base}/${x.slug}`, nav: x.nav ?? x.title }))
+  };
   d.pages = pages;
   if (!p) {
     d.view = home;
@@ -75,6 +84,12 @@ export function withView(data, path = "") {
     return d;
   }
   if (second !== undefined) return null;
+  const extra = extras.find((x) => x.slug === first);
+  if (extra) {
+    const page = { key: extra.slug, title: extra.title, lead: extra.lead ?? "", photo: extra.photo ?? d.images?.hero, crumb: extra.crumb ?? extra.nav ?? extra.title };
+    d.view = { page, article: extra, band: true, q: pages.contact };
+    return d;
+  }
   const known = HEADS[first];
   if (!known) return null;
   const page = head(first, known[0], known[1](d));
@@ -83,7 +98,7 @@ export function withView(data, path = "") {
     services: { services: true, grid: true, how: true, band: true, faq: true },
     gallery: { work: true, all: true, band: true },
     reviews: { reviews: true, all: true, why: true, band: true },
-    "service-areas": { areas: true, contact: true },
+    "service-areas": { areas: true, areaSec: true, contact: true },
     faq: { faq: true, band: true },
     contact: { qtop: true, contact: true }
   };
@@ -95,5 +110,6 @@ export function withView(data, path = "") {
 /** Every path a site has, for checking that each one renders before it is stored. */
 export function sitePaths(data) {
   if (!data?.pages) return [""];
-  return ["", ...Object.keys(HEADS), ...(data.services?.items ?? []).map((s) => `services/${s.value}`)];
+  const extras = (data.extraPages ?? []).map((x) => x?.slug).filter((s) => /^[a-z0-9-]{2,40}$/.test(s ?? "") && !HEADS[s] && s !== "services");
+  return ["", ...Object.keys(HEADS), ...(data.services?.items ?? []).map((s) => `services/${s.value}`), ...extras];
 }
