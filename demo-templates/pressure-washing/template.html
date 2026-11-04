@@ -118,6 +118,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);bo
 .ph img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:6px solid #fff;box-shadow:0 18px 40px -22px rgba(18,48,74,.55)}
 .ph .q{position:absolute;left:-6px;bottom:-22px;max-width:300px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px 16px;box-shadow:0 14px 30px -18px rgba(18,48,74,.5);font-size:.9rem;color:var(--soft)}
 @media(min-width:900px){.ph .q{left:-24px}}
+/* on phones the review sits under the photo, just overlapping its bottom edge, so the photo shows */
+@media(max-width:899px){.ph .q{position:relative;left:auto;bottom:auto;max-width:none;margin:-34px 14px 0}}
 .ph .q .st{display:flex;gap:2px;color:#ffc531;margin-bottom:6px}
 .ph .q .st .ic{width:16px;height:16px}
 .ph .q b{display:block;margin-top:6px;color:var(--navy);font-size:.88rem}
