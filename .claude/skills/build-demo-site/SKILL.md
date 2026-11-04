@@ -76,6 +76,20 @@ their phone, email or website; their own site's contact page), and use the
 listing whose phone matches their site. Build from the wrong business and
 the whole site is wrong.
 
+**Their site is only one of two:** the payload's `business.website`, or the
+website their matched Google listing links to. Never one you found by
+searching their name. Many trades share a name across states: Domingo Tree
+Service in Austin, TX has no website, and a search turned up
+domingotreeservicellc.com, a different company in Virginia and
+Pennsylvania, whose logo and photos then went on the Austin site. A site
+that is not one of the two, or whose phone, address or state does not match
+the listing, is a different business: take nothing from it, no text,
+photos, logo, links or prices. With no site of their own, build from Google
+alone (as for `kleen-whipz-pressure-washing` below): their listing's
+photos, reviews and facts, and their name set as text instead of a logo.
+Before publishing, check that every picture on the page came from their
+Google listing, their own site or a picture you generated, and nothing else.
+
 ## 2. Decide the template
 
 By what they actually do (Google category first, then their site):
