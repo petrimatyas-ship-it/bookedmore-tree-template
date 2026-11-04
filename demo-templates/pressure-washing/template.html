@@ -434,7 +434,7 @@ footer .btn{margin-top:14px}
       <form onsubmit="quote(event,'ok1')">
         <label class="sr" for="q1n">Your name</label><input id="q1n" name="name" placeholder="Your name" autocomplete="name" required>
         <label class="sr" for="q1p">Phone</label><input id="q1p" name="phone" type="tel" placeholder="Phone" autocomplete="tel" required>
-        <label class="sr" for="q1s">Service</label><select id="q1s" name="service"><option value="">What needs cleaning?</option>{{#each quote.services}}<option value="{{value}}">{{label}}</option>{{/each}}</select>
+        <label class="sr" for="q1s">Service</label><select id="q1s" name="service"><option value="">{{#if quote.ask}}{{quote.ask}}{{else}}What needs cleaning?{{/if}}</option>{{#each quote.services}}<option value="{{value}}">{{label}}</option>{{/each}}</select>
         <button type="submit" class="btn btn-red">Get my estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
       </form>
       <div class="ok" id="ok1" role="status"></div>
@@ -622,10 +622,10 @@ footer .btn{margin-top:14px}
           <div><label for="q2p">Phone*</label><input id="q2p" name="phone" type="tel" autocomplete="tel" placeholder="{{phone.display}}" required></div>
         </div>
         <label for="q2a">Address <small>(street and city)</small></label><input id="q2a" name="address" autocomplete="street-address" placeholder="Where is the property?">
-        <fieldset style="border:0"><legend style="font-weight:600;font-size:.88rem;color:var(--navy);margin:12px 0 6px">What needs cleaning?</legend>
+        <fieldset style="border:0"><legend style="font-weight:600;font-size:.88rem;color:var(--navy);margin:12px 0 6px">{{#if quote.ask}}{{quote.ask}}{{else}}What needs cleaning?{{/if}}</legend>
           <div class="picks">{{#each quote.services}}<label><input type="checkbox" name="service" value="{{value}}" id="pk-{{value}}">{{label}}</label>{{/each}}</div>
         </fieldset>
-        <label for="q2m">Anything we should know? <small>(optional)</small></label><textarea id="q2m" name="notes" placeholder="Size of the driveway, stains, how many stories…"></textarea>
+        <label for="q2m">Anything we should know? <small>(optional)</small></label><textarea id="q2m" name="notes" placeholder="{{#if quote.placeholder}}{{quote.placeholder}}{{else}}Size of the driveway, stains, how many stories…{{/if}}"></textarea>
         <button type="submit" class="btn btn-red">Get my free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
         <p class="fine">Free estimates · Or call {{phone.display}}</p>
       </form>
