@@ -9,16 +9,19 @@ import { isTemplate, renderSite } from "@/lib/detailing-page";
 
 export const dynamic = "force-dynamic";
 
+const notFound = () =>
+  new Response("<!doctype html><title>Not found</title><p>This page isn't here.</p>", {
+    status: 404,
+    headers: { "Content-Type": "text/html; charset=utf-8" }
+  });
+
 export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const site = await getSite(slug);
-  if (!site) {
-    return new Response("<!doctype html><title>Not found</title><p>This page isn't here.</p>", {
-      status: 404,
-      headers: { "Content-Type": "text/html; charset=utf-8" }
-    });
-  }
-  return new Response(renderSite(isTemplate(site.template) ? site.template : "detailing", site.data), {
+  if (!site) return notFound();
+  const html = renderSite(isTemplate(site.template) ? site.template : "detailing", site.data);
+  if (html === null) return notFound();
+  return new Response(html, {
     headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" }
   });
 }

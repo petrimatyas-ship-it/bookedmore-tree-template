@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import path from "path";
 import { render } from "@/scripts/render-template.mjs";
 import { resolveAssets } from "@/scripts/detailing-assets.mjs";
+import { withView } from "@/scripts/site-pages.mjs";
 
 /**
  * The demo templates rendered at request time, for sites the Replymint site
@@ -35,10 +36,16 @@ function templateHtml(name: TemplateName): string {
   return html;
 }
 
-export function renderSite(name: TemplateName, data: Record<string, unknown>): string {
-  return render(templateHtml(name), resolveAssets(data)) as string;
+/**
+ * One page of a stored site: "" is its home page; a full landscaping site
+ * (`pages: true`) has its other pages too (scripts/site-pages.mjs). Null when
+ * the site has no page at that path.
+ */
+export function renderSite(name: TemplateName, data: Record<string, unknown>, path = ""): string | null {
+  const viewed = withView(resolveAssets(data), path);
+  return viewed ? (render(templateHtml(name), viewed) as string) : null;
 }
 
 export function renderDetailing(data: Record<string, unknown>): string {
-  return renderSite("detailing", data);
+  return renderSite("detailing", data) ?? "";
 }

@@ -3,6 +3,7 @@ import { readdirSync } from "fs";
 import path from "path";
 import { deleteSite, getEngagement, getSite, putSite, SLUG_RE, type StoredSite } from "@/lib/db";
 import { isTemplate, renderSite } from "@/lib/detailing-page";
+import { sitePaths } from "@/scripts/site-pages.mjs";
 import { siteMakerKeyOk } from "@/lib/site-maker-key";
 
 /**
@@ -51,11 +52,13 @@ export async function POST(request: Request) {
   const data = body.data as Record<string, unknown> | undefined;
   if (!data || typeof data !== "object" || data.slug !== slug) return no("Invalid data: its slug must match.", 400);
   if (JSON.stringify(data).length > 400_000) return no("Invalid data: too large.", 413);
-  // Rendered once before storing, so a site with a gap is refused, not shown broken.
-  try {
-    renderSite(template, data);
-  } catch (e) {
-    return no(`Invalid data: ${(e as Error).message}`, 400);
+  // Every page rendered once before storing, so a site with a gap is refused, not shown broken.
+  for (const path of sitePaths(data)) {
+    try {
+      if (renderSite(template, data, path) === null) return no(`Invalid data: no page at /${path}.`, 400);
+    } catch (e) {
+      return no(`Invalid data${path ? ` (/${path})` : ""}: ${(e as Error).message}`, 400);
+    }
   }
   const now = new Date().toISOString();
   const before = await getSite(slug);

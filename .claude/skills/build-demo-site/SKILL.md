@@ -68,6 +68,14 @@ as `photos/g01.jpg` (Google), `photos/s01.jpg` (their site) and
 `gathered.json`'s `siteText` and the reviews properly: they are the only
 source of facts.
 
+**Make sure it is the business that replied.** Google can match a
+different business with the same name in another state. The prospect's
+email, their website's domain or their phone should show up on the
+listing or the site you build from. If they don't, search again (name with
+their phone, email or website; their own site's contact page), and use the
+listing whose phone matches their site. Build from the wrong business and
+the whole site is wrong.
+
 ## 2. Decide the template
 
 By what they actually do (Google category first, then their site):
@@ -85,10 +93,17 @@ Anything else (or not a business you can find): report `skipped` with
 Tree-service setup (the owner's choices for Tree Top Techs): `style:
 "direct"` (square corners, heavy condensed capitals), dark green `colors {
 acc: "#1e5530", accD: "#143d22", accL: "#e3eee5", cream: "#f1f5f1" }`
-(their own brand green if they clearly have one), `quote.top: { photos:
+(always green for a tree service: the shades of their logo when it has greens, never another colour), `quote.top: { photos:
 "Photos of the tree" }` with no `h2` or `intro`, so the free quote form
 alone comes straight after the hero (the chat stays in its bubble),
 `reviews.ask: "Happy with your tree work?"`.
+
+On `landscaping` (tree services, landscapers), build the whole site, not
+one page: `pages: true`, every service with its own `page` (lead, paras,
+points and 2 or 4 of its photos), `gallery.more` with the rest of their
+work photos, `pageHeads` (a different photo for each page's heading) and
+`area.groups`. Each page should show different photos; one photo three
+times on one page looks cheap.
 
 Read the template's `demo-templates/<template>/README.md`: it lists
 every field. Then copy a finished site of the same kind:
@@ -104,6 +119,7 @@ node scripts/site-kit/example.mjs <slug> $W/example.json
 | `kleen-whipz-pressure-washing` | pressure-washing | no website: Google only |
 | `coreas-landscaping-services` | landscaping | |
 | `tree-top-techs` | landscaping | the tree-service setup, phone hero |
+| `domingo-tree-service` | landscaping | the tree-service setup as a whole site (`pages: true`), their logo's greens |
 
 Their pictures are at `https://demo.morebookednow.com/<slug>/<file>` if
 you want to see what was picked.
@@ -201,7 +217,7 @@ Write `$W/build.mts` that builds `$W/site.json` as
 node scripts/site-kit/preview.mjs $W
 ```
 
-It renders the page exactly as the demo site will and checks 390px and
+It renders every page (all of them on a whole site) exactly as the demo site will and checks 390px and
 1440px wide for script errors, broken pictures and sideways scroll
 (fix every one), then saves `shots/top-390.png`, `shots/top-1440.png` and
 the whole page in pieces (`shots/page-<w>-<n>.png`). Read every piece.
