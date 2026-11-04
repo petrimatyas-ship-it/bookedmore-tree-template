@@ -30,7 +30,7 @@ Data, every value already HTML-escaped:
 - `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }] }`
 - `area { eyebrow, h2a, h2b, text, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
 - `faq { eyebrow, h2a, h2b, items[{ q, a }] }`
-- `quote { eyebrow, h2a, h2b, intro, services[{ value, label }], serviceNames }` (values match `services.items[].value`)
+- `quote { eyebrow, h2a, h2b, intro, services[{ value, label }], serviceNames }` (values match `services.items[].value`); optional `quote.ask` (the form's "What needs cleaning?") and `quote.placeholder` (its notes hint) for trades that do not clean
 - optional `colors { blue, blueD, sky, cta, ctaD }`: their brand colours in place of the blue and the red buttons; optional `logoWide: true` for a wide logo that already says the name (the name beside it is then left out, kept for screen readers)
 - optional `phone2 { display, tel }`, a second line beside the call and text cards
 - optional whole site, as on the landscaping page: `pages: true` with `services.items[].page`, `gallery.more` or `gallery.groups[{ title, intro?, photos[] }]` (the gallery page), `pageHeads`, and `extraPages[{ slug, nav?, title, lead, photo, sections[{ eyebrow?, h2, paras[], points[], list[], photo?, photos[], alt? }] }]` for pages of their own (commercial work, soft wash vs pressure wash); see `scripts/site-pages.mjs`
