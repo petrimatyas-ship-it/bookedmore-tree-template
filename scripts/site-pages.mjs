@@ -12,6 +12,8 @@
  *   /<slug>/gallery             every work photo (gallery.photos, then gallery.more)
  *   /<slug>/reviews             every review, why us
  *   /<slug>/service-areas       the towns (area.groups or area.cities), map and hours
+ *   /<slug>/service-areas/<area>  one area's own page (area.pages[]: its sections, the
+ *                               services, the quote form), for the searches people make there
  *   /<slug>/faq                 the FAQ
  *   /<slug>/contact             the quote form, map, hours and phones
  *   /<slug>/<extra>             an article page (extraPages[]: commercial work, soft wash vs
@@ -67,6 +69,18 @@ export function withView(data, path = "") {
   });
   const [first, second, ...rest] = p.split("/");
   if (rest.length) return null;
+  const areaPages = areaPagesOf(d);
+  if (areaPages.length) {
+    // the service areas page links each area to its page
+    d.area = { ...d.area, links: areaPages.map((a) => ({ href: `${base}/service-areas/${a.slug}`, name: a.name })) };
+  }
+  if (first === "service-areas" && second) {
+    const a = areaPages.find((x) => x.slug === second);
+    if (!a) return null;
+    const page = { key: "area", title: a.title ?? a.name, lead: a.lead ?? "", photo: a.photo ?? d.images?.hero, crumb: a.name };
+    d.view = { page, parent: { title: "Service areas", href: pages.areas }, article: a, qtop: true, services: true, grid: true, band: true, contact: true, q: "#quote" };
+    return d;
+  }
   if (first === "services" && second) {
     const item = (d.services?.items ?? []).find((s) => s.value === second);
     if (!item) return null;
@@ -107,9 +121,14 @@ export function withView(data, path = "") {
   return d;
 }
 
+/** A site's area pages (area.pages[]), with a usable slug each. */
+function areaPagesOf(d) {
+  return (d.area?.pages ?? []).filter((a) => a && /^[a-z0-9-]{2,40}$/.test(a.slug ?? "") && a.name);
+}
+
 /** Every path a site has, for checking that each one renders before it is stored. */
 export function sitePaths(data) {
   if (!data?.pages) return [""];
   const extras = (data.extraPages ?? []).map((x) => x?.slug).filter((s) => /^[a-z0-9-]{2,40}$/.test(s ?? "") && !HEADS[s] && s !== "services");
-  return ["", ...Object.keys(HEADS), ...(data.services?.items ?? []).map((s) => `services/${s.value}`), ...extras];
+  return ["", ...Object.keys(HEADS), ...(data.services?.items ?? []).map((s) => `services/${s.value}`), ...extras, ...areaPagesOf(data).map((a) => `service-areas/${a.slug}`)];
 }

@@ -350,6 +350,10 @@ footer .btn{margin-top:14px}
 .art.alt{background:var(--bg2)}
 .names{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .names li{background:var(--sky);border-left:3px solid var(--blue);padding:10px 14px;font-weight:600;color:var(--navy)}
+.alinks{display:grid;gap:8px;margin-top:18px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.alinks a{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:4px;font-weight:700;color:var(--navy)}
+.alinks a .ic{width:16px;height:16px;color:var(--blue);flex:none}
+.alinks a .ic:last-child{margin-left:auto}
 </style>
 </head>
 <body class="{{#if logoWide}}lw{{/if}}"{{#if colors}} style="--blue:{{colors.blue}};--blue-d:{{colors.blueD}};--sky:{{colors.sky}};--red:{{colors.cta}};--red-d:{{colors.ctaD}}"{{/if}}>
@@ -582,7 +586,8 @@ footer .btn{margin-top:14px}
       <span class="eb">{{area.eyebrow}}</span>
       <h2>{{area.h2a}} <span class="a">{{area.h2b}}</span></h2>
       <p style="color:var(--soft);margin-top:12px">{{area.text}}</p>
-      <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
+{{#if area.links}}      <div class="alinks">{{#each area.links}}<a href="{{href}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{name}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>{{/each}}</div>
+{{/if}}      <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
       <div class="hrs-card">
         <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Hours<span class="openst" id="openst"></span></h3>
         <ul class="hrs">
@@ -710,16 +715,46 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!document.getEle
 function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;const s=document.getElementById('q1s');if(s)s.value=v}
 
 const SVC={{json quote.serviceNames}};
-function quote(e,id){
+/* the quote forms: on a site that sends its leads (data.leadsTo), a real request to /api/leads,
+   with up to three photos shrunk in the browser first; on a preview, a note that nothing was sent */
+function dropped(){}
+const LIVE={{#if leadsTo}}true{{else}}false{{/if}};
+async function shrink(file){
+  if(!/^image\//.test(file.type))return null;
+  const url=URL.createObjectURL(file);
+  try{
+    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url});
+    const s=Math.min(1,1600/Math.max(img.naturalWidth,img.naturalHeight));
+    const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const d=c.toDataURL('image/jpeg',.8);
+    return {name:((file.name||'photo').replace(/\.[^.]+$/,'')||'photo')+'.jpg',type:'image/jpeg',data:d.slice(d.indexOf(',')+1)};
+  }catch(_){return null}finally{URL.revokeObjectURL(url)}
+}
+function said(ok,title,text){ok.textContent='';const b=document.createElement('b');b.textContent=title;ok.appendChild(b);if(text)ok.appendChild(document.createTextNode(text));ok.style.display='block';try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}}
+async function quote(e,id){
   e.preventDefault();
   const f=e.target,ok=document.getElementById(id);
-  const name=((f.elements.name&&f.elements.name.value)||'').trim().split(/\s+/)[0];
+  const v=k=>((f.elements[k]&&f.elements[k].value)||'').trim();
+  const name=v('name').split(/\s+/)[0];
   const picked=[].slice.call(f.querySelectorAll('[name="service"]')).filter(x=>x.tagName==='SELECT'?x.value:x.checked).map(x=>SVC[x.value]).filter(Boolean);
-  ok.textContent='';
-  const b=document.createElement('b');b.textContent='Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.';ok.appendChild(b);
-  ok.appendChild(document.createTextNode('On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.'));
-  ok.style.display='block';
-  try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
+  if(!LIVE){
+    said(ok,'Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.','On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.');
+    return;
+  }
+  const btn=f.querySelector('[type="submit"]');if(btn)btn.disabled=true;
+  const input=f.querySelector('input[type="file"]');
+  const attachments=[];let total=0;
+  for(const file of [].slice.call((input&&input.files)||[]).slice(0,3)){const a=await shrink(file);if(a&&total+a.data.length*.75<2.9e6){attachments.push(a);total+=a.data.length*.75}}
+  try{
+    const r=await fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:{{json slug}},name:v('name'),phone:v('phone'),email:v('email'),address:[v('address'),v('zip')].filter(Boolean).join(' '),service:picked.join(', '),notes:v('notes'),attachments})});
+    if(!r.ok)throw new Error(String(r.status));
+    said(ok,'Thanks'+(name?', '+name:'')+'! Your request is in.',' We will get back to you soon with your free estimate. Need us sooner? Call '+PHONE+'.');
+    f.reset();if(input)dropped(input);
+  }catch(_){
+    said(ok,'Sorry, that did not go through.',' Please call or text us at '+PHONE+'.');
+  }
+  if(btn)btn.disabled=false;
 }
 
 /* site assistant: real replies from /api/chat */

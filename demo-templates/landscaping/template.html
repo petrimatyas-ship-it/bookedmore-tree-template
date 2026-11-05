@@ -383,6 +383,13 @@ footer .ci .ic{width:15px;height:15px}
 .ag li{display:flex;gap:8px;align-items:center;font-weight:600;color:var(--ink)}
 .ag .ic{width:15px;height:15px;color:var(--acc)}
 
+.names{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.names li{background:var(--cream);border-left:3px solid var(--acc);padding:10px 14px;font-weight:600;color:var(--ink)}
+.alinks{display:grid;gap:10px;margin-top:22px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.alinks a{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff;border:1px solid var(--line);font-weight:700;color:var(--ink)}
+.alinks a .ic{width:16px;height:16px;color:var(--acc);flex:none}
+.alinks a .ic:last-child{margin-left:auto}
+.alinks a:hover{border-color:var(--acc)}
 /* style: "direct" — for trades that should read plain and blunt (a tree service): square corners everywhere,
    heavy condensed capitals for headings, buttons, labels and menu (Barlow Condensed), and a firm body (Barlow) */
 .direct{--sf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-family:Barlow,Inter,system-ui,sans-serif;font-weight:500}
@@ -450,7 +457,7 @@ footer .ci .ic{width:15px;height:15px}
   <div class="wrap">
     <a class="brand" href="{{#if view.page}}{{pages.home}}{{else}}#top{{/if}}" aria-label="{{name}}{{#if view.page}}, home{{else}}, back to top{{/if}}"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
     <nav class="main" aria-label="Main">
-      <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us</a>
+      <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us</a>
     </nav>
     <div class="top-r">
       <a class="btn btn-acc" href="{{view.q}}">Free estimate</a>
@@ -458,7 +465,7 @@ footer .ci .ic{width:15px;height:15px}
     </div>
   </div>
   <nav id="mnav" aria-label="Menu">
-    <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+    <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
   </nav>
 </header>
 
@@ -507,6 +514,22 @@ footer .ci .ic{width:15px;height:15px}
 {{/each}}  </div></div>
 {{/if}}</section>
 {{/if}}
+{{#if view.article}}{{#each view.article.sections}}<section class="sec art{{#if alt}} cream{{/if}}">
+  <div class="wrap{{#if photo}} svd-g{{/if}}">
+    <div class="svd-t">
+{{#if eyebrow}}      <span class="tag">{{eyebrow}}</span>
+{{/if}}      <h2>{{h2}}</h2>
+{{#each paras}}      <p>{{this}}</p>
+{{/each}}{{#if points}}      <ul class="pts">{{#each points}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
+{{/if}}{{#if list}}      <ul class="names">{{#each list}}<li>{{this}}</li>{{/each}}</ul>
+{{/if}}    </div>
+{{#if photo}}    <div class="svd-p"><img src="{{photo.file}}" alt="{{photo.alt}}" width="{{photo.width}}" height="{{photo.height}}" loading="lazy" decoding="async"></div>
+{{/if}}  </div>
+{{#if photos}}  <div class="wrap"><div class="sgal">
+{{#each photos}}    <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}  </div></div>
+{{/if}}</section>
+{{/each}}{{/if}}
 {{#if view.qtop}}<section class="sec qtop" id="quote">
   <div class="wrap qt{{#if quote.top.h2}}{{else}} solo{{/if}}">
 {{#if quote.top.h2}}    <div class="qt-l">
@@ -635,8 +658,9 @@ footer .ci .ic{width:15px;height:15px}
 {{#if area.groups}}    <div class="ags">
 {{#each area.groups}}      <div class="ag"><h3>{{name}}</h3>{{#if text}}<p>{{text}}</p>{{/if}}<ul>{{#each towns}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</li>{{/each}}</ul></div>
 {{/each}}    </div>
-{{else}}    <div class="cities" style="justify-content:center">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
-{{/if}}  </div>
+{{/if}}{{#if area.links}}    <div class="alinks">{{#each area.links}}<a href="{{href}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{name}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>{{/each}}</div>
+{{/if}}{{#if area.groups}}{{else}}{{#if area.links}}{{else}}    <div class="cities" style="justify-content:center">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
+{{/if}}{{/if}}  </div>
 </section>
 {{/if}}
 {{#if view.faq}}<section class="sec" id="faq">
@@ -761,16 +785,45 @@ function pick(v){const c=document.getElementById('pk-'+v);if(c)c.checked=true;co
 function dropped(i){const n=document.getElementById('dropn');if(n)n.textContent=i.files.length?i.files.length+' photo'+(i.files.length>1?'s':'')+' added':'Optional, but it speeds up your quote'}
 
 const SVC={{json quote.serviceNames}};
-function quote(e,id){
+/* the quote forms: on a site that sends its leads (data.leadsTo), a real request to /api/leads,
+   with up to three photos shrunk in the browser first; on a preview, a note that nothing was sent */
+const LIVE={{#if leadsTo}}true{{else}}false{{/if}};
+async function shrink(file){
+  if(!/^image\//.test(file.type))return null;
+  const url=URL.createObjectURL(file);
+  try{
+    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url});
+    const s=Math.min(1,1600/Math.max(img.naturalWidth,img.naturalHeight));
+    const c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const d=c.toDataURL('image/jpeg',.8);
+    return {name:((file.name||'photo').replace(/\.[^.]+$/,'')||'photo')+'.jpg',type:'image/jpeg',data:d.slice(d.indexOf(',')+1)};
+  }catch(_){return null}finally{URL.revokeObjectURL(url)}
+}
+function said(ok,title,text){ok.textContent='';const b=document.createElement('b');b.textContent=title;ok.appendChild(b);if(text)ok.appendChild(document.createTextNode(text));ok.style.display='block';try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}}
+async function quote(e,id){
   e.preventDefault();
   const f=e.target,ok=document.getElementById(id);
-  const name=((f.elements.name&&f.elements.name.value)||'').trim().split(/\s+/)[0];
+  const v=k=>((f.elements[k]&&f.elements[k].value)||'').trim();
+  const name=v('name').split(/\s+/)[0];
   const picked=[].slice.call(f.querySelectorAll('[name="service"]')).filter(x=>x.tagName==='SELECT'?x.value:x.checked).map(x=>SVC[x.value]).filter(Boolean);
-  ok.textContent='';
-  const b=document.createElement('b');b.textContent='Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.';ok.appendChild(b);
-  ok.appendChild(document.createTextNode('On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.'));
-  ok.style.display='block';
-  try{ok.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'})}catch(_){}
+  if(!LIVE){
+    said(ok,'Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.','On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.');
+    return;
+  }
+  const btn=f.querySelector('[type="submit"]');if(btn)btn.disabled=true;
+  const input=f.querySelector('input[type="file"]');
+  const attachments=[];let total=0;
+  for(const file of [].slice.call((input&&input.files)||[]).slice(0,3)){const a=await shrink(file);if(a&&total+a.data.length*.75<2.9e6){attachments.push(a);total+=a.data.length*.75}}
+  try{
+    const r=await fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:{{json slug}},name:v('name'),phone:v('phone'),email:v('email'),address:[v('address'),v('zip')].filter(Boolean).join(' '),service:picked.join(', '),notes:v('notes'),attachments})});
+    if(!r.ok)throw new Error(String(r.status));
+    said(ok,'Thanks'+(name?', '+name:'')+'! Your request is in.',' We will get back to you soon with your free estimate. Need us sooner? Call '+PHONE+'.');
+    f.reset();if(input)dropped(input);
+  }catch(_){
+    said(ok,'Sorry, that did not go through.',' Please call or text us at '+PHONE+'.');
+  }
+  if(btn)btn.disabled=false;
 }
 
 /* site assistant: real replies from /api/chat */
