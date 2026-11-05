@@ -11,7 +11,8 @@ import { siteMakerKeyOk } from "@/lib/site-maker-key";
  *
  *   POST   { slug, template, data } -> { url }   stores or replaces it;
  *          template is "detailing", "pressure-washing", "landscaping" or "contractor" (lib/detailing-page.ts)
- *   GET    ?slug=                               -> { site, visits }
+ *   GET    ?slug=                               -> { site, visits } (each visit: when, where, device, and
+ *                                                  how far it scrolled, how long it stayed, what it tapped)
  *   GET    ?slug=&data=1                        -> the same, with the stored template and data
  *                                                  (a finished site to copy from)
  *   DELETE ?slug=                               -> { ok }
@@ -72,11 +73,25 @@ export async function GET(request: Request) {
   const slug = new URL(request.url).searchParams.get("slug") ?? "";
   const site = await getSite(slug);
   if (!site) return no("Not found.", 404);
-  // Page loads grouped into visits, for "has the prospect opened it?".
-  const visits = new Map<string, { at: string; where?: string; device?: string }>();
-  for (const e of await getEngagement(slug)) {
+  // Page loads grouped into visits, for "has the prospect opened it?", and what
+  // each one did: how far down they scrolled, how long they stayed, what they tapped.
+  type Visit = { at: string; where?: string; device?: string; page?: string; scrolled?: number; seconds?: number; actions?: string[]; chat?: boolean };
+  const visits = new Map<string, Visit>();
+  const events = await getEngagement(slug);
+  for (const e of events) {
     if (e.event !== "view") continue;
-    visits.set(e.visit ?? e.at, { at: e.at, where: e.where, device: e.device });
+    visits.set(e.visit ?? e.at, { at: e.at, where: e.where, device: e.device, page: e.page });
+  }
+  for (const e of events) {
+    const v = e.visit ? visits.get(e.visit) : undefined;
+    if (!v) continue;
+    if (e.event === "scroll" && typeof e.value === "number") v.scrolled = Math.max(v.scrolled ?? 0, e.value);
+    else if (e.event === "dwell" && typeof e.value === "number") v.seconds = Math.max(v.seconds ?? 0, e.value);
+    else if (e.event === "assistant") v.chat = true;
+    else if (e.event.startsWith("cta:")) {
+      const action = e.event.slice(4);
+      if (!(v.actions ??= []).includes(action)) v.actions.push(action);
+    }
   }
   return NextResponse.json(
     {
