@@ -19,6 +19,11 @@ export type Lead = {
   businessName?: string;
   /** Photos of the job, sent on the notification rather than stored. */
   attachments?: ReadyAttachment[];
+  /**
+   * A stored site's own lead addresses (its data's `leadsTo`): the request goes
+   * there as well as to the owner inbox. Set by the server, never by the visitor.
+   */
+  alsoTo?: string[];
   submittedAt: string;
 };
 
@@ -32,10 +37,17 @@ const OWNER_EMAIL = process.env.OWNER_EMAIL || "hello@morebookednow.com";
 export async function saveLead(lead: Omit<Lead, "submittedAt">) {
   const record: Lead = { ...lead, submittedAt: new Date().toISOString() };
 
-  await Promise.all([appendToFile(record), notify(record)]);
+  const [, delivered] = await Promise.all([appendToFile(record), notify(record)]);
 
-  console.log("New lead:", record);
-  return record;
+  console.log("New lead:", { ...record, attachments: record.attachments?.length ?? 0 });
+  return { record, delivered };
+}
+
+const EMAIL_RE = /^[^\s@<>",;]+@[^\s@<>",;]+\.[a-z]{2,}$/i;
+/** A stored site's `leadsTo`: valid addresses only, at most five. */
+export function leadAddresses(v: unknown): string[] {
+  const list = Array.isArray(v) ? v : typeof v === "string" ? [v] : [];
+  return [...new Set(list.filter((x): x is string => typeof x === "string").map((x) => x.trim().toLowerCase()).filter((x) => EMAIL_RE.test(x)))].slice(0, 5);
 }
 
 // Interim local storage so leads aren't lost during development. A serverless
@@ -67,10 +79,10 @@ async function appendToFile(record: Lead) {
   }
 }
 
-async function notify(record: Lead) {
+async function notify(record: Lead): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.LEADS_FROM;
-  const to = record.slug ? OWNER_EMAIL : process.env.LEADS_TO || OWNER_EMAIL;
+  const to = [...new Set([record.slug ? OWNER_EMAIL : process.env.LEADS_TO || OWNER_EMAIL, ...(record.alsoTo ?? [])])];
 
   const lines = [
     record.slug ? `Demo:     ${record.slug}` : null,
@@ -95,7 +107,7 @@ async function notify(record: Lead) {
 
   if (!key || !from) {
     console.warn("[leads] No email provider configured; lead not delivered.\n" + text);
-    return;
+    return false;
   }
 
   const tag = record.slug ? `[demo: ${record.slug}] ` : "";
@@ -105,7 +117,7 @@ async function notify(record: Lead) {
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
       body: JSON.stringify({
         from,
-        to: [to],
+        to,
         reply_to: record.email?.includes("@") ? record.email : undefined,
         subject: `${tag}New lead: ${record.name} - ${record.service || "tree work"}`,
         text,
@@ -116,8 +128,10 @@ async function notify(record: Lead) {
           : {})
       })
     });
-    if (!res.ok) throw new Error(`Resend ${res.status}`);
+    if (!res.ok) throw new Error(`Resend ${res.status}: ${(await res.text()).slice(0, 200)}`);
+    return true;
   } catch (err) {
     console.error("[leads] Delivery failed:", err);
+    return false;
   }
 }

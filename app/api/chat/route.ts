@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { business } from "@/lib/business";
-import { saveLead } from "@/lib/leads-store";
+import { leadAddresses, saveLead } from "@/lib/leads-store";
 import { getDemo, getSite, isExpired } from "@/lib/db";
 import type { SiteConfig } from "@/lib/site-config";
 import { prepareAttachments, type ReadyAttachment } from "@/lib/attachments-server";
@@ -114,10 +114,15 @@ export async function POST(request: Request) {
   let slug: string | undefined;
   // A hand-built page has no stored record; its business is listed in code.
   let hand = typeof body.slug === "string" ? handBuilt[body.slug] : undefined;
+  // A stored site that sends its leads: the chat's leads go to the business too.
+  let alsoTo: string[] = [];
   // A site the Replymint site maker built carries the same facts in its stored data.
   if (!hand && typeof body.slug === "string" && body.slug) {
     const site = await getSite(body.slug);
-    if (site) hand = fromDetailing(site.data as unknown as DetailingData);
+    if (site) {
+      hand = fromDetailing(site.data as unknown as DetailingData);
+      alsoTo = leadAddresses((site.data as { leadsTo?: unknown }).leadsTo);
+    }
   }
   if (hand) {
     slug = body.slug;
@@ -214,7 +219,8 @@ export async function POST(request: Request) {
           businessName: hand ? hand.companyName : config.companyName,
           // Whatever they sent lands on the owner's email with the lead, so
           // the job is quoted from the same pictures the assistant saw.
-          attachments: photos
+          attachments: photos,
+          alsoTo
         });
         leadCaptured = true;
       }
