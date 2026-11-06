@@ -40,7 +40,9 @@ const HEADS = {
 export function withView(data, path = "") {
   const p = String(path ?? "").replace(/^\/+|\/+$/g, "");
   const d = { ...data };
-  const home = { home: true, qtop: Boolean(d.quote?.top), services: true, how: true, about: true, work: true, reviews: true, why: true, band: true, areaSec: true, faq: true, contact: true, q: "#quote" };
+  // qshort: the quote after the hero is one button until tapped (quote.top.short); the contact page always shows the form
+  const qshort = Boolean(d.quote?.top?.short);
+  const home = { home: true, qtop: Boolean(d.quote?.top), qshort, services: true, how: true, about: true, work: true, reviews: true, why: true, band: true, areaSec: true, faq: true, contact: true, q: "#quote" };
   if (!data.pages) {
     if (p) return null;
     delete d.pages;
@@ -80,7 +82,7 @@ export function withView(data, path = "") {
     const page = { key: "area", title: a.title ?? a.name, lead: a.lead ?? "", photo: a.photo ?? d.images?.hero, crumb: a.name };
     // that town's pin stands out on the map
     if (d.area?.map?.pins) d.area = { ...d.area, map: { ...d.area.map, pins: d.area.map.pins.map((p) => ({ ...p, hi: p.label === (a.pin ?? a.name) })) } };
-    d.view = { page, parent: { title: "Service areas", href: pages.areas }, article: a, qtop: true, services: true, grid: true, band: true, contact: true, q: "#quote" };
+    d.view = { page, parent: { title: "Service areas", href: pages.areas }, article: a, qtop: true, qshort, services: true, grid: true, band: true, contact: true, q: "#quote" };
     return d;
   }
   if (first === "services" && second) {
@@ -96,7 +98,7 @@ export function withView(data, path = "") {
       photo: pg.photo ?? (item.photo ? { file: item.photo, alt: item.photoAlt, width: "1200", height: "900" } : null)
     };
     const h = { key: "service", title: item.title, lead: pg.lead ?? item.text, photo: pg.hero ?? service.photo ?? d.images?.hero, crumb: item.title };
-    d.view = { page: h, parent: { title: "Services", href: pages.services }, service, qtop: true, services: true, grid: true, others: true, faq: true, q: "#quote" };
+    d.view = { page: h, parent: { title: "Services", href: pages.services }, service, qtop: true, qshort, services: true, grid: true, others: true, faq: true, q: "#quote" };
     return d;
   }
   if (second !== undefined) return null;
