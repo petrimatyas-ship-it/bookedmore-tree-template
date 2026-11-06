@@ -392,10 +392,10 @@ footer .ci .ic{width:15px;height:15px}
 .alinks a .ic:last-child{margin-left:auto}
 .alinks a:hover{border-color:var(--acc)}
 /* logoWide: a wide logo that already says the name, shown alone in the header (the name kept for screen readers) */
-.lw .top .brand img{height:60px;border-radius:0!important;background:#fff;padding:4px 6px}
+.lw .top .brand img{height:56px;border-radius:0!important;background:none!important;padding:0}
 .lw .top .brand .wm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:560px){.lw .top .brand img{height:48px}}
-.lw footer .brand img{height:64px;border-radius:0!important;padding:4px 6px}
+.lw footer .brand img{height:60px;border-radius:0!important;background:none!important;padding:0}
 /* the real service area map (scripts/site-kit/area-map.mjs): rings out from the base, the towns pinned */
 .amap{position:relative;margin:0;border:1px solid var(--line);background:var(--cream);overflow:hidden}
 .amap img{display:block;width:100%;height:auto}
@@ -411,7 +411,30 @@ footer .ci .ic{width:15px;height:15px}
 .amap .base .pulse{fill:var(--acc);stroke:none;opacity:.35;transform-box:fill-box;transform-origin:center;animation:apulse 2.2s ease-out infinite}
 @keyframes apulse{from{transform:scale(1);opacity:.45}to{transform:scale(3.2);opacity:0}}
 @media(prefers-reduced-motion:reduce){.amap .base .pulse{animation:none}}
+.amap-go{position:absolute;inset:0;z-index:2}
+.amap-btn{position:absolute;left:10px;top:10px;z-index:1;display:inline-flex;align-items:center;gap:6px;background:var(--acc);color:#fff;font:700 .8rem/1 var(--sf),Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;box-shadow:0 6px 16px -8px rgba(0,0,0,.5)}
+.amap-btn .ic{width:14px;height:14px}
+.amap:hover .amap-btn{background:var(--acc-d)}
+@media(max-width:700px){.amap text{font-size:46px;stroke-width:12px}.amap .rings text{font-size:36px}.amap .pin circle{r:12}.amap .base circle:not(.dot):not(.pulse){r:20}}
 .amap figcaption{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.85);font-size:.7rem;color:var(--muted);padding:2px 6px}
+/* the quote after the hero: the extra fields a tap away */
+.qmore{border:1px dashed var(--line);padding:0 14px;background:color-mix(in srgb,var(--cream) 60%,#fff)}
+.qmore summary{cursor:pointer;list-style:none;padding:13px 0;font-weight:700;font-size:.92rem;color:var(--acc-d);display:flex;align-items:center;gap:8px}
+.qmore summary::-webkit-details-marker{display:none}
+.qmore summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:1.5px solid currentColor;font-weight:800;line-height:1}
+.qmore[open] summary::before{content:"\2212"}
+.qmore summary small{font-weight:500;color:var(--muted)}
+.qmore[open]{padding-bottom:14px}
+.qmore summary::after{display:none!important}
+.qmore summary,.direct .qmore summary{padding:13px 0;font-size:.95rem;line-height:1.25;text-transform:none;letter-spacing:0}
+/* phones: a shorter hero, so both buttons sit on the photo in the first screen */
+@media(max-width:560px){
+  .hero{min-height:0;padding:96px 0 86px}
+  .hero .kick{font-size:.74rem;margin-bottom:10px}
+  .hero .lead{font-size:.96rem;margin-top:12px}
+  .hero .btns{flex-wrap:nowrap;gap:8px;margin-top:20px}
+  .hero .btns .btn{flex:1 1 0;padding:12px 10px;min-width:0;white-space:normal;text-align:center}
+}
 /* style: "direct" — for trades that should read plain and blunt (a tree service): square corners everywhere,
    heavy condensed capitals for headings, buttons, labels and menu (Barlow Condensed), and a firm body (Barlow) */
 .direct{--sf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-family:Barlow,Inter,system-ui,sans-serif;font-weight:500}
@@ -564,14 +587,19 @@ footer .ci .ic{width:15px;height:15px}
 {{/if}}    <div class="qp" id="qpanel">
       <div class="qp-pane" id="qp-form">
         <h3>Your free quote request</h3>
-        <p class="qp-sub">Takes about 30 seconds.</p>
+        <p class="qp-sub">Takes about 15 seconds.</p>
         <form onsubmit="quote(event,'ok1')" class="qf">
           <div class="row"><label>Your name <i>*</i><input name="name" autocomplete="name" placeholder="John Smith" required></label><label>Phone <i>*</i><input name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567" required></label></div>
-          <label>Email<input name="email" type="email" autocomplete="email" placeholder="your@email.com"></label>
-          <label>Property address or area <i>*</i><input name="address" autocomplete="street-address" placeholder="Street, neighborhood, or ZIP" required></label>
           <label>Service needed <i>*</i><select name="service" id="q1s" required><option value="" disabled selected>Choose a service...</option>{{#each quote.services}}<option value="{{value}}">{{label}}</option>{{/each}}<option value="unsure">Not sure yet</option></select></label>
-          <label>Description<textarea name="notes" rows="3" placeholder="{{#if quote.placeholder}}{{quote.placeholder}}{{else}}Tell us about the job: what, how big, how urgent{{/if}}"></textarea></label>
-          <label class="drop"><input type="file" accept="image/*" multiple onchange="dropped(this)"><b>📷 {{#if quote.top.photos}}{{quote.top.photos}}{{else}}Photos of the job{{/if}}</b><span id="dropn">Optional, but it speeds up your quote</span></label>
+          <details class="qmore">
+            <summary>Add your address, details and photos <small>(optional)</small></summary>
+            <div class="qf">
+              <label>Property address or area<input name="address" autocomplete="street-address" placeholder="Street, neighborhood, or ZIP"></label>
+              <label>Email<input name="email" type="email" autocomplete="email" placeholder="your@email.com"></label>
+              <label>Description<textarea name="notes" rows="3" placeholder="{{#if quote.placeholder}}{{quote.placeholder}}{{else}}Tell us about the job: what, how big, how urgent{{/if}}"></textarea></label>
+              <label class="drop"><input type="file" accept="image/*" multiple onchange="dropped(this)"><b>📷 {{#if quote.top.photos}}{{quote.top.photos}}{{else}}Photos of the job{{/if}}</b><span id="dropn">Optional, but it speeds up your quote</span></label>
+            </div>
+          </details>
           <button type="submit" class="btn btn-acc">Get my free quote</button>
           <p class="qp-fine">Free estimate · No pressure · Or call <a href="tel:{{phone.tel}}">{{phone.display}}</a></p>
         </form>
@@ -700,13 +728,14 @@ footer .ci .ic{width:15px;height:15px}
 {{#if view.areas}}{{else}}    <div class="sh ctr" style="text-align:center"><span class="tag">Contact us</span><h2>{{quote.h2}}</h2><p>{{quote.intro}}</p></div>
 {{/if}}    <div class="contact">
       <div class="cinfo">
-{{#if area.map}}        <figure class="amap">
+{{#if area.map}}        <figure class="amap"><a class="amap-go" href="{{links.googleReviews}}" target="_blank" rel="noopener" aria-label="Open {{name}} on Google Maps"></a>
           <img src="{{area.map.file}}" alt="{{area.map.alt}}" width="{{area.map.width}}" height="{{area.map.height}}" loading="lazy" decoding="async">
           <svg viewBox="0 0 {{area.map.width}} {{area.map.height}}" aria-hidden="true" focusable="false">
             <g class="rings">{{#each area.map.rings}}<circle cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="{{r}}"/><text x="{{area.map.base.x}}" y="{{ly}}" text-anchor="middle">{{label}}</text>{{/each}}</g>
 {{#each area.map.pins}}            <g class="pin{{#if hi}} hi{{/if}}"><circle cx="{{x}}" cy="{{y}}" r="9"/><text x="{{x}}" y="{{y}}" dx="{{tx}}" dy="9" text-anchor="{{anchor}}">{{label}}</text></g>
 {{/each}}            <g class="base"><circle class="pulse" cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="16"/><circle cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="15"/><circle class="dot" cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="5"/><text x="{{area.map.base.x}}" y="{{area.map.base.y}}" dx="{{area.map.base.tx}}" dy="-20" text-anchor="{{area.map.base.anchor}}">{{area.map.base.label}}</text></g>
           </svg>
+          <span class="amap-btn"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>Open in Google Maps</span>
           <figcaption>{{area.map.credit}}</figcaption>
         </figure>
 {{else}}        <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=11&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
