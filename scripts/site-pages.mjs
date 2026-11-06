@@ -78,6 +78,8 @@ export function withView(data, path = "") {
     const a = areaPages.find((x) => x.slug === second);
     if (!a) return null;
     const page = { key: "area", title: a.title ?? a.name, lead: a.lead ?? "", photo: a.photo ?? d.images?.hero, crumb: a.name };
+    // that town's pin stands out on the map
+    if (d.area?.map?.pins) d.area = { ...d.area, map: { ...d.area.map, pins: d.area.map.pins.map((p) => ({ ...p, hi: p.label === (a.pin ?? a.name) })) } };
     d.view = { page, parent: { title: "Service areas", href: pages.areas }, article: a, qtop: true, services: true, grid: true, band: true, contact: true, q: "#quote" };
     return d;
   }
