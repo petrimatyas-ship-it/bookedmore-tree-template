@@ -100,6 +100,7 @@ By what they actually do (Google category first, then their site):
 | pressure washing, soft washing, exterior/house/roof washing, window cleaning | `pressure-washing` | as the template comes |
 | landscaping, lawn care, hardscaping, landscape design | `landscaping` | as the template comes (gold, serif) |
 | tree service, tree removal, arborist, stump grinding | `landscaping` | tree-service setup below |
+| roofing contractor, roof repair, storm and hail restoration, exterior contractor | `landscaping` | `style: "direct"` like a tree service, but in their logo's colour (not green); a whole site with service and area pages; `logoWide: true` for a wide logo |
 
 Anything else (or not a business you can find): report `skipped` with
 "no template for <trade> yet". Do not use the `contractor` template.
@@ -134,6 +135,7 @@ node scripts/site-kit/example.mjs <slug> $W/example.json
 | `coreas-landscaping-services` | landscaping | |
 | `tree-top-techs` | landscaping | the tree-service setup, phone hero |
 | `domingo-tree-service` | landscaping | the tree-service setup as a whole site (`pages: true`), their logo's greens |
+| `hawk-roofing-restorations` | landscaping | a roofer: direct style, navy, whole site with area pages |
 
 Their pictures are at `https://demo.morebookednow.com/<slug>/<file>` if
 you want to see what was picked.
