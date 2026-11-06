@@ -63,3 +63,4 @@ Also optional, on any stored site of this template:
 - `area.map` (from `scripts/site-kit/area-map.mjs`): a real map of the service area, OpenStreetMap streets toned down, with rings out from their base and their towns pinned; on an area page that town's pin stands out. In place of the embedded Google map.
 - `schema`: schema.org structured data (e.g. a `RoofingContractor`), put in the page head as JSON-LD for Google. Both templates.
 - `extraPages` (as on the pressure-washing page) are linked in the menus: those with `nav` in the header, all of them in the phone menu and the footer.
+- optional `hero.short` (phones: a shorter hero, both buttons side by side) and `quote.top.short` (the quote after the hero is one "Get my free quote" button until tapped, then the full form; links to #quote open it too; the contact page always shows the form).
