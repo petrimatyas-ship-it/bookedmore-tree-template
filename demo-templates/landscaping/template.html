@@ -365,6 +365,7 @@ footer .ci .ic{width:15px;height:15px}
 @media(min-width:900px){.svd-g{grid-template-columns:1.05fr .95fr;gap:44px}}
 .svd-t p{color:var(--soft);margin-top:12px}
 .svd-t .btns{margin-top:22px}
+.svd-t .btns .btn{white-space:normal;text-align:center;max-width:100%}
 .svd-p img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
 .pts{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px}
 .pts li{display:flex;gap:10px;align-items:flex-start;font-weight:600;color:var(--ink)}
@@ -390,6 +391,11 @@ footer .ci .ic{width:15px;height:15px}
 .alinks a .ic{width:16px;height:16px;color:var(--acc);flex:none}
 .alinks a .ic:last-child{margin-left:auto}
 .alinks a:hover{border-color:var(--acc)}
+/* logoWide: a wide logo that already says the name, shown alone in the header (the name kept for screen readers) */
+.lw .top .brand img{height:60px;border-radius:0!important;background:#fff;padding:4px 6px}
+.lw .top .brand .wm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:560px){.lw .top .brand img{height:48px}}
+.lw footer .brand img{height:64px;border-radius:0!important;padding:4px 6px}
 /* style: "direct" — for trades that should read plain and blunt (a tree service): square corners everywhere,
    heavy condensed capitals for headings, buttons, labels and menu (Barlow Condensed), and a firm body (Barlow) */
 .direct{--sf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-family:Barlow,Inter,system-ui,sans-serif;font-weight:500}
@@ -413,7 +419,7 @@ footer .ci .ic{width:15px;height:15px}
 .direct footer em{font-style:normal}
 </style>
 </head>
-<body{{#if style}} class="{{style}}"{{/if}}{{#if colors}} style="--acc:{{colors.acc}};--acc-d:{{colors.accD}};--acc-l:{{colors.accL}};--cream:{{colors.cream}}"{{/if}}>
+<body{{#if style}} class="{{style}}{{#if logoWide}} lw{{/if}}"{{else}}{{#if logoWide}} class="lw"{{/if}}{{/if}}{{#if colors}} style="--acc:{{colors.acc}};--acc-d:{{colors.accD}};--acc-l:{{colors.accL}};--cream:{{colors.cream}}"{{/if}}>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
 <symbol id="i-text" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
