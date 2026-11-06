@@ -60,3 +60,6 @@ Also optional, on any stored site of this template:
 - `area.pages[{ slug, name, title?, lead?, photo, sections[] }]` (whole sites): a page per service area at `/<slug>/service-areas/<area>` (its sections, as `extraPages`, then the services, the quote form and contact), linked from the service areas page; for the searches people make in each place. Only facts that hold there: no "local experts in X" claims.
 - `leadsTo[]`: email addresses the site's quote requests and chat leads go to, as well as the demo site's owner inbox (`OWNER_EMAIL`), through Resend (`RESEND_API_KEY`, `LEADS_FROM` on Vercel). Never shown on the page. Without it the quote form only says that this is a preview.
 - `logoWide: true`: a wide logo that already says the name, shown alone in the header.
+- `area.map` (from `scripts/site-kit/area-map.mjs`): a real map of the service area, OpenStreetMap streets toned down, with rings out from their base and their towns pinned; on an area page that town's pin stands out. In place of the embedded Google map.
+- `schema`: schema.org structured data (e.g. a `RoofingContractor`), put in the page head as JSON-LD for Google. Both templates.
+- `extraPages` (as on the pressure-washing page) are linked in the menus: those with `nav` in the header, all of them in the phone menu and the footer.

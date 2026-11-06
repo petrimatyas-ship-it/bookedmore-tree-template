@@ -396,6 +396,22 @@ footer .ci .ic{width:15px;height:15px}
 .lw .top .brand .wm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:560px){.lw .top .brand img{height:48px}}
 .lw footer .brand img{height:64px;border-radius:0!important;padding:4px 6px}
+/* the real service area map (scripts/site-kit/area-map.mjs): rings out from the base, the towns pinned */
+.amap{position:relative;margin:0;border:1px solid var(--line);background:var(--cream);overflow:hidden}
+.amap img{display:block;width:100%;height:auto}
+.amap svg{position:absolute;inset:0;width:100%;height:100%}
+.amap text{font:800 30px/1 var(--sf),Inter,sans-serif;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:9px;stroke-linejoin:round;letter-spacing:.01em}
+.amap .rings circle{fill:color-mix(in srgb,var(--acc) 7%,transparent);stroke:var(--acc);stroke-width:2.5;stroke-dasharray:10 9}
+.amap .rings text{font-size:24px;fill:var(--acc)}
+.amap .pin circle{fill:#fff;stroke:var(--acc);stroke-width:5}
+.amap .pin.hi circle{fill:var(--acc);r:13}
+.amap .pin.hi text{fill:var(--acc)}
+.amap .base circle{fill:var(--acc);stroke:#fff;stroke-width:4}
+.amap .base .dot{fill:#fff;stroke:none}
+.amap .base .pulse{fill:var(--acc);stroke:none;opacity:.35;transform-box:fill-box;transform-origin:center;animation:apulse 2.2s ease-out infinite}
+@keyframes apulse{from{transform:scale(1);opacity:.45}to{transform:scale(3.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){.amap .base .pulse{animation:none}}
+.amap figcaption{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.85);font-size:.7rem;color:var(--muted);padding:2px 6px}
 /* style: "direct" — for trades that should read plain and blunt (a tree service): square corners everywhere,
    heavy condensed capitals for headings, buttons, labels and menu (Barlow Condensed), and a firm body (Barlow) */
 .direct{--sf:'Barlow Condensed','Arial Narrow',Impact,sans-serif;font-family:Barlow,Inter,system-ui,sans-serif;font-weight:500}
@@ -418,7 +434,8 @@ footer .ci .ic{width:15px;height:15px}
 .direct #mnav a{font:700 1.1rem/1 var(--sf);text-transform:uppercase;letter-spacing:.06em}
 .direct footer em{font-style:normal}
 </style>
-</head>
+{{#if schema}}<script type="application/ld+json">{{json schema}}</script>
+{{/if}}</head>
 <body{{#if style}} class="{{style}}{{#if logoWide}} lw{{/if}}"{{else}}{{#if logoWide}} class="lw"{{/if}}{{/if}}{{#if colors}} style="--acc:{{colors.acc}};--acc-d:{{colors.accD}};--acc-l:{{colors.accL}};--cream:{{colors.cream}}"{{/if}}>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
@@ -463,7 +480,7 @@ footer .ci .ic{width:15px;height:15px}
   <div class="wrap">
     <a class="brand" href="{{#if view.page}}{{pages.home}}{{else}}#top{{/if}}" aria-label="{{name}}{{#if view.page}}, home{{else}}, back to top{{/if}}"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"><span class="wm">{{name}}<small>{{tagline}}</small></span></a>
     <nav class="main" aria-label="Main">
-      <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us</a>
+      <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{#each pages.extra}}<a href="{{href}}">{{nav}}</a>{{/each}}{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us</a>
     </nav>
     <div class="top-r">
       <a class="btn btn-acc" href="{{view.q}}">Free estimate</a>
@@ -471,7 +488,7 @@ footer .ci .ic{width:15px;height:15px}
     </div>
   </div>
   <nav id="mnav" aria-label="Menu">
-    <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+    <a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a>{{#if pages}}<a href="{{pages.areas}}">Service areas</a>{{#each pages.more}}<a href="{{href}}">{{nav}}</a>{{/each}}{{/if}}<a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact us{{#if pages}}{{else}}<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>{{/if}}</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
   </nav>
 </header>
 
@@ -683,8 +700,17 @@ footer .ci .ic{width:15px;height:15px}
 {{#if view.areas}}{{else}}    <div class="sh ctr" style="text-align:center"><span class="tag">Contact us</span><h2>{{quote.h2}}</h2><p>{{quote.intro}}</p></div>
 {{/if}}    <div class="contact">
       <div class="cinfo">
-        <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=11&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-        <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
+{{#if area.map}}        <figure class="amap">
+          <img src="{{area.map.file}}" alt="{{area.map.alt}}" width="{{area.map.width}}" height="{{area.map.height}}" loading="lazy" decoding="async">
+          <svg viewBox="0 0 {{area.map.width}} {{area.map.height}}" aria-hidden="true" focusable="false">
+            <g class="rings">{{#each area.map.rings}}<circle cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="{{r}}"/><text x="{{area.map.base.x}}" y="{{ly}}" text-anchor="middle">{{label}}</text>{{/each}}</g>
+{{#each area.map.pins}}            <g class="pin{{#if hi}} hi{{/if}}"><circle cx="{{x}}" cy="{{y}}" r="9"/><text x="{{x}}" y="{{y}}" dx="{{tx}}" dy="9" text-anchor="{{anchor}}">{{label}}</text></g>
+{{/each}}            <g class="base"><circle class="pulse" cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="16"/><circle cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="15"/><circle class="dot" cx="{{area.map.base.x}}" cy="{{area.map.base.y}}" r="5"/><text x="{{area.map.base.x}}" y="{{area.map.base.y}}" dx="{{area.map.base.tx}}" dy="-20" text-anchor="{{area.map.base.anchor}}">{{area.map.base.label}}</text></g>
+          </svg>
+          <figcaption>{{area.map.credit}}</figcaption>
+        </figure>
+{{else}}        <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=11&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+{{/if}}        <div class="cities">{{#each area.cities}}<span><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</span>{{/each}}</div>
         <div class="hrs-card">
           <h3><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Hours<span class="openst" id="openst"></span></h3>
           <ul class="hrs">
@@ -727,7 +753,7 @@ footer .ci .ic{width:15px;height:15px}
         <a class="btn btn-acc" href="{{view.q}}">Get my free quote</a>
       </div>
       <div><h4>Our location</h4><p>{{area.short}}</p><p style="margin-top:6px"><a href="{{links.googleReviews}}" target="_blank" rel="noopener" style="text-decoration:underline">View on Maps</a></p></div>
-      <div><h4>Menu</h4><ul><li><a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a></li><li><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a></li><li><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a></li>{{#if pages}}<li><a href="{{pages.reviews}}">Reviews</a></li><li><a href="{{pages.areas}}">Service areas</a></li>{{/if}}<li><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a></li><li><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact</a></li></ul></div>
+      <div><h4>Menu</h4><ul><li><a {{#if pages}}href="{{pages.about}}"{{else}}href="#" data-lock="About"{{/if}}>About us</a></li><li><a {{#if pages}}href="{{pages.services}}"{{else}}href="#" data-lock="Services"{{/if}}>Services</a></li><li><a {{#if pages}}href="{{pages.gallery}}"{{else}}href="#" data-lock="Our Work"{{/if}}>Our works</a></li>{{#if pages}}<li><a href="{{pages.reviews}}">Reviews</a></li><li><a href="{{pages.areas}}">Service areas</a></li>{{#each pages.more}}<li><a href="{{href}}">{{nav}}</a></li>{{/each}}{{/if}}<li><a {{#if pages}}href="{{pages.faq}}"{{else}}href="#" data-lock="FAQ"{{/if}}>FAQ</a></li><li><a {{#if pages}}href="{{pages.contact}}"{{else}}href="#" data-lock="Contact"{{/if}}>Contact</a></li></ul></div>
       <div><h4>Contact us</h4><ul><li><a class="ci" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i>{{phone.display}}</a></li>{{#if phone2}}<li><a class="ci" href="tel:{{phone2.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i>{{phone2.display}}</a></li>{{/if}}<li><a class="ci" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i>Text us</a></li><li class="ci"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></i><span>{{hours.footerHtml}}</span></li></ul></div>
     </div>
   </div>

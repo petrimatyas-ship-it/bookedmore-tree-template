@@ -35,6 +35,7 @@ export function resolveAssets(data) {
   for (const g of d.gallery?.more ?? []) g.file = full(base, g.file);
   for (const h of Object.values(d.pageHeads ?? {})) if (h?.photo?.file) h.photo.file = full(base, h.photo.file);
   for (const g of d.gallery?.groups ?? []) for (const ph of g.photos ?? []) ph.file = full(base, ph.file);
+  if (d.area?.map?.file) d.area.map.file = full(base, d.area.map.file);
   for (const x of [...(d.extraPages ?? []), ...(d.area?.pages ?? [])]) {
     if (x?.photo?.file) x.photo.file = full(base, x.photo.file);
     for (const s of x?.sections ?? []) {

@@ -117,7 +117,7 @@ On `landscaping` (tree services, landscapers), build the whole site, not
 one page: `pages: true`, every service with its own `page` (lead, paras,
 points and 2 or 4 of its photos), `gallery.more` with the rest of their
 work photos, `pageHeads` (a different photo for each page's heading) and
-`area.groups`, and `area.pages` (a page per service area they name, from their own facts). Do not set `leadsTo`: the owner decides when a site starts sending real leads. Each page should show different photos; one photo three
+`area.groups`, and `area.pages` (a page per service area they name, from their own facts). For the area map, write `map.json` (their base and the towns, see the script) and run `node scripts/site-kit/area-map.mjs $W`, then set `area.map` to the `area-map.json` it writes. Set `schema` (schema.org LocalBusiness of their trade, from their own facts) for Google. Do not set `leadsTo`: the owner decides when a site starts sending real leads. Each page should show different photos; one photo three
 times on one page looks cheap.
 
 Read the template's `demo-templates/<template>/README.md`: it lists
