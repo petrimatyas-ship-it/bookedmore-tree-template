@@ -100,7 +100,7 @@ header.top .cta{min-height:44px;padding:10px 18px;font-size:.8rem}
 .hero .lead{max-width:640px;margin:0 auto;font-size:1.12rem;color:#dbe6f3}
 .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
 .hero .kick{display:block;font:700 .74rem/1.3 var(--hf);letter-spacing:.22em;text-transform:uppercase;color:#bfe9e9;margin-top:18px}
-@media(max-width:560px){.hero .wrap{padding-top:56px;padding-bottom:70px}.hero .btns .btn{flex:1 1 100%}.hero::before,.hero::after{width:30px;height:30px}}
+@media(max-width:560px){.hero .wrap{padding-top:56px;padding-bottom:70px}.hero .btns .btn{flex:1 1 100%}.hero::before,.hero::after{display:none}}
 
 /* stats band and the running strip */
 .stats{background:var(--aqua);color:var(--ink)}
@@ -271,6 +271,49 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
   body{padding-bottom:76px}
 }
 
+
+/* round two: locked pages marked, a calmer hero on phones, the bar after the hero */
+nav.main a{display:inline-flex;align-items:center;gap:5px}
+.ic.lk{width:12px;height:12px;opacity:.45}
+.btn .ic.lk{width:14px;height:14px;opacity:.6}
+.mnav .ic.lk{width:16px;height:16px;opacity:.8;margin-left:auto}
+.mcta{display:grid;gap:10px;margin-top:22px}
+.mcta .btn{border-bottom:0;font-size:.85rem}
+.btn-line{border-color:var(--line);background:#fff;color:var(--navy)}
+.btn-line:hover{border-color:var(--aqua);color:var(--aqua-d)}
+.hs{display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:420px}
+.hs p{max-width:none}
+.hs .btn{min-height:44px;padding:9px 18px;font-size:.76rem}
+.hero .kick{margin:0 0 18px;color:#bfe9e9}
+.hero h1{margin-top:22px}
+.hchk{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:30px;color:#dbe6f3;font-weight:600;font-size:.92rem}
+.hchk li{display:flex;align-items:center;gap:8px}
+.hchk .ic{width:20px;height:20px;padding:3px;border-radius:50%;background:var(--aqua);color:var(--ink);stroke-width:3}
+@media(max-width:560px){.hero{min-height:0}.hero .lead{font-size:1rem}.hchk{gap:8px 16px;font-size:.82rem;margin-top:22px}.hero .kick{font-size:.66rem;letter-spacing:.16em}}
+.svc .sl{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.svc .go{margin:0;padding:0}
+.svc .lm{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.svc .lm:hover{color:var(--navy)}
+.ab-more{margin-top:22px}
+.gal{grid-template-columns:repeat(4,1fr)}
+.gal .gi:first-child{grid-column:span 2;grid-row:span 2}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+.rv p{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rv-more{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.rv-more .ic.f{width:18px;height:18px}
+.askc{margin-top:26px;background:var(--ink);border-radius:18px;padding:24px;color:#9fb0c9}
+.askc b{display:block;color:#fff;font:700 1.15rem/1.2 var(--hf)}
+.askc p{margin:6px 0 16px;font-size:.95rem}
+.askc .ab2{display:flex;gap:10px;flex-wrap:wrap}
+.askc .btn{min-height:46px;padding:10px 16px;font-size:.78rem}
+.fq-all{margin-top:14px}
+.ar2{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+@media(max-width:900px){.ar2{grid-template-columns:1fr;gap:28px}}
+.ar2 .lead{color:var(--soft);margin-top:14px}
+.ar2 .towns{margin:22px 0 22px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.ar2 .map{margin:0;height:380px}
+@media(max-width:700px){.sbar{transform:translateY(130%);transition:transform .25s}.sbar.on{transform:none}}
+
 /* shared with the other templates: the lightbox, the chat bubble, the locked pages, the form's thank-you */
 .ok{display:none;margin-top:12px;padding:12px 14px;border-radius:4px;background:#eef8f1;border:1px solid #b9e2c6;color:#1f5133;font-size:.95rem}
 .ok b{display:block;color:#173f27}
@@ -367,7 +410,7 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
   <div class="wrap">
     <a class="brand" href="#top" aria-label="{{name}}, back to top"><img src="{{images.heroLogo.file}}" alt="{{images.heroLogo.alt}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}"></a>
     <nav class="main" aria-label="Main">
-      <a href="#services">Services</a><a href="#work">Our work</a><a href="#reviews">Reviews</a><a href="#" data-lock="Service Areas">Service areas</a><a href="#" data-lock="About">About</a><a href="#faq">FAQ</a>
+      <a href="#" data-lock="Services">Services<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Gallery">Gallery<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Reviews">Reviews<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Service Areas">Service areas<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="About">About<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="FAQ">FAQ<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     </nav>
     <a class="btn btn-aq cta" href="#quote">Get a free quote</a>
     <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav" onclick="toggleNav()"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
@@ -375,18 +418,20 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
 </header>
 <nav class="mnav" id="mnav" aria-label="Menu">
   <button type="button" class="x" onclick="closeNav()" aria-label="Close menu"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
-  <a href="#services" onclick="closeNav()">Services</a><a href="#work" onclick="closeNav()">Our work</a><a href="#reviews" onclick="closeNav()">Reviews</a><a href="#" data-lock="Service Areas">Service areas<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="About">About<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#faq" onclick="closeNav()">FAQ</a><a href="tel:{{phone.tel}}">Call {{phone.display}}</a>
+  <a href="#" data-lock="Services">Services<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Gallery">Gallery<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Reviews">Reviews<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="Service Areas">Service areas<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="About">About<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a href="#" data-lock="FAQ">FAQ<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+  <div class="mcta"><a class="btn btn-aq" href="#quote" onclick="closeNav()">Get a free quote</a><a class="btn btn-ghost" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
 </nav>
 
 <main id="top">
 <section class="hero"{{#if images.hero.position}} style="--hp:{{images.hero.position}}"{{/if}}>
   <div class="hero-bg"{{#if images.heroMobile.position}} style="--hpm:{{images.heroMobile.position}}"{{/if}}><picture>{{#if images.heroMobile}}<source media="(max-width:700px)" srcset="{{images.heroMobile.file}}" width="{{images.heroMobile.width}}" height="{{images.heroMobile.height}}">{{/if}}<img src="{{images.hero.file}}" alt="{{images.hero.alt}}" width="{{images.hero.width}}" height="{{images.hero.height}}" fetchpriority="high"></picture></div>
   <div class="wrap">
+    <span class="kick">{{hero.kicker}}</span>
     <a class="pill" href="{{links.googleReviews}}" target="_blank" rel="noopener"><span class="g"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg></span><span><span class="st">★★★★★</span> <b>{{rating.score}}</b> · {{rating.count}} Google reviews</span></a>
     <h1>{{hero.h1a}} <span>{{hero.h1b}}</span></h1>
     <p class="lead">{{hero.lead}}</p>
     <div class="btns"><a class="btn btn-aq" href="#quote">Get a free quote</a><a class="btn btn-ghost" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a></div>
-    <span class="kick">{{hero.kicker}}</span>
+    <ul class="hchk">{{#each intro.checks}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
   </div>
 </section>
 
@@ -397,9 +442,9 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
 
 <section class="sec lt" id="services">
   <div class="wrap">
-    <div class="head"><div><span class="eb">{{services.eyebrow}}</span><h2>{{services.h2a}} <em>{{services.h2b}}</em></h2></div><p>{{services.intro}}</p></div>
+    <div class="head"><div><span class="eb">{{services.eyebrow}}</span><h2>{{services.h2a}} <em>{{services.h2b}}</em></h2></div><div class="hs"><p>{{services.intro}}</p><a class="btn btn-line" href="#" data-lock="Services">All services<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a></div></div>
     <div class="svcs">
-{{#each services.items}}      <a class="svc" href="#quote" onclick="pick('{{value}}')"><span class="k"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></span><h3>{{title}}</h3><p>{{text}}</p><span class="go">Free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></span></a>
+{{#each services.items}}      <article class="svc"><span class="k"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-{{icon}}"/></svg></span><h3>{{title}}</h3><p>{{text}}</p><div class="sl"><a class="go" href="#quote" onclick="pick('{{value}}')">Free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a><a class="lm" href="#" data-lock="{{title}}" data-svc="1">Learn more</a></div></article>
 {{/each}}    </div>
   </div>
 </section>
@@ -411,6 +456,7 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
       <h2>{{intro.h2a}} <em>{{intro.h2b}}</em></h2>
 {{#each intro.paras}}      <p>{{this}}</p>
 {{/each}}      <ul class="checks">{{#each intro.checks}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>{{this}}</li>{{/each}}</ul>
+      <a class="btn btn-line ab-more" href="#" data-lock="About">More about us<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     </div>
     <div class="ab-p">
       <img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async">
@@ -435,7 +481,7 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
 
 <section class="sec" id="work">
   <div class="wrap">
-    <div class="head"><div><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <em>{{gallery.h2b}}</em></h2></div><p>{{gallery.intro}}</p></div>
+    <div class="head"><div><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <em>{{gallery.h2b}}</em></h2></div><div class="hs"><p>{{gallery.intro}}</p><a class="btn btn-line" href="#" data-lock="Gallery">See all photos<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a></div></div>
     <div class="gal">
 {{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
 {{/each}}    </div>
@@ -448,7 +494,7 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
     <div class="rvs">
 {{#each reviews.items}}      <article class="rv"><span class="st">★★★★★</span><p>“{{text}}”</p><div class="who"><span class="av">{{initial}}</span><div><b>{{name}}</b><small>{{date}} · Google</small></div></div></article>
 {{/each}}    </div>
-    <p class="rv-more"><a class="btn btn-navy" href="{{links.googleReviews}}" target="_blank" rel="noopener">Read all {{rating.count}} reviews on Google</a></p>
+    <p class="rv-more"><a class="btn btn-navy" href="#" data-lock="Reviews">See all reviews<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a><a class="btn btn-line" href="{{links.googleReviews}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Read them on Google</a></p>
   </div>
 </section>
 
@@ -489,7 +535,8 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
     <div>
       <span class="eb">{{faq.eyebrow}}</span>
       <h2>{{faq.h2a}} <em>{{faq.h2b}}</em></h2>
-      <p class="lead">Anything else? Call or text <a href="tel:{{phone.tel}}"><b>{{phone.display}}</b></a>, or ask the assistant in the corner.</p>
+      <div class="askc"><b>Still have a question?</b><p>Call or text us, or ask the assistant. It answers right away.</p><div class="ab2"><a class="btn btn-aq" href="tel:{{phone.tel}}"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>{{phone.display}}</a><button type="button" class="btn btn-ghost" onclick="cw(true)"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Ask now</button></div></div>
+      <a class="btn btn-line fq-all" href="#" data-lock="FAQ">All questions<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
     </div>
     <div>
 {{#each faq.items}}      <details><summary>{{q}}</summary><p>{{a}}</p></details>
@@ -498,9 +545,14 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
 </section>
 
 <section class="sec lt" id="area">
-  <div class="wrap">
-    <div class="head"><div><span class="eb">{{area.eyebrow}}</span><h2>{{area.h2a}} <em>{{area.h2b}}</em></h2></div><p>{{area.text}}</p></div>
-    <ul class="towns">{{#each area.cities}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</li>{{/each}}</ul>
+  <div class="wrap ar2">
+    <div>
+      <span class="eb">{{area.eyebrow}}</span>
+      <h2>{{area.h2a}} <em>{{area.h2b}}</em></h2>
+      <p class="lead">{{area.text}}</p>
+      <ul class="towns">{{#each area.cities}}<li><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>{{this}}</li>{{/each}}</ul>
+      <a class="btn btn-line" href="#" data-lock="Service Areas">Every town we serve<svg class="ic lk" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg></a>
+    </div>
     <div class="map"><iframe src="https://www.google.com/maps?q={{area.mapQuery}}&amp;z=11&amp;output=embed" title="Map of {{area.mapTitle}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
   </div>
 </section>
@@ -517,8 +569,8 @@ footer .bt{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding-to
   <div class="wrap">
     <div class="cols">
       <div class="fb"><img src="{{images.heroLogo.file}}" alt="{{name}}" width="{{images.heroLogo.width}}" height="{{images.heroLogo.height}}" loading="lazy"><p>{{footer.about}}</p></div>
-      <div><h4>Services</h4><ul>{{#each services.items}}<li><a href="#quote" onclick="pick('{{value}}')">{{title}}</a></li>{{/each}}</ul></div>
-      <div><h4>Company</h4><ul><li><a href="#" data-lock="About">About us</a></li><li><a href="#work">Our work</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service areas</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Services</h4><ul>{{#each services.items}}<li><a href="#" data-lock="{{title}}" data-svc="1">{{title}}</a></li>{{/each}}</ul></div>
+      <div><h4>Company</h4><ul><li><a href="#" data-lock="About">About us</a></li><li><a href="#" data-lock="Gallery">Gallery</a></li><li><a href="#" data-lock="Reviews">Reviews</a></li><li><a href="#" data-lock="Service Areas">Service areas</a></li><li><a href="#" data-lock="FAQ">FAQ</a></li><li><a href="#quote">Free estimate</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="tel:{{phone.tel}}">{{phone.display}}</a></li><li>{{area.mapTitle}}</li><li>{{hours.footerHtml}}</li></ul></div>
     </div>
     <div class="bt"><span>© {{footer.year}} {{name}}. {{footer.copyNote}}</span><span>Website by MoreBookedNow</span></div>
@@ -697,6 +749,8 @@ document.querySelectorAll('#qr button').forEach(b=>b.addEventListener('click',()
   const span=SCHED[key],open=!!span&&now>=span[0]&&now<span[1];
   const st=document.getElementById('openst');if(st&&SCHED[key]!==undefined){st.textContent=open?'Open now':'Closed now';if(open)st.classList.add('on')}
 }catch(e){}})();
+/* phones: the Call / Free quote bar once the hero has scrolled away */
+(function(){var bar=document.querySelector('.sbar'),hero=document.querySelector('.hero');if(!bar||!hero)return;function f(){bar.classList.toggle('on',hero.getBoundingClientRect().bottom<0)}addEventListener('scroll',f,{passive:true});f()})();
 </script>
 <script>
 /* Visit tracking, same events as the other demos, recorded as engagement:<slug>.

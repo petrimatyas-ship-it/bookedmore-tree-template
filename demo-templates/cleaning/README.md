@@ -16,4 +16,7 @@ Google reviews, quote form with hours, FAQ, service area with map, a closing ban
 Call / Free quote bar stays at the bottom. The chat bubble, the locked pages, the quote form's sending
 (`leadsTo`) and visit tracking are the pressure-washing template's, unchanged.
 
-Home page only for now: `pages: true` is not read.
+The home page is the only real page. The menu, the footer, "All services", each service's "Learn more",
+"See all photos", "See all reviews", "More about us", "All questions" and "Every town we serve" open the
+locked preview of that page (what it will hold once the site goes live), as on the pressure-washing
+template. `pages: true` is not read yet.
