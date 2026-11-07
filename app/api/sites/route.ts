@@ -10,7 +10,7 @@ import { siteMakerKeyOk } from "@/lib/site-maker-key";
  * Sites the Replymint site maker builds (loopfinity, lib/site-maker.ts).
  *
  *   POST   { slug, template, data } -> { url }   stores or replaces it;
- *          template is "detailing", "pressure-washing", "landscaping" or "contractor" (lib/detailing-page.ts)
+ *          template is "detailing", "pressure-washing", "landscaping", "contractor" or "cleaning" (lib/detailing-page.ts)
  *   GET    ?slug=                               -> { site, visits } (each visit: when, where, device, and
  *                                                  how far it scrolled, how long it stayed, what it tapped)
  *   GET    ?slug=&data=1                        -> the same, with the stored template and data
