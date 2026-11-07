@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { business } from "@/lib/business";
+import { Motion } from "@/components/Motion";
 
 export const metadata: Metadata = {
   title: `${business.companyName} | Tree Service in ${business.city}, ${business.stateAbbr}`,
@@ -56,7 +57,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Motion />
+      </body>
     </html>
   );
 }

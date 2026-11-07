@@ -154,11 +154,12 @@ textarea {
      and their carets on a page that stayed cream around them. */
   color-scheme: light;
 }
-/* Scroll reveal */
+/* Scroll reveal: the single-block wrapper (components/Reveal.tsx). Same
+   distance and curve as the item motion below, so the two read as one. */
 .reveal {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateY(26px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-visible {
   opacity: 1;
@@ -169,6 +170,46 @@ textarea {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/*
+  Items rising into place: see components/Motion.tsx for how they are found
+  and when. Nothing here hides anything until `html[data-motion]` is set,
+  which happens only after whatever is already on screen has been marked as
+  shown — so without JavaScript, or before it runs, the page is complete.
+
+  An animation and not a transition, deliberately. The cards carry their own
+  hover transitions (a lift, a shadow), and a transition set here would
+  replace those for good: every hover afterwards would take most of a second
+  and start late. An animation leaves them alone. The keyframe names only its
+  starting point, so it ends on the item's own values rather than on 1 and
+  none, and a card that is meant to be slightly transparent stays so.
+
+  The curve is a long ease-out: quick to leave, slow to settle. The settling
+  is what reads as expensive.
+*/
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.985);
+  }
+}
+html[data-motion] [data-stagger] > :not([data-in]),
+html[data-motion] [data-reveal]:not([data-in]) {
+  opacity: 0;
+}
+html[data-motion] [data-stagger] > [data-in="rise"],
+html[data-motion] [data-reveal][data-in="rise"] {
+  animation: rise-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* 90ms apart, so a row of three lands in under a quarter of a second. */
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-motion] [data-stagger] > *,
+  html[data-motion] [data-reveal] {
+    opacity: 1;
+    animation: none;
   }
 }
 
