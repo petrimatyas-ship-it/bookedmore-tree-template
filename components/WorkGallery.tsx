@@ -60,7 +60,7 @@ export function WorkGallery({ config = business, lockHref = "" }: { config?: Sit
           )}
         </div>
 
-        <div className="mt-9 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] lg:grid-cols-4">
+        <div data-stagger className="mt-9 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] lg:grid-cols-4">
           <Tile photo={lead} href={href} name={config.companyName} className="col-span-2 row-span-2" />
           {rest.map((photo) => (
             <Tile key={photo} photo={photo} href={href} name={config.companyName} />

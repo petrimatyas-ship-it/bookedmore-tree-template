@@ -77,7 +77,7 @@ export function TreeCareServices({
         The widths below reproduce the 2- and 3-column grid exactly (gap-5 is
         1.25rem), so a full row is pixel-identical to what it replaces.
       */}
-      <Reveal className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1400px] lg:gap-6" : "max-w-6xl lg:max-w-[1400px]"}`}>
+      <div data-stagger className={`mx-auto mt-8 flex flex-wrap justify-center gap-5 ${wide ? "max-w-6xl lg:max-w-[1400px] lg:gap-6" : "max-w-6xl lg:max-w-[1400px]"}`}>
         {config.serviceCards.map((service) => (
           <article
             key={service.title}
@@ -134,7 +134,7 @@ export function TreeCareServices({
             </div>
           </article>
         ))}
-      </Reveal>
+      </div>
     </section>
   );
 }
@@ -156,7 +156,7 @@ export function TrustBar({ config = business }: SectionProps) {
   ];
   return (
     <section className="bg-night px-5 pb-1 pt-4 sm:px-10 sm:pb-2 lg:px-12">
-      <div className="mx-auto grid max-w-6xl lg:max-w-[1400px] grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+      <div data-stagger className="mx-auto grid max-w-6xl lg:max-w-[1400px] grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, label }) => (
           <div
             key={label}
@@ -284,7 +284,7 @@ export function AboutUs({ config = business }: SectionProps) {
           With a focus photo the promises run exactly its height: the first
           line level with its top edge, the last with its bottom.
         */}
-        <div
+        <div data-stagger
           className={`order-1 grid gap-5 lg:order-none ${
             focus ? "lg:flex lg:max-w-[540px] lg:flex-col lg:justify-between" : "lg:content-start lg:gap-7 lg:py-2"
           }`}
@@ -311,7 +311,7 @@ export function AboutUs({ config = business }: SectionProps) {
       {/* The four numbers under both columns, in one box of their own rather
           than tucked under the photo where they read as a caption. */}
       {!focus && (
-      <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:max-w-[1400px] lg:grid-cols-4 lg:gap-5">
+      <div data-stagger className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-2.5 sm:gap-3 lg:max-w-[1400px] lg:grid-cols-4 lg:gap-5">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -349,7 +349,7 @@ export function HowItWorks({ config = business }: SectionProps) {
           </p>
         </div>
       </div>
-      <div className="mx-auto mt-8 grid max-w-6xl lg:max-w-[1400px] gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div data-stagger className="mx-auto mt-8 grid max-w-6xl lg:max-w-[1400px] gap-4 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
           <article
             key={step.title}
@@ -443,7 +443,7 @@ export function Reviews({ config = business }: SectionProps) {
 
           {hasReviews ? (
             <>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div data-stagger className="mt-5 grid gap-4 md:grid-cols-3">
               {reviews.map((review, index) =>
                 fromGoogle ? (
                   <GoogleReviewCard key={`${review.name}-${index}`} review={review} />
@@ -529,7 +529,7 @@ export function ServiceAreaMap({ config = business }: SectionProps) {
             <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
               Here&apos;s where our crews work most often. Outside these areas? Call and we&apos;ll confirm availability.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2 sm:grid sm:grid-cols-2 sm:gap-3">
+            <div data-stagger className="mt-6 flex flex-wrap gap-2 sm:grid sm:grid-cols-2 sm:gap-3">
               {config.serviceAreas.slice(0, 6).map((area) => (
                 <div
                   key={area}
@@ -584,7 +584,7 @@ export function TrustBadges({ config = business }: SectionProps) {
 
   return (
     <section className="border-b border-forest-900/15 bg-night px-5 py-4 sm:px-10 lg:px-12">
-      <div className="mx-auto grid max-w-6xl lg:max-w-[1400px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div data-stagger className="mx-auto grid max-w-6xl lg:max-w-[1400px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {badges.map((badge) => (
           <div
             key={badge.label}
@@ -667,7 +667,7 @@ export function FaqSection({ config = business }: SectionProps) {
             {demoCopy.faq.heading}
           </h2>
         </div>
-        <div className="mt-8 grid gap-3">
+        <div data-stagger className="mt-8 grid gap-3">
           {faqs.map((faq, i) => (
             <details
               key={faq.question}
@@ -714,7 +714,7 @@ export function WarningSigns({ config = business, links = defaultLinks }: Sectio
         </p>
         {/* auto-rows-fr so the box whose text wraps does not leave the one
             beside it short: all four match whatever the tallest needs. */}
-        <div className="mt-8 grid gap-3 text-left lg:auto-rows-fr lg:grid-cols-2 lg:gap-4">
+        <div data-stagger className="mt-8 grid gap-3 text-left lg:auto-rows-fr lg:grid-cols-2 lg:gap-4">
           {defaultSigns.map((sign) => (
             <div key={sign} className="flex items-start gap-3.5 rounded-[10px] border border-ember-500/30 bg-ember-500/[0.07] px-4 py-4 lg:items-center lg:gap-4 lg:px-6 lg:py-6">
               <IconAlertTriangleFilled size={24} className="mt-0.5 shrink-0 text-ember-500 lg:h-7 lg:w-7" aria-hidden="true" />
@@ -801,7 +801,7 @@ export function QuoteSection({ config = business, slug }: SectionProps & { slug?
             {demoCopy.quote.heading}
           </h2>
           <p className="mt-5 max-w-md text-base leading-6 text-cream/65 sm:text-lg sm:leading-8">{demoCopy.quote.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div data-stagger className="mt-8 flex flex-wrap gap-3">
             {config.aboutTrustPoints.map((point) => (
               <span
                 key={point}

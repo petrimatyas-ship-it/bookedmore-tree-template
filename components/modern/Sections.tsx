@@ -118,7 +118,7 @@ export function ModernHero({ config }: Props) {
             )}
           </div>
 
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-[14.5px] font-semibold text-ink/75">
+          <ul data-stagger className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-[14.5px] font-semibold text-ink/75">
             {trust.map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <IconCheck size={16} stroke={2.8} className="text-moss" aria-hidden="true" />
@@ -190,7 +190,7 @@ export function ModernNumbers({ config }: Props) {
   return (
     <section className="bg-bone pb-10 sm:pb-14 lg:pb-20">
       <div className={wrap}>
-        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-ink/10 ring-1 ring-ink/10 lg:grid-cols-4">
+        <dl data-reveal className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-ink/10 ring-1 ring-ink/10 lg:grid-cols-4">
           {shown.map((item) => (
             <div key={item.label} className="bg-bone px-6 py-6 sm:px-8 sm:py-8">
               <dd className="font-display text-[40px] font-semibold leading-none tracking-[-0.035em] text-ink sm:text-5xl">
@@ -242,7 +242,7 @@ export function ModernServices({ config }: Props) {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:gap-5">
+        <div data-stagger className="mt-10 grid gap-4 lg:grid-cols-3 lg:gap-5">
           {cards.map((card, i) => {
             const wideCard = spanFor(i, cards.length) !== "";
             return (
@@ -357,7 +357,7 @@ export function ModernProcess({ config }: Props) {
       <div className={wrap}>
         <Eyebrow n="02">How it works</Eyebrow>
         <Heading>From the first call to a clean yard.</Heading>
-        <ol className="mt-10 grid gap-px overflow-hidden rounded-3xl bg-ink/10 ring-1 ring-ink/10 md:grid-cols-2 lg:grid-cols-4">
+        <ol data-reveal className="mt-10 grid gap-px overflow-hidden rounded-3xl bg-ink/10 ring-1 ring-ink/10 md:grid-cols-2 lg:grid-cols-4">
           {steps.slice(0, 4).map((step, i) => (
             <li key={step.title} className="bg-bone p-6 sm:p-8">
               <span className="font-display text-5xl font-semibold leading-none tracking-[-0.04em] text-ink/15">0{i + 1}</span>
@@ -415,7 +415,7 @@ export function ModernWork({ config, lockHref }: Props & { lockHref: string }) {
         </div>
 
         {hasGallery ? (
-          <div className="mt-10 grid auto-rows-[160px] grid-cols-2 gap-3 sm:auto-rows-[200px] lg:grid-cols-4 lg:auto-rows-[230px] lg:gap-4">
+          <div data-stagger className="mt-10 grid auto-rows-[160px] grid-cols-2 gap-3 sm:auto-rows-[200px] lg:grid-cols-4 lg:auto-rows-[230px] lg:gap-4">
             {shown.map((photo, i) => (
               <figure
                 key={photo}
@@ -454,7 +454,7 @@ export function ModernWork({ config, lockHref }: Props & { lockHref: string }) {
             )}
           </div>
         ) : (
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div data-stagger className="mt-10 grid gap-5 md:grid-cols-2">
             {projects.slice(0, 2).map((project) => (
               <figure key={project.title} className="overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10">
                 <div className="aspect-[4/3]">
@@ -539,7 +539,7 @@ export function ModernReviews({ config }: Props) {
         </div>
 
         {hasReviews && (
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          <div data-stagger className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
             {reviews.map((review, i) => (
               <article
                 key={`${review.name}-${i}`}
@@ -603,7 +603,7 @@ export function ModernAreas({ config }: Props) {
           <p className="mt-5 max-w-lg text-[15px] leading-7 text-slate sm:text-base sm:leading-8">
             Where our crews work most weeks. Outside these? Call and we will confirm availability before booking an estimate.
           </p>
-          <ul className="mt-7 flex flex-wrap gap-2">
+          <ul data-stagger className="mt-7 flex flex-wrap gap-2">
             {config.serviceAreas.map((area) => (
               <li
                 key={area}
@@ -643,7 +643,7 @@ export function ModernFaq({ config }: Props) {
           <Eyebrow n="06">FAQ</Eyebrow>
           <Heading>Questions homeowners ask.</Heading>
         </div>
-        <div className="divide-y divide-ink/10 border-y border-ink/10">
+        <div data-stagger className="divide-y divide-ink/10 border-y border-ink/10">
           {faqs.map((faq, i) => (
             <details key={faq.question} open={i === 0} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-lg font-semibold tracking-[-0.01em] text-ink sm:text-xl">
