@@ -26,11 +26,11 @@ Data, every value already HTML-escaped:
 - `intro { eyebrow, h2a, h2b, paras[], checks[], review? { text, name } }`
 - `services { eyebrow, h2a, h2b, intro, items[{ value, icon, title, text, points[] }] }`; icons: `drop`, `roof`, `house`, `gutter`, `target`, `fence`, `truck`, `window`, or any other in the sprite
 - `band { title, text }`, `steps { eyebrow, h2a, h2b, items[{ title, text }] }`
-- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 3, 5 or 9 photos fill the grid; `first: true` puts it before the services instead of after the steps
-- `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }] }`
+- `gallery` (optional) `{ eyebrow, h2a, h2b, intro, photos[{ file, caption, alt, width, height }], note, pairs? }`: first photo big; 3, 5 or 9 photos fill the grid. On the home page it comes right after the hero and the quick estimate, followed by the reviews (where a prospect on a phone still is); `first` is no longer needed. `pairs[{ caption, before: { file, alt, width, height }, after: { … } }]`: before / after photos of the same spot, side by side above the grid
+- `reviews { eyebrow, h2a, h2b, items[{ text, name, date, initial }], ask? }`: `ask` replaces "Happy with your clean?" for trades that do not clean
 - `area { eyebrow, h2a, h2b, text, cities[], mapQuery, mapTitle }`, `hours` (as `hoursFrom` in loopfinity's `lib/site-maker-model.ts` builds it)
 - `faq { eyebrow, h2a, h2b, items[{ q, a }] }`
-- `quote { eyebrow, h2a, h2b, intro, services[{ value, label }], serviceNames }` (values match `services.items[].value`); optional `quote.ask` (the form's "What needs cleaning?") and `quote.placeholder` (its notes hint) for trades that do not clean
+- `quote { eyebrow, h2a, h2b, intro, services[{ value, label }], serviceNames }` (values match `services.items[].value`); optional `quote.ask` (the form's "What needs cleaning?"), `quote.placeholder` (its notes hint) and `quote.textHint` (the text card's "Send a photo of what needs cleaning") for trades that do not clean
 - optional `colors { blue, blueD, sky, cta, ctaD }`: their brand colours in place of the blue and the red buttons; optional `logoWide: true` for a wide logo that already says the name (the name beside it is then left out, kept for screen readers)
 - optional `phone2 { display, tel }`, a second line beside the call and text cards
 - optional whole site, as on the landscaping page: `pages: true` with `services.items[].page`, `gallery.more` or `gallery.groups[{ title, intro?, photos[] }]` (the gallery page), `pageHeads`, and `extraPages[{ slug, nav?, title, lead, photo, sections[{ eyebrow?, h2, paras[], points[], list[], photo?, photos[], alt? }] }]` for pages of their own (commercial work, soft wash vs pressure wash); see `scripts/site-pages.mjs`

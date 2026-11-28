@@ -32,7 +32,7 @@ Data, every value already HTML-escaped:
 - `services { eyebrow, h2, intro, items[{ value, icon, title, text, photo, photoAlt }] }`: a card with a `photo` shows it; without one, a cream card with the icon (`leaf`, `sprout`, `scissors`, `tree`, `snow`, `drop`, `fence`, …)
 - `steps { eyebrow, h2, intro, items[{ title, text }] }` (four)
 - `about { h2, caption, paras[], stats[{ big, acc, label }], areaLine }`
-- `gallery` (optional) `{ eyebrow, h2, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 5 or 9 fill the grid
+- `gallery` (optional) `{ eyebrow, h2, intro, photos[{ file, caption, alt, width, height }], note }`: first photo big; 5 or 9 fill the grid; on the home page it comes right after the hero (and the quote, with `quote.top`), followed by the reviews; optional `pairs[{ caption, before: { file, alt, width, height }, after: { … } }]`, before / after photos of the same spot above the grid
 - `reviews { h2, intro, items[{ text, name, date, initial }], ask? }` (`ask`: the review box's question, "Happy with your yard?" when not given)
 - `why { h2, intro, left[2], right[2] ({ icon, title, text }), photo { file, alt, width, height } }`
 - `band { h2, text, photo }`, `faq { intro, items[{ q, a }] }`
