@@ -24,6 +24,6 @@ After payment (`/welcome`): the site goes live within 48 hours on `<slug without
 and where it is registered (GoDaddy, Namecheap, Squarespace, Wix, other, don't know), then shows that registrar's one
 step (delegate or shared access, inviting `DELEGATE_EMAIL`, else `OWNER_EMAIL`; never a password) and emails it to them.
 
-Vercel variables: `STRIPE_PAYMENT_LINK` (the $99/month Payment Link; the slug goes with it as
+Vercel variables: `STRIPE_PAYMENT_LINK` (optional: replaces the $99/month Payment Link written in `lib/offer.ts`; the slug goes with it as
 `client_reference_id`; its "after payment" URL should be `https://demo.morebookednow.com/welcome?session_id={CHECKOUT_SESSION_ID}`; the welcome page knows the site from the Start now tap in the same browser, and the session id ties the answers to the payment), and the lead
 email ones (`RESEND_API_KEY`, `LEADS_FROM`, `OWNER_EMAIL`) for the question and new-customer forms.

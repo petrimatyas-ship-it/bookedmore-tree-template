@@ -81,10 +81,16 @@ export function domainGuide(registrar: string, email: string): { title: string; 
   }
 }
 
+/**
+ * MoreBookedNow's $99/month Payment Link (Stripe, live mode): recurring monthly, phone number
+ * collected, after payment to /welcome?session_id={CHECKOUT_SESSION_ID}. Public by design;
+ * STRIPE_PAYMENT_LINK on Vercel replaces it.
+ */
+export const DEFAULT_PAYMENT_LINK = "https://buy.stripe.com/7sY9AM63x5Pa7bDaj0cMM03";
 
 /** Stripe's Payment Link with the site's slug, or null when none is set. */
 export function paymentLink(slug: string): string | null {
-  const raw = (process.env.STRIPE_PAYMENT_LINK ?? "").trim();
+  const raw = (process.env.STRIPE_PAYMENT_LINK || DEFAULT_PAYMENT_LINK).trim();
   if (!/^https:\/\/(buy|checkout)\.stripe\.com\//.test(raw)) return null;
   const url = new URL(raw);
   url.searchParams.set("client_reference_id", slug);
