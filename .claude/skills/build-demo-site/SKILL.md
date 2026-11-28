@@ -171,7 +171,21 @@ without a template change, say so in the warnings.
 - **"Proud of our work"** gallery: their best job photos, best first.
   Fill the grid exactly: detailing 13, 9, 5 or 3; pressure-washing 9, 5 or
   3; landscaping 9 or 5. Fewer good photos than the smallest size: leave
-  the gallery out.
+  the gallery out. `gather.mts` pulls every photo on their Google listing
+  (up to about 50) and their customers' review photos: go through all of
+  them, not the first sheet. The templates show the gallery and the reviews
+  right under the hero on the home page, where prospects actually look
+  (they open on a phone and rarely scroll past halfway); nothing to set.
+- **Before / after** (pressure washing, soft washing, window and gutter
+  cleaning above all): look for two photos of the same spot, dirty then
+  clean (the same driveway, roof, wall or window, same angle near enough;
+  customers' review photos often carry them). Put each as
+  `gallery.pairs[{ caption, before: {file, alt, width, height}, after: {…} }]`,
+  caption like "Driveway, before / after", best first, at most 4. They show
+  above the gallery grid. Never pair two different places, and never make a
+  "before" by darkening an "after": no real pair, no pairs.
+- **Generated pictures** stay the fallback only, for a service card with no
+  photo of theirs (below); never for the gallery or a pair.
 - **Service cards** get the photo of theirs that shows that service. None
   fits: on `landscaping`, no photo (the card shows its icon); otherwise
   `node scripts/site-kit/draw.mjs` may make one (a service card only,
@@ -192,6 +206,13 @@ without a template change, say so in the warnings.
   `knowledge` (owner's first name if reviews name them, hours, area, what
   customers praise), `intake` (what to ask a customer for this trade),
   `example` (one reply in their voice), `priceDepends`.
+- **Trade words**: on `pressure-washing`, a trade that does not clean
+  (gutters, curb painting) sets `reviews.ask` ("Happy with your gutters?"),
+  `quote.ask`, `quote.placeholder` and `quote.textHint` (the text card's
+  "Send a photo of what needs cleaning") in its own words.
+- **The preview's offer** is in every template: the banner's "Make it live ·
+  $99/mo" and the locked pages open `/<slug>/live`, the owner's offer page.
+  Nothing to set; never put another price on a site.
 - **Words**: plain, short, confident, their trade's language, US English.
   No buzzwords, no exclamation marks in headings. Every value in the data
   is inserted as HTML: write `&amp;` for &, never raw `<` or `"` in text.

@@ -354,6 +354,28 @@ footer .btn{margin-top:14px}
 .alinks a{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:4px;font-weight:700;color:var(--navy)}
 .alinks a .ic{width:16px;height:16px;color:var(--blue);flex:none}
 .alinks a .ic:last-child{margin-left:auto}
+
+/* the offer for the owner (lib/offer.ts): "Make it live" in the preview banner, "by MoreBookedNow" to who we are */
+.demo-ribbon{display:flex;align-items:center;justify-content:center;gap:6px 14px;flex-wrap:wrap}
+.demo-ribbon a.by{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.demo-ribbon .mk{display:inline-flex;align-items:center;background:#16a34a;color:#fff;font:800 .8rem/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:.01em;padding:7px 13px;border-radius:999px;text-decoration:none;white-space:nowrap;animation:mkp 2.4s ease-out 1s 3}
+.demo-ribbon .mk:hover{background:#12803a}
+@keyframes mkp{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@media(prefers-reduced-motion:reduce){.demo-ribbon .mk{animation:none}}
+@media(max-width:600px){.demo-ribbon{justify-content:space-between;flex-wrap:nowrap;text-align:left;padding:6px 10px}.demo-ribbon .rl{display:none}.demo-ribbon .rs{display:inline}}
+/* phones: a smaller chat bubble, tucked into the corner, so it covers less of the cards */
+@media(max-width:600px){.cw-b{width:46px;height:46px;right:10px;bottom:10px}.cw-b .ic{width:21px;height:21px}.cw{right:8px;bottom:64px}}
+
+/* before / after: two photos of the same spot side by side (gallery.pairs) */
+.pairs{display:grid;gap:14px;margin:0 0 16px}
+@media(min-width:760px){.pairs{grid-template-columns:repeat(2,1fr)}}
+.pair{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pair .pp{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
+.pair .pi{position:relative;margin:0}
+.pair .pi img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+.pair .pl{position:absolute;left:8px;top:8px;font:700 .68rem/1 system-ui,-apple-system,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff}
+.pair .pl.a{background:#16a34a}
+.pair figcaption{padding:10px 12px;font-weight:600;font-size:.92rem}
 </style>
 {{#if schema}}<script type="application/ld+json">{{json schema}}</script>
 {{/if}}</head>
@@ -389,7 +411,7 @@ footer .btn{margin-top:14px}
 <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
 </svg>
 
-<div class="demo-ribbon"><span class="rl">Preview website made for {{name}} by MoreBookedNow</span><span class="rs">Preview site by MoreBookedNow</span></div>
+<div class="demo-ribbon"><span class="rl">Preview website made for {{name}} by <a class="by" href="/about-us?site={{slug}}">MoreBookedNow</a></span><span class="rs">Preview by <a class="by" href="/about-us?site={{slug}}">MoreBookedNow</a></span><a class="mk" href="/{{slug}}/live" data-track="make-live">Make it live &middot; $99/mo</a></div>
 
 <header class="top">
   <div class="wrap">
@@ -450,6 +472,37 @@ footer .btn{margin-top:14px}
 </div>
 {{/if}}
 
+<!-- home: their photos and reviews straight after the hero, inside the first phone screens -->
+{{#if view.home}}{{#if gallery}}<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sh"><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <span class="a">{{gallery.h2b}}</span></h2><p>{{gallery.intro}}</p></div>
+{{#if gallery.pairs}}    <div class="pairs">
+{{#each gallery.pairs}}      <figure class="pair"><div class="pp"><div class="pi"><img src="{{before.file}}" alt="{{before.alt}}" width="{{before.width}}" height="{{before.height}}" loading="lazy" decoding="async"><span class="pl">Before</span></div><div class="pi"><img src="{{after.file}}" alt="{{after.alt}}" width="{{after.width}}" height="{{after.height}}" loading="lazy" decoding="async"><span class="pl a">After</span></div></div><figcaption>{{caption}}</figcaption></figure>
+{{/each}}    </div>
+{{/if}}    <div class="gal">
+{{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
+{{/each}}    </div>
+{{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
+{{/if}}  </div>
+</section>
+{{/if}}{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="rv-top">
+      <div class="sh"><span class="eb">{{reviews.eyebrow}}</span><h2>{{reviews.h2a}} <span class="a">{{reviews.h2b}}</span></h2></div>
+{{#if rating}}      <div class="score"><b>{{rating.score}}</b><div><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span><small>{{rating.count}} Google reviews</small><a href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google</a></div></div>
+{{/if}}    </div>
+    <div class="rvs{{#if view.all}} all{{/if}}">
+{{#each reviews.items}}      <figure class="rv"><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span><p>{{text}}</p><figcaption class="who"><span class="av" aria-hidden="true">{{initial}}</span><span><b>{{name}}</b><small>Google review · {{date}}</small></span></figcaption></figure>
+{{/each}}    </div>
+{{#if links.googleWriteReview}}    <div class="rvask">
+      <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
+      <div><b>{{#if reviews.ask}}{{reviews.ask}}{{else}}Happy with your clean?{{/if}}</b><p>It takes a minute: open our Google listing, tap Write a review, pick the stars and write a line.</p></div>
+      <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Review us on Google</a>
+    </div>
+{{/if}}  </div>
+</section>
+{{/if}}{{/if}}{{/if}}
+
 {{#if view.service}}<section class="sec" id="service">
   <div class="wrap svd-g">
     <div class="svd-t">
@@ -500,16 +553,6 @@ footer .btn{margin-top:14px}
   </div>
 </section>{{/if}}
 
-{{#if view.home}}{{#if gallery.first}}<section class="sec" id="work">
-  <div class="wrap">
-    <div class="sh"><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <span class="a">{{gallery.h2b}}</span></h2><p>{{gallery.intro}}</p></div>
-    <div class="gal">
-{{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
-{{/each}}    </div>
-{{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
-{{/if}}  </div>
-</section>
-{{/if}}{{/if}}
 {{#if view.services}}<section class="sec" id="services">
   <div class="wrap">
     <div class="sh"><span class="eb">{{services.eyebrow}}</span><h2>{{services.h2a}} <span class="a">{{services.h2b}}</span></h2><p>{{services.intro}}</p></div>
@@ -554,17 +597,8 @@ footer .btn{margin-top:14px}
 {{/each}}    </div>
 {{/if}}  </div>
 </section>
-{{/if}}{{else}}{{#if gallery}}{{#if gallery.first}}{{else}}<section class="sec" id="work">
-  <div class="wrap">
-    <div class="sh"><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <span class="a">{{gallery.h2b}}</span></h2><p>{{gallery.intro}}</p></div>
-    <div class="gal">
-{{#each gallery.photos}}      <figure class="gi"><button type="button" aria-label="See this photo big: {{caption}}"><img src="{{file}}" alt="{{alt}}" width="{{width}}" height="{{height}}" loading="lazy" decoding="async"></button><figcaption>{{caption}}</figcaption></figure>
-{{/each}}    </div>
-{{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
-{{/if}}  </div>
-</section>
-{{/if}}{{/if}}{{/if}}{{/if}}
-{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
+{{/if}}{{else}}{{/if}}{{/if}}
+{{#if view.home}}{{else}}{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
   <div class="wrap">
     <div class="rv-top">
       <div class="sh"><span class="eb">{{reviews.eyebrow}}</span><h2>{{reviews.h2a}} <span class="a">{{reviews.h2b}}</span></h2></div>
@@ -575,12 +609,12 @@ footer .btn{margin-top:14px}
 {{/each}}    </div>
 {{#if links.googleWriteReview}}    <div class="rvask">
       <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
-      <div><b>Happy with your clean?</b><p>It takes a minute: open our Google listing, tap Write a review, pick the stars and write a line.</p></div>
+      <div><b>{{#if reviews.ask}}{{reviews.ask}}{{else}}Happy with your clean?{{/if}}</b><p>It takes a minute: open our Google listing, tap Write a review, pick the stars and write a line.</p></div>
       <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Review us on Google</a>
     </div>
 {{/if}}  </div>
 </section>
-{{/if}}{{/if}}
+{{/if}}{{/if}}{{/if}}
 {{#if view.areaSec}}<section class="sec" id="area">
   <div class="wrap area">
     <div>
@@ -621,7 +655,7 @@ footer .btn{margin-top:14px}
       <p style="color:var(--soft);margin-top:12px">{{quote.intro}}</p>
       <a class="qo" href="tel:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i><span><b>Call {{phone.display}}</b><small>{{hours.summary}}</small></span></a>
 {{#if phone2}}      <a class="qo" href="tel:{{phone2.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg></i><span><b>Call {{phone2.display}}</b><small>Our second line</small></span></a>
-{{/if}}      <a class="qo" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i><span><b>Text {{phone.display}}</b><small>Send a photo of what needs cleaning</small></span></a>
+{{/if}}      <a class="qo" href="sms:{{phone.tel}}"><i><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-text"/></svg></i><span><b>Text {{phone.display}}</b><small>{{#if quote.textHint}}{{quote.textHint}}{{else}}Send a photo of what needs cleaning{{/if}}</small></span></a>
     </div>
     <div class="fcard" id="qcard">
       <form onsubmit="quote(event,'ok2')">
@@ -666,7 +700,7 @@ footer .btn{margin-top:14px}
     <h3 id="lock-t">Services page</h3>
     <p>This page is part of the full {{name}} website. It unlocks when your site goes live.</p>
     <ul id="lock-l"></ul>
-    <a class="btn btn-red" id="lock-go" href="https://morebookednow.com/services" target="_blank" rel="noopener">See what's included <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-red" id="lock-go" href="/{{slug}}/live" data-track="make-live">See what's included <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
   </div>
 </div>
 <div class="lbx" id="lbx" hidden><button type="button" class="lbx-x" aria-label="Close photo">&times;</button><img alt=""><p></p></div>
@@ -740,7 +774,7 @@ async function quote(e,id){
   const name=v('name').split(/\s+/)[0];
   const picked=[].slice.call(f.querySelectorAll('[name="service"]')).filter(x=>x.tagName==='SELECT'?x.value:x.checked).map(x=>SVC[x.value]).filter(Boolean);
   if(!LIVE){
-    said(ok,'Thanks'+(name?', '+name:'')+'! This is a preview, so nothing was sent.','On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' goes straight to your phone, with their name, number and address filled in.');
+    said(ok,'This is how your customers\' requests will reach you, straight to your phone.',' On your live site, this request'+(picked.length?' for '+picked.join(', ').toLowerCase():'')+' arrives as soon as they send it, with their name, number and address filled in. (This is a preview, so nothing was sent.)');
     return;
   }
   const btn=f.querySelector('[type="submit"]');if(btn)btn.disabled=true;
@@ -811,7 +845,7 @@ function spent(){
   const box=document.createElement('div');box.className='alock';box.id='alock';
   const b=document.createElement('b');b.textContent='That is your assistant working.';
   const p=document.createElement('p');p.textContent='On your real site it never stops: every question answered, every night, and the details of anyone ready to book sent straight to your phone.';
-  const a=document.createElement('a');a.className='btn btn-blue';a.href='https://morebookednow.com/services';a.target='_blank';a.rel='noopener';a.textContent='Get it running on my site';
+  const a=document.createElement('a');a.className='btn btn-blue';a.href='/'+{{json slug}}+'/live';a.setAttribute('data-track','make-live');a.textContent='Get it running on my site';
   box.append(b,p,a);f.parentNode.appendChild(box);
 }
 document.querySelectorAll('#qr button').forEach(b=>b.addEventListener('click',()=>{const i=document.getElementById('chatin');i.value=b.dataset.q;const f=i.form;if(f.requestSubmit)f.requestSubmit();else send()}));
@@ -847,6 +881,7 @@ document.querySelectorAll('#qr button').forEach(b=>b.addEventListener('click',()
   addEventListener('scroll',onScroll,{passive:true});onScroll();
   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(!a)return;
     var href=a.getAttribute('href')||'';
+    var tr=a.getAttribute('data-track');if(tr){send('cta:'+tr);if(tr==='make-live')a.setAttribute('href','/'+slug+'/live?v='+visit);return}
     if(href.indexOf('tel:')===0)send('cta:call');
     else if(href.indexOf('sms:')===0)send('cta:text');
     else if(a.hasAttribute('data-lock'))send('cta:locked-page');
