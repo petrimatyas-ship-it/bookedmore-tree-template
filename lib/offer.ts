@@ -20,6 +20,65 @@ export const PRICE = "$99";
 export const PRICE_LINE = `${PRICE} / month. No setup fee, no contract, cancel anytime.`;
 export const REFUND_LINE = "Not happy in the first 30 days? Full refund, no questions asked.";
 export const OWNS_LINE = "The site and domain are yours. If you ever stop, you keep them.";
+export const LIVE_LINE = "Live within 48 hours. Already have a domain? We move it over with one quick step from you.";
+
+/** Where a paying site goes live first, within 48 hours: domingotreeservice.morebookednow.com. */
+export const liveHost = (slug: string) => `${slug.replace(/[^a-z0-9]/g, "")}.morebookednow.com`;
+
+/**
+ * The address the owner invites to their domain (DELEGATE_EMAIL, else the owner inbox). Each
+ * registrar's own way of letting someone else manage a domain, so nobody hands over a password.
+ */
+export const delegateEmail = () => (process.env.DELEGATE_EMAIL || process.env.OWNER_EMAIL || "hello@morebookednow.com").trim();
+
+export const REGISTRARS = [
+  ["godaddy", "GoDaddy"],
+  ["namecheap", "Namecheap"],
+  ["squarespace", "Squarespace"],
+  ["wix", "Wix"],
+  ["other", "Somewhere else"],
+  ["unknown", "I don't know"]
+] as const;
+export type Registrar = (typeof REGISTRARS)[number][0];
+
+/** The one quick step for a registrar, as plain lines (the page and the email both use them). */
+export function domainGuide(registrar: string, email: string): { title: string; steps: string[]; note: string } {
+  const never = "We never need your password, and you can remove our access any time.";
+  switch (registrar) {
+    case "godaddy":
+      return { title: "GoDaddy: Delegate Access", steps: [
+        "Sign in to GoDaddy and open your name at the top right, then Account Settings.",
+        "Choose Delegate Access, then Invite to Access.",
+        `Enter the name MoreBookedNow and the email ${email}.`,
+        "Pick Products & Domains as the access level and send the invite."
+      ], note: never };
+    case "namecheap":
+      return { title: "Namecheap: Share Access", steps: [
+        "Sign in to Namecheap and open Domain List.",
+        "Click Manage next to your domain, then the Sharing & Transfer tab.",
+        `Under Share Access, enter ${email} and allow it to manage the domain's DNS.`,
+        "Save. We get an invitation and accept it."
+      ], note: never };
+    case "squarespace":
+      return { title: "Squarespace: add a contributor", steps: [
+        "Sign in to Squarespace and open Domains.",
+        "Click your domain, then Permissions (or Settings, then Permissions & Ownership).",
+        `Invite ${email} as a contributor with permission to manage the domain.`
+      ], note: never };
+    case "wix":
+      return { title: "Wix: invite a collaborator", steps: [
+        "Sign in to Wix and open your site's dashboard.",
+        "Go to Settings, then Roles & Permissions, then Invite People.",
+        `Enter ${email} and choose a role that can manage domains (Admin), then send.`
+      ], note: never };
+    default:
+      return { title: "We will find it for you", steps: [
+        "Not sure where your domain is? That's fine: tell us the domain above and we look it up.",
+        `We then send you the one step for that company: an invite to ${email}.`
+      ], note: never };
+  }
+}
+
 /** The person behind it, named on the who-we-are page. */
 export const OWNER_FIRST_NAME = "Mati";
 
@@ -86,11 +145,11 @@ function page(title: string, body: string, script = ""): string {
 
 /** Posts a short form to /api/owner-message and says how it went. */
 const FORM_SCRIPT = `
-function ownerForm(f,kind,extra){f.addEventListener('submit',async function(e){e.preventDefault();
+function ownerForm(f,kind,extra,after){f.addEventListener('submit',async function(e){e.preventDefault();
   var d={kind:kind};[].forEach.call(f.elements,function(x){if(x.name&&(x.type!=='radio'||x.checked))d[x.name]=x.value});Object.assign(d,extra||{});
   var ok=f.parentNode.querySelector('.done'),b=f.querySelector('[type=submit]');b.disabled=true;
   try{var r=await fetch('/api/owner-message',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});if(!r.ok)throw 0;
-    ok.className='done';ok.textContent=f.dataset.thanks;ok.style.display='block';f.hidden=true}
+    ok.className='done';ok.textContent=f.dataset.thanks;ok.style.display='block';f.hidden=true;if(after)after(d)}
   catch(_){ok.className='done err';ok.textContent='Sorry, that did not go through. Please try again in a minute.';ok.style.display='block';b.disabled=false}})}
 `;
 
@@ -115,7 +174,7 @@ export function offerPage(slug: string, businessHtml: string): string {
     <li>Connected to your Google Business Profile</li>
   </ul>
   <div class="price"><b>${PRICE} <small>/ month</small></b><p>No setup fee, no contract, cancel anytime.</p></div>
-  <div class="fine"><p>Live on your domain within 3 days.</p><p>${REFUND_LINE}</p><p>${OWNS_LINE}</p></div>
+  <div class="fine"><p>${LIVE_LINE}</p><p>${REFUND_LINE}</p><p>${OWNS_LINE}</p></div>
   <div class="btns">
     ${pay ? `<a class="btn go" id="start" href="${esc(pay)}">Start now</a>` : `<button type="button" class="btn go" id="start">Start now</button>`}
     <button type="button" class="btn q" id="ask">Ask me a question</button>
@@ -142,27 +201,48 @@ var s=document.getElementById('start');s.addEventListener('click',function(e){tr
 }
 
 export function welcomePage(): string {
+  const email = delegateEmail();
+  const guides = Object.fromEntries(REGISTRARS.map(([k]) => [k, domainGuide(k, email)]));
   const body = `<div class="wrap">
 <div class="top"><b>MoreBookedNow</b><a href="/about-us">Who we are</a></div>
 <main class="card">
   <h1>Thank you, you&#39;re in</h1>
-  <p class="for" id="for">Three quick questions and we start on your site.</p>
-  <form id="wf" data-thanks="Got it. Your site will be live on your domain within 3 days. We will be in touch as soon as it is.">
+  <p class="for" id="for">A few quick questions and we start on your site. It goes live within 48 hours<span id="host"></span>.</p>
+  <form id="wf">
     <fieldset style="border:0;display:grid;gap:8px"><legend style="font-weight:600;font-size:.92rem;margin-bottom:6px">Do you have a domain?</legend>
       <div class="radio"><label><input type="radio" name="hasDomain" value="yes" required> Yes</label><label><input type="radio" name="hasDomain" value="no"> No, get me one</label></div></fieldset>
-    <label>Which one?<input name="domain" placeholder="yourbusiness.com" maxlength="200" autocapitalize="off"></label>
+    <div id="dom" hidden style="display:grid;gap:12px">
+      <label>Which one?<input name="domain" placeholder="yourbusiness.com" maxlength="200" autocapitalize="off"></label>
+      <label>Where is it registered?<select name="registrar">${REGISTRARS.map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("")}</select></label>
+    </div>
     <label>Anything you&#39;d like changed?<textarea name="changes" maxlength="3000" placeholder="Photos, words, services, prices, anything"></textarea></label>
     <label>Best phone number for texts<input name="phone" type="tel" autocomplete="tel" required maxlength="40"></label>
+    <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button type="submit" class="btn go">Send</button>
   </form>
   <div class="done" role="status"></div>
+  <div id="guide" hidden></div>
 </main>
 </div>`;
   const script = `${FORM_SCRIPT}
-var q=new URLSearchParams(location.search),slug=(q.get('slug')||'').toLowerCase();
-try{var st=JSON.parse(localStorage.getItem('mbn-start')||'null');if(!slug&&st&&st.slug)slug=st.slug}catch(_){}
-ownerForm(document.getElementById('wf'),'new-customer',{slug:slug,session:(q.get('session_id')||'').slice(0,200)});`;
+var GUIDES=${JSON.stringify(guides).replace(/</g, "\\u003c")};
+var q=new URLSearchParams(location.search),slug=(q.get('slug')||'').toLowerCase().replace(/[^a-z0-9-]/g,'');
+try{var st=JSON.parse(localStorage.getItem('mbn-start')||'null');if(!slug&&st&&st.slug)slug=String(st.slug).replace(/[^a-z0-9-]/g,'')}catch(_){}
+var host=slug?slug.replace(/[^a-z0-9]/g,'')+'.morebookednow.com':'';
+if(host)document.getElementById('host').textContent=' at '+host;
+var f=document.getElementById('wf'),dom=document.getElementById('dom');
+f.addEventListener('change',function(){var y=f.querySelector('[name=hasDomain]:checked');dom.hidden=!(y&&y.value==='yes');dom.style.display=dom.hidden?'none':'grid'});dom.style.display='none';
+f.dataset.thanks='Got it. Your site will be live within 48 hours'+(host?' at '+host:'')+'. We will be in touch as soon as it is.';
+ownerForm(f,'new-customer',{slug:slug,session:(q.get('session_id')||'').slice(0,200)},function(d){
+  if(d.hasDomain!=='yes')return;
+  var g=GUIDES[d.registrar]||GUIDES.unknown,box=document.getElementById('guide');box.textContent='';
+  var h=document.createElement('h2');h.textContent='One quick step for your domain: '+g.title;box.appendChild(h);
+  var ol=document.createElement('ol');ol.style.cssText='margin:10px 0 0 20px;display:grid;gap:8px';
+  g.steps.forEach(function(s){var li=document.createElement('li');li.textContent=s;ol.appendChild(li)});box.appendChild(ol);
+  var n=document.createElement('p');n.style.cssText='margin-top:12px;font-weight:600';n.textContent=g.note;box.appendChild(n);
+  var p=document.createElement('p');p.style.cssText='margin-top:12px;color:var(--muted);font-size:.9rem';p.textContent='We have emailed you these steps too. Once you send the invite, we move the site over to '+(d.domain||'your domain')+'.';box.appendChild(p);
+  box.hidden=false});`;
   return page("Thank you | MoreBookedNow", body, script);
 }
 
