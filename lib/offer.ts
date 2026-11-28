@@ -17,6 +17,8 @@
  */
 
 export const PRICE = "$99";
+/** The monthly price over a year, for the buyout block. */
+export const YEAR = "$1,188";
 export const REFUND_LINE = "Not happy in the first 30 days? Full refund, no questions asked.";
 /** Who we are: MoreBookedNow's own about page (the preview banner and the offer link to it). */
 export const ABOUT_URL = "https://morebookednow.com/about";
@@ -131,6 +133,17 @@ input:focus,textarea:focus{outline:none;border-color:var(--blue)}
 .hp{position:absolute;left:-5000px}
 .done{display:none;margin-top:16px;padding:14px;border-radius:10px;background:#ecfdf3;border:1px solid #b7e4c7;color:#14532d}
 .done.err{background:#fef2f2;border-color:#fecaca;color:#7f1d1d}
+.buy{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:.93rem;color:var(--soft)}
+.buy h2{margin:0 0 8px;font-size:1.02rem;color:var(--ink)}
+.buy p+p{margin-top:8px}
+.buy form{margin-top:14px;gap:10px}
+.buy .btn{min-height:48px;font-size:.98rem}
+.buy .amt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--ink)}
+.buy .cur{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#fff;padding-left:12px;width:150px}
+.buy .cur:focus-within{border-color:var(--blue)}
+.buy .cur b{color:var(--muted)}
+.buy .cur input{border:0;min-height:46px;padding:10px 10px 10px 4px;font-weight:700;width:100%}
+.buy .cur input:focus{outline:none}
 .foot{margin-top:18px;text-align:center;font-size:.85rem;color:var(--muted)}
 .foot a{color:var(--muted)}
 h2{font-size:1.1rem;margin-top:22px}
@@ -154,9 +167,9 @@ function ownerForm(f,kind,extra,after){f.addEventListener('submit',async functio
 /** The visit log, as the site pages keep it: one event, attached to the visit the prospect came from. */
 const TRACK_SCRIPT = (slug: string) => `
 var SLUG=${JSON.stringify(slug)},VISIT=(new URLSearchParams(location.search).get('v')||'').replace(/[^a-z0-9]/g,'').slice(0,16);
-function track(ev){var fresh=!VISIT;if(fresh)VISIT=Math.random().toString(36).slice(2,12);
-  function one(e){var body=JSON.stringify({slug:SLUG,event:e,page:location.pathname,visit:VISIT});try{if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/demo/track',new Blob([body],{type:'application/json'}))))fetch('/api/demo/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}catch(_){}}
-  if(fresh)one('view');one(ev)}
+function track(ev,val){var fresh=!VISIT;if(fresh)VISIT=Math.random().toString(36).slice(2,12);
+  function one(e,v){var body=JSON.stringify({slug:SLUG,event:e,page:location.pathname,visit:VISIT,value:v});try{if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/demo/track',new Blob([body],{type:'application/json'}))))fetch('/api/demo/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true})}catch(_){}}
+  if(fresh)one('view');one(ev,val)}
 `;
 
 export function offerPage(slug: string, businessHtml: string): string {
@@ -185,11 +198,26 @@ export function offerPage(slug: string, businessHtml: string): string {
     <button type="submit" class="btn go">Send</button>
   </form>
   <div class="done" role="status"></div>
+  <section class="buy">
+    <h2>Want to own it instead?</h2>
+    <p>On the monthly plan this site is ${PRICE} a month, ${YEAR} a year, with hosting, changes and fixes included.</p>
+    <p>If you&#39;d rather buy it outright, tell me what it&#39;s worth to you. Buying it out means the site is yours; hosting and later changes aren&#39;t included.</p>
+    <form id="buyf" data-thanks="Offer sent.">
+      <label class="amt">I&#39;d pay <span class="cur"><b>$</b><input name="amount" type="text" inputmode="numeric" pattern="[0-9]{1,7}" required maxlength="7" autocomplete="off" aria-label="Amount in dollars"></span> once</label>
+      <label>Your email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn q">Send my offer &rarr;</button>
+    </form>
+    <div class="done" role="status"></div>
+  </section>
 </main>
 <p class="foot"><a href="${ABOUT_URL}">Who we are</a></p>
 </div>`;
   const script = `${TRACK_SCRIPT(slug)}${FORM_SCRIPT}
 var f=document.getElementById('askf');ownerForm(f,'question',{slug:SLUG});
+var bf=document.getElementById('buyf'),amt=bf.querySelector('[name=amount]');
+amt.addEventListener('input',function(){var v=amt.value.replace(/[^0-9]/g,'');if(v!==amt.value)amt.value=v});
+ownerForm(bf,'buyout',{slug:SLUG},function(d){track('cta:buyout',parseInt(d.amount,10))});
 function openAsk(){f.hidden=false;var i=f.querySelector('input[name=email]');try{f.scrollIntoView({block:'start',behavior:'smooth'})}catch(_){}setTimeout(function(){i.focus()},250)}
 document.getElementById('ask').addEventListener('click',function(){track('cta:ask');openAsk()});
 var s=document.getElementById('start');s.addEventListener('click',function(e){track('cta:start-now');

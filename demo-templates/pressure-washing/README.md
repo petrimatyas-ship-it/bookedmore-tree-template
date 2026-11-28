@@ -21,6 +21,7 @@ detailing data (`images.heroLogo`, `images.hero`, `images.about`,
 Data, every value already HTML-escaped:
 
 - `slug`, `name`, `tagline`, `seo { title, description }`, `icons`, `phone { display, tel }`, `timezone`
+- optional `images.about2`: a second photo of theirs, different from `images.about`. On the home page the about photo with its review (`intro.review`) stands on its own after the gallery, before the Google reviews, and the about text follows the reviews with `images.about2` beside it (before the services); other pages keep the about section as it was
 - `images.heroLogo` (their logo, header and footer), `images.hero` (behind the hero text; optional `position`), `images.heroMobile` (optional: a different photo for the hero on phones, up to 700px wide, usually an upright one; optional `position`), `images.about` (intro photo)
 - `rating { score, count }` (optional), `hero { kicker, h1a, h1b, lead }`, `quick { title }`
 - `intro { eyebrow, h2a, h2b, paras[], checks[], review? { text, name } }`

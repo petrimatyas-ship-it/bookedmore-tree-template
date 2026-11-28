@@ -89,7 +89,8 @@ export async function GET(request: Request) {
     else if (e.event === "dwell" && typeof e.value === "number") v.seconds = Math.max(v.seconds ?? 0, e.value);
     else if (e.event === "assistant") v.chat = true;
     else if (e.event.startsWith("cta:")) {
-      const action = e.event.slice(4);
+      // a buyout offer carries its amount: "buyout:1500"
+      const action = e.event.slice(4) + (e.event === "cta:buyout" && typeof e.value === "number" ? `:${e.value}` : "");
       if (!(v.actions ??= []).includes(action)) v.actions.push(action);
     }
   }

@@ -184,6 +184,7 @@ without a template change, say so in the warnings.
   caption like "Driveway, before / after", best first, at most 4. They show
   above the gallery grid. Never pair two different places, and never make a
   "before" by darkening an "after": no real pair, no pairs.
+- **Second about photo** (`pressure-washing`): `images.about2`, another photo of them at work, not the about photo and not in the gallery. It sits beside the about text on the home page.
 - **Generated pictures** stay the fallback only, for a service card with no
   photo of theirs (below); never for the gallery or a pair.
 - **Service cards** get the photo of theirs that shows that service. None
