@@ -8,7 +8,7 @@ One folder per template (`detailing`, `pressure-washing`, `cleaning`, `landscapi
 Every stored site is a preview for the business that replied, and carries the same offer for its owner
 (`lib/offer.ts`):
 
-- The banner: "Preview website made for <Business> by MoreBookedNow" (to `/about-us`, who we are) and a green
+- The banner: "Preview website made for <Business> by MoreBookedNow" (to morebookednow.com/about) and a green
   **Make it live · $99/mo** button (to `/<slug>/live`, the offer page).
 - The locked pages' "See what's included" and the chat's "Get it running on my site" open the same offer page.
 - The estimate form on a preview answers the owner: "This is how your customers' requests will reach you,

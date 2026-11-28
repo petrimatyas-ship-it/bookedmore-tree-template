@@ -4,7 +4,7 @@
  *   /<slug>/live    the offer, one phone screen: what they get, the price, Start now
  *                   (Stripe) and Ask me a question (a short form that emails the owner)
  *   /welcome        Stripe's success page: three questions that start the work
- *   /about-us       who we are, for "from where?" and "company information"
+ *   who we are      morebookednow.com/about (ABOUT_URL), for "from where?" and "company information"
  *
  * One price only, and no phone-call option anywhere: the owner cannot take calls.
  * The Stripe Payment Link is the Vercel variable STRIPE_PAYMENT_LINK (one link for
@@ -17,9 +17,9 @@
  */
 
 export const PRICE = "$99";
-export const PRICE_LINE = `${PRICE} / month. No setup fee, no contract, cancel anytime.`;
 export const REFUND_LINE = "Not happy in the first 30 days? Full refund, no questions asked.";
-export const OWNS_LINE = "The site and domain are yours. If you ever stop, you keep them.";
+/** Who we are: MoreBookedNow's own about page (the preview banner and the offer link to it). */
+export const ABOUT_URL = "https://morebookednow.com/about";
 export const LIVE_LINE = "Live within 48 hours. Already have a domain? We move it over with one quick step from you.";
 
 /** Where a paying site goes live first, within 48 hours: domingotreeservice.morebookednow.com. */
@@ -79,8 +79,6 @@ export function domainGuide(registrar: string, email: string): { title: string; 
   }
 }
 
-/** The person behind it, named on the who-we-are page. */
-export const OWNER_FIRST_NAME = "Mati";
 
 /** Stripe's Payment Link with the site's slug, or null when none is set. */
 export function paymentLink(slug: string): string | null {
@@ -174,7 +172,7 @@ export function offerPage(slug: string, businessHtml: string): string {
     <li>Connected to your Google Business Profile</li>
   </ul>
   <div class="price"><b>${PRICE} <small>/ month</small></b><p>No setup fee, no contract, cancel anytime.</p></div>
-  <div class="fine"><p>${LIVE_LINE}</p><p>${REFUND_LINE}</p><p>${OWNS_LINE}</p></div>
+  <div class="fine"><p>${LIVE_LINE}</p><p>${REFUND_LINE}</p></div>
   <div class="btns">
     ${pay ? `<a class="btn go" id="start" href="${esc(pay)}">Start now</a>` : `<button type="button" class="btn go" id="start">Start now</button>`}
     <button type="button" class="btn q" id="ask">Ask me a question</button>
@@ -188,7 +186,7 @@ export function offerPage(slug: string, businessHtml: string): string {
   </form>
   <div class="done" role="status"></div>
 </main>
-<p class="foot"><a href="/about-us?site=${slug}">Who we are</a></p>
+<p class="foot"><a href="${ABOUT_URL}">Who we are</a></p>
 </div>`;
   const script = `${TRACK_SCRIPT(slug)}${FORM_SCRIPT}
 var f=document.getElementById('askf');ownerForm(f,'question',{slug:SLUG});
@@ -204,7 +202,7 @@ export function welcomePage(): string {
   const email = delegateEmail();
   const guides = Object.fromEntries(REGISTRARS.map(([k]) => [k, domainGuide(k, email)]));
   const body = `<div class="wrap">
-<div class="top"><b>MoreBookedNow</b><a href="/about-us">Who we are</a></div>
+<div class="top"><b>MoreBookedNow</b><a href="${ABOUT_URL}">Who we are</a></div>
 <main class="card">
   <h1>Thank you, you&#39;re in</h1>
   <p class="for" id="for">A few quick questions and we start on your site. It goes live within 48 hours<span id="host"></span>.</p>
@@ -244,27 +242,4 @@ ownerForm(f,'new-customer',{slug:slug,session:(q.get('session_id')||'').slice(0,
   var p=document.createElement('p');p.style.cssText='margin-top:12px;color:var(--muted);font-size:.9rem';p.textContent='We have emailed you these steps too. Once you send the invite, we move the site over to '+(d.domain||'your domain')+'.';box.appendChild(p);
   box.hidden=false});`;
   return page("Thank you | MoreBookedNow", body, script);
-}
-
-export function aboutUsPage(slug: string | null): string {
-  const back = slug ? `<a href="/${slug}">&larr; Back to your site</a>` : `<span></span>`;
-  const body = `<div class="wrap">
-<div class="top">${back}<b>MoreBookedNow</b></div>
-<main class="card">
-  <h1>Who we are</h1>
-  <p class="for">MoreBookedNow</p>
-  <h2>What we do</h2>
-  <p>We build and run websites for local service businesses: pressure washers, tree services, landscapers, detailers, roofers and more. We build the site, put it on your domain, connect it to your Google Business Profile, and keep it running: changes and fixes whenever you need them.</p>
-  <h2>Who you work with</h2>
-  <p>I&#39;m ${OWNER_FIRST_NAME}. I build every site myself. We are based in Europe and work with businesses across the US, by email and text.</p>
-  <h2>The deal</h2>
-  <p>${PRICE_LINE}</p>
-  <p>${REFUND_LINE}</p>
-  <p>${OWNS_LINE}</p>
-  <h2>Company information</h2>
-  <p><a href="https://morebookednow.com/imprint" target="_blank" rel="noopener">morebookednow.com/imprint</a></p>
-  ${slug ? `<div class="btns"><a class="btn go" href="/${slug}/live">See the offer</a></div>` : ""}
-</main>
-</div>`;
-  return page("Who we are | MoreBookedNow", body);
 }
