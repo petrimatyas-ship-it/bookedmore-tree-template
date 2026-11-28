@@ -7,6 +7,7 @@ import { REGISTRARS, delegateEmail, domainGuide, liveHost } from "@/lib/offer";
  * the owner inbox, the same one the estimate forms on previews reach:
  *
  *   { kind: "question", slug, name, email, question }        "Ask me a question" on /<slug>/live
+ *   { kind: "buyout", slug, amount, email }                   "Want to own it instead?" on /<slug>/live: whole dollars, no payment here
  *   { kind: "new-customer", slug, hasDomain, domain, registrar, changes, phone, email, session }
  *                                                            the questions on /welcome, after Stripe; with a domain,
  *                                                            they also get that registrar's one step by email
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
   }
   if (field(b.website, 200)) return NextResponse.json({ ok: true });
 
-  const kind = b.kind === "new-customer" ? "new-customer" : b.kind === "question" ? "question" : null;
+  const kind = b.kind === "new-customer" || b.kind === "question" || b.kind === "buyout" ? b.kind : null;
   if (!kind) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
   const slug = field(b.slug, 90).toLowerCase();
@@ -44,7 +45,16 @@ export async function POST(request: Request) {
   let replyTo: string | undefined;
   // with a domain: the registrar's one step (lib/offer.ts), emailed to the new customer too
   let guideMail: { to: string; subject: string; text: string } | null = null;
-  if (kind === "question") {
+  if (kind === "buyout") {
+    const email = field(b.email, 200);
+    const digits = field(b.amount, 20).replace(/[\s,$]/g, "");
+    const amount = /^\d{1,7}$/.test(digits) ? Number(digits) : 0;
+    if (!amount || !EMAIL_RE.test(email)) return NextResponse.json({ error: "An amount and an email are needed." }, { status: 400 });
+    replyTo = email;
+    const dollars = `$${amount.toLocaleString("en-US")}`;
+    subject = `BUYOUT OFFER · ${slug || "(site not known)"} · ${dollars}`;
+    lines = [`Business: ${business}`, `Offer:    ${dollars}, once`, `Email:    ${email}`, !!siteUrl && `Site:     ${siteUrl}`, "", "Reply to this email with a payment link."];
+  } else if (kind === "question") {
     const email = field(b.email, 200);
     const question = field(b.question, 3000);
     if (!EMAIL_RE.test(email) || !question) return NextResponse.json({ error: "An email and a question are needed." }, { status: 400 });

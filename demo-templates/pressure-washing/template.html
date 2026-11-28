@@ -113,6 +113,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);bo
 
 /* intro */
 .intro{display:grid;gap:30px;align-items:center}
+/* home: the photo with its review on its own, and about us as text with a second photo (images.about2) */
+.intro.solo{grid-template-columns:1fr!important;max-width:760px}
+.phq{padding-bottom:0}
+@media(max-width:899px){.phq .ph{margin-bottom:34px}}
+.intro .ph2 img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+@media(max-width:899px){.intro .ph2{margin:6px 0 0}}
 @media(min-width:900px){.intro{grid-template-columns:1fr 1.1fr;gap:56px}}
 .ph{position:relative}
 .ph img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:6px solid #fff;box-shadow:0 18px 40px -22px rgba(18,48,74,.55)}
@@ -472,7 +478,7 @@ footer .btn{margin-top:14px}
 </div>
 {{/if}}
 
-<!-- home: their photos and reviews straight after the hero, inside the first phone screens -->
+<!-- home: their photos straight after the hero, their photo with a review, the Google reviews, then about us (inside the first phone screens) -->
 {{#if view.home}}{{#if gallery}}<section class="sec" id="work">
   <div class="wrap">
     <div class="sh"><span class="eb">{{gallery.eyebrow}}</span><h2>{{gallery.h2a}} <span class="a">{{gallery.h2b}}</span></h2><p>{{gallery.intro}}</p></div>
@@ -485,23 +491,7 @@ footer .btn{margin-top:14px}
 {{#if gallery.note}}    <p class="gal-note">{{gallery.note}}</p>
 {{/if}}  </div>
 </section>
-{{/if}}{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
-  <div class="wrap">
-    <div class="rv-top">
-      <div class="sh"><span class="eb">{{reviews.eyebrow}}</span><h2>{{reviews.h2a}} <span class="a">{{reviews.h2b}}</span></h2></div>
-{{#if rating}}      <div class="score"><b>{{rating.score}}</b><div><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span><small>{{rating.count}} Google reviews</small><a href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google</a></div></div>
-{{/if}}    </div>
-    <div class="rvs{{#if view.all}} all{{/if}}">
-{{#each reviews.items}}      <figure class="rv"><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span><p>{{text}}</p><figcaption class="who"><span class="av" aria-hidden="true">{{initial}}</span><span><b>{{name}}</b><small>Google review · {{date}}</small></span></figcaption></figure>
-{{/each}}    </div>
-{{#if links.googleWriteReview}}    <div class="rvask">
-      <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
-      <div><b>{{#if reviews.ask}}{{reviews.ask}}{{else}}Happy with your clean?{{/if}}</b><p>It takes a minute: open our Google listing, tap Write a review, pick the stars and write a line.</p></div>
-      <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Review us on Google</a>
-    </div>
-{{/if}}  </div>
-</section>
-{{/if}}{{/if}}{{/if}}
+{{/if}}{{/if}}
 
 {{#if view.service}}<section class="sec" id="service">
   <div class="wrap svd-g">
@@ -535,12 +525,37 @@ footer .btn{margin-top:14px}
 {{/each}}  </div></div>
 {{/if}}</section>
 {{/each}}{{/if}}
-{{#if view.about}}<section class="sec" id="about">
-  <div class="wrap intro">
+{{#if view.home}}<section class="sec phq" aria-label="A customer on our work">
+  <div class="wrap intro solo">
     <div class="ph">
       <img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async">
 {{#if intro.review}}      <div class="q"><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>“{{intro.review.text}}”<b>{{intro.review.name}}, Google review</b></div>
 {{/if}}    </div>
+  </div>
+</section>{{/if}}
+{{#if view.home}}{{#if view.reviews}}{{#if reviews.items}}<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="rv-top">
+      <div class="sh"><span class="eb">{{reviews.eyebrow}}</span><h2>{{reviews.h2a}} <span class="a">{{reviews.h2b}}</span></h2></div>
+{{#if rating}}      <div class="score"><b>{{rating.score}}</b><div><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span><small>{{rating.count}} Google reviews</small><a href="{{links.googleReviews}}" target="_blank" rel="noopener">Read them on Google</a></div></div>
+{{/if}}    </div>
+    <div class="rvs{{#if view.all}} all{{/if}}">
+{{#each reviews.items}}      <figure class="rv"><span class="st" aria-label="5 stars"><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic f" aria-hidden="true"><use href="#i-star"/></svg></span><p>{{text}}</p><figcaption class="who"><span class="av" aria-hidden="true">{{initial}}</span><span><b>{{name}}</b><small>Google review · {{date}}</small></span></figcaption></figure>
+{{/each}}    </div>
+{{#if links.googleWriteReview}}    <div class="rvask">
+      <span class="rs" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>
+      <div><b>{{#if reviews.ask}}{{reviews.ask}}{{else}}Happy with your clean?{{/if}}</b><p>It takes a minute: open our Google listing, tap Write a review, pick the stars and write a line.</p></div>
+      <a class="btn btn-blue" href="{{links.googleWriteReview}}" target="_blank" rel="noopener"><svg class="ic f" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>Review us on Google</a>
+    </div>
+{{/if}}  </div>
+</section>
+{{/if}}{{/if}}{{/if}}
+{{#if view.about}}<section class="sec" id="about">
+  <div class="wrap intro{{#if view.home}}{{#if images.about2}} txt-first{{else}} solo{{/if}}{{/if}}">
+{{#if view.home}}{{else}}    <div class="ph">
+      <img src="{{images.about.file}}" alt="{{images.about.alt}}" width="{{images.about.width}}" height="{{images.about.height}}" loading="lazy" decoding="async">
+{{#if intro.review}}      <div class="q"><span class="st" aria-hidden="true"><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg><svg class="ic f"><use href="#i-star"/></svg></span>“{{intro.review.text}}”<b>{{intro.review.name}}, Google review</b></div>
+{{/if}}    </div>{{/if}}
     <div class="txt">
       <span class="eb">{{intro.eyebrow}}</span>
       <h2>{{intro.h2a}} <span class="a">{{intro.h2b}}</span></h2>
@@ -550,7 +565,8 @@ footer .btn{margin-top:14px}
 {{/each}}      </ul>
       <a class="btn btn-red" href="{{view.q}}">Get a free estimate <svg class="ic" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
     </div>
-  </div>
+{{#if view.home}}{{#if images.about2}}    <div class="ph ph2"><img src="{{images.about2.file}}" alt="{{images.about2.alt}}" width="{{images.about2.width}}" height="{{images.about2.height}}" loading="lazy" decoding="async"></div>
+{{/if}}{{/if}}  </div>
 </section>{{/if}}
 
 {{#if view.services}}<section class="sec" id="services">
